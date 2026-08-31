@@ -1,0 +1,18 @@
+bookdown::gitbook:
+  css: ../style.css
+  split_by: chapter
+  config:
+    toc:
+      collapse: section
+      scroll_highlight: true
+      before: |
+        <li class="course-title"><a href="./">Advanced Statistics</a></li>
+        <li class="language-switch"><a href="../zh/">← 中文版</a></li>
+    sharing: null
+    download: null
+    search: true
+    fontsettings:
+      theme: white
+      family: sans
+      size: 2
+

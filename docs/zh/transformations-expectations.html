@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xml:lang="zh-CN">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>第 2 随机变量的变换与期望 | 高等统计学</title>
+  <meta name="description" content="第 2 随机变量的变换与期望 | 高等统计学课程在线讲义，依据原有课程课件与配套代码整理。" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="第 2 随机变量的变换与期望 | 高等统计学" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="第 2 随机变量的变换与期望 | 高等统计学课程在线讲义，依据原有课程课件与配套代码整理。" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="第 2 随机变量的变换与期望 | 高等统计学" />
+  
+  <meta name="twitter:description" content="第 2 随机变量的变换与期望 | 高等统计学课程在线讲义，依据原有课程课件与配套代码整理。" />
+  
+
+<meta name="author" content="王芝皓 副教授" />
+
+
+<meta name="date" content="2026-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="probability-theory.html"/>
+<link rel="next" href="distribution-families.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="course-title"><a href="./">高等统计学</a></li>
+<li class="language-switch"><a href="../en/">English edition →</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#使用说明"><i class="fa fa-check"></i>使用说明</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="author-bio.html"><a href="author-bio.html"><i class="fa fa-check"></i>作者简介</a>
+<ul>
+<li class="chapter" data-level="" data-path="author-bio.html"><a href="author-bio.html#科研与教学工作"><i class="fa fa-check"></i>科研与教学工作</a></li>
+<li class="chapter" data-level="" data-path="author-bio.html"><a href="author-bio.html#学术成果"><i class="fa fa-check"></i>学术成果</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="course-introduction.html"><a href="course-introduction.html"><i class="fa fa-check"></i>课程介绍</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="course-introduction.html"><a href="course-introduction.html#course-instructor"><i class="fa fa-check"></i><b>0.1</b> 任课教师与课程定位</a></li>
+<li class="chapter" data-level="0.2" data-path="course-introduction.html"><a href="course-introduction.html#course-instructor-publications"><i class="fa fa-check"></i><b>0.2</b> 教师代表性成果</a></li>
+<li class="chapter" data-level="0.3" data-path="course-introduction.html"><a href="course-introduction.html#course-personal-info"><i class="fa fa-check"></i><b>0.3</b> 个人信息入口</a></li>
+<li class="chapter" data-level="0.4" data-path="course-introduction.html"><a href="course-introduction.html#course-basic-info"><i class="fa fa-check"></i><b>0.4</b> 课程基本信息</a></li>
+<li class="chapter" data-level="0.5" data-path="course-introduction.html"><a href="course-introduction.html#course-description"><i class="fa fa-check"></i><b>0.5</b> 课程简介</a></li>
+<li class="chapter" data-level="0.6" data-path="course-introduction.html"><a href="course-introduction.html#course-textbooks"><i class="fa fa-check"></i><b>0.6</b> 建议教材</a></li>
+<li class="chapter" data-level="0.7" data-path="course-introduction.html"><a href="course-introduction.html#course-reference-books"><i class="fa fa-check"></i><b>0.7</b> 参考书籍</a></li>
+<li class="chapter" data-level="0.8" data-path="course-introduction.html"><a href="course-introduction.html#course-main-task"><i class="fa fa-check"></i><b>0.8</b> 课程主要任务</a></li>
+<li class="chapter" data-level="0.9" data-path="course-introduction.html"><a href="course-introduction.html#course-objectives"><i class="fa fa-check"></i><b>0.9</b> 课程教学目标</a></li>
+<li class="chapter" data-level="0.10" data-path="course-introduction.html"><a href="course-introduction.html#course-content-foundations"><i class="fa fa-check"></i><b>0.10</b> 主要内容（一）：统计推断基础</a></li>
+<li class="chapter" data-level="0.11" data-path="course-introduction.html"><a href="course-introduction.html#course-content-modern"><i class="fa fa-check"></i><b>0.11</b> 主要内容（二）：现代统计方法</a></li>
+<li class="chapter" data-level="0.12" data-path="course-introduction.html"><a href="course-introduction.html#course-teaching-assessment"><i class="fa fa-check"></i><b>0.12</b> 授课方式与考核</a></li>
+<li class="chapter" data-level="0.13" data-path="course-introduction.html"><a href="course-introduction.html#course-introduction-summary"><i class="fa fa-check"></i><b>0.13</b> 本章小结与学习提示</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="probability-theory.html"><a href="probability-theory.html"><i class="fa fa-check"></i><b>1</b> 概率论基础</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="probability-theory.html"><a href="probability-theory.html#sample-space-events"><i class="fa fa-check"></i><b>1.1</b> 样本空间与事件</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="probability-theory.html"><a href="probability-theory.html#集合运算"><i class="fa fa-check"></i><b>1.1.1</b> 集合运算</a></li>
+<li class="chapter" data-level="1.1.2" data-path="probability-theory.html"><a href="probability-theory.html#互斥事件与划分"><i class="fa fa-check"></i><b>1.1.2</b> 互斥事件与划分</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="probability-theory.html"><a href="probability-theory.html#sigma-algebra-probability"><i class="fa fa-check"></i><b>1.2</b> <span class="math inline">\(\sigma\)</span>-代数与概率测度</a></li>
+<li class="chapter" data-level="1.3" data-path="probability-theory.html"><a href="probability-theory.html#conditional-probability"><i class="fa fa-check"></i><b>1.3</b> 条件概率与 Bayes 公式</a></li>
+<li class="chapter" data-level="1.4" data-path="probability-theory.html"><a href="probability-theory.html#independence"><i class="fa fa-check"></i><b>1.4</b> 独立性</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="probability-theory.html"><a href="probability-theory.html#两两独立与相互独立"><i class="fa fa-check"></i><b>1.4.1</b> 两两独立与相互独立</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="probability-theory.html"><a href="probability-theory.html#random-variables"><i class="fa fa-check"></i><b>1.5</b> 随机变量</a></li>
+<li class="chapter" data-level="1.6" data-path="probability-theory.html"><a href="probability-theory.html#distribution-functions"><i class="fa fa-check"></i><b>1.6</b> 分布函数</a></li>
+<li class="chapter" data-level="1.7" data-path="probability-theory.html"><a href="probability-theory.html#pmf-pdf"><i class="fa fa-check"></i><b>1.7</b> 概率质量函数与概率密度函数</a></li>
+<li class="chapter" data-level="1.8" data-path="probability-theory.html"><a href="probability-theory.html#chapter-one-summary"><i class="fa fa-check"></i><b>1.8</b> 本章小结</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="transformations-expectations.html"><a href="transformations-expectations.html"><i class="fa fa-check"></i><b>2</b> 随机变量的变换与期望</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="transformations-expectations.html"><a href="transformations-expectations.html#distribution-functions-rv"><i class="fa fa-check"></i><b>2.1</b> 随机变量函数的分布</a></li>
+<li class="chapter" data-level="2.2" data-path="transformations-expectations.html"><a href="transformations-expectations.html#sin-square-transformation"><i class="fa fa-check"></i><b>2.2</b> 例 2.1.2：正弦平方变换</a></li>
+<li class="chapter" data-level="2.3" data-path="transformations-expectations.html"><a href="transformations-expectations.html#support-monotone-transform"><i class="fa fa-check"></i><b>2.3</b> 支撑集与单调变换</a></li>
+<li class="chapter" data-level="2.4" data-path="transformations-expectations.html"><a href="transformations-expectations.html#inverse-gamma-example"><i class="fa fa-check"></i><b>2.4</b> 例 2.1.6：倒数 Gamma 变换</a></li>
+<li class="chapter" data-level="2.5" data-path="transformations-expectations.html"><a href="transformations-expectations.html#normal-square-example"><i class="fa fa-check"></i><b>2.5</b> 例 2.1.7：标准正态的平方</a></li>
+<li class="chapter" data-level="2.6" data-path="transformations-expectations.html"><a href="transformations-expectations.html#piecewise-monotone-transform"><i class="fa fa-check"></i><b>2.6</b> 分段单调变换</a></li>
+<li class="chapter" data-level="2.7" data-path="transformations-expectations.html"><a href="transformations-expectations.html#probability-integral-transform"><i class="fa fa-check"></i><b>2.7</b> 概率积分变换</a></li>
+<li class="chapter" data-level="2.8" data-path="transformations-expectations.html"><a href="transformations-expectations.html#expected-value-definition"><i class="fa fa-check"></i><b>2.8</b> 期望的定义与计算</a></li>
+<li class="chapter" data-level="2.9" data-path="transformations-expectations.html"><a href="transformations-expectations.html#expectation-examples-properties"><i class="fa fa-check"></i><b>2.9</b> 期望的例子与性质</a></li>
+<li class="chapter" data-level="2.10" data-path="transformations-expectations.html"><a href="transformations-expectations.html#moments-mgf"><i class="fa fa-check"></i><b>2.10</b> 矩、中心矩与矩母函数</a></li>
+<li class="chapter" data-level="2.11" data-path="transformations-expectations.html"><a href="transformations-expectations.html#same-moments-example"><i class="fa fa-check"></i><b>2.11</b> 相同矩不必确定相同分布</a></li>
+<li class="chapter" data-level="2.12" data-path="transformations-expectations.html"><a href="transformations-expectations.html#mgf-convergence-examples"><i class="fa fa-check"></i><b>2.12</b> MGF 收敛与两个经典 MGF</a></li>
+<li class="chapter" data-level="2.13" data-path="transformations-expectations.html"><a href="transformations-expectations.html#poisson-approximation"><i class="fa fa-check"></i><b>2.13</b> 例 2.3.13：Poisson 近似</a></li>
+<li class="chapter" data-level="2.14" data-path="transformations-expectations.html"><a href="transformations-expectations.html#leibniz-dominated"><i class="fa fa-check"></i><b>2.14</b> Leibniz 法则与支配收敛</a></li>
+<li class="chapter" data-level="2.15" data-path="transformations-expectations.html"><a href="transformations-expectations.html#differentiate-under-integral"><i class="fa fa-check"></i><b>2.15</b> 积分号下求导</a></li>
+<li class="chapter" data-level="2.16" data-path="transformations-expectations.html"><a href="transformations-expectations.html#series-interchange"><i class="fa fa-check"></i><b>2.16</b> 级数与微分、积分的交换</a></li>
+<li class="chapter" data-level="2.17" data-path="transformations-expectations.html"><a href="transformations-expectations.html#transformations-expectations-summary"><i class="fa fa-check"></i><b>2.17</b> 本章小结</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="distribution-families.html"><a href="distribution-families.html"><i class="fa fa-check"></i><b>3</b> 常见分布族</a></li>
+<li class="chapter" data-level="4" data-path="multiple-random-variables.html"><a href="multiple-random-variables.html"><i class="fa fa-check"></i><b>4</b> 多元随机变量</a></li>
+<li class="chapter" data-level="5" data-path="random-samples.html"><a href="random-samples.html"><i class="fa fa-check"></i><b>5</b> 随机样本及其性质</a></li>
+<li class="chapter" data-level="6" data-path="data-reduction.html"><a href="data-reduction.html"><i class="fa fa-check"></i><b>6</b> 数据约简原则</a></li>
+<li class="chapter" data-level="7" data-path="point-estimation.html"><a href="point-estimation.html"><i class="fa fa-check"></i><b>7</b> 点估计</a></li>
+<li class="chapter" data-level="8" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>8</b> 假设检验</a></li>
+<li class="chapter" data-level="9" data-path="interval-estimation.html"><a href="interval-estimation.html"><i class="fa fa-check"></i><b>9</b> 区间估计</a></li>
+<li class="chapter" data-level="10" data-path="asymptotic-evaluations.html"><a href="asymptotic-evaluations.html"><i class="fa fa-check"></i><b>10</b> 渐近理论与近似方法</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">高等统计学</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="transformations-expectations" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">第 2</span> 随机变量的变换与期望<a href="transformations-expectations.html#transformations-expectations" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>本章对应原课件 <em>chap-2.tex</em> 及其四个子文件，依次讨论随机变量函数的分布、期望、矩与矩母函数，以及积分号下求导。原课件中的明显公式或排印错误已更正并记录在 migration_notes.md。</p>
+<div id="distribution-functions-rv" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> 随机变量函数的分布<a href="transformations-expectations.html#distribution-functions-rv" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>设随机变量 <span class="math inline">\(X\)</span> 的分布函数为 <span class="math inline">\(F_X\)</span>，<span class="math inline">\(g:\mathbb R\to\mathbb R\)</span> 是 Borel 可测函数，令 <span class="math inline">\(Y=g(X)\)</span>。对任意 Borel 集 <span class="math inline">\(A\)</span>，</p>
+<p><span class="math display">\[
+P(Y\in A)=P\{g(X)\in A\}=P\{X\in g^{-1}(A)\},
+\]</span></p>
+<p>其中 <span class="math inline">\(g^{-1}(A)=\{x:g(x)\in A\}\)</span>。特别地，</p>
+<p><span class="math display">\[
+F_Y(y)=P(Y\le y)=P\{X\in g^{-1}((-\infty,y])\}.
+\]</span></p>
+<p>若 <span class="math inline">\(X\)</span> 有密度 <span class="math inline">\(f_X\)</span>，则 <span class="math inline">\(F_Y(y)=\int_{\{x:g(x)\le y\}}f_X(x)\,dx\)</span>。若 <span class="math inline">\(X\)</span> 离散，则</p>
+<p><span class="math display">\[
+p_Y(y)=\sum_{x\in g^{-1}(\{y\})}p_X(x),\qquad y\in\mathcal Y,
+\]</span></p>
+<p>而在 <span class="math inline">\(y\notin\mathcal Y\)</span> 时 <span class="math inline">\(p_Y(y)=0\)</span>。</p>
+</div>
+<div id="sin-square-transformation" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> 例 2.1.2：正弦平方变换<a href="transformations-expectations.html#sin-square-transformation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>设 <span class="math inline">\(X\sim U(0,2\pi)\)</span>，即 <span class="math inline">\(f_X(x)=1/(2\pi)\)</span>（<span class="math inline">\(0&lt;x&lt;2\pi\)</span>），令 <span class="math inline">\(Y=\sin^2X\)</span>。其支撑集为 <span class="math inline">\([0,1]\)</span>。对 <span class="math inline">\(0&lt;y&lt;1\)</span>，一个周期内满足 <span class="math inline">\(\sin^2x\le y\)</span> 的区间总长度为 <span class="math inline">\(4\arcsin\sqrt y\)</span>，所以</p>
+<p><span class="math display">\[
+F_Y(y)=\frac{2}{\pi}\arcsin\sqrt y,\qquad
+f_Y(y)=\frac{1}{\pi\sqrt{y(1-y)}}.
+\]</span></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:chap02-sine-square-source-figure"></span>
+<img src="images/ch02/fig_2-1-1.png" alt="原课件用于说明 sin² 变换多值性的示意图" width="58%" />
+<p class="caption">
+图 2.1: 原课件用于说明 sin² 变换多值性的示意图
+</p>
+</div>
+<p>下面用 R 模拟检查理论密度。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="transformations-expectations.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">202509</span>)</span>
+<span id="cb5-2"><a href="transformations-expectations.html#cb5-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">50000</span>, <span class="dv">0</span>, <span class="dv">2</span> <span class="sc">*</span> pi)</span>
+<span id="cb5-3"><a href="transformations-expectations.html#cb5-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">sin</span>(x)<span class="sc">^</span><span class="dv">2</span></span>
+<span id="cb5-4"><a href="transformations-expectations.html#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(y, <span class="at">probability =</span> <span class="cn">TRUE</span>, <span class="at">breaks =</span> <span class="dv">50</span>,</span>
+<span id="cb5-5"><a href="transformations-expectations.html#cb5-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;#D9EAF7&quot;</span>, <span class="at">border =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb5-6"><a href="transformations-expectations.html#cb5-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;正弦平方变换：模拟与理论&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;y&quot;</span>)</span>
+<span id="cb5-7"><a href="transformations-expectations.html#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">curve</span>(<span class="dv">1</span> <span class="sc">/</span> (pi <span class="sc">*</span> <span class="fu">sqrt</span>(x <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> x))),</span>
+<span id="cb5-8"><a href="transformations-expectations.html#cb5-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">from =</span> <span class="fl">0.002</span>, <span class="at">to =</span> <span class="fl">0.998</span>, <span class="at">add =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb5-9"><a href="transformations-expectations.html#cb5-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">col =</span> <span class="st">&quot;#A51C30&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:chap02-sine-square-simulation"></span>
+<img src="02-transformations-expectations_files/figure-html/chap02-sine-square-simulation-1.png" alt="Y=sin²(X) 的模拟分布与理论密度" width="90%" />
+<p class="caption">
+图 2.2: Y=sin²(X) 的模拟分布与理论密度
+</p>
+</div>
+</div>
+<div id="support-monotone-transform" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> 支撑集与单调变换<a href="transformations-expectations.html#support-monotone-transform" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-27" class="definition"><strong>定义 2.1  </strong></span>随机变量 <span class="math inline">\(X\)</span> 的支撑集及变换后变量的可能取值集合分别记为</p>
+<p><span class="math display">\[
+\mathcal X=\{x:f_X(x)&gt;0\},\qquad
+\mathcal Y=\{y:y=g(x)\text{ for some }x\in\mathcal X\}.
+\]</span></p>
+</div>
+<p>若 <span class="math inline">\(g\)</span> 严格递增，则 <span class="math inline">\(F_Y(y)=F_X\{g^{-1}(y)\}\)</span>；若 <span class="math inline">\(g\)</span> 严格递减且 <span class="math inline">\(X\)</span> 连续，则 <span class="math inline">\(F_Y(y)=1-F_X\{g^{-1}(y)\}\)</span>。</p>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-28" class="theorem"><strong>定理 2.1  </strong></span><strong>定理 2.1.5（单调变换公式）</strong> 设 <span class="math inline">\(X\)</span> 有连续密度 <span class="math inline">\(f_X\)</span>，<span class="math inline">\(Y=g(X)\)</span>，<span class="math inline">\(g\)</span> 单调，且 <span class="math inline">\(g^{-1}\)</span> 在 <span class="math inline">\(\mathcal Y\)</span> 上连续可微，则</p>
+<p><span class="math display">\[
+f_Y(y)=
+\begin{cases}
+f_X\{g^{-1}(y)\}\left|\dfrac{d}{dy}g^{-1}(y)\right|,&amp;y\in\mathcal Y,\\
+0,&amp;\text{其他}.
+\end{cases}
+\]</span></p>
+</div>
+<p>绝对值保证无论 <span class="math inline">\(g\)</span> 递增还是递减，所得密度都非负。</p>
+</div>
+<div id="inverse-gamma-example" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> 例 2.1.6：倒数 Gamma 变换<a href="transformations-expectations.html#inverse-gamma-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>设</p>
+<p><span class="math display">\[
+f_X(x)=\frac{x^{n-1}e^{-x/\beta}}{(n-1)!\beta^n},\qquad x&gt;0,
+\]</span></p>
+<p>令 <span class="math inline">\(Y=1/X\)</span>。此时 <span class="math inline">\(g^{-1}(y)=1/y\)</span>，<span class="math inline">\(\mathcal Y=(0,\infty)\)</span>，且 <span class="math inline">\(|(g^{-1})&#39;(y)|=1/y^2\)</span>。因此</p>
+<p><span class="math display">\[
+\begin{aligned}
+f_Y(y)
+&amp;=f_X(1/y)\frac1{y^2}\\
+&amp;=\frac{1}{(n-1)!\beta^n}
+\left(\frac1y\right)^{n+1}
+\exp\left(-\frac1{\beta y}\right),\qquad y&gt;0.
+\end{aligned}
+\]</span></p>
+<p>这是逆 Gamma 分布的一个特殊情形。</p>
+</div>
+<div id="normal-square-example" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> 例 2.1.7：标准正态的平方<a href="transformations-expectations.html#normal-square-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>设 <span class="math inline">\(X\sim N(0,1)\)</span>，<span class="math inline">\(Y=X^2\)</span>。对 <span class="math inline">\(y&gt;0\)</span>，</p>
+<p><span class="math display">\[
+F_Y(y)=P(-\sqrt y\le X\le\sqrt y)
+=2\Phi(\sqrt y)-1.
+\]</span></p>
+<p>求导得</p>
+<p><span class="math display">\[
+f_Y(y)=\frac{\phi(\sqrt y)}{\sqrt y}
+=\frac{1}{\sqrt{2\pi y}}e^{-y/2},\qquad y&gt;0,
+\]</span></p>
+<p>故 <span class="math inline">\(Y\sim\chi_1^2\)</span>。原课件误把正态密度 <span class="math inline">\(\phi\)</span> 写成分布函数 <span class="math inline">\(\Phi\)</span>，此处已更正。</p>
+</div>
+<div id="piecewise-monotone-transform" class="section level2 hasAnchor" number="2.6">
+<h2><span class="header-section-number">2.6</span> 分段单调变换<a href="transformations-expectations.html#piecewise-monotone-transform" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-29" class="theorem"><strong>定理 2.2  </strong></span><strong>定理 2.1.8</strong> 设 <span class="math inline">\(P(X\in A_0)=0\)</span>、<span class="math inline">\(P(X\in\bigcup_{i=1}^kA_i)=1\)</span>，<span class="math inline">\(f_X\)</span> 在各 <span class="math inline">\(A_i\)</span> 上连续，且 <span class="math inline">\(g\)</span> 限制在各 <span class="math inline">\(A_i\)</span> 上均单调。记相应反函数支为 <span class="math inline">\(g_i^{-1}\)</span>。若各反函数支在 <span class="math inline">\(\mathcal Y\)</span> 上连续可微，则</p>
+<p><span class="math display">\[
+f_Y(y)=
+\begin{cases}
+\displaystyle\sum_{i=1}^k f_X\{g_i^{-1}(y)\}
+\left|\dfrac{d}{dy}g_i^{-1}(y)\right|,&amp;y\in\mathcal Y,\\
+0,&amp;\text{其他}.
+\end{cases}
+\]</span></p>
+</div>
+<p>因此，对于 <span class="math inline">\(Y=\sin^2X\)</span> 或 <span class="math inline">\(Y=X^2\)</span>，必须把所有原像分支的贡献相加。</p>
+</div>
+<div id="probability-integral-transform" class="section level2 hasAnchor" number="2.7">
+<h2><span class="header-section-number">2.7</span> 概率积分变换<a href="transformations-expectations.html#probability-integral-transform" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-30" class="theorem"><strong>定理 2.3  </strong></span><strong>定理 2.1.10</strong> 若 <span class="math inline">\(X\)</span> 的分布函数 <span class="math inline">\(F_X\)</span> 连续，则 <span class="math inline">\(Y=F_X(X)\sim U(0,1)\)</span>。</p>
+</div>
+<p>在 <span class="math inline">\(F_X\)</span> 严格递增时，对 <span class="math inline">\(0&lt;y&lt;1\)</span>，</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(Y\le y)
+&amp;=P\{F_X(X)\le y\}\\
+&amp;=P\{X\le F_X^{-1}(y)\}\\
+&amp;=F_X\{F_X^{-1}(y)\}=y.
+\end{aligned}
+\]</span></p>
+<p>对一般连续分布可用广义逆完成证明。该变换是随机数生成和拟合优度检验的重要基础。</p>
+</div>
+<div id="expected-value-definition" class="section level2 hasAnchor" number="2.8">
+<h2><span class="header-section-number">2.8</span> 期望的定义与计算<a href="transformations-expectations.html#expected-value-definition" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-31" class="definition"><strong>定义 2.2  </strong></span><strong>定义 2.2.1</strong> 设 <span class="math inline">\((\mathcal S,\mathcal B,P)\)</span> 是概率空间。若 <span class="math inline">\(\int_{\mathcal S}|X|\,dP&lt;\infty\)</span>，则</p>
+<p><span class="math display">\[
+E(X)=\int_{\mathcal S}X\,dP.
+\]</span></p>
+</div>
+<p>若 <span class="math inline">\(E|g(X)|&lt;\infty\)</span>，则连续情形和离散情形分别有</p>
+<p><span class="math display">\[
+E\{g(X)\}=\int_{-\infty}^{\infty}g(x)f_X(x)\,dx,
+\qquad
+E\{g(X)\}=\sum_xg(x)p_X(x).
+\]</span></p>
+<p>这常称为无意识统计学家法则（LOTUS）。也可先求 <span class="math inline">\(Y=g(X)\)</span> 的分布，再由 <span class="math inline">\(E(Y)=\int yf_Y(y)\,dy\)</span> 计算；前一种方法通常更短。</p>
+</div>
+<div id="expectation-examples-properties" class="section level2 hasAnchor" number="2.9">
+<h2><span class="header-section-number">2.9</span> 期望的例子与性质<a href="transformations-expectations.html#expectation-examples-properties" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><strong>例 2.2.2：</strong> 若 <span class="math inline">\(f_X(x)=\lambda^{-1}e^{-x/\lambda}\)</span>（<span class="math inline">\(x&gt;0\)</span>），则 <span class="math inline">\(E(X)=\lambda\)</span>；这里 <span class="math inline">\(\lambda\)</span> 是尺度参数。</li>
+<li><strong>例 2.2.3：</strong> 若 <span class="math inline">\(X\sim\operatorname{Binomial}(n,p)\)</span>，则 <span class="math inline">\(E(X)=np\)</span>。</li>
+<li><strong>例 2.2.4：</strong> 标准 Cauchy 分布满足 <span class="math inline">\(E|X|=\infty\)</span>，所以 <span class="math inline">\(E(X)\)</span> 不存在。不能用对称性把两个发散积分相消。</li>
+</ul>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-32" class="theorem"><strong>定理 2.4  </strong></span><strong>定理 2.2.5</strong> 若有关期望存在，则</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(E\{ag_1(X)+bg_2(X)+c\}=aE\{g_1(X)\}+bE\{g_2(X)\}+c\)</span>；</li>
+<li>若 <span class="math inline">\(g_1\ge0\)</span>，则 <span class="math inline">\(E\{g_1(X)\}\ge0\)</span>；</li>
+<li>若 <span class="math inline">\(g_1\ge g_2\)</span>，则 <span class="math inline">\(E\{g_1(X)\}\ge E\{g_2(X)\}\)</span>；</li>
+<li>若 <span class="math inline">\(a\le g_1\le b\)</span>，则 <span class="math inline">\(a\le E\{g_1(X)\}\le b\)</span>。</li>
+</ol>
+</div>
+<p>若二阶矩存在，均值是平方损失下的最佳常数中心：</p>
+<p><span class="math display">\[
+\arg\min_cE(X-c)^2=E(X),\qquad
+\min_cE(X-c)^2=\operatorname{Var}(X).
+\]</span></p>
+</div>
+<div id="moments-mgf" class="section level2 hasAnchor" number="2.10">
+<h2><span class="header-section-number">2.10</span> 矩、中心矩与矩母函数<a href="transformations-expectations.html#moments-mgf" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-33" class="definition"><strong>定义 2.3  </strong></span><strong>定义 2.3.1</strong> <span class="math inline">\(n\)</span> 阶原点矩与中心矩分别为</p>
+<p><span class="math display">\[
+\mu_n&#39;=E(X^n),\qquad
+\mu_n=E\{(X-\mu)^n\},\quad\mu=E(X).
+\]</span></p>
+<p>特别地，<span class="math inline">\(\operatorname{Var}(X)=\mu_2\)</span>，标准差为 <span class="math inline">\(\sqrt{\operatorname{Var}(X)}\)</span>。</p>
+</div>
+<p>若方差有限，则 <span class="math inline">\(\operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)\)</span>。</p>
+<div class="definition">
+<p><span id="def:unlabeled-div-34" class="definition"><strong>定义 2.4  </strong></span><strong>定义 2.3.6</strong> 若期望在 <span class="math inline">\(t=0\)</span> 的某个邻域内有限，则</p>
+<p><span class="math display">\[
+M_X(t)=E(e^{tX})
+\]</span></p>
+<p>称为 <span class="math inline">\(X\)</span> 的矩母函数（MGF）。</p>
+</div>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-35" class="theorem"><strong>定理 2.5  </strong></span><strong>定理 2.3.7</strong> 若 <span class="math inline">\(M_X\)</span> 在 <span class="math inline">\(0\)</span> 的某个邻域存在，则 <span class="math inline">\(E(X^n)=M_X^{(n)}(0)\)</span>。</p>
+</div>
+<p>在可交换求导与积分的条件下，<span class="math inline">\(M_X^{(n)}(t)=E(X^ne^{tX})\)</span>，令 <span class="math inline">\(t=0\)</span> 即得结论。</p>
+</div>
+<div id="same-moments-example" class="section level2 hasAnchor" number="2.11">
+<h2><span class="header-section-number">2.11</span> 相同矩不必确定相同分布<a href="transformations-expectations.html#same-moments-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>例 2.3.10</strong> 考虑</p>
+<p><span class="math display">\[
+f_1(x)=\frac{1}{\sqrt{2\pi}x}
+\exp\left\{-\frac{(\log x)^2}{2}\right\},\qquad x&gt;0,
+\]</span></p>
+<p>以及 <span class="math inline">\(f_2(x)=f_1(x)\{1+\sin(2\pi\log x)\}\)</span>。若 <span class="math inline">\(X_1\sim f_1\)</span>，则 <span class="math inline">\(E(X_1^r)=e^{r^2/2}\)</span>（整数 <span class="math inline">\(r\ge0\)</span>）。对 <span class="math inline">\(X_2\sim f_2\)</span>，</p>
+<p><span class="math display">\[
+E(X_2^r)=E(X_1^r)+
+\int_0^\infty x^rf_1(x)\sin(2\pi\log x)\,dx.
+\]</span></p>
+<p>作 <span class="math inline">\(y=\log x-r\)</span> 后，附加项由奇函数积分及 <span class="math inline">\(\sin(2\pi r)=0\)</span> 可知为零。因此两个不同分布具有相同的所有整数阶矩。</p>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-36" class="theorem"><strong>定理 2.6  </strong></span><strong>定理 2.3.11</strong> 若 <span class="math inline">\(F_X,F_Y\)</span> 的所有矩存在，则：</p>
+<ol style="list-style-type: decimal">
+<li>若二者支撑有界，<span class="math inline">\(F_X=F_Y\)</span> 当且仅当 <span class="math inline">\(E(X^r)=E(Y^r)\)</span> 对所有非负整数 <span class="math inline">\(r\)</span> 成立；</li>
+<li>若二者 MGF 在 <span class="math inline">\(0\)</span> 的某个邻域存在且相等，则 <span class="math inline">\(F_X=F_Y\)</span>。</li>
+</ol>
+</div>
+</div>
+<div id="mgf-convergence-examples" class="section level2 hasAnchor" number="2.12">
+<h2><span class="header-section-number">2.12</span> MGF 收敛与两个经典 MGF<a href="transformations-expectations.html#mgf-convergence-examples" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-37" class="theorem"><strong>定理 2.7  </strong></span><strong>定理 2.3.12</strong> 若存在 <span class="math inline">\(\delta&gt;0\)</span>，使 <span class="math inline">\(M_{X_i}(t)\to M_X(t)\)</span> 对 <span class="math inline">\(t\in[-\delta,\delta]\)</span> 成立，且 <span class="math inline">\(M_X\)</span> 是某分布的 MGF，则在 <span class="math inline">\(F_X\)</span> 的每个连续点 <span class="math inline">\(x\)</span>，<span class="math inline">\(F_{X_i}(x)\to F_X(x)\)</span>。</p>
+</div>
+<p>这一结论可用于证明中心极限定理等分布收敛结果。对二项与 Poisson 分布，</p>
+<p><span class="math display">\[
+M_{\operatorname{Bin}(n,p)}(t)=\{pe^t+(1-p)\}^n,
+\]</span></p>
+<p><span class="math display">\[
+M_{\operatorname{Poi}(\lambda)}(t)
+=\sum_{x=0}^{\infty}e^{tx}\frac{e^{-\lambda}\lambda^x}{x!}
+=\exp\{\lambda(e^t-1)\}.
+\]</span></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="transformations-expectations.html#cb6-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">12</span></span>
+<span id="cb6-2"><a href="transformations-expectations.html#cb6-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fl">0.3</span></span>
+<span id="cb6-3"><a href="transformations-expectations.html#cb6-3" aria-hidden="true" tabindex="-1"></a>mgf_binom <span class="ot">&lt;-</span> <span class="cf">function</span>(t) (<span class="dv">1</span> <span class="sc">-</span> p <span class="sc">+</span> p <span class="sc">*</span> <span class="fu">exp</span>(t))<span class="sc">^</span>n</span>
+<span id="cb6-4"><a href="transformations-expectations.html#cb6-4" aria-hidden="true" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="fl">1e-5</span></span>
+<span id="cb6-5"><a href="transformations-expectations.html#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">numerical_derivative =</span></span>
+<span id="cb6-6"><a href="transformations-expectations.html#cb6-6" aria-hidden="true" tabindex="-1"></a>    (<span class="fu">mgf_binom</span>(h) <span class="sc">-</span> <span class="fu">mgf_binom</span>(<span class="sc">-</span>h)) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> h),</span>
+<span id="cb6-7"><a href="transformations-expectations.html#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">theoretical_mean =</span> n <span class="sc">*</span> p)</span></code></pre></div>
+<pre><code>## numerical_derivative     theoretical_mean 
+##                  3.6                  3.6</code></pre>
+</div>
+<div id="poisson-approximation" class="section level2 hasAnchor" number="2.13">
+<h2><span class="header-section-number">2.13</span> 例 2.3.13：Poisson 近似<a href="transformations-expectations.html#poisson-approximation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>令 <span class="math inline">\(X_n\sim\operatorname{Binomial}(n,p_n)\)</span> 且 <span class="math inline">\(np_n\to\lambda\)</span>，则</p>
+<p><span class="math display">\[
+\begin{aligned}
+M_{X_n}(t)
+&amp;=\{1+p_n(e^t-1)\}^n\\
+&amp;=\left\{1+\frac{(e^t-1)(np_n)}n\right\}^n\\
+&amp;\longrightarrow\exp\{\lambda(e^t-1)\}.
+\end{aligned}
+\]</span></p>
+<p>极限是 <span class="math inline">\(\operatorname{Poisson}(\lambda)\)</span> 的 MGF，故 <span class="math inline">\(X_n\)</span> 依分布收敛到该 Poisson 分布。当 <span class="math inline">\(n\)</span> 大、<span class="math inline">\(p\)</span> 小且 <span class="math inline">\(np\)</span> 适中时，二项概率可用 Poisson 概率近似；原课件写成概率“相等”，此处更正为“近似/极限”。</p>
+</div>
+<div id="leibniz-dominated" class="section level2 hasAnchor" number="2.14">
+<h2><span class="header-section-number">2.14</span> Leibniz 法则与支配收敛<a href="transformations-expectations.html#leibniz-dominated" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-38" class="theorem"><strong>定理 2.8  </strong></span><strong>定理 2.4.1（Leibniz 法则）</strong> 在满足相应连续性和可积控制条件时，</p>
+<p><span class="math display">\[
+\begin{aligned}
+\frac{d}{d\theta}\int_{a(\theta)}^{b(\theta)}f(x,\theta)\,dx
+={}&amp;f\{b(\theta),\theta\}b&#39;(\theta)
+-f\{a(\theta),\theta\}a&#39;(\theta)\\
+&amp;+\int_{a(\theta)}^{b(\theta)}
+\frac{\partial}{\partial\theta}f(x,\theta)\,dx.
+\end{aligned}
+\]</span></p>
+</div>
+<p>若上下限为常数，上式只保留积分项。</p>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-39" class="theorem"><strong>定理 2.9  </strong></span><strong>定理 2.4.2</strong> 若 <span class="math inline">\(h(x,y)\to h(x,y_0)\)</span>，且在 <span class="math inline">\(y_0\)</span> 的邻域存在可积函数 <span class="math inline">\(g\)</span> 使 <span class="math inline">\(|h(x,y)|\le g(x)\)</span>，则</p>
+<p><span class="math display">\[
+\lim_{y\to y_0}\int h(x,y)\,dx
+=\int\lim_{y\to y_0}h(x,y)\,dx.
+\]</span></p>
+</div>
+<p>关键条件是存在与 <span class="math inline">\(y\)</span> 无关的可积上界。</p>
+</div>
+<div id="differentiate-under-integral" class="section level2 hasAnchor" number="2.15">
+<h2><span class="header-section-number">2.15</span> 积分号下求导<a href="transformations-expectations.html#differentiate-under-integral" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-40" class="theorem"><strong>定理 2.10  </strong></span><strong>定理 2.4.3</strong> 设 <span class="math inline">\(f(x,\theta)\)</span> 在 <span class="math inline">\(\theta_0\)</span> 可微。若存在 <span class="math inline">\(\delta&gt;0\)</span> 和可积函数 <span class="math inline">\(g(x,\theta_0)\)</span>，使对 <span class="math inline">\(|\Delta|\le\delta\)</span>，</p>
+<p><span class="math display">\[
+\left|\frac{f(x,\theta_0+\Delta)-f(x,\theta_0)}{\Delta}\right|
+\le g(x,\theta_0),
+\]</span></p>
+<p>则</p>
+<p><span class="math display">\[
+\left.\frac{d}{d\theta}\int f(x,\theta)\,dx\right|_{\theta=\theta_0}
+=\int\left.\frac{\partial}{\partial\theta}f(x,\theta)
+\right|_{\theta=\theta_0}\,dx.
+\]</span></p>
+</div>
+<p>一个常用推论是：若在 <span class="math inline">\(\theta_0\)</span> 的邻域内 <span class="math inline">\(|\partial f/\partial\theta|\)</span> 被某个可积函数一致控制，则可交换求导与积分。</p>
+<p><strong>例 2.4.6</strong> 若 <span class="math inline">\(X\sim N(\mu,1)\)</span>，</p>
+<p><span class="math display">\[
+M_X(t)=\frac1{\sqrt{2\pi}}\int_{-\infty}^{\infty}
+e^{tx}e^{-(x-\mu)^2/2}\,dx,
+\]</span></p>
+<p>则在上述条件下 <span class="math inline">\(M_X&#39;(t)=E(Xe^{tX})\)</span>。配方可得 <span class="math inline">\(M_X(t)=\exp(\mu t+t^2/2)\)</span>，故 <span class="math inline">\(M_X&#39;(0)=\mu\)</span>。严格论证时，交换操作不能被视为自动成立。</p>
+</div>
+<div id="series-interchange" class="section level2 hasAnchor" number="2.16">
+<h2><span class="header-section-number">2.16</span> 级数与微分、积分的交换<a href="transformations-expectations.html#series-interchange" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-41" class="theorem"><strong>定理 2.11  </strong></span><strong>定理 2.4.8</strong> 若 <span class="math inline">\(\sum_{x=0}^{\infty}h(\theta,x)\)</span> 在 <span class="math inline">\((a,b)\)</span> 收敛，各项偏导连续，且导数级数在每个有界闭子区间上一致收敛，则</p>
+<p><span class="math display">\[
+\frac{d}{d\theta}\sum_{x=0}^{\infty}h(\theta,x)
+=\sum_{x=0}^{\infty}\frac{\partial}{\partial\theta}h(\theta,x).
+\]</span></p>
+</div>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-42" class="theorem"><strong>定理 2.12  </strong></span><strong>定理 2.4.10</strong> 若 <span class="math inline">\(\sum_{x=0}^{\infty}h(\theta,x)\)</span> 在 <span class="math inline">\([a,b]\)</span> 一致收敛，且每项连续，则</p>
+<p><span class="math display">\[
+\int_a^b\sum_{x=0}^{\infty}h(\theta,x)\,d\theta
+=\sum_{x=0}^{\infty}\int_a^b h(\theta,x)\,d\theta.
+\]</span></p>
+</div>
+</div>
+<div id="transformations-expectations-summary" class="section level2 hasAnchor" number="2.17">
+<h2><span class="header-section-number">2.17</span> 本章小结<a href="transformations-expectations.html#transformations-expectations-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>先确定变换后的支撑集，再用 CDF 法、Jacobian 法或分支求和法求分布；计算期望时优先考虑 LOTUS；用 MGF 连接矩与分布；交换极限、微分、积分或求和前，必须核查支配条件或一致收敛条件。</p>
+<blockquote>
+<p><strong>课后提示：</strong> 请重新推导 <span class="math inline">\(Y=X^2\)</span>、<span class="math inline">\(Y=1/X\)</span> 与 <span class="math inline">\(Y=\sin^2X\)</span> 的支撑集和密度，并比较 CDF 法与变换公式的优缺点。</p>
+</blockquote>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="probability-theory.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="distribution-families.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": null,
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

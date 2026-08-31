@@ -1,0 +1,17 @@
+bookdown::gitbook:
+  css: style.css
+  split_by: chapter
+  config:
+    toc:
+      collapse: section
+      scroll_highlight: true
+      before: |
+        <li class="course-title"><a href="./">高等统计学</a></li>
+        <li class="language-switch"><a href="../en/">English edition →</a></li>
+    sharing: null
+    download: null
+    search: true
+    fontsettings:
+      theme: white
+      family: sans
+      size: 2

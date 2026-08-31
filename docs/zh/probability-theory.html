@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xml:lang="zh-CN">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>第 1 概率论基础 | 高等统计学</title>
+  <meta name="description" content="第 1 概率论基础 | 高等统计学课程在线讲义，依据原有课程课件与配套代码整理。" />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="第 1 概率论基础 | 高等统计学" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="第 1 概率论基础 | 高等统计学课程在线讲义，依据原有课程课件与配套代码整理。" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="第 1 概率论基础 | 高等统计学" />
+  
+  <meta name="twitter:description" content="第 1 概率论基础 | 高等统计学课程在线讲义，依据原有课程课件与配套代码整理。" />
+  
+
+<meta name="author" content="王芝皓 副教授" />
+
+
+<meta name="date" content="2026-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="course-introduction.html"/>
+<link rel="next" href="transformations-expectations.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="course-title"><a href="./">高等统计学</a></li>
+<li class="language-switch"><a href="../en/">English edition →</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>前言</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#使用说明"><i class="fa fa-check"></i>使用说明</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="author-bio.html"><a href="author-bio.html"><i class="fa fa-check"></i>作者简介</a>
+<ul>
+<li class="chapter" data-level="" data-path="author-bio.html"><a href="author-bio.html#科研与教学工作"><i class="fa fa-check"></i>科研与教学工作</a></li>
+<li class="chapter" data-level="" data-path="author-bio.html"><a href="author-bio.html#学术成果"><i class="fa fa-check"></i>学术成果</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="course-introduction.html"><a href="course-introduction.html"><i class="fa fa-check"></i>课程介绍</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="course-introduction.html"><a href="course-introduction.html#course-instructor"><i class="fa fa-check"></i><b>0.1</b> 任课教师与课程定位</a></li>
+<li class="chapter" data-level="0.2" data-path="course-introduction.html"><a href="course-introduction.html#course-instructor-publications"><i class="fa fa-check"></i><b>0.2</b> 教师代表性成果</a></li>
+<li class="chapter" data-level="0.3" data-path="course-introduction.html"><a href="course-introduction.html#course-personal-info"><i class="fa fa-check"></i><b>0.3</b> 个人信息入口</a></li>
+<li class="chapter" data-level="0.4" data-path="course-introduction.html"><a href="course-introduction.html#course-basic-info"><i class="fa fa-check"></i><b>0.4</b> 课程基本信息</a></li>
+<li class="chapter" data-level="0.5" data-path="course-introduction.html"><a href="course-introduction.html#course-description"><i class="fa fa-check"></i><b>0.5</b> 课程简介</a></li>
+<li class="chapter" data-level="0.6" data-path="course-introduction.html"><a href="course-introduction.html#course-textbooks"><i class="fa fa-check"></i><b>0.6</b> 建议教材</a></li>
+<li class="chapter" data-level="0.7" data-path="course-introduction.html"><a href="course-introduction.html#course-reference-books"><i class="fa fa-check"></i><b>0.7</b> 参考书籍</a></li>
+<li class="chapter" data-level="0.8" data-path="course-introduction.html"><a href="course-introduction.html#course-main-task"><i class="fa fa-check"></i><b>0.8</b> 课程主要任务</a></li>
+<li class="chapter" data-level="0.9" data-path="course-introduction.html"><a href="course-introduction.html#course-objectives"><i class="fa fa-check"></i><b>0.9</b> 课程教学目标</a></li>
+<li class="chapter" data-level="0.10" data-path="course-introduction.html"><a href="course-introduction.html#course-content-foundations"><i class="fa fa-check"></i><b>0.10</b> 主要内容（一）：统计推断基础</a></li>
+<li class="chapter" data-level="0.11" data-path="course-introduction.html"><a href="course-introduction.html#course-content-modern"><i class="fa fa-check"></i><b>0.11</b> 主要内容（二）：现代统计方法</a></li>
+<li class="chapter" data-level="0.12" data-path="course-introduction.html"><a href="course-introduction.html#course-teaching-assessment"><i class="fa fa-check"></i><b>0.12</b> 授课方式与考核</a></li>
+<li class="chapter" data-level="0.13" data-path="course-introduction.html"><a href="course-introduction.html#course-introduction-summary"><i class="fa fa-check"></i><b>0.13</b> 本章小结与学习提示</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="probability-theory.html"><a href="probability-theory.html"><i class="fa fa-check"></i><b>1</b> 概率论基础</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="probability-theory.html"><a href="probability-theory.html#sample-space-events"><i class="fa fa-check"></i><b>1.1</b> 样本空间与事件</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="probability-theory.html"><a href="probability-theory.html#集合运算"><i class="fa fa-check"></i><b>1.1.1</b> 集合运算</a></li>
+<li class="chapter" data-level="1.1.2" data-path="probability-theory.html"><a href="probability-theory.html#互斥事件与划分"><i class="fa fa-check"></i><b>1.1.2</b> 互斥事件与划分</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="probability-theory.html"><a href="probability-theory.html#sigma-algebra-probability"><i class="fa fa-check"></i><b>1.2</b> <span class="math inline">\(\sigma\)</span>-代数与概率测度</a></li>
+<li class="chapter" data-level="1.3" data-path="probability-theory.html"><a href="probability-theory.html#conditional-probability"><i class="fa fa-check"></i><b>1.3</b> 条件概率与 Bayes 公式</a></li>
+<li class="chapter" data-level="1.4" data-path="probability-theory.html"><a href="probability-theory.html#independence"><i class="fa fa-check"></i><b>1.4</b> 独立性</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="probability-theory.html"><a href="probability-theory.html#两两独立与相互独立"><i class="fa fa-check"></i><b>1.4.1</b> 两两独立与相互独立</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="probability-theory.html"><a href="probability-theory.html#random-variables"><i class="fa fa-check"></i><b>1.5</b> 随机变量</a></li>
+<li class="chapter" data-level="1.6" data-path="probability-theory.html"><a href="probability-theory.html#distribution-functions"><i class="fa fa-check"></i><b>1.6</b> 分布函数</a></li>
+<li class="chapter" data-level="1.7" data-path="probability-theory.html"><a href="probability-theory.html#pmf-pdf"><i class="fa fa-check"></i><b>1.7</b> 概率质量函数与概率密度函数</a></li>
+<li class="chapter" data-level="1.8" data-path="probability-theory.html"><a href="probability-theory.html#chapter-one-summary"><i class="fa fa-check"></i><b>1.8</b> 本章小结</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="transformations-expectations.html"><a href="transformations-expectations.html"><i class="fa fa-check"></i><b>2</b> 随机变量的变换与期望</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="transformations-expectations.html"><a href="transformations-expectations.html#distribution-functions-rv"><i class="fa fa-check"></i><b>2.1</b> 随机变量函数的分布</a></li>
+<li class="chapter" data-level="2.2" data-path="transformations-expectations.html"><a href="transformations-expectations.html#sin-square-transformation"><i class="fa fa-check"></i><b>2.2</b> 例 2.1.2：正弦平方变换</a></li>
+<li class="chapter" data-level="2.3" data-path="transformations-expectations.html"><a href="transformations-expectations.html#support-monotone-transform"><i class="fa fa-check"></i><b>2.3</b> 支撑集与单调变换</a></li>
+<li class="chapter" data-level="2.4" data-path="transformations-expectations.html"><a href="transformations-expectations.html#inverse-gamma-example"><i class="fa fa-check"></i><b>2.4</b> 例 2.1.6：倒数 Gamma 变换</a></li>
+<li class="chapter" data-level="2.5" data-path="transformations-expectations.html"><a href="transformations-expectations.html#normal-square-example"><i class="fa fa-check"></i><b>2.5</b> 例 2.1.7：标准正态的平方</a></li>
+<li class="chapter" data-level="2.6" data-path="transformations-expectations.html"><a href="transformations-expectations.html#piecewise-monotone-transform"><i class="fa fa-check"></i><b>2.6</b> 分段单调变换</a></li>
+<li class="chapter" data-level="2.7" data-path="transformations-expectations.html"><a href="transformations-expectations.html#probability-integral-transform"><i class="fa fa-check"></i><b>2.7</b> 概率积分变换</a></li>
+<li class="chapter" data-level="2.8" data-path="transformations-expectations.html"><a href="transformations-expectations.html#expected-value-definition"><i class="fa fa-check"></i><b>2.8</b> 期望的定义与计算</a></li>
+<li class="chapter" data-level="2.9" data-path="transformations-expectations.html"><a href="transformations-expectations.html#expectation-examples-properties"><i class="fa fa-check"></i><b>2.9</b> 期望的例子与性质</a></li>
+<li class="chapter" data-level="2.10" data-path="transformations-expectations.html"><a href="transformations-expectations.html#moments-mgf"><i class="fa fa-check"></i><b>2.10</b> 矩、中心矩与矩母函数</a></li>
+<li class="chapter" data-level="2.11" data-path="transformations-expectations.html"><a href="transformations-expectations.html#same-moments-example"><i class="fa fa-check"></i><b>2.11</b> 相同矩不必确定相同分布</a></li>
+<li class="chapter" data-level="2.12" data-path="transformations-expectations.html"><a href="transformations-expectations.html#mgf-convergence-examples"><i class="fa fa-check"></i><b>2.12</b> MGF 收敛与两个经典 MGF</a></li>
+<li class="chapter" data-level="2.13" data-path="transformations-expectations.html"><a href="transformations-expectations.html#poisson-approximation"><i class="fa fa-check"></i><b>2.13</b> 例 2.3.13：Poisson 近似</a></li>
+<li class="chapter" data-level="2.14" data-path="transformations-expectations.html"><a href="transformations-expectations.html#leibniz-dominated"><i class="fa fa-check"></i><b>2.14</b> Leibniz 法则与支配收敛</a></li>
+<li class="chapter" data-level="2.15" data-path="transformations-expectations.html"><a href="transformations-expectations.html#differentiate-under-integral"><i class="fa fa-check"></i><b>2.15</b> 积分号下求导</a></li>
+<li class="chapter" data-level="2.16" data-path="transformations-expectations.html"><a href="transformations-expectations.html#series-interchange"><i class="fa fa-check"></i><b>2.16</b> 级数与微分、积分的交换</a></li>
+<li class="chapter" data-level="2.17" data-path="transformations-expectations.html"><a href="transformations-expectations.html#transformations-expectations-summary"><i class="fa fa-check"></i><b>2.17</b> 本章小结</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="distribution-families.html"><a href="distribution-families.html"><i class="fa fa-check"></i><b>3</b> 常见分布族</a></li>
+<li class="chapter" data-level="4" data-path="multiple-random-variables.html"><a href="multiple-random-variables.html"><i class="fa fa-check"></i><b>4</b> 多元随机变量</a></li>
+<li class="chapter" data-level="5" data-path="random-samples.html"><a href="random-samples.html"><i class="fa fa-check"></i><b>5</b> 随机样本及其性质</a></li>
+<li class="chapter" data-level="6" data-path="data-reduction.html"><a href="data-reduction.html"><i class="fa fa-check"></i><b>6</b> 数据约简原则</a></li>
+<li class="chapter" data-level="7" data-path="point-estimation.html"><a href="point-estimation.html"><i class="fa fa-check"></i><b>7</b> 点估计</a></li>
+<li class="chapter" data-level="8" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>8</b> 假设检验</a></li>
+<li class="chapter" data-level="9" data-path="interval-estimation.html"><a href="interval-estimation.html"><i class="fa fa-check"></i><b>9</b> 区间估计</a></li>
+<li class="chapter" data-level="10" data-path="asymptotic-evaluations.html"><a href="asymptotic-evaluations.html"><i class="fa fa-check"></i><b>10</b> 渐近理论与近似方法</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">高等统计学</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="probability-theory" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">第 1</span> 概率论基础<a href="probability-theory.html#probability-theory" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>本章从样本空间与事件出发，建立概率空间，随后讨论条件概率、Bayes 公式、独立性、随机变量、分布函数以及概率质量函数和概率密度函数。这一顺序与原课件第 1 章保持一致。</p>
+<div id="sample-space-events" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> 样本空间与事件<a href="probability-theory.html#sample-space-events" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-1" class="definition"><strong>定义 1.1  </strong></span><strong>样本空间</strong> 一个试验所有可能结果组成的集合称为该试验的<strong>样本空间</strong>，记为 <span class="math inline">\(S\)</span>。</p>
+</div>
+<p>样本空间可以是可数的，也可以是不可数的。</p>
+<ul>
+<li>抛掷一枚硬币时，<span class="math inline">\(S=\{\mathrm{H},\mathrm{T}\}\)</span>。</li>
+<li>若把反应时间记录到最接近的整数秒，则 <span class="math inline">\(S=\{0,1,2,\ldots\}\)</span>。</li>
+<li>若反应时间连续记录，则可取 <span class="math inline">\(S=(0,\infty)\)</span>。</li>
+</ul>
+<div class="definition">
+<p><span id="def:unlabeled-div-2" class="definition"><strong>定义 1.2  </strong></span><strong>事件</strong> 样本空间 <span class="math inline">\(S\)</span> 的任意子集称为一个<strong>事件</strong>，其中包括 <span class="math inline">\(S\)</span> 本身。若试验结果属于事件 <span class="math inline">\(A\)</span>，就称事件 <span class="math inline">\(A\)</span> 发生。</p>
+</div>
+<p>对事件 <span class="math inline">\(A,B\subseteq S\)</span>，包含与相等可写为</p>
+<p><span class="math display">\[
+A\subseteq B\iff (x\in A\Rightarrow x\in B),
+\]</span></p>
+<p><span class="math display">\[
+A=B\iff A\subseteq B\ \text{且}\ B\subseteq A.
+\]</span></p>
+<div id="集合运算" class="section level3 hasAnchor" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> 集合运算<a href="probability-theory.html#集合运算" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>并、交和补分别定义为</p>
+<p><span class="math display">\[
+A\cup B=\{x:x\in A\ \text{或}\ x\in B\},
+\]</span></p>
+<p><span class="math display">\[
+A\cap B=\{x:x\in A\ \text{且}\ x\in B\},
+\]</span></p>
+<p><span class="math display">\[
+A^{\mathrm c}=\{x:x\notin A\}.
+\]</span></p>
+<p>对集合序列 <span class="math inline">\(A_1,A_2,\ldots\)</span>，这些运算可推广为</p>
+<p><span class="math display">\[
+\bigcup_{i=1}^{\infty}A_i
+=\{x\in S:x\in A_i\ \text{对某个}\ i\ \text{成立}\},
+\]</span></p>
+<p><span class="math display">\[
+\bigcap_{i=1}^{\infty}A_i
+=\{x\in S:x\in A_i\ \text{对所有}\ i\ \text{成立}\}.
+\]</span></p>
+<div class="example">
+<p><span id="exm:unlabeled-div-3" class="example"><strong>例 1.1  </strong></span><strong>无限并与无限交</strong> 令 <span class="math inline">\(S=(0,1]\)</span>，并定义 <span class="math inline">\(A_i=[1/i,1]\)</span>。则</p>
+<p><span class="math display">\[
+\bigcup_{i=1}^{\infty}A_i=(0,1],
+\qquad
+\bigcap_{i=1}^{\infty}A_i=\{1\}.
+\]</span></p>
+</div>
+</div>
+<div id="互斥事件与划分" class="section level3 hasAnchor" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> 互斥事件与划分<a href="probability-theory.html#互斥事件与划分" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:unlabeled-div-4" class="definition"><strong>定义 1.3  </strong></span><strong>互斥</strong> 若 <span class="math inline">\(A\cap B=\varnothing\)</span>，则称事件 <span class="math inline">\(A\)</span> 与 <span class="math inline">\(B\)</span> 互斥。若对任意 <span class="math inline">\(i\ne j\)</span> 都有 <span class="math inline">\(A_i\cap A_j=\varnothing\)</span>，则称 <span class="math inline">\(A_1,A_2,\ldots\)</span> 两两互斥。</p>
+</div>
+<p>集合 <span class="math inline">\(A_i=[i,i+1)\)</span>（<span class="math inline">\(i=0,1,2,\ldots\)</span>）两两互斥，而且</p>
+<p><span class="math display">\[
+\bigcup_{i=0}^{\infty}A_i=[0,\infty).
+\]</span></p>
+<div class="definition">
+<p><span id="def:unlabeled-div-5" class="definition"><strong>定义 1.4  </strong></span><strong>划分</strong> 若 <span class="math inline">\(A_1,A_2,\ldots\)</span> 两两互斥，并且 <span class="math inline">\(\bigcup_{i=1}^{\infty}A_i=S\)</span>，则称这些集合构成样本空间 <span class="math inline">\(S\)</span> 的一个划分。</p>
+</div>
+<p>划分把样本空间分成互不重叠的部分，是后续全概率公式和 Bayes 公式的基础。</p>
+</div>
+</div>
+<div id="sigma-algebra-probability" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> <span class="math inline">\(\sigma\)</span>-代数与概率测度<a href="probability-theory.html#sigma-algebra-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-6" class="definition"><strong>定义 1.5  </strong></span><strong><span class="math inline">\(\sigma\)</span>-代数</strong> 样本空间 <span class="math inline">\(S\)</span> 的一族子集 <span class="math inline">\(\mathcal B\)</span> 若满足以下条件，就称为 <span class="math inline">\(S\)</span> 上的一个 <span class="math inline">\(\sigma\)</span>-代数：</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\varnothing\in\mathcal B\)</span>；</li>
+<li>若 <span class="math inline">\(A\in\mathcal B\)</span>，则 <span class="math inline">\(A^{\mathrm c}\in\mathcal B\)</span>；</li>
+<li>若 <span class="math inline">\(A_1,A_2,\ldots\in\mathcal B\)</span>，则 <span class="math inline">\(\bigcup_{i=1}^{\infty}A_i\in\mathcal B\)</span>。</li>
+</ol>
+</div>
+<p>由 <span class="math inline">\(S=\varnothing^{\mathrm c}\)</span> 可知 <span class="math inline">\(S\in\mathcal B\)</span>。结合 De Morgan 律，<span class="math inline">\(\mathcal B\)</span> 也对可数交封闭：</p>
+<p><span class="math display">\[
+\left(\bigcup_{i=1}^{\infty}A_i^{\mathrm c}\right)^{\mathrm c}
+=\bigcap_{i=1}^{\infty}A_i\in\mathcal B.
+\]</span></p>
+<div class="example">
+<p><span id="exm:unlabeled-div-7" class="example"><strong>例 1.2  </strong></span><strong>有限样本空间</strong> 若 <span class="math inline">\(S=\{1,2,3\}\)</span>，可取 <span class="math inline">\(\mathcal B\)</span> 为 <span class="math inline">\(S\)</span> 的幂集：</p>
+<p><span class="math display">\[
+\mathcal B=
+\{\varnothing,\{1\},\{2\},\{3\},\{1,2\},\{1,3\},\{2,3\},\{1,2,3\}\}.
+\]</span></p>
+<p>这里共有 <span class="math inline">\(2^3=8\)</span> 个集合。一般地，含 <span class="math inline">\(n\)</span> 个元素的有限集合有 <span class="math inline">\(2^n\)</span> 个子集。</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-8" class="example"><strong>例 1.3  </strong></span><strong>实直线上的 Borel 集</strong> 当 <span class="math inline">\(S=\mathbb R\)</span> 时，通常要求 <span class="math inline">\(\mathcal B\)</span> 包含所有区间 <span class="math inline">\([a,b]\)</span>、<span class="math inline">\((a,b]\)</span>、<span class="math inline">\((a,b)\)</span>、<span class="math inline">\([a,b)\)</span>，以及由这些集合经过可数次并、交和取补得到的集合。</p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-9" class="definition"><strong>定义 1.6  </strong></span><strong>概率函数</strong> 给定样本空间 <span class="math inline">\(S\)</span> 及其上的 <span class="math inline">\(\sigma\)</span>-代数 <span class="math inline">\(\mathcal B\)</span>，若函数 <span class="math inline">\(P:\mathcal B\to[0,1]\)</span> 满足</p>
+<ol style="list-style-type: decimal">
+<li>对所有 <span class="math inline">\(A\in\mathcal B\)</span>，<span class="math inline">\(P(A)\ge 0\)</span>；</li>
+<li><span class="math inline">\(P(S)=1\)</span>；</li>
+<li>若 <span class="math inline">\(A_1,A_2,\ldots\)</span> 两两互斥，则</li>
+</ol>
+<p><span class="math display">\[
+P\left(\bigcup_{i=1}^{\infty}A_i\right)
+=\sum_{i=1}^{\infty}P(A_i),
+\]</span></p>
+<p>则称 <span class="math inline">\(P\)</span> 为概率函数。这三条性质称为 Kolmogorov 公理。</p>
+</div>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-10" class="theorem"><strong>定理 1.1  </strong></span><strong>离散样本空间上的概率</strong> 设 <span class="math inline">\(S=\{s_1,\ldots,s_n\}\)</span>，并给定非负数 <span class="math inline">\(p_1,\ldots,p_n\)</span>，使得 <span class="math inline">\(\sum_{i=1}^n p_i=1\)</span>。定义</p>
+<p><span class="math display">\[
+P(A)=\sum_{\{i:s_i\in A\}}p_i,
+\]</span></p>
+<p>则 <span class="math inline">\(P\)</span> 是 <span class="math inline">\(S\)</span> 上的概率函数。该结论同样适用于可数样本空间 <span class="math inline">\(S=\{s_1,s_2,\ldots\}\)</span>。</p>
+</div>
+</div>
+<div id="conditional-probability" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> 条件概率与 Bayes 公式<a href="probability-theory.html#conditional-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-11" class="definition"><strong>定义 1.7  </strong></span><strong>条件概率</strong> 在概率空间 <span class="math inline">\((S,\mathcal B,P)\)</span> 中，若 <span class="math inline">\(B\in\mathcal B\)</span> 且 <span class="math inline">\(P(B)&gt;0\)</span>，则</p>
+<p><span class="math display">\[
+P(A\mid B)=\frac{P(A\cap B)}{P(B)},\qquad A\in\mathcal B.
+\]</span></p>
+</div>
+<p>条件概率的定义立即给出乘法公式</p>
+<p><span class="math display">\[
+P(A\cap B)=P(A\mid B)P(B).
+\]</span></p>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-12" class="exercise"><strong>练习 1.1  </strong></span><strong>原课件 Problem 1.41</strong> 证明 <span class="math inline">\(P(\cdot\mid B):\mathcal B\to\mathbb R\)</span> 满足 Kolmogorov 公理。</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-13" class="example"><strong>例 1.4  </strong></span><strong>连续抽到四张 A</strong> 从一副充分洗匀的 52 张扑克牌顶部依次发出四张牌。已知前 <span class="math inline">\(i\)</span> 张都是 A，求四张牌全为 A 的条件概率，其中 <span class="math inline">\(i=1,2,3\)</span>。</p>
+<p>原课件给出的计算式为</p>
+<p><span class="math display">\[
+P(\text{四张均为 A}\mid\text{前 }i\text{ 张均为 A})
+=\frac{\binom{52}{i}}
+{\binom{4}{i}\binom{52}{4}}.
+\]</span></p>
+<p>当 <span class="math inline">\(i=1,2,3\)</span> 时，数值约为 <span class="math inline">\(0.000048\)</span>、<span class="math inline">\(0.00082\)</span> 和 <span class="math inline">\(0.02041\)</span>。第一个数值与原课件中的小数存在一位数量级差异，已记录在迁移说明中。</p>
+</div>
+<p>原课件还列出了“三名死囚”条件概率问题，但没有给出完整题干，因此本阶段不补写缺失条件。</p>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-14" class="theorem"><strong>定理 1.2  </strong></span><strong>Bayes 公式</strong> 若 <span class="math inline">\(A_1,A_2,\ldots\)</span> 构成样本空间的一个划分，则</p>
+<p><span class="math display">\[
+P(A_i\mid B)=
+\frac{P(B\mid A_i)P(A_i)}
+{\sum_{j=1}^{\infty}P(B\mid A_j)P(A_j)}.
+\]</span></p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-15" class="example"><strong>例 1.5  </strong></span><strong>编码信息传输</strong> 已知发送点号和划号的概率分别为</p>
+<p><span class="math display">\[
+P(\text{发送点号})=\frac37,
+\qquad
+P(\text{发送划号})=\frac47,
+\]</span></p>
+<p>并且两种误传概率均为 <span class="math inline">\(1/8\)</span>。收到点号后，实际发送点号的概率为</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(\text{发送点号}\mid\text{收到点号})
+&amp;=\frac{(7/8)(3/7)}{(7/8)(3/7)+(1/8)(4/7)}\\
+&amp;=\frac{21}{25}.
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+<div id="independence" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> 独立性<a href="probability-theory.html#independence" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-16" class="definition"><strong>定义 1.8  </strong></span><strong>两个事件独立</strong> 若</p>
+<p><span class="math display">\[
+P(A\cap B)=P(A)P(B),
+\]</span></p>
+<p>则称事件 <span class="math inline">\(A\)</span> 与 <span class="math inline">\(B\)</span> 独立。当 <span class="math inline">\(P(B)&gt;0\)</span> 时，这等价于 <span class="math inline">\(P(A\mid B)=P(A)\)</span>。</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-17" class="example"><strong>例 1.6  </strong></span><strong>四次掷骰至少出现一个 6</strong> 若连续投掷相互独立，则</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(\text{四次中至少出现一个 6})
+&amp;=1-P(\text{四次均不出现 6})\\
+&amp;=1-\left(\frac56\right)^4\\
+&amp;\approx0.518.
+\end{aligned}
+\]</span></p>
+</div>
+<p>原课件在此处列出“生日问题”作为后续示例，但未给出计算过程，本阶段保留主题而不补写新内容。</p>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-18" class="theorem"><strong>定理 1.3  </strong></span><strong>补事件的独立性</strong> 若 <span class="math inline">\(A\)</span> 与 <span class="math inline">\(B\)</span> 独立，则以下三对事件也分别独立：<span class="math inline">\(A\)</span> 与 <span class="math inline">\(B^{\mathrm c}\)</span>、<span class="math inline">\(A^{\mathrm c}\)</span> 与 <span class="math inline">\(B\)</span>、<span class="math inline">\(A^{\mathrm c}\)</span> 与 <span class="math inline">\(B^{\mathrm c}\)</span>。</p>
+</div>
+<div id="两两独立与相互独立" class="section level3 hasAnchor" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> 两两独立与相互独立<a href="probability-theory.html#两两独立与相互独立" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="example">
+<p><span id="exm:unlabeled-div-19" class="example"><strong>例 1.7  </strong></span><strong>两个骰子</strong> 令 <span class="math inline">\(A\)</span> 表示出现对子，<span class="math inline">\(B\)</span> 表示点数和在 7 到 10 之间，<span class="math inline">\(C\)</span> 表示点数和为 2、7 或 8。原课件给出</p>
+<p><span class="math display">\[
+P(A)=\frac16,\qquad P(B)=\frac12,\qquad P(C)=\frac13,
+\]</span></p>
+<p>以及</p>
+<p><span class="math display">\[
+P(A\cap B\cap C)=\frac1{36}=P(A)P(B)P(C).
+\]</span></p>
+<p>但 <span class="math inline">\(P(A\cap B)\ne P(A)P(B)\)</span>，且 <span class="math inline">\(P(B\cap C)\ne P(B)P(C)\)</span>。因此只验证三者交集的乘法关系，不足以推出两两独立。</p>
+</div>
+<p>反过来，两两独立也未必能推出三个事件相互独立。原课件使用九个等概率三元组构造事件 <span class="math inline">\(A_i\)</span>，使得</p>
+<p><span class="math display">\[
+P(A_i)=\frac13,
+\qquad
+P(A_i\cap A_j)=\frac19\quad(i\ne j),
+\]</span></p>
+<p>但</p>
+<p><span class="math display">\[
+P(A_1\cap A_2\cap A_3)=\frac19
+\ne P(A_1)P(A_2)P(A_3).
+\]</span></p>
+<div class="definition">
+<p><span id="def:unlabeled-div-20" class="definition"><strong>定义 1.9  </strong></span><strong>相互独立</strong> 事件 <span class="math inline">\(A_1,\ldots,A_n\)</span> 相互独立，是指对任意子集 <span class="math inline">\(\{i_1,\ldots,i_k\}\)</span>，都有</p>
+<p><span class="math display">\[
+P\left(\bigcap_{j=1}^{k}A_{i_j}\right)
+=\prod_{j=1}^{k}P(A_{i_j}).
+\]</span></p>
+</div>
+<p>原课件进一步通过无限二进制序列构造一列相互独立、概率均为 <span class="math inline">\(1/2\)</span> 的事件 <span class="math inline">\(B_1,B_2,\ldots\)</span>。对任意 <span class="math inline">\(1\le i_1&lt;\cdots&lt;i_k\)</span>，有</p>
+<p><span class="math display">\[
+P(B_{i_1}\cap\cdots\cap B_{i_k})
+=\frac1{2^k}
+=\prod_{j=1}^{k}P(B_{i_j}).
+\]</span></p>
+<p>这一构造说明足够丰富的概率空间可以容纳无限多个相互独立事件。</p>
+</div>
+</div>
+<div id="random-variables" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> 随机变量<a href="probability-theory.html#random-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-21" class="definition"><strong>定义 1.10  </strong></span><strong>随机变量</strong> 设 <span class="math inline">\((S,\mathcal B)\)</span> 为可测空间。若函数 <span class="math inline">\(X:S\to\mathbb R\)</span> 满足：对任意实数 <span class="math inline">\(a\)</span>，</p>
+<p><span class="math display">\[
+X^{-1}(( -\infty,a])\in\mathcal B,
+\]</span></p>
+<p>则称 <span class="math inline">\(X\)</span> 为实值随机变量。</p>
+</div>
+<p>若 <span class="math inline">\(S=\{s_1,\ldots,s_n\}\)</span>，随机变量 <span class="math inline">\(X\)</span> 的取值集合为 <span class="math inline">\(\mathcal X=\{x_1,\ldots,x_m\}\)</span>，则 <span class="math inline">\(X\)</span> 在 <span class="math inline">\(\mathcal X\)</span> 上诱导的概率为</p>
+<p><span class="math display">\[
+P_X(X=x_i)=P\bigl(\{s_j\in S:X(s_j)=x_i\}\bigr).
+\]</span></p>
+<p>在有限离散样本空间上，任意实值函数都是随机变量。</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-22" class="example"><strong>例 1.8  </strong></span><strong>三次抛硬币</strong> 连续抛掷一枚公平硬币三次，以 <span class="math inline">\(X\)</span> 表示正面出现次数：</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(s\)</span></th>
+<th align="center">HHH</th>
+<th align="center">HHT</th>
+<th align="center">HTH</th>
+<th align="center">THH</th>
+<th align="center">TTH</th>
+<th align="center">THT</th>
+<th align="center">HTT</th>
+<th align="center">TTT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(X(s)\)</span></td>
+<td align="center">3</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+<p>于是 <span class="math inline">\(\mathcal X=\{0,1,2,3\}\)</span>，并且</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(x\)</span></th>
+<th align="center">0</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(P(X=x)\)</span></td>
+<td align="center"><span class="math inline">\(1/8\)</span></td>
+<td align="center"><span class="math inline">\(3/8\)</span></td>
+<td align="center"><span class="math inline">\(3/8\)</span></td>
+<td align="center"><span class="math inline">\(1/8\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>下面的代码来自原项目对应的 R Markdown 示例，用相同的八个样本点检查概率质量分布。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="probability-theory.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 使用原课件列出的八个等可能样本点及其正面次数。</span></span>
+<span id="cb1-2"><a href="probability-theory.html#cb1-2" aria-hidden="true" tabindex="-1"></a>heads_tails <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-3"><a href="probability-theory.html#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">outcome =</span> <span class="fu">c</span>(<span class="st">&quot;HHH&quot;</span>, <span class="st">&quot;HHT&quot;</span>, <span class="st">&quot;HTH&quot;</span>, <span class="st">&quot;THH&quot;</span>, <span class="st">&quot;TTH&quot;</span>, <span class="st">&quot;THT&quot;</span>, <span class="st">&quot;HTT&quot;</span>, <span class="st">&quot;TTT&quot;</span>),</span>
+<span id="cb1-4"><a href="probability-theory.html#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb1-5"><a href="probability-theory.html#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-6"><a href="probability-theory.html#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="probability-theory.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 每个样本点的概率均为 1/8；按 X 分组后得到各取值的概率。</span></span>
+<span id="cb1-8"><a href="probability-theory.html#cb1-8" aria-hidden="true" tabindex="-1"></a>pmf <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(</span>
+<span id="cb1-9"><a href="probability-theory.html#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep</span>(<span class="dv">1</span> <span class="sc">/</span> <span class="dv">8</span>, <span class="fu">nrow</span>(heads_tails)),</span>
+<span id="cb1-10"><a href="probability-theory.html#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="fu">list</span>(<span class="at">X =</span> heads_tails<span class="sc">$</span>X),</span>
+<span id="cb1-11"><a href="probability-theory.html#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">FUN =</span> sum</span>
+<span id="cb1-12"><a href="probability-theory.html#cb1-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-13"><a href="probability-theory.html#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(pmf)[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="st">&quot;probability&quot;</span></span>
+<span id="cb1-14"><a href="probability-theory.html#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="probability-theory.html#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 输出概率表，并绘制与原课件表格相对应的概率质量图。</span></span>
+<span id="cb1-16"><a href="probability-theory.html#cb1-16" aria-hidden="true" tabindex="-1"></a>pmf</span></code></pre></div>
+<pre><code>##   X probability
+## 1 0       0.125
+## 2 1       0.375
+## 3 2       0.375
+## 4 3       0.125</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="probability-theory.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb3-2"><a href="probability-theory.html#cb3-2" aria-hidden="true" tabindex="-1"></a>  pmf<span class="sc">$</span>X,</span>
+<span id="cb3-3"><a href="probability-theory.html#cb3-3" aria-hidden="true" tabindex="-1"></a>  pmf<span class="sc">$</span>probability,</span>
+<span id="cb3-4"><a href="probability-theory.html#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;h&quot;</span>,</span>
+<span id="cb3-5"><a href="probability-theory.html#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">lwd =</span> <span class="dv">8</span>,</span>
+<span id="cb3-6"><a href="probability-theory.html#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">lend =</span> <span class="st">&quot;butt&quot;</span>,</span>
+<span id="cb3-7"><a href="probability-theory.html#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;正面出现次数 X&quot;</span>,</span>
+<span id="cb3-8"><a href="probability-theory.html#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;P(X = x)&quot;</span>,</span>
+<span id="cb3-9"><a href="probability-theory.html#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">xaxt =</span> <span class="st">&quot;n&quot;</span>,</span>
+<span id="cb3-10"><a href="probability-theory.html#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.45</span>),</span>
+<span id="cb3-11"><a href="probability-theory.html#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">course_plot_family</span>()</span>
+<span id="cb3-12"><a href="probability-theory.html#cb3-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-13"><a href="probability-theory.html#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb3-14"><a href="probability-theory.html#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pmf<span class="sc">$</span>X, pmf<span class="sc">$</span>probability, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ch01-three-toss-pmf"></span>
+<img src="01-probability-theory_files/figure-html/ch01-three-toss-pmf-1.png" alt="三次抛硬币时正面次数的经验概率质量图" width="90%" />
+<p class="caption">
+图 1.1: 三次抛硬币时正面次数的经验概率质量图
+</p>
+</div>
+</div>
+<div id="distribution-functions" class="section level2 hasAnchor" number="1.6">
+<h2><span class="header-section-number">1.6</span> 分布函数<a href="probability-theory.html#distribution-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-23" class="definition"><strong>定义 1.11  </strong></span><strong>累积分布函数</strong> 随机变量 <span class="math inline">\(X\)</span> 的累积分布函数（cdf）定义为</p>
+<p><span class="math display">\[
+F_X(x)=P(X\le x),\qquad x\in\mathbb R.
+\]</span></p>
+</div>
+<p>在例 1.8 中，</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><span class="math inline">\(x\)</span> 的范围</th>
+<th align="center"><span class="math inline">\(F_X(x)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\((-\infty,0)\)</span></td>
+<td align="center"><span class="math inline">\(0\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\([0,1)\)</span></td>
+<td align="center"><span class="math inline">\(1/8\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\([1,2)\)</span></td>
+<td align="center"><span class="math inline">\(1/2\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\([2,3)\)</span></td>
+<td align="center"><span class="math inline">\(7/8\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\([3,\infty)\)</span></td>
+<td align="center"><span class="math inline">\(1\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-24" class="theorem"><strong>定理 1.4  </strong></span><strong>cdf 的刻画</strong> 函数 <span class="math inline">\(F\)</span> 是某个随机变量的 cdf，当且仅当：</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\lim_{x\to-\infty}F(x)=0\)</span> 且 <span class="math inline">\(\lim_{x\to\infty}F(x)=1\)</span>；</li>
+<li><span class="math inline">\(F\)</span> 单调不减；</li>
+<li><span class="math inline">\(F\)</span> 右连续，即对任意 <span class="math inline">\(x_0\)</span>，<span class="math inline">\(\lim_{x\downarrow x_0}F(x)=F(x_0)\)</span>。</li>
+</ol>
+</div>
+<p>Logistic 分布的 cdf</p>
+<p><span class="math display">\[
+F_X(x)=\frac{1}{1+e^{-x}}
+\]</span></p>
+<p>满足上述三个条件。下面把原 <code>chap-1.R</code> 的绘图代码改写为 knitr 代码块；只移除了手工图形设备管理，函数和绘图含义保持不变。</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="probability-theory.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义原脚本中的 Logistic 累积分布函数。</span></span>
+<span id="cb4-2"><a href="probability-theory.html#cb4-2" aria-hidden="true" tabindex="-1"></a>logistic_cdf <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb4-3"><a href="probability-theory.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(<span class="sc">-</span>x))</span>
+<span id="cb4-4"><a href="probability-theory.html#cb4-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-5"><a href="probability-theory.html#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="probability-theory.html#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># 定义原脚本用于比较的阶跃函数：x &lt; 0 时为 0，否则为 1。</span></span>
+<span id="cb4-7"><a href="probability-theory.html#cb4-7" aria-hidden="true" tabindex="-1"></a>step_reference <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb4-8"><a href="probability-theory.html#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.numeric</span>(x <span class="sc">&gt;=</span> <span class="dv">0</span>)</span>
+<span id="cb4-9"><a href="probability-theory.html#cb4-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-10"><a href="probability-theory.html#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="probability-theory.html#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 在与原脚本相同的区间和步长上计算并绘图。</span></span>
+<span id="cb4-12"><a href="probability-theory.html#cb4-12" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb4-13"><a href="probability-theory.html#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb4-14"><a href="probability-theory.html#cb4-14" aria-hidden="true" tabindex="-1"></a>  x,</span>
+<span id="cb4-15"><a href="probability-theory.html#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">logistic_cdf</span>(x),</span>
+<span id="cb4-16"><a href="probability-theory.html#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;l&quot;</span>,</span>
+<span id="cb4-17"><a href="probability-theory.html#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb4-18"><a href="probability-theory.html#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="fu">expression</span>(F[X](x)),</span>
+<span id="cb4-19"><a href="probability-theory.html#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">course_plot_family</span>()</span>
+<span id="cb4-20"><a href="probability-theory.html#cb4-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-21"><a href="probability-theory.html#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, <span class="fu">step_reference</span>(x), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ch01-logistic-cdf"></span>
+<img src="01-probability-theory_files/figure-html/ch01-logistic-cdf-1.png" alt="Logistic 累积分布函数与原课件中的阶跃参照线" width="90%" />
+<p class="caption">
+图 1.2: Logistic 累积分布函数与原课件中的阶跃参照线
+</p>
+</div>
+</div>
+<div id="pmf-pdf" class="section level2 hasAnchor" number="1.7">
+<h2><span class="header-section-number">1.7</span> 概率质量函数与概率密度函数<a href="probability-theory.html#pmf-pdf" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-25" class="definition"><strong>定义 1.12  </strong></span><strong>概率质量函数</strong> 离散随机变量 <span class="math inline">\(X\)</span> 的概率质量函数（pmf）为</p>
+<p><span class="math display">\[
+f_X(x)=P(X=x).
+\]</span></p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-26" class="definition"><strong>定义 1.13  </strong></span><strong>概率密度函数</strong> 连续随机变量 <span class="math inline">\(X\)</span> 的概率密度函数（pdf）是满足</p>
+<p><span class="math display">\[
+F_X(x)=\int_{-\infty}^{x}f_X(t)\,\mathrm dt
+\]</span></p>
+<p>的函数 <span class="math inline">\(f_X\)</span>。</p>
+</div>
+<p>对 Logistic 分布，</p>
+<p><span class="math display">\[
+f_X(x)=\frac{\mathrm d}{\mathrm dx}F_X(x)
+=\frac{e^{-x}}{(1+e^{-x})^2}
+=F_X(x)\{1-F_X(x)\}.
+\]</span></p>
+<p>因此区间概率既可以由 cdf 的差得到，也可以由密度积分得到：</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(a&lt;X&lt;b)
+&amp;=F_X(b)-F_X(a)\\
+&amp;=\int_a^b f_X(x)\,\mathrm dx.
+\end{aligned}
+\]</span></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ch01-logistic-density-figure"></span>
+<img src="images/ch01/logistic-density-interval.png" alt="Logistic 密度曲线下的区间概率。来源：原课件第 1 章配图。" width="90%" />
+<p class="caption">
+图 1.3: Logistic 密度曲线下的区间概率。来源：原课件第 1 章配图。
+</p>
+</div>
+</div>
+<div id="chapter-one-summary" class="section level2 hasAnchor" number="1.8">
+<h2><span class="header-section-number">1.8</span> 本章小结<a href="probability-theory.html#chapter-one-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>本章从样本空间和事件建立概率空间，并用条件概率、Bayes 公式与独立性描述事件之间的关系；随后把随机变量视为从样本空间到实数的可测函数，并通过 cdf、pmf 和 pdf 描述其分布。这些概念构成后续随机变量变换、期望和统计推断的基础。</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="course-introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="transformations-expectations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": null,
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

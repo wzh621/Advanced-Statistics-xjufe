@@ -1,0 +1,30 @@
+book_filename: "advanced-statistics"
+output_dir: "docs/zh"
+delete_merged_file: true
+new_session: true
+before_chapter_script: "_common.R"
+language:
+  label:
+    fig: "图 "
+    tab: "表 "
+    eq: "式 "
+    thm: "定理 "
+    def: "定义 "
+    exm: "例 "
+    exr: "练习 "
+  ui:
+    chapter_name: "第 "
+rmd_files:
+  - "index.Rmd"
+  - "author-bio.Rmd"
+  - "00-course-introduction.Rmd"
+  - "01-probability-theory.Rmd"
+  - "02-transformations-expectations.Rmd"
+  - "03-distribution-families.Rmd"
+  - "04-multiple-random-variables.Rmd"
+  - "05-random-samples.Rmd"
+  - "06-data-reduction.Rmd"
+  - "07-point-estimation.Rmd"
+  - "08-hypothesis-testing.Rmd"
+  - "09-interval-estimation.Rmd"
+  - "10-asymptotic-evaluations.Rmd"

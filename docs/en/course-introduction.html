@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Course Introduction | Advanced Statistics</title>
+  <meta name="description" content="An online advanced statistics course developed from the original lecture slides and companion code." />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Course Introduction | Advanced Statistics" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="An online advanced statistics course developed from the original lecture slides and companion code." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Course Introduction | Advanced Statistics" />
+  
+  <meta name="twitter:description" content="An online advanced statistics course developed from the original lecture slides and companion code." />
+  
+
+<meta name="author" content="Zhihao Wang, Associate Professor" />
+
+
+<meta name="date" content="2026-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="author-bio.html"/>
+<link rel="next" href="probability-theory.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="../style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="course-title"><a href="./">Advanced Statistics</a></li>
+<li class="language-switch"><a href="../zh/">← 中文版</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i>How to use this book</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="author-bio.html"><a href="author-bio.html"><i class="fa fa-check"></i>Author Biography</a>
+<ul>
+<li class="chapter" data-level="" data-path="author-bio.html"><a href="author-bio.html#research-and-teaching"><i class="fa fa-check"></i>Research and Teaching</a></li>
+<li class="chapter" data-level="" data-path="author-bio.html"><a href="author-bio.html#academic-work"><i class="fa fa-check"></i>Academic Work</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="course-introduction.html"><a href="course-introduction.html"><i class="fa fa-check"></i>Course Introduction</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="course-introduction.html"><a href="course-introduction.html#course-instructor"><i class="fa fa-check"></i><b>0.1</b> Instructor and Course Positioning</a></li>
+<li class="chapter" data-level="0.2" data-path="course-introduction.html"><a href="course-introduction.html#course-instructor-publications"><i class="fa fa-check"></i><b>0.2</b> Selected Publications</a></li>
+<li class="chapter" data-level="0.3" data-path="course-introduction.html"><a href="course-introduction.html#course-personal-info"><i class="fa fa-check"></i><b>0.3</b> Personal Information Link</a></li>
+<li class="chapter" data-level="0.4" data-path="course-introduction.html"><a href="course-introduction.html#course-basic-info"><i class="fa fa-check"></i><b>0.4</b> Course Information</a></li>
+<li class="chapter" data-level="0.5" data-path="course-introduction.html"><a href="course-introduction.html#course-description"><i class="fa fa-check"></i><b>0.5</b> Course Description</a></li>
+<li class="chapter" data-level="0.6" data-path="course-introduction.html"><a href="course-introduction.html#course-textbooks"><i class="fa fa-check"></i><b>0.6</b> Recommended Textbooks</a></li>
+<li class="chapter" data-level="0.7" data-path="course-introduction.html"><a href="course-introduction.html#course-reference-books"><i class="fa fa-check"></i><b>0.7</b> Reference Books</a></li>
+<li class="chapter" data-level="0.8" data-path="course-introduction.html"><a href="course-introduction.html#course-main-task"><i class="fa fa-check"></i><b>0.8</b> Main Course Task</a></li>
+<li class="chapter" data-level="0.9" data-path="course-introduction.html"><a href="course-introduction.html#course-objectives"><i class="fa fa-check"></i><b>0.9</b> Learning Objectives</a></li>
+<li class="chapter" data-level="0.10" data-path="course-introduction.html"><a href="course-introduction.html#course-content-foundations"><i class="fa fa-check"></i><b>0.10</b> Syllabus I: Foundations of Inference</a></li>
+<li class="chapter" data-level="0.11" data-path="course-introduction.html"><a href="course-introduction.html#course-content-modern"><i class="fa fa-check"></i><b>0.11</b> Syllabus II: Modern Statistical Methods</a></li>
+<li class="chapter" data-level="0.12" data-path="course-introduction.html"><a href="course-introduction.html#course-teaching-assessment"><i class="fa fa-check"></i><b>0.12</b> Teaching and Assessment</a></li>
+<li class="chapter" data-level="0.13" data-path="course-introduction.html"><a href="course-introduction.html#course-introduction-summary"><i class="fa fa-check"></i><b>0.13</b> Summary and Study Guidance</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="probability-theory.html"><a href="probability-theory.html"><i class="fa fa-check"></i><b>1</b> Foundations of Probability</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="probability-theory.html"><a href="probability-theory.html#sample-space-events"><i class="fa fa-check"></i><b>1.1</b> Sample Spaces and Events</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="probability-theory.html"><a href="probability-theory.html#set-operations"><i class="fa fa-check"></i><b>1.1.1</b> Set operations</a></li>
+<li class="chapter" data-level="1.1.2" data-path="probability-theory.html"><a href="probability-theory.html#mutually-exclusive-events-and-partitions"><i class="fa fa-check"></i><b>1.1.2</b> Mutually exclusive events and partitions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="probability-theory.html"><a href="probability-theory.html#sigma-algebra-probability"><i class="fa fa-check"></i><b>1.2</b> <span class="math inline">\(\sigma\)</span>-Algebras and Probability Measures</a></li>
+<li class="chapter" data-level="1.3" data-path="probability-theory.html"><a href="probability-theory.html#conditional-probability"><i class="fa fa-check"></i><b>1.3</b> Conditional Probability and Bayes’ Formula</a></li>
+<li class="chapter" data-level="1.4" data-path="probability-theory.html"><a href="probability-theory.html#independence"><i class="fa fa-check"></i><b>1.4</b> Independence</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="probability-theory.html"><a href="probability-theory.html#pairwise-and-mutual-independence"><i class="fa fa-check"></i><b>1.4.1</b> Pairwise and mutual independence</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="probability-theory.html"><a href="probability-theory.html#random-variables"><i class="fa fa-check"></i><b>1.5</b> Random Variables</a></li>
+<li class="chapter" data-level="1.6" data-path="probability-theory.html"><a href="probability-theory.html#distribution-functions"><i class="fa fa-check"></i><b>1.6</b> Distribution Functions</a></li>
+<li class="chapter" data-level="1.7" data-path="probability-theory.html"><a href="probability-theory.html#pmf-pdf"><i class="fa fa-check"></i><b>1.7</b> Probability Mass and Density Functions</a></li>
+<li class="chapter" data-level="1.8" data-path="probability-theory.html"><a href="probability-theory.html#chapter-one-summary"><i class="fa fa-check"></i><b>1.8</b> Chapter Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="transformations-expectations.html"><a href="transformations-expectations.html"><i class="fa fa-check"></i><b>2</b> Transformations and Expectations</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="transformations-expectations.html"><a href="transformations-expectations.html#distribution-functions-rv"><i class="fa fa-check"></i><b>2.1</b> Distributions of Functions of Random Variables</a></li>
+<li class="chapter" data-level="2.2" data-path="transformations-expectations.html"><a href="transformations-expectations.html#sin-square-transformation"><i class="fa fa-check"></i><b>2.2</b> Example 2.1.2: A Sine-Squared Transformation</a></li>
+<li class="chapter" data-level="2.3" data-path="transformations-expectations.html"><a href="transformations-expectations.html#support-monotone-transform"><i class="fa fa-check"></i><b>2.3</b> Support Sets and Monotone Transformations</a></li>
+<li class="chapter" data-level="2.4" data-path="transformations-expectations.html"><a href="transformations-expectations.html#inverse-gamma-example"><i class="fa fa-check"></i><b>2.4</b> Example 2.1.6: A Reciprocal Gamma Transformation</a></li>
+<li class="chapter" data-level="2.5" data-path="transformations-expectations.html"><a href="transformations-expectations.html#normal-square-example"><i class="fa fa-check"></i><b>2.5</b> Example 2.1.7: The Square of a Standard Normal</a></li>
+<li class="chapter" data-level="2.6" data-path="transformations-expectations.html"><a href="transformations-expectations.html#piecewise-monotone-transform"><i class="fa fa-check"></i><b>2.6</b> Piecewise Monotone Transformations</a></li>
+<li class="chapter" data-level="2.7" data-path="transformations-expectations.html"><a href="transformations-expectations.html#probability-integral-transform"><i class="fa fa-check"></i><b>2.7</b> The Probability Integral Transform</a></li>
+<li class="chapter" data-level="2.8" data-path="transformations-expectations.html"><a href="transformations-expectations.html#expected-value-definition"><i class="fa fa-check"></i><b>2.8</b> Definition and Computation of Expectation</a></li>
+<li class="chapter" data-level="2.9" data-path="transformations-expectations.html"><a href="transformations-expectations.html#expectation-examples-properties"><i class="fa fa-check"></i><b>2.9</b> Examples and Properties of Expectation</a></li>
+<li class="chapter" data-level="2.10" data-path="transformations-expectations.html"><a href="transformations-expectations.html#moments-mgf"><i class="fa fa-check"></i><b>2.10</b> Moments, Central Moments, and MGFs</a></li>
+<li class="chapter" data-level="2.11" data-path="transformations-expectations.html"><a href="transformations-expectations.html#same-moments-example"><i class="fa fa-check"></i><b>2.11</b> Equal Moments Need Not Determine a Distribution</a></li>
+<li class="chapter" data-level="2.12" data-path="transformations-expectations.html"><a href="transformations-expectations.html#mgf-convergence-examples"><i class="fa fa-check"></i><b>2.12</b> MGF Convergence and Two Classical MGFs</a></li>
+<li class="chapter" data-level="2.13" data-path="transformations-expectations.html"><a href="transformations-expectations.html#poisson-approximation"><i class="fa fa-check"></i><b>2.13</b> Example 2.3.13: The Poisson Approximation</a></li>
+<li class="chapter" data-level="2.14" data-path="transformations-expectations.html"><a href="transformations-expectations.html#leibniz-dominated"><i class="fa fa-check"></i><b>2.14</b> Leibniz’s Rule and Dominated Convergence</a></li>
+<li class="chapter" data-level="2.15" data-path="transformations-expectations.html"><a href="transformations-expectations.html#differentiate-under-integral"><i class="fa fa-check"></i><b>2.15</b> Differentiation Under the Integral Sign</a></li>
+<li class="chapter" data-level="2.16" data-path="transformations-expectations.html"><a href="transformations-expectations.html#series-interchange"><i class="fa fa-check"></i><b>2.16</b> Interchanging Series with Differentiation and Integration</a></li>
+<li class="chapter" data-level="2.17" data-path="transformations-expectations.html"><a href="transformations-expectations.html#transformations-expectations-summary"><i class="fa fa-check"></i><b>2.17</b> Chapter Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="distribution-families.html"><a href="distribution-families.html"><i class="fa fa-check"></i><b>3</b> Common Families of Distributions</a></li>
+<li class="chapter" data-level="4" data-path="multiple-random-variables.html"><a href="multiple-random-variables.html"><i class="fa fa-check"></i><b>4</b> Multiple Random Variables</a></li>
+<li class="chapter" data-level="5" data-path="random-samples.html"><a href="random-samples.html"><i class="fa fa-check"></i><b>5</b> Properties of a Random Sample</a></li>
+<li class="chapter" data-level="6" data-path="data-reduction.html"><a href="data-reduction.html"><i class="fa fa-check"></i><b>6</b> Principles of Data Reduction</a></li>
+<li class="chapter" data-level="7" data-path="point-estimation.html"><a href="point-estimation.html"><i class="fa fa-check"></i><b>7</b> Point Estimation</a></li>
+<li class="chapter" data-level="8" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>8</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="9" data-path="interval-estimation.html"><a href="interval-estimation.html"><i class="fa fa-check"></i><b>9</b> Interval Estimation</a></li>
+<li class="chapter" data-level="10" data-path="asymptotic-evaluations.html"><a href="asymptotic-evaluations.html"><i class="fa fa-check"></i><b>10</b> Asymptotic Evaluations</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="course-introduction" class="section level1 unnumbered hasAnchor">
+<h1>Course Introduction<a href="course-introduction.html#course-introduction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This chapter is a source-complete reorganization of the original Beamer file <code>课程课件B/chap-0.tex</code>. Presentation controls have been removed, while the course information, objectives, syllabus, teaching format, and assessment requirements have been retained.</p>
+<div id="course-instructor" class="section level2 hasAnchor" number="0.1">
+<h2><span class="header-section-number">0.1</span> Instructor and Course Positioning<a href="course-introduction.html#course-instructor" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Course:</strong> Advanced Statistics (高等统计学)<br />
+<strong>Instructor:</strong> Associate Professor Zhihao Wang<br />
+<strong>Affiliation:</strong> Department of Statistics, School of Statistics and Data Science, Xinjiang University of Finance and Economics<br />
+<strong>Email:</strong> <a href="mailto:zhwang@xjufe.edu.cn" class="email">zhwang@xjufe.edu.cn</a></p>
+<p>The course centers on the foundations of modern mathematical statistics, methods of statistical inference, and their application to data analysis. See the <a href="author-bio.html">author biography</a> for a fuller account of the instructor’s education and research.</p>
+</div>
+<div id="course-instructor-publications" class="section level2 hasAnchor" number="0.2">
+<h2><span class="header-section-number">0.2</span> Selected Publications<a href="course-introduction.html#course-instructor-publications" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The original slides list the following representative works:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Wang Zhihao</strong>, Yu K, Ma S, Tian M. Sparse smoothed quantile estimation for partially linear functional additive models. <em>Science China Mathematics</em>, 2025+.</li>
+<li>Liu Y, <strong>Wang Zhihao</strong>, Härdle W K, Tian M. Estimation and Model Selection Procedures in Generalized Functional Partially Additive Hybrid Model with Diverging Number of Covariates. <em>Statistica Sinica</em>, 2025+.</li>
+<li>Ma S, Tang M, Yu K, Härdle W K, <strong>Wang Zhihao</strong> et al. A censored quantile transformation model for Alzheimer’s Disease data with multiple functional covariates. <em>Journal of the Royal Statistical Society Series A</em>, 2025, 188(2): 515–538.</li>
+<li>Liu Y, <strong>Zhihao Wang</strong>, Yu K, Tian M. Estimation and variable selection for generalized functional partially varying coefficient hybrid models. <em>Statistical Papers</em>, 2024, 65(1): 93–119.</li>
+<li><strong>Wang Zhihao</strong>, Bai Y, Härdle W K, et al. Smoothed quantile regression for partially functional linear models in high dimensions. <em>Biometrical Journal</em>, 2023, 65(7): 2200060.</li>
+</ol>
+</div>
+<div id="course-personal-info" class="section level2 hasAnchor" number="0.3">
+<h2><span class="header-section-number">0.3</span> Personal Information Link<a href="course-introduction.html#course-personal-info" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The personal-information QR code from the source slides is retained below. For an accessible text version of the instructor profile, use the <a href="author-bio.html">author biography</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:chap00-personal-info-qr-en"></span>
+<img src="../images/ch00/wang-info.png" alt="Personal-information QR code retained from the source slides" width="28%" />
+<p class="caption">
+Figure 0.1: Personal-information QR code retained from the source slides
+</p>
+</div>
+</div>
+<div id="course-basic-info" class="section level2 hasAnchor" number="0.4">
+<h2><span class="header-section-number">0.4</span> Course Information<a href="course-introduction.html#course-basic-info" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Item</th>
+<th align="left">Details</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Course code</td>
+<td align="left">SX31031</td>
+</tr>
+<tr class="even">
+<td align="left">Chinese title</td>
+<td align="left">高等统计学</td>
+</tr>
+<tr class="odd">
+<td align="left">English title</td>
+<td align="left">Advanced Statistics</td>
+</tr>
+<tr class="even">
+<td align="left">Course type</td>
+<td align="left">Major course</td>
+</tr>
+<tr class="odd">
+<td align="left">Intended program</td>
+<td align="left">Statistics</td>
+</tr>
+<tr class="even">
+<td align="left">Contact hours</td>
+<td align="left">48</td>
+</tr>
+<tr class="odd">
+<td align="left">Credits</td>
+<td align="left">3</td>
+</tr>
+<tr class="even">
+<td align="left">Prerequisites</td>
+<td align="left">Probability theory and mathematical statistics</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="course-description" class="section level2 hasAnchor" number="0.5">
+<h2><span class="header-section-number">0.5</span> Course Description<a href="course-introduction.html#course-description" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Advanced Statistics develops the ability to turn data arising across society and industry into well-defined objects of statistical analysis and to investigate them with suitable statistical models and methods.</p>
+<p>The course presents the core concepts and theory of statistics, with emphasis on statistical models and properties of statistics, parametric and nonparametric estimation, hypothesis testing, Bayesian analysis, and statistical decision models. Large-sample methods are also introduced. By the end of the course, students should have both a rigorous theoretical foundation and the ability to apply statistical reasoning to practical problems.</p>
+</div>
+<div id="course-textbooks" class="section level2 hasAnchor" number="0.6">
+<h2><span class="header-section-number">0.6</span> Recommended Textbooks<a href="course-introduction.html#course-textbooks" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>Casella, G., &amp; Berger, R. L. (2002). <em>Statistical Inference</em>. Duxbury.</li>
+<li>Boos, D. D., &amp; Stefanski, L. A. (2013). <em>Essential Statistical Inference: Theory and Methods</em>. Springer.</li>
+</ol>
+</div>
+<div id="course-reference-books" class="section level2 hasAnchor" number="0.7">
+<h2><span class="header-section-number">0.7</span> Reference Books<a href="course-introduction.html#course-reference-books" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>Mao, S., Wang, J., &amp; Pu, X. (2006). <em>Advanced Mathematical Statistics</em> [in Chinese]. Higher Education Press.</li>
+<li>Chen, X. (1999). <em>Advanced Mathematical Statistics</em> [in Chinese]. University of Science and Technology of China Press.</li>
+<li>Shao, J. (2018). <em>Mathematical Statistics</em> [in Chinese]. Higher Education Press.</li>
+<li>Hogg, R. V., McKean, J., &amp; Craig, A. T. (2019). <em>Introduction to Mathematical Statistics</em> (8th ed.). Pearson.</li>
+<li>Moore, D. S., McCabe, G. P., &amp; Craig, B. A. (2017). <em>Introduction to the Practice of Statistics</em>. W. H. Freeman.</li>
+<li>Efron, B., &amp; Hastie, T. (2016). <em>Computer Age Statistical Inference: Algorithms, Evidence, and Data Science</em>. Cambridge University Press.</li>
+</ol>
+</div>
+<div id="course-main-task" class="section level2 hasAnchor" number="0.8">
+<h2><span class="header-section-number">0.8</span> Main Course Task<a href="course-introduction.html#course-main-task" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The central task is to help students master the foundations and methods of modern mathematical statistics, understand the principles of parametric and nonparametric inference, and use common statistical methods confidently in real data problems.</p>
+<p>The course especially develops statistical thinking: students learn to formulate useful models for concrete data problems, select appropriate analytical methods, adapt statistical theory to changing data environments, and use statistical software for analysis and decision-making.</p>
+</div>
+<div id="course-objectives" class="section level2 hasAnchor" number="0.9">
+<h2><span class="header-section-number">0.9</span> Learning Objectives<a href="course-introduction.html#course-objectives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><strong>Theory:</strong> Master the foundations and methods of modern mathematical statistics, understand parametric and nonparametric inference, and develop rigorous statistical reasoning.</li>
+<li><strong>Application:</strong> Select and apply suitable statistical methods to concrete problems and understand how related theory may be developed.</li>
+<li><strong>Social responsibility:</strong> Use cases, discussion, and practice to understand the role of inference in science, surveys, and decision-making, while developing innovation, responsibility, adaptability, and problem-solving skills.</li>
+</ul>
+</div>
+<div id="course-content-foundations" class="section level2 hasAnchor" number="0.10">
+<h2><span class="header-section-number">0.10</span> Syllabus I: Foundations of Inference<a href="course-introduction.html#course-content-foundations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><strong>Statistical foundations:</strong> Sample spaces, sampling distributions, statistics, exponential families, and location-scale families; the definition, verification, and meaning of sufficiency; an overview of large-sample theory and the Delta method.</li>
+<li><strong>Estimation:</strong> Point and interval estimation; uniformly minimum-variance unbiased estimation and the Cramér–Rao lower bound; maximum likelihood estimation and its desirable properties; pivotal construction of one-parameter confidence intervals.</li>
+<li><strong>Hypothesis testing:</strong> Type I and Type II error probabilities, test functions, rejection regions, and <span class="math inline">\(p\)</span>-values; uniformly most powerful tests, uniformly most powerful unbiased tests, likelihood-ratio, Wald, and Score tests.</li>
+</ul>
+</div>
+<div id="course-content-modern" class="section level2 hasAnchor" number="0.11">
+<h2><span class="header-section-number">0.11</span> Syllabus II: Modern Statistical Methods<a href="course-introduction.html#course-content-modern" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><strong>Nonparametric inference:</strong> Kernel density estimation; nonparametric regression, including local polynomials and splines; nonparametric tests and goodness-of-fit tests.</li>
+<li><strong>Resampling:</strong> Bootstrap methods, variance estimation, and confidence interval construction.</li>
+<li><strong>Bayesian inference:</strong> Bayesian principles, Bayesian estimation, and Bayesian testing.</li>
+<li><strong>Model selection:</strong> AIC, BIC and their extensions, and cross-validation, with emphasis on the principles and criteria of variable selection.</li>
+</ul>
+</div>
+<div id="course-teaching-assessment" class="section level2 hasAnchor" number="0.12">
+<h2><span class="header-section-number">0.12</span> Teaching and Assessment<a href="course-introduction.html#course-teaching-assessment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>Teaching format.</strong> Lectures are combined with discussion and practice. Students participate in group discussions and case studies and use statistical software for data analysis.</p>
+<p><strong>Assessment.</strong></p>
+<ul>
+<li>Coursework: 30% (assignments 20%, class participation 10%);</li>
+<li>Final examination: 70%.</li>
+</ul>
+</div>
+<div id="course-introduction-summary" class="section level2 hasAnchor" number="0.13">
+<h2><span class="header-section-number">0.13</span> Summary and Study Guidance<a href="course-introduction.html#course-introduction-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The course begins with probability foundations and proceeds through transformations of random variables, distribution families, random samples, data reduction, point estimation, hypothesis testing, interval estimation, and asymptotic theory. At every stage, attend to four questions: under what conditions does a method apply, what does it conclude, how is it carried out, and how should the result be interpreted? Complete the assigned exercises promptly.</p>
+<blockquote>
+<p><strong>Study note:</strong> Mathematical derivations clarify why a method works and when it is valid; R code checks understanding and builds data-analysis intuition. Use the two together.</p>
+</blockquote>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="author-bio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="probability-theory.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": null,
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

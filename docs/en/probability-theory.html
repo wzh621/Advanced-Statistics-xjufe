@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en" xml:lang="en">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Foundations of Probability | Advanced Statistics</title>
+  <meta name="description" content="An online advanced statistics course developed from the original lecture slides and companion code." />
+  <meta name="generator" content="bookdown 0.47 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Foundations of Probability | Advanced Statistics" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="An online advanced statistics course developed from the original lecture slides and companion code." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Foundations of Probability | Advanced Statistics" />
+  
+  <meta name="twitter:description" content="An online advanced statistics course developed from the original lecture slides and companion code." />
+  
+
+<meta name="author" content="Zhihao Wang, Associate Professor" />
+
+
+<meta name="date" content="2026-01-01" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="course-introduction.html"/>
+<link rel="next" href="transformations-expectations.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="../style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="course-title"><a href="./">Advanced Statistics</a></li>
+<li class="language-switch"><a href="../zh/">← 中文版</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#how-to-use-this-book"><i class="fa fa-check"></i>How to use this book</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="author-bio.html"><a href="author-bio.html"><i class="fa fa-check"></i>Author Biography</a>
+<ul>
+<li class="chapter" data-level="" data-path="author-bio.html"><a href="author-bio.html#research-and-teaching"><i class="fa fa-check"></i>Research and Teaching</a></li>
+<li class="chapter" data-level="" data-path="author-bio.html"><a href="author-bio.html#academic-work"><i class="fa fa-check"></i>Academic Work</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="course-introduction.html"><a href="course-introduction.html"><i class="fa fa-check"></i>Course Introduction</a>
+<ul>
+<li class="chapter" data-level="0.1" data-path="course-introduction.html"><a href="course-introduction.html#course-instructor"><i class="fa fa-check"></i><b>0.1</b> Instructor and Course Positioning</a></li>
+<li class="chapter" data-level="0.2" data-path="course-introduction.html"><a href="course-introduction.html#course-instructor-publications"><i class="fa fa-check"></i><b>0.2</b> Selected Publications</a></li>
+<li class="chapter" data-level="0.3" data-path="course-introduction.html"><a href="course-introduction.html#course-personal-info"><i class="fa fa-check"></i><b>0.3</b> Personal Information Link</a></li>
+<li class="chapter" data-level="0.4" data-path="course-introduction.html"><a href="course-introduction.html#course-basic-info"><i class="fa fa-check"></i><b>0.4</b> Course Information</a></li>
+<li class="chapter" data-level="0.5" data-path="course-introduction.html"><a href="course-introduction.html#course-description"><i class="fa fa-check"></i><b>0.5</b> Course Description</a></li>
+<li class="chapter" data-level="0.6" data-path="course-introduction.html"><a href="course-introduction.html#course-textbooks"><i class="fa fa-check"></i><b>0.6</b> Recommended Textbooks</a></li>
+<li class="chapter" data-level="0.7" data-path="course-introduction.html"><a href="course-introduction.html#course-reference-books"><i class="fa fa-check"></i><b>0.7</b> Reference Books</a></li>
+<li class="chapter" data-level="0.8" data-path="course-introduction.html"><a href="course-introduction.html#course-main-task"><i class="fa fa-check"></i><b>0.8</b> Main Course Task</a></li>
+<li class="chapter" data-level="0.9" data-path="course-introduction.html"><a href="course-introduction.html#course-objectives"><i class="fa fa-check"></i><b>0.9</b> Learning Objectives</a></li>
+<li class="chapter" data-level="0.10" data-path="course-introduction.html"><a href="course-introduction.html#course-content-foundations"><i class="fa fa-check"></i><b>0.10</b> Syllabus I: Foundations of Inference</a></li>
+<li class="chapter" data-level="0.11" data-path="course-introduction.html"><a href="course-introduction.html#course-content-modern"><i class="fa fa-check"></i><b>0.11</b> Syllabus II: Modern Statistical Methods</a></li>
+<li class="chapter" data-level="0.12" data-path="course-introduction.html"><a href="course-introduction.html#course-teaching-assessment"><i class="fa fa-check"></i><b>0.12</b> Teaching and Assessment</a></li>
+<li class="chapter" data-level="0.13" data-path="course-introduction.html"><a href="course-introduction.html#course-introduction-summary"><i class="fa fa-check"></i><b>0.13</b> Summary and Study Guidance</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="probability-theory.html"><a href="probability-theory.html"><i class="fa fa-check"></i><b>1</b> Foundations of Probability</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="probability-theory.html"><a href="probability-theory.html#sample-space-events"><i class="fa fa-check"></i><b>1.1</b> Sample Spaces and Events</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="probability-theory.html"><a href="probability-theory.html#set-operations"><i class="fa fa-check"></i><b>1.1.1</b> Set operations</a></li>
+<li class="chapter" data-level="1.1.2" data-path="probability-theory.html"><a href="probability-theory.html#mutually-exclusive-events-and-partitions"><i class="fa fa-check"></i><b>1.1.2</b> Mutually exclusive events and partitions</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="probability-theory.html"><a href="probability-theory.html#sigma-algebra-probability"><i class="fa fa-check"></i><b>1.2</b> <span class="math inline">\(\sigma\)</span>-Algebras and Probability Measures</a></li>
+<li class="chapter" data-level="1.3" data-path="probability-theory.html"><a href="probability-theory.html#conditional-probability"><i class="fa fa-check"></i><b>1.3</b> Conditional Probability and Bayes’ Formula</a></li>
+<li class="chapter" data-level="1.4" data-path="probability-theory.html"><a href="probability-theory.html#independence"><i class="fa fa-check"></i><b>1.4</b> Independence</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="probability-theory.html"><a href="probability-theory.html#pairwise-and-mutual-independence"><i class="fa fa-check"></i><b>1.4.1</b> Pairwise and mutual independence</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="probability-theory.html"><a href="probability-theory.html#random-variables"><i class="fa fa-check"></i><b>1.5</b> Random Variables</a></li>
+<li class="chapter" data-level="1.6" data-path="probability-theory.html"><a href="probability-theory.html#distribution-functions"><i class="fa fa-check"></i><b>1.6</b> Distribution Functions</a></li>
+<li class="chapter" data-level="1.7" data-path="probability-theory.html"><a href="probability-theory.html#pmf-pdf"><i class="fa fa-check"></i><b>1.7</b> Probability Mass and Density Functions</a></li>
+<li class="chapter" data-level="1.8" data-path="probability-theory.html"><a href="probability-theory.html#chapter-one-summary"><i class="fa fa-check"></i><b>1.8</b> Chapter Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="transformations-expectations.html"><a href="transformations-expectations.html"><i class="fa fa-check"></i><b>2</b> Transformations and Expectations</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="transformations-expectations.html"><a href="transformations-expectations.html#distribution-functions-rv"><i class="fa fa-check"></i><b>2.1</b> Distributions of Functions of Random Variables</a></li>
+<li class="chapter" data-level="2.2" data-path="transformations-expectations.html"><a href="transformations-expectations.html#sin-square-transformation"><i class="fa fa-check"></i><b>2.2</b> Example 2.1.2: A Sine-Squared Transformation</a></li>
+<li class="chapter" data-level="2.3" data-path="transformations-expectations.html"><a href="transformations-expectations.html#support-monotone-transform"><i class="fa fa-check"></i><b>2.3</b> Support Sets and Monotone Transformations</a></li>
+<li class="chapter" data-level="2.4" data-path="transformations-expectations.html"><a href="transformations-expectations.html#inverse-gamma-example"><i class="fa fa-check"></i><b>2.4</b> Example 2.1.6: A Reciprocal Gamma Transformation</a></li>
+<li class="chapter" data-level="2.5" data-path="transformations-expectations.html"><a href="transformations-expectations.html#normal-square-example"><i class="fa fa-check"></i><b>2.5</b> Example 2.1.7: The Square of a Standard Normal</a></li>
+<li class="chapter" data-level="2.6" data-path="transformations-expectations.html"><a href="transformations-expectations.html#piecewise-monotone-transform"><i class="fa fa-check"></i><b>2.6</b> Piecewise Monotone Transformations</a></li>
+<li class="chapter" data-level="2.7" data-path="transformations-expectations.html"><a href="transformations-expectations.html#probability-integral-transform"><i class="fa fa-check"></i><b>2.7</b> The Probability Integral Transform</a></li>
+<li class="chapter" data-level="2.8" data-path="transformations-expectations.html"><a href="transformations-expectations.html#expected-value-definition"><i class="fa fa-check"></i><b>2.8</b> Definition and Computation of Expectation</a></li>
+<li class="chapter" data-level="2.9" data-path="transformations-expectations.html"><a href="transformations-expectations.html#expectation-examples-properties"><i class="fa fa-check"></i><b>2.9</b> Examples and Properties of Expectation</a></li>
+<li class="chapter" data-level="2.10" data-path="transformations-expectations.html"><a href="transformations-expectations.html#moments-mgf"><i class="fa fa-check"></i><b>2.10</b> Moments, Central Moments, and MGFs</a></li>
+<li class="chapter" data-level="2.11" data-path="transformations-expectations.html"><a href="transformations-expectations.html#same-moments-example"><i class="fa fa-check"></i><b>2.11</b> Equal Moments Need Not Determine a Distribution</a></li>
+<li class="chapter" data-level="2.12" data-path="transformations-expectations.html"><a href="transformations-expectations.html#mgf-convergence-examples"><i class="fa fa-check"></i><b>2.12</b> MGF Convergence and Two Classical MGFs</a></li>
+<li class="chapter" data-level="2.13" data-path="transformations-expectations.html"><a href="transformations-expectations.html#poisson-approximation"><i class="fa fa-check"></i><b>2.13</b> Example 2.3.13: The Poisson Approximation</a></li>
+<li class="chapter" data-level="2.14" data-path="transformations-expectations.html"><a href="transformations-expectations.html#leibniz-dominated"><i class="fa fa-check"></i><b>2.14</b> Leibniz’s Rule and Dominated Convergence</a></li>
+<li class="chapter" data-level="2.15" data-path="transformations-expectations.html"><a href="transformations-expectations.html#differentiate-under-integral"><i class="fa fa-check"></i><b>2.15</b> Differentiation Under the Integral Sign</a></li>
+<li class="chapter" data-level="2.16" data-path="transformations-expectations.html"><a href="transformations-expectations.html#series-interchange"><i class="fa fa-check"></i><b>2.16</b> Interchanging Series with Differentiation and Integration</a></li>
+<li class="chapter" data-level="2.17" data-path="transformations-expectations.html"><a href="transformations-expectations.html#transformations-expectations-summary"><i class="fa fa-check"></i><b>2.17</b> Chapter Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="distribution-families.html"><a href="distribution-families.html"><i class="fa fa-check"></i><b>3</b> Common Families of Distributions</a></li>
+<li class="chapter" data-level="4" data-path="multiple-random-variables.html"><a href="multiple-random-variables.html"><i class="fa fa-check"></i><b>4</b> Multiple Random Variables</a></li>
+<li class="chapter" data-level="5" data-path="random-samples.html"><a href="random-samples.html"><i class="fa fa-check"></i><b>5</b> Properties of a Random Sample</a></li>
+<li class="chapter" data-level="6" data-path="data-reduction.html"><a href="data-reduction.html"><i class="fa fa-check"></i><b>6</b> Principles of Data Reduction</a></li>
+<li class="chapter" data-level="7" data-path="point-estimation.html"><a href="point-estimation.html"><i class="fa fa-check"></i><b>7</b> Point Estimation</a></li>
+<li class="chapter" data-level="8" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>8</b> Hypothesis Testing</a></li>
+<li class="chapter" data-level="9" data-path="interval-estimation.html"><a href="interval-estimation.html"><i class="fa fa-check"></i><b>9</b> Interval Estimation</a></li>
+<li class="chapter" data-level="10" data-path="asymptotic-evaluations.html"><a href="asymptotic-evaluations.html"><i class="fa fa-check"></i><b>10</b> Asymptotic Evaluations</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Advanced Statistics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="probability-theory" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Foundations of Probability<a href="probability-theory.html#probability-theory" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This chapter begins with sample spaces and events, constructs a probability space, and then develops conditional probability, Bayes’ formula, independence, random variables, distribution functions, probability mass functions, and probability density functions. The sequence follows the six source files in the original Chapter 1 slides.</p>
+<div id="sample-space-events" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Sample Spaces and Events<a href="probability-theory.html#sample-space-events" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-1" class="definition"><strong>Definition 1.1  </strong></span><strong>Sample space.</strong> The set of all possible outcomes of an experiment is its <strong>sample space</strong>, denoted by <span class="math inline">\(S\)</span>.</p>
+</div>
+<p>A sample space may be countable or uncountable.</p>
+<ul>
+<li>For one coin toss, <span class="math inline">\(S=\{\mathrm{H},\mathrm{T}\}\)</span>.</li>
+<li>If reaction time is recorded to the nearest whole second, <span class="math inline">\(S=\{0,1,2,\ldots\}\)</span>.</li>
+<li>If reaction time is recorded continuously, one may take <span class="math inline">\(S=(0,\infty)\)</span>.</li>
+</ul>
+<div class="definition">
+<p><span id="def:unlabeled-div-2" class="definition"><strong>Definition 1.2  </strong></span><strong>Event.</strong> Any subset of the sample space <span class="math inline">\(S\)</span>, including <span class="math inline">\(S\)</span> itself, is an <strong>event</strong>. Event <span class="math inline">\(A\)</span> occurs when the experimental outcome belongs to <span class="math inline">\(A\)</span>.</p>
+</div>
+<p>For events <span class="math inline">\(A,B\subseteq S\)</span>, containment and equality are expressed as</p>
+<p><span class="math display">\[
+A\subseteq B\iff (x\in A\Rightarrow x\in B),
+\]</span></p>
+<p><span class="math display">\[
+A=B\iff A\subseteq B\ \text{and}\ B\subseteq A.
+\]</span></p>
+<div id="set-operations" class="section level3 hasAnchor" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Set operations<a href="probability-theory.html#set-operations" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Union, intersection, and complement are defined by</p>
+<p><span class="math display">\[
+A\cup B=\{x:x\in A\ \text{or}\ x\in B\},
+\]</span></p>
+<p><span class="math display">\[
+A\cap B=\{x:x\in A\ \text{and}\ x\in B\},
+\]</span></p>
+<p><span class="math display">\[
+A^{\mathrm c}=\{x:x\notin A\}.
+\]</span></p>
+<p>For a sequence <span class="math inline">\(A_1,A_2,\ldots\)</span>, these operations extend to</p>
+<p><span class="math display">\[
+\bigcup_{i=1}^{\infty}A_i
+=\{x\in S:x\in A_i\ \text{for at least one}\ i\},
+\]</span></p>
+<p><span class="math display">\[
+\bigcap_{i=1}^{\infty}A_i
+=\{x\in S:x\in A_i\ \text{for every}\ i\}.
+\]</span></p>
+<div class="example">
+<p><span id="exm:unlabeled-div-3" class="example"><strong>Example 1.1  </strong></span><strong>Infinite unions and intersections.</strong> Let <span class="math inline">\(S=(0,1]\)</span> and define <span class="math inline">\(A_i=[1/i,1]\)</span>. Then</p>
+<p><span class="math display">\[
+\bigcup_{i=1}^{\infty}A_i=(0,1],
+\qquad
+\bigcap_{i=1}^{\infty}A_i=\{1\}.
+\]</span></p>
+</div>
+</div>
+<div id="mutually-exclusive-events-and-partitions" class="section level3 hasAnchor" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> Mutually exclusive events and partitions<a href="probability-theory.html#mutually-exclusive-events-and-partitions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:unlabeled-div-4" class="definition"><strong>Definition 1.3  </strong></span><strong>Mutually exclusive events.</strong> Events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are mutually exclusive if <span class="math inline">\(A\cap B=\varnothing\)</span>. A collection <span class="math inline">\(A_1,A_2,\ldots\)</span> is pairwise mutually exclusive if <span class="math inline">\(A_i\cap A_j=\varnothing\)</span> whenever <span class="math inline">\(i\ne j\)</span>.</p>
+</div>
+<p>The sets <span class="math inline">\(A_i=[i,i+1)\)</span> for <span class="math inline">\(i=0,1,2,\ldots\)</span> are pairwise mutually exclusive and satisfy</p>
+<p><span class="math display">\[
+\bigcup_{i=0}^{\infty}A_i=[0,\infty).
+\]</span></p>
+<div class="definition">
+<p><span id="def:unlabeled-div-5" class="definition"><strong>Definition 1.4  </strong></span><strong>Partition.</strong> If <span class="math inline">\(A_1,A_2,\ldots\)</span> are pairwise mutually exclusive and <span class="math inline">\(\bigcup_{i=1}^{\infty}A_i=S\)</span>, then they form a partition of <span class="math inline">\(S\)</span>.</p>
+</div>
+<p>A partition decomposes the sample space into non-overlapping pieces. It is the foundation of the law of total probability and Bayes’ formula.</p>
+</div>
+</div>
+<div id="sigma-algebra-probability" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> <span class="math inline">\(\sigma\)</span>-Algebras and Probability Measures<a href="probability-theory.html#sigma-algebra-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-6" class="definition"><strong>Definition 1.5  </strong></span><strong><span class="math inline">\(\sigma\)</span>-algebra.</strong> A collection <span class="math inline">\(\mathcal B\)</span> of subsets of <span class="math inline">\(S\)</span> is a <span class="math inline">\(\sigma\)</span>-algebra on <span class="math inline">\(S\)</span> if</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\varnothing\in\mathcal B\)</span>;</li>
+<li><span class="math inline">\(A\in\mathcal B\)</span> implies <span class="math inline">\(A^{\mathrm c}\in\mathcal B\)</span>;</li>
+<li><span class="math inline">\(A_1,A_2,\ldots\in\mathcal B\)</span> implies <span class="math inline">\(\bigcup_{i=1}^{\infty}A_i\in\mathcal B\)</span>.</li>
+</ol>
+</div>
+<p>Because <span class="math inline">\(S=\varnothing^{\mathrm c}\)</span>, we have <span class="math inline">\(S\in\mathcal B\)</span>. By De Morgan’s laws, <span class="math inline">\(\mathcal B\)</span> is also closed under countable intersections:</p>
+<p><span class="math display">\[
+\left(\bigcup_{i=1}^{\infty}A_i^{\mathrm c}\right)^{\mathrm c}
+=\bigcap_{i=1}^{\infty}A_i\in\mathcal B.
+\]</span></p>
+<div class="example">
+<p><span id="exm:unlabeled-div-7" class="example"><strong>Example 1.2  </strong></span><strong>A finite sample space.</strong> If <span class="math inline">\(S=\{1,2,3\}\)</span>, one possible <span class="math inline">\(\mathcal B\)</span> is the power set of <span class="math inline">\(S\)</span>:</p>
+<p><span class="math display">\[
+\mathcal B=
+\{\varnothing,\{1\},\{2\},\{3\},\{1,2\},\{1,3\},\{2,3\},\{1,2,3\}\}.
+\]</span></p>
+<p>It contains <span class="math inline">\(2^3=8\)</span> sets. In general, a finite set with <span class="math inline">\(n\)</span> elements has <span class="math inline">\(2^n\)</span> subsets.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-8" class="example"><strong>Example 1.3  </strong></span><strong>Borel sets on the real line.</strong> When <span class="math inline">\(S=\mathbb R\)</span>, <span class="math inline">\(\mathcal B\)</span> is normally required to contain every interval <span class="math inline">\([a,b]\)</span>, <span class="math inline">\((a,b]\)</span>, <span class="math inline">\((a,b)\)</span>, and <span class="math inline">\([a,b)\)</span>, together with sets formed from them by countable unions, intersections, and complements.</p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-9" class="definition"><strong>Definition 1.6  </strong></span><strong>Probability function.</strong> Given a sample space <span class="math inline">\(S\)</span> and a <span class="math inline">\(\sigma\)</span>-algebra <span class="math inline">\(\mathcal B\)</span>, a function <span class="math inline">\(P:\mathcal B\to[0,1]\)</span> is a probability function if</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(P(A)\ge 0\)</span> for every <span class="math inline">\(A\in\mathcal B\)</span>;</li>
+<li><span class="math inline">\(P(S)=1\)</span>;</li>
+<li>if <span class="math inline">\(A_1,A_2,\ldots\)</span> are pairwise mutually exclusive, then</li>
+</ol>
+<p><span class="math display">\[
+P\left(\bigcup_{i=1}^{\infty}A_i\right)
+=\sum_{i=1}^{\infty}P(A_i).
+\]</span></p>
+<p>These three properties are the Kolmogorov axioms.</p>
+</div>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-10" class="theorem"><strong>Theorem 1.1  </strong></span><strong>Probabilities on a discrete sample space.</strong> Let <span class="math inline">\(S=\{s_1,\ldots,s_n\}\)</span> and let nonnegative numbers <span class="math inline">\(p_1,\ldots,p_n\)</span> satisfy <span class="math inline">\(\sum_{i=1}^n p_i=1\)</span>. Define</p>
+<p><span class="math display">\[
+P(A)=\sum_{\{i:s_i\in A\}}p_i.
+\]</span></p>
+<p>Then <span class="math inline">\(P\)</span> is a probability function on <span class="math inline">\(S\)</span>. The same conclusion applies to a countable sample space <span class="math inline">\(S=\{s_1,s_2,\ldots\}\)</span>.</p>
+</div>
+</div>
+<div id="conditional-probability" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Conditional Probability and Bayes’ Formula<a href="probability-theory.html#conditional-probability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-11" class="definition"><strong>Definition 1.7  </strong></span><strong>Conditional probability.</strong> In a probability space <span class="math inline">\((S,\mathcal B,P)\)</span>, if <span class="math inline">\(B\in\mathcal B\)</span> and <span class="math inline">\(P(B)&gt;0\)</span>, then</p>
+<p><span class="math display">\[
+P(A\mid B)=\frac{P(A\cap B)}{P(B)},\qquad A\in\mathcal B.
+\]</span></p>
+</div>
+<p>The definition immediately gives the multiplication rule</p>
+<p><span class="math display">\[
+P(A\cap B)=P(A\mid B)P(B).
+\]</span></p>
+<div class="exercise">
+<p><span id="exr:unlabeled-div-12" class="exercise"><strong>Exercise 1.1  </strong></span><strong>Problem 1.41 in the source slides.</strong> Prove that <span class="math inline">\(P(\mathord\cdot\mid B):\mathcal B\to\mathbb R\)</span> satisfies the Kolmogorov axioms.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-13" class="example"><strong>Example 1.4  </strong></span><strong>Dealing four aces in succession.</strong> Four cards are dealt from the top of a well-shuffled 52-card deck. Given that the first <span class="math inline">\(i\)</span> cards are aces, find the conditional probability that all four cards are aces for <span class="math inline">\(i=1,2,3\)</span>.</p>
+<p>The source slides give</p>
+<p><span class="math display">\[
+P(\text{all four cards are aces}\mid\text{the first }i\text{ are aces})
+=\frac{\binom{52}{i}}
+{\binom{4}{i}\binom{52}{4}}.
+\]</span></p>
+<p>For <span class="math inline">\(i=1,2,3\)</span>, the values are approximately <span class="math inline">\(0.000048\)</span>, <span class="math inline">\(0.00082\)</span>, and <span class="math inline">\(0.02041\)</span>. The first value differs by one order of magnitude from the decimal printed in the source; the discrepancy is recorded in the migration notes.</p>
+</div>
+<p>The source also lists a conditional-probability problem involving three prisoners, but it does not include the complete problem statement. The missing conditions have therefore not been invented here.</p>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-14" class="theorem"><strong>Theorem 1.2  </strong></span><strong>Bayes’ formula.</strong> If <span class="math inline">\(A_1,A_2,\ldots\)</span> form a partition of the sample space, then</p>
+<p><span class="math display">\[
+P(A_i\mid B)=
+\frac{P(B\mid A_i)P(A_i)}
+{\sum_{j=1}^{\infty}P(B\mid A_j)P(A_j)}.
+\]</span></p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-15" class="example"><strong>Example 1.5  </strong></span><strong>Transmitting coded information.</strong> Suppose dots and dashes are transmitted with probabilities</p>
+<p><span class="math display">\[
+P(\text{dot sent})=\frac37,
+\qquad
+P(\text{dash sent})=\frac47,
+\]</span></p>
+<p>and either symbol is mistransmitted with probability <span class="math inline">\(1/8\)</span>. Given that a dot is received, the probability that a dot was sent is</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(\text{dot sent}\mid\text{dot received})
+&amp;=\frac{(7/8)(3/7)}{(7/8)(3/7)+(1/8)(4/7)}\\
+&amp;=\frac{21}{25}.
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+<div id="independence" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Independence<a href="probability-theory.html#independence" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-16" class="definition"><strong>Definition 1.8  </strong></span><strong>Independence of two events.</strong> Events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent if</p>
+<p><span class="math display">\[
+P(A\cap B)=P(A)P(B).
+\]</span></p>
+<p>When <span class="math inline">\(P(B)&gt;0\)</span>, this is equivalent to <span class="math inline">\(P(A\mid B)=P(A)\)</span>.</p>
+</div>
+<div class="example">
+<p><span id="exm:unlabeled-div-17" class="example"><strong>Example 1.6  </strong></span><strong>At least one six in four rolls.</strong> If the rolls are independent, then</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(\text{at least one six in four rolls})
+&amp;=1-P(\text{no six in four rolls})\\
+&amp;=1-\left(\frac56\right)^4\\
+&amp;\approx0.518.
+\end{aligned}
+\]</span></p>
+</div>
+<p>The source names the birthday problem as the next example but gives no calculation. The topic is retained without adding unsupported content.</p>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-18" class="theorem"><strong>Theorem 1.3  </strong></span><strong>Independence of complements.</strong> If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent, then each of the following pairs is independent: <span class="math inline">\(A\)</span> and <span class="math inline">\(B^{\mathrm c}\)</span>, <span class="math inline">\(A^{\mathrm c}\)</span> and <span class="math inline">\(B\)</span>, and <span class="math inline">\(A^{\mathrm c}\)</span> and <span class="math inline">\(B^{\mathrm c}\)</span>.</p>
+</div>
+<div id="pairwise-and-mutual-independence" class="section level3 hasAnchor" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Pairwise and mutual independence<a href="probability-theory.html#pairwise-and-mutual-independence" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="example">
+<p><span id="exm:unlabeled-div-19" class="example"><strong>Example 1.7  </strong></span><strong>Two dice.</strong> Let <span class="math inline">\(A\)</span> denote a double, <span class="math inline">\(B\)</span> a total between 7 and 10, and <span class="math inline">\(C\)</span> a total of 2, 7, or 8. The source gives</p>
+<p><span class="math display">\[
+P(A)=\frac16,\qquad P(B)=\frac12,\qquad P(C)=\frac13,
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+P(A\cap B\cap C)=\frac1{36}=P(A)P(B)P(C).
+\]</span></p>
+<p>However, <span class="math inline">\(P(A\cap B)\ne P(A)P(B)\)</span> and <span class="math inline">\(P(B\cap C)\ne P(B)P(C)\)</span>. Thus, checking only the product relationship for the intersection of all three events does not establish pairwise independence.</p>
+</div>
+<p>Conversely, pairwise independence does not imply mutual independence. The source constructs events <span class="math inline">\(A_i\)</span> from nine equally likely triples so that</p>
+<p><span class="math display">\[
+P(A_i)=\frac13,
+\qquad
+P(A_i\cap A_j)=\frac19\quad(i\ne j),
+\]</span></p>
+<p>but</p>
+<p><span class="math display">\[
+P(A_1\cap A_2\cap A_3)=\frac19
+\ne P(A_1)P(A_2)P(A_3).
+\]</span></p>
+<div class="definition">
+<p><span id="def:unlabeled-div-20" class="definition"><strong>Definition 1.9  </strong></span><strong>Mutual independence.</strong> Events <span class="math inline">\(A_1,\ldots,A_n\)</span> are mutually independent if, for every subset <span class="math inline">\(\{i_1,\ldots,i_k\}\)</span>,</p>
+<p><span class="math display">\[
+P\left(\bigcap_{j=1}^{k}A_{i_j}\right)
+=\prod_{j=1}^{k}P(A_{i_j}).
+\]</span></p>
+</div>
+<p>The source further uses infinite binary sequences to construct mutually independent events <span class="math inline">\(B_1,B_2,\ldots\)</span>, each with probability <span class="math inline">\(1/2\)</span>. For any <span class="math inline">\(1\le i_1&lt;\cdots&lt;i_k\)</span>,</p>
+<p><span class="math display">\[
+P(B_{i_1}\cap\cdots\cap B_{i_k})
+=\frac1{2^k}
+=\prod_{j=1}^{k}P(B_{i_j}).
+\]</span></p>
+<p>This construction shows that a sufficiently rich probability space can support infinitely many mutually independent events.</p>
+</div>
+</div>
+<div id="random-variables" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> Random Variables<a href="probability-theory.html#random-variables" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-21" class="definition"><strong>Definition 1.10  </strong></span><strong>Random variable.</strong> Let <span class="math inline">\((S,\mathcal B)\)</span> be a measurable space. A function <span class="math inline">\(X:S\to\mathbb R\)</span> is a real-valued random variable if, for every real number <span class="math inline">\(a\)</span>,</p>
+<p><span class="math display">\[
+X^{-1}(( -\infty,a])\in\mathcal B.
+\]</span></p>
+</div>
+<p>If <span class="math inline">\(S=\{s_1,\ldots,s_n\}\)</span> and the range of <span class="math inline">\(X\)</span> is <span class="math inline">\(\mathcal X=\{x_1,\ldots,x_m\}\)</span>, then the probability induced by <span class="math inline">\(X\)</span> on <span class="math inline">\(\mathcal X\)</span> is</p>
+<p><span class="math display">\[
+P_X(X=x_i)=P\bigl(\{s_j\in S:X(s_j)=x_i\}\bigr).
+\]</span></p>
+<p>On a finite discrete sample space, every real-valued function is a random variable.</p>
+<div class="example">
+<p><span id="exm:unlabeled-div-22" class="example"><strong>Example 1.8  </strong></span><strong>Three coin tosses.</strong> Toss a fair coin three times and let <span class="math inline">\(X\)</span> be the number of heads:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(s\)</span></th>
+<th align="center">HHH</th>
+<th align="center">HHT</th>
+<th align="center">HTH</th>
+<th align="center">THH</th>
+<th align="center">TTH</th>
+<th align="center">THT</th>
+<th align="center">HTT</th>
+<th align="center">TTT</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(X(s)\)</span></td>
+<td align="center">3</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">1</td>
+<td align="center">0</td>
+</tr>
+</tbody>
+</table>
+<p>Thus <span class="math inline">\(\mathcal X=\{0,1,2,3\}\)</span> and</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(x\)</span></th>
+<th align="center">0</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center"><span class="math inline">\(P(X=x)\)</span></td>
+<td align="center"><span class="math inline">\(1/8\)</span></td>
+<td align="center"><span class="math inline">\(3/8\)</span></td>
+<td align="center"><span class="math inline">\(3/8\)</span></td>
+<td align="center"><span class="math inline">\(1/8\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>The following source-derived code checks the probability mass distribution using the same eight sample points.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="probability-theory.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Use the eight equally likely outcomes and head counts listed in the source.</span></span>
+<span id="cb1-2"><a href="probability-theory.html#cb1-2" aria-hidden="true" tabindex="-1"></a>heads_tails <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-3"><a href="probability-theory.html#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">outcome =</span> <span class="fu">c</span>(<span class="st">&quot;HHH&quot;</span>, <span class="st">&quot;HHT&quot;</span>, <span class="st">&quot;HTH&quot;</span>, <span class="st">&quot;THH&quot;</span>, <span class="st">&quot;TTH&quot;</span>, <span class="st">&quot;THT&quot;</span>, <span class="st">&quot;HTT&quot;</span>, <span class="st">&quot;TTT&quot;</span>),</span>
+<span id="cb1-4"><a href="probability-theory.html#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">X =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb1-5"><a href="probability-theory.html#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-6"><a href="probability-theory.html#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="probability-theory.html#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Give every outcome probability 1/8, then aggregate by the value of X.</span></span>
+<span id="cb1-8"><a href="probability-theory.html#cb1-8" aria-hidden="true" tabindex="-1"></a>pmf <span class="ot">&lt;-</span> <span class="fu">aggregate</span>(</span>
+<span id="cb1-9"><a href="probability-theory.html#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rep</span>(<span class="dv">1</span> <span class="sc">/</span> <span class="dv">8</span>, <span class="fu">nrow</span>(heads_tails)),</span>
+<span id="cb1-10"><a href="probability-theory.html#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">by =</span> <span class="fu">list</span>(<span class="at">X =</span> heads_tails<span class="sc">$</span>X),</span>
+<span id="cb1-11"><a href="probability-theory.html#cb1-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">FUN =</span> sum</span>
+<span id="cb1-12"><a href="probability-theory.html#cb1-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-13"><a href="probability-theory.html#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(pmf)[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="st">&quot;probability&quot;</span></span>
+<span id="cb1-14"><a href="probability-theory.html#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="probability-theory.html#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Display the table and draw the probability mass plot represented by it.</span></span>
+<span id="cb1-16"><a href="probability-theory.html#cb1-16" aria-hidden="true" tabindex="-1"></a>pmf</span></code></pre></div>
+<pre><code>##   X probability
+## 1 0       0.125
+## 2 1       0.375
+## 3 2       0.375
+## 4 3       0.125</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="probability-theory.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb3-2"><a href="probability-theory.html#cb3-2" aria-hidden="true" tabindex="-1"></a>  pmf<span class="sc">$</span>X,</span>
+<span id="cb3-3"><a href="probability-theory.html#cb3-3" aria-hidden="true" tabindex="-1"></a>  pmf<span class="sc">$</span>probability,</span>
+<span id="cb3-4"><a href="probability-theory.html#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;h&quot;</span>,</span>
+<span id="cb3-5"><a href="probability-theory.html#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">lwd =</span> <span class="dv">8</span>,</span>
+<span id="cb3-6"><a href="probability-theory.html#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">lend =</span> <span class="st">&quot;butt&quot;</span>,</span>
+<span id="cb3-7"><a href="probability-theory.html#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;Number of heads, X&quot;</span>,</span>
+<span id="cb3-8"><a href="probability-theory.html#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">&quot;P(X = x)&quot;</span>,</span>
+<span id="cb3-9"><a href="probability-theory.html#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">xaxt =</span> <span class="st">&quot;n&quot;</span>,</span>
+<span id="cb3-10"><a href="probability-theory.html#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.45</span>),</span>
+<span id="cb3-11"><a href="probability-theory.html#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">course_plot_family</span>()</span>
+<span id="cb3-12"><a href="probability-theory.html#cb3-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-13"><a href="probability-theory.html#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="dv">1</span>, <span class="at">at =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">3</span>)</span>
+<span id="cb3-14"><a href="probability-theory.html#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(pmf<span class="sc">$</span>X, pmf<span class="sc">$</span>probability, <span class="at">pch =</span> <span class="dv">16</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:en-ch01-three-toss-pmf"></span>
+<img src="01-probability-theory_files/figure-html/en-ch01-three-toss-pmf-1.png" alt="Probability mass for the number of heads in three tosses" width="90%" />
+<p class="caption">
+Figure 1.1: Probability mass for the number of heads in three tosses
+</p>
+</div>
+</div>
+<div id="distribution-functions" class="section level2 hasAnchor" number="1.6">
+<h2><span class="header-section-number">1.6</span> Distribution Functions<a href="probability-theory.html#distribution-functions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-23" class="definition"><strong>Definition 1.11  </strong></span><strong>Cumulative distribution function.</strong> The cumulative distribution function (cdf) of a random variable <span class="math inline">\(X\)</span> is</p>
+<p><span class="math display">\[
+F_X(x)=P(X\le x),\qquad x\in\mathbb R.
+\]</span></p>
+</div>
+<p>For the preceding coin-toss example,</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Range of <span class="math inline">\(x\)</span></th>
+<th align="center"><span class="math inline">\(F_X(x)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\((-\infty,0)\)</span></td>
+<td align="center"><span class="math inline">\(0\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\([0,1)\)</span></td>
+<td align="center"><span class="math inline">\(1/8\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\([1,2)\)</span></td>
+<td align="center"><span class="math inline">\(1/2\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\([2,3)\)</span></td>
+<td align="center"><span class="math inline">\(7/8\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\([3,\infty)\)</span></td>
+<td align="center"><span class="math inline">\(1\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="theorem">
+<p><span id="thm:unlabeled-div-24" class="theorem"><strong>Theorem 1.4  </strong></span><strong>Characterization of a cdf.</strong> A function <span class="math inline">\(F\)</span> is the cdf of a random variable if and only if</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\lim_{x\to-\infty}F(x)=0\)</span> and <span class="math inline">\(\lim_{x\to\infty}F(x)=1\)</span>;</li>
+<li><span class="math inline">\(F\)</span> is nondecreasing;</li>
+<li><span class="math inline">\(F\)</span> is right-continuous: <span class="math inline">\(\lim_{x\downarrow x_0}F(x)=F(x_0)\)</span> for every <span class="math inline">\(x_0\)</span>.</li>
+</ol>
+</div>
+<p>The logistic cdf</p>
+<p><span class="math display">\[
+F_X(x)=\frac{1}{1+e^{-x}}
+\]</span></p>
+<p>satisfies all three conditions. The following chunk adapts the original <code>chap-1.R</code> plot for knitr. Only manual graphics-device management has been removed; the functions, plotting interval, and meaning are unchanged.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="probability-theory.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the logistic cumulative distribution function from the source script.</span></span>
+<span id="cb4-2"><a href="probability-theory.html#cb4-2" aria-hidden="true" tabindex="-1"></a>logistic_cdf <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb4-3"><a href="probability-theory.html#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span> <span class="sc">/</span> (<span class="dv">1</span> <span class="sc">+</span> <span class="fu">exp</span>(<span class="sc">-</span>x))</span>
+<span id="cb4-4"><a href="probability-theory.html#cb4-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-5"><a href="probability-theory.html#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="probability-theory.html#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the source comparison function: zero below 0 and one otherwise.</span></span>
+<span id="cb4-7"><a href="probability-theory.html#cb4-7" aria-hidden="true" tabindex="-1"></a>step_reference <span class="ot">&lt;-</span> <span class="cf">function</span>(x) {</span>
+<span id="cb4-8"><a href="probability-theory.html#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as.numeric</span>(x <span class="sc">&gt;=</span> <span class="dv">0</span>)</span>
+<span id="cb4-9"><a href="probability-theory.html#cb4-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-10"><a href="probability-theory.html#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-11"><a href="probability-theory.html#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluate and plot both functions over the source interval and step size.</span></span>
+<span id="cb4-12"><a href="probability-theory.html#cb4-12" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">10</span>, <span class="at">by =</span> <span class="fl">0.01</span>)</span>
+<span id="cb4-13"><a href="probability-theory.html#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(</span>
+<span id="cb4-14"><a href="probability-theory.html#cb4-14" aria-hidden="true" tabindex="-1"></a>  x,</span>
+<span id="cb4-15"><a href="probability-theory.html#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">logistic_cdf</span>(x),</span>
+<span id="cb4-16"><a href="probability-theory.html#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;l&quot;</span>,</span>
+<span id="cb4-17"><a href="probability-theory.html#cb4-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="st">&quot;x&quot;</span>,</span>
+<span id="cb4-18"><a href="probability-theory.html#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="fu">expression</span>(F[X](x)),</span>
+<span id="cb4-19"><a href="probability-theory.html#cb4-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">family =</span> <span class="fu">course_plot_family</span>()</span>
+<span id="cb4-20"><a href="probability-theory.html#cb4-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb4-21"><a href="probability-theory.html#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, <span class="fu">step_reference</span>(x), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:en-ch01-logistic-cdf"></span>
+<img src="01-probability-theory_files/figure-html/en-ch01-logistic-cdf-1.png" alt="The logistic cdf and the step-function reference in the source slides" width="90%" />
+<p class="caption">
+Figure 1.2: The logistic cdf and the step-function reference in the source slides
+</p>
+</div>
+</div>
+<div id="pmf-pdf" class="section level2 hasAnchor" number="1.7">
+<h2><span class="header-section-number">1.7</span> Probability Mass and Density Functions<a href="probability-theory.html#pmf-pdf" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="definition">
+<p><span id="def:unlabeled-div-25" class="definition"><strong>Definition 1.12  </strong></span><strong>Probability mass function.</strong> The probability mass function (pmf) of a discrete random variable <span class="math inline">\(X\)</span> is</p>
+<p><span class="math display">\[
+f_X(x)=P(X=x).
+\]</span></p>
+</div>
+<div class="definition">
+<p><span id="def:unlabeled-div-26" class="definition"><strong>Definition 1.13  </strong></span><strong>Probability density function.</strong> A probability density function (pdf) of a continuous random variable <span class="math inline">\(X\)</span> is a function <span class="math inline">\(f_X\)</span> satisfying</p>
+<p><span class="math display">\[
+F_X(x)=\int_{-\infty}^{x}f_X(t)\,\mathrm dt.
+\]</span></p>
+</div>
+<p>For the logistic distribution,</p>
+<p><span class="math display">\[
+f_X(x)=\frac{\mathrm d}{\mathrm dx}F_X(x)
+=\frac{e^{-x}}{(1+e^{-x})^2}
+=F_X(x)\{1-F_X(x)\}.
+\]</span></p>
+<p>An interval probability can therefore be obtained either from a difference of cdf values or from an integral of the density:</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(a&lt;X&lt;b)
+&amp;=F_X(b)-F_X(a)\\
+&amp;=\int_a^b f_X(x)\,\mathrm dx.
+\end{aligned}
+\]</span></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:en-ch01-logistic-density-figure"></span>
+<img src="images/ch01/logistic-density-interval.png" alt="Interval probability under the logistic density. Source: the original Chapter 1 slides." width="90%" />
+<p class="caption">
+Figure 1.3: Interval probability under the logistic density. Source: the original Chapter 1 slides.
+</p>
+</div>
+</div>
+<div id="chapter-one-summary" class="section level2 hasAnchor" number="1.8">
+<h2><span class="header-section-number">1.8</span> Chapter Summary<a href="probability-theory.html#chapter-one-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This chapter built a probability space from sample spaces and events and used conditional probability, Bayes’ formula, and independence to describe relationships among events. It then treated a random variable as a measurable function from the sample space to the real line and used cdfs, pmfs, and pdfs to describe distributions. These ideas support the later study of transformations, expectations, and statistical inference.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="course-introduction.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="transformations-expectations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": null,
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section",
+    "scroll_highlight": true
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

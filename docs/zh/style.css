@@ -1,0 +1,160 @@
+:root {
+  --course-navy: #17324d;
+  --course-teal: #176b6b;
+  --course-gold: #a66b16;
+  --course-paper: #fbfcfd;
+  --course-border: #d9e1e8;
+  --course-shadow: 0 12px 32px rgba(23, 50, 77, 0.08);
+}
+
+body {
+  color: #24313d;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+.book .book-body .page-wrapper .page-inner {
+  max-width: 1120px;
+}
+
+h1, h2, h3, h4 {
+  color: var(--course-navy);
+  line-height: 1.3;
+}
+
+h2 {
+  border-bottom: 2px solid var(--course-teal);
+  padding-bottom: 0.34em;
+}
+
+.course-title > a {
+  color: var(--course-navy) !important;
+  font-weight: 700;
+}
+
+.language-switch > a {
+  color: var(--course-teal) !important;
+  font-weight: 700;
+}
+
+/* Pandoc wraps each second-level section in .section.level2.  Styling that
+   wrapper creates one classroom-like teaching canvas per major idea while
+   preserving the continuous, searchable bookdown reading experience. */
+.book .book-body .section.level2 {
+  aspect-ratio: 16 / 9;
+  background: #ffffff;
+  border: 1px solid var(--course-border);
+  border-top: 6px solid var(--course-navy);
+  border-radius: 10px;
+  box-shadow: var(--course-shadow);
+  margin: 2.4rem 0;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 1.7rem 2.1rem 2rem;
+  scroll-margin-top: 1rem;
+  scroll-snap-align: start;
+  scrollbar-color: var(--course-teal) transparent;
+  scrollbar-width: thin;
+}
+
+.book .book-body .section.level2 > h2:first-child {
+  background: #ffffff;
+  box-shadow: 0 8px 12px -12px rgba(23, 50, 77, 0.65);
+  font-size: 2rem;
+  margin-left: -2.1rem;
+  margin-right: -2.1rem;
+  margin-top: 0;
+  padding: 1.7rem 2.1rem 0.45rem;
+  position: sticky;
+  top: -1.7rem;
+  z-index: 10;
+}
+
+.book .book-body .section.level2::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.book .book-body .section.level2::-webkit-scrollbar {
+  width: 8px;
+}
+
+.book .book-body .section.level2::-webkit-scrollbar-thumb {
+  background: rgba(23, 107, 107, 0.48);
+  border-radius: 999px;
+}
+
+.book .book-body .section.level2::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.definition,
+.theorem,
+.example,
+.proof,
+.remark,
+.exercise {
+  background: var(--course-paper);
+  border-left: 4px solid var(--course-teal);
+  border-radius: 3px;
+  margin: 1.2em 0;
+  padding: 0.8em 1em 0.3em;
+}
+
+.theorem {
+  border-left-color: var(--course-navy);
+}
+
+.exercise {
+  border-left-color: var(--course-gold);
+}
+
+table {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+pre {
+  border: 1px solid var(--course-border);
+}
+
+img {
+  height: auto;
+}
+
+@media (max-width: 900px) {
+  .book .book-body .section.level2 {
+    aspect-ratio: auto;
+    border-radius: 6px;
+    overflow: visible;
+    padding: 1.1rem 1rem 1.4rem;
+  }
+
+  .book .book-body .section.level2 > h2:first-child {
+    font-size: 1.55rem;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0 0 0.34em;
+    position: static;
+  }
+}
+
+@media print {
+  .book .book-body .section.level2 {
+    aspect-ratio: auto;
+    box-shadow: none;
+    overflow: visible;
+    break-inside: avoid-page;
+  }
+
+  .book .book-body .section.level2 > h2:first-child {
+    box-shadow: none;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0 0 0.34em;
+    position: static;
+  }
+}
