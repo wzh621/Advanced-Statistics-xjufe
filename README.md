@@ -4,11 +4,11 @@
 
 ## 在线阅读
 
-- [课程双语入口](https://wzh621.github.io/r-statistics-course/)
-- [中文版](https://wzh621.github.io/r-statistics-course/zh/)
-- [English edition](https://wzh621.github.io/r-statistics-course/en/)
+- [课程双语入口](https://wzh621.github.io/Advanced-Statistics-xjufe/)
+- [中文版](https://wzh621.github.io/Advanced-Statistics-xjufe/zh/)
+- [English edition](https://wzh621.github.io/Advanced-Statistics-xjufe/en/)
 
-GitHub 仓库：<https://github.com/wzh621/r-statistics-course>
+GitHub 仓库：<https://github.com/wzh621/Advanced-Statistics-xjufe>
 
 ## 构建
 
