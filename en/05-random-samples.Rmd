@@ -1,4 +1,343 @@
 # Properties of a Random Sample {#random-samples}
 
-> This chapter is a structure placeholder. Its source material has not yet been migrated.
+This chapter corresponds to *chap-5.tex*, its four LaTeX fragments, and *chapter-5.md*. It covers random sampling, sampling distributions, order statistics, convergence, the CLT, Slutsky's theorem, and the delta method. The truncated draft ending is completed with the same iid calculation; source corrections are documented in migration_notes.md.
 
+## The random-sample model {#random-sample-model}
+
+::: {.definition}
+Mutually independent random variables $X_1,\ldots,X_n$ having the same pmf or pdf $f(x)$ form a **random sample** of size $n$ from population $f$. They are independent and identically distributed (iid).
+:::
+
+Independence gives
+
+$$f(x_1,\ldots,x_n)=\prod_{i=1}^nf(x_i).$$
+
+For a parametric family $f(x\mid\theta)$, the same unknown parameter occurs in every factor:
+
+$$f(x_1,\ldots,x_n\mid\theta)=\prod_{i=1}^nf(x_i\mid\theta).$$
+
+## Exponential circuit-board lifetimes {#exponential-sample-example}
+
+::: {.example}
+Let $X_1,\ldots,X_n$ come from an exponential population with scale $\beta>0$. If $X_i$ is the lifetime of the $i$th identical circuit board, then
+
+$$
+f(\mathbf x\mid\beta)=\prod_{i=1}^n\frac1\beta e^{-x_i/\beta}
+=\frac1{\beta^n}\exp\left(-\frac{\sum_i x_i}{\beta}\right),\qquad x_i>0.
+$$
+
+The probability that every board lasts more than two years is
+
+$$
+\begin{aligned}
+P(X_1>2,\ldots,X_n>2)
+&=\int_2^\infty\cdots\int_2^\infty\prod_{i=1}^n\frac1\beta e^{-x_i/\beta}\,d\mathbf x\\
+&=(e^{-2/\beta})^n=e^{-2n/\beta}.
+\end{aligned}
+$$
+
+Equivalently, iid sampling gives
+$P(\cap_i\{X_i>2\})=\prod_iP(X_i>2)=e^{-2n/\beta}$. This is near one when the average lifetime $\beta$ is large relative to $n$.
+:::
+
+```{r en-chap05-exponential-board-simulation, fig.cap='Theoretical and simulated probabilities that every board lasts more than two years', fig.width=8, fig.height=4.5}
+set.seed(5201)
+beta <- 10
+n_grid <- 1:12
+theory <- exp(-2 * n_grid / beta)
+simulation <- vapply(n_grid, function(n) {
+  x <- matrix(rexp(30000 * n, rate = 1 / beta), ncol = n)
+  mean(apply(x, 1, min) > 2)
+}, numeric(1))
+plot(n_grid, theory, type = "l", lwd = 2, ylim = c(0, 1),
+     xlab = "Sample size n", ylab = "Probability all lifetimes exceed two years")
+points(n_grid, simulation, pch = 19, col = "#C43C39")
+legend("topright", c("Theory", "Simulation"), lty = c(1, NA), pch = c(NA, 19),
+       col = c("black", "#C43C39"), bty = "n")
+```
+
+## Statistics, sample mean, and sample variance {#statistics-sampling-distributions}
+
+::: {.definition}
+For a random sample $X_1,\ldots,X_n$, a real- or vector-valued function $Y=T(X_1,\ldots,X_n)$ is a **statistic**. Its probability distribution is its **sampling distribution**.
+:::
+
+$$
+\bar X=\frac1n\sum_{i=1}^nX_i,\qquad
+S^2=\frac1{n-1}\sum_{i=1}^n(X_i-\bar X)^2,\qquad S=\sqrt{S^2}.
+$$
+
+::: {.theorem}
+If $X_i\overset{\mathrm{iid}}\sim N(\mu,\sigma^2)$, then
+
+$$E(\bar X)=\mu,\quad \operatorname{Var}(\bar X)=\sigma^2/n,
+\quad E(S^2)=\sigma^2,$$
+
+and $\bar X\sim N(\mu,\sigma^2/n)$.
+:::
+
+## MGF of the sample mean and the normal example {#sample-mean-mgf}
+
+::: {.theorem}
+If the population MGF is $M_X(t)$, then $M_{\bar X}(t)=[M_X(t/n)]^n$.
+:::
+
+::: {.proof}
+Independence yields
+
+$$M_{\bar X}(t)=E\prod_{i=1}^ne^{tX_i/n}
+=\prod_{i=1}^nE(e^{tX_i/n})=[M_X(t/n)]^n.$$
+:::
+
+For a $N(\mu,\sigma^2)$ population,
+
+$$
+M_{\bar X}(t)=\left[\exp\left(\mu\frac tn+\frac{\sigma^2(t/n)^2}{2}\right)\right]^n
+=\exp\left(\mu t+\frac{(\sigma^2/n)t^2}{2}\right),
+$$
+
+so $\bar X\sim N(\mu,\sigma^2/n)$.
+
+## The convolution formula {#convolution-formula}
+
+::: {.theorem}
+For independent continuous random variables $X,Y$, the density of $Z=X+Y$ is
+
+$$f_Z(z)=\int_{-\infty}^{\infty}f_X(x)f_Y(z-x)\,dx.$$
+:::
+
+::: {.proof}
+Set $Z=X+Y,W=X$. The inverse is $X=W,Y=Z-W$, with absolute Jacobian one. Thus $f_{Z,W}(z,w)=f_X(w)f_Y(z-w)$; integrating out $w$ proves the result.
+:::
+
+## Student t and Snedecor F sampling distributions {#t-f-sampling-distributions}
+
+::: {.definition}
+If $X_i\overset{\mathrm{iid}}\sim N(\mu,\sigma^2)$, then
+
+$$T=\frac{\bar X-\mu}{S/\sqrt n}\sim t_{n-1}.$$
+
+The general $t_p$ density is
+
+$$f_T(t)=\frac{\Gamma((p+1)/2)}{\Gamma(p/2)\sqrt{p\pi}}
+\left(1+\frac{t^2}{p}\right)^{-(p+1)/2},\quad t\in\mathbb R.$$
+:::
+
+::: {.definition}
+For two independent normal random samples,
+
+$$F=\frac{S_X^2/\sigma_X^2}{S_Y^2/\sigma_Y^2}\sim F_{n-1,m-1}.$$
+
+The $F_{p,q}$ density is
+
+$$
+f_F(x)=\frac{\Gamma((p+q)/2)}{\Gamma(p/2)\Gamma(q/2)}
+\left(\frac pq\right)^{p/2}\frac{x^{p/2-1}}{[1+(p/q)x]^{(p+q)/2}},\quad x>0.
+$$
+:::
+
+## Discrete order statistics {#discrete-order-statistics}
+
+::: {.definition}
+The ordered sample $X_{(1)}\le\cdots\le X_{(n)}$ consists of the **order statistics**. In particular, $X_{(1)}=\min_iX_i$ and $X_{(n)}=\max_iX_i$.
+:::
+
+Let a discrete population have values $x_1<x_2<\cdots$, with $P(X=x_i)=p_i$, and write $P_i=\sum_{r=1}^ip_r$, $P_0=0$. Then
+
+$$P(X_{(j)}\le x_i)=\sum_{k=j}^n\binom nkP_i^k(1-P_i)^{n-k},$$
+
+$$
+P(X_{(j)}=x_i)=\sum_{k=j}^n\binom nk
+\{P_i^k(1-P_i)^{n-k}-P_{i-1}^k(1-P_{i-1})^{n-k}\}.
+$$
+
+Let $Y=\sum_{r=1}^nI(X_r\le x_i)$. Then $Y\sim\operatorname{Bin}(n,P_i)$ and
+$\{X_{(j)}\le x_i\}\iff\{Y\ge j\}$. Differencing adjacent cdf values gives the second formula.
+
+## Continuous order statistics {#continuous-order-statistics}
+
+::: {.theorem}
+For population cdf $F_X$ and pdf $f_X$,
+
+$$
+f_{X_{(j)}}(x)=\frac{n!}{(j-1)!(n-j)!}f_X(x)[F_X(x)]^{j-1}[1-F_X(x)]^{n-j}.
+$$
+:::
+
+For $1\le i<j\le n$,
+
+$$
+\begin{aligned}
+f_{X_{(i)},X_{(j)}}(u,v)
+&=\frac{n!f_X(u)f_X(v)}{(i-1)!(j-i-1)!(n-j)!}[F_X(u)]^{i-1}\\
+&\quad\times[F_X(v)-F_X(u)]^{j-i-1}[1-F_X(v)]^{n-j},\quad u<v.
+\end{aligned}
+$$
+
+The joint density of all order statistics is
+
+$$
+f_{X_{(1)},\ldots,X_{(n)}}(\mathbf x)=
+\begin{cases}n!\prod_{i=1}^nf_X(x_i),&x_1<\cdots<x_n,\\0,&\text{otherwise}.
+\end{cases}
+$$
+
+```{r en-chap05-uniform-order-statistics, fig.cap='Sampling distributions of selected order statistics from a uniform population', fig.width=8, fig.height=4.5}
+set.seed(5202)
+n <- 10
+ord <- t(apply(matrix(runif(40000 * n), ncol = n), 1, sort))
+cols <- c("#2878B5", "#F39B7F", "#C43C39")
+plot(NA, xlim = c(0, 1), ylim = c(0, 9), xlab = "Order statistic", ylab = "Density")
+for (k in seq_along(c(1, 5, 10))) lines(density(ord[, c(1, 5, 10)[k]]), lwd = 2, col = cols[k])
+legend("top", c("Minimum", "Fifth", "Maximum"), lwd = 2, col = cols, bty = "n", horiz = TRUE)
+```
+
+## Convergence in probability and the WLLN {#probability-convergence-wlln}
+
+::: {.definition}
+If $P(|X_n-X|\ge\varepsilon)\to0$ for every $\varepsilon>0$, then $X_n$ **converges in probability** to $X$, written $X_n\overset p\to X$.
+:::
+
+::: {.theorem}
+If $X_i$ are iid, $E(X_i)=\mu$, and $\operatorname{Var}(X_i)=\sigma^2<\infty$, the weak law states
+
+$$\bar X_n=\frac1n\sum_{i=1}^nX_i\overset p\longrightarrow\mu.$$
+:::
+
+If $X_n\overset p\to X$ and $h$ is continuous, then $h(X_n)\overset p\to h(X)$. Also,
+
+$$P(|S_n^2-\sigma^2|\ge\varepsilon)\le\operatorname{Var}(S_n^2)/\varepsilon^2.$$
+
+Thus $\operatorname{Var}(S_n^2)\to0$ is sufficient for $S_n^2\overset p\to\sigma^2$; continuity then gives $S_n\overset p\to\sigma$.
+
+## Almost-sure convergence and the SLLN {#almost-sure-convergence-slln}
+
+::: {.definition}
+If $P(\lim_{n\to\infty}X_n=X)=1$, then $X_n$ **converges almost surely** to $X$, written $X_n\overset{a.s.}\to X$. Thus $X_n(s)\to X(s)$ outside a probability-zero set.
+:::
+
+::: {.theorem}
+If $X_i$ are iid, $E(X_i)=\mu$, and $\operatorname{Var}(X_i)<\infty$, the strong law states $\bar X_n\overset{a.s.}\to\mu$.
+:::
+
+::: {.example}
+On the uniform probability space $[0,1]$, let $X_n(s)=s+s^n$ and $X(s)=s$. For $s<1$, $X_n(s)\to X(s)$, but $X_n(1)=2\not\to1$. The exceptional singleton has probability zero, so $X_n\overset{a.s.}\to X$.
+:::
+
+## Convergence in distribution and uniform maxima {#distribution-convergence-uniform-max}
+
+::: {.definition}
+If $F_{X_n}(x)\to F_X(x)$ at every continuity point of $F_X$, then $X_n$ **converges in distribution** to $X$, written $X_n\overset d\to X$.
+:::
+
+$X_n\overset p\to X$ implies $X_n\overset d\to X$. For a constant limit $\mu$, the modes are equivalent; the limiting cdf is zero below $\mu$ and one above $\mu$.
+
+If $X_i\overset{\mathrm{iid}}\sim U(0,1)$, then
+
+$$P(|X_{(n)}-1|\ge\varepsilon)=(1-\varepsilon)^n\to0,$$
+
+so $X_{(n)}\overset p\to1$. Moreover, for $t\ge0$,
+
+$$P\{n(1-X_{(n)})\le t\}=1-(1-t/n)^n\to1-e^{-t},$$
+
+hence $n(1-X_{(n)})\overset d\to\operatorname{Exp}(1)$.
+
+```{r en-chap05-uniform-maximum-limit, fig.cap='The scaled uniform-sample maximum approaches Exp(1)', fig.width=8, fig.height=4.5}
+set.seed(5203)
+n <- 80
+z <- n * (1 - apply(matrix(runif(50000 * n), ncol = n), 1, max))
+hist(z, probability = TRUE, breaks = 45, col = "#DCEAF4", border = "white",
+     xlim = c(0, 6), main = NULL, xlab = "n(1 - X_(n))", ylab = "Density")
+curve(dexp(x), 0, 6, add = TRUE, lwd = 2, col = "#C43C39")
+legend("topright", c("Simulation", "Exp(1) density"), lwd = c(8, 2),
+       col = c("#DCEAF4", "#C43C39"), bty = "n")
+```
+
+## The central limit theorem and Slutsky's theorem {#clt-slutsky}
+
+::: {.theorem}
+If $X_i$ are iid, $E(X_i)=\mu$, and $0<\operatorname{Var}(X_i)=\sigma^2<\infty$, then
+
+$$\frac{\sqrt n(\bar X_n-\mu)}{\sigma}\overset d\longrightarrow N(0,1).$$
+:::
+
+The source first gives a version assuming an MGF near zero, followed by this stronger finite-variance form. The latter uses characteristic functions and does not require an MGF.
+
+::: {.theorem}
+If $X_n\overset d\to X$ and $Y_n\overset p\to a$ for a constant $a$, then
+
+$$Y_nX_n\overset d\to aX,\qquad X_n+Y_n\overset d\to X+a.$$
+:::
+
+If $S_n\overset p\to\sigma$, then
+
+$$
+\frac{\sqrt n(\bar X_n-\mu)}{S_n}
+=\frac\sigma{S_n}\frac{\sqrt n(\bar X_n-\mu)}\sigma
+\overset d\longrightarrow N(0,1).
+$$
+
+## Taylor approximation and multivariate variance propagation {#taylor-variance-propagation}
+
+Let $\mathbf T=(T_1,\ldots,T_k)$, $E(\mathbf T)=\boldsymbol\theta$, and
+$g_i'(\boldsymbol\theta)=\left.\partial g(\mathbf t)/\partial t_i\right|_{\mathbf t=\boldsymbol\theta}$. The first-order expansion is
+
+$$g(\mathbf T)\approx g(\boldsymbol\theta)+\sum_{i=1}^kg_i'(\boldsymbol\theta)(T_i-\theta_i).$$
+
+Consequently,
+
+$$E\{g(\mathbf T)\}\approx g(\boldsymbol\theta),$$
+
+$$
+\operatorname{Var}\{g(\mathbf T)\}\approx
+\sum_i[g_i'(\boldsymbol\theta)]^2\operatorname{Var}(T_i)
++2\sum_{i>j}g_i'(\boldsymbol\theta)g_j'(\boldsymbol\theta)\operatorname{Cov}(T_i,T_j).
+$$
+
+## The delta method and two applications {#delta-method-applications}
+
+For a Bernoulli sample, $\hat p=\bar X$. If $g(p)=p/(1-p)$, then
+
+$$
+\operatorname{Var}\left(\frac{\hat p}{1-\hat p}\right)
+\approx[g'(p)]^2\operatorname{Var}(\hat p)=\frac{p}{n(1-p)^3}.
+$$
+
+If $E_\mu(X)=\mu\ne0$, take $g(\mu)=1/\mu$. Then
+
+$$E_\mu(1/X)\approx1/\mu,\qquad
+\operatorname{Var}_\mu(1/X)\approx\mu^{-4}\operatorname{Var}_\mu(X).$$
+
+::: {.theorem}
+If $\sqrt n(Y_n-\theta)\overset d\to N(0,\sigma^2)$ and $g'(\theta)$ exists, then
+
+$$
+\sqrt n\{g(Y_n)-g(\theta)\}
+\overset d\longrightarrow N(0,\sigma^2[g'(\theta)]^2).
+$$
+:::
+
+::: {.proof}
+Taylor expansion gives $g(Y_n)-g(\theta)=g'(\theta)(Y_n-\theta)+o_p(n^{-1/2})$. Multiply by $\sqrt n$ and apply Slutsky's theorem.
+:::
+
+For $Y_n=\bar X$ and $g(x)=1/x$, when $\mu\ne0$,
+
+$$
+\sqrt n\left(\frac1{\bar X}-\frac1\mu\right)
+\overset d\longrightarrow N\left(0,\frac{\operatorname{Var}(X_1)}{\mu^4}\right).
+$$
+
+Replacing unknown quantities with $S^2$ and $\bar X$ gives
+
+$$
+\widehat{\operatorname{Var}}(1/\bar X)\approx\frac{S^2}{n\bar X^4},\qquad
+\frac{\sqrt n(1/\bar X-1/\mu)}{S/\bar X^2}\overset d\to N(0,1).
+$$
+
+## Chapter summary {#random-samples-summary}
+
+- The iid assumption factors the joint sample distribution into identical marginals.
+- Sampling distributions of the mean, variance, and order statistics connect population and data.
+- Laws of large numbers explain stability; the CLT explains normal approximation.
+- Slutsky and delta methods transfer limits to useful statistics.

@@ -1,4 +1,349 @@
 # 随机样本及其性质 {#random-samples}
 
-> 本章文件骨架已建立，正文将在后续阶段从原课件第 5 章迁移。本阶段未迁移其内容。
+本章对应原课件 *chap-5.tex*、四个 LaTeX 子文件及补充稿 *chapter-5.md*，讨论随机抽样、抽样分布、顺序统计量、随机变量收敛、中心极限定理、Slutsky 定理和 Delta 方法。补充稿末尾的截断处已按 iid 计算补全；原稿订正见 migration_notes.md。
 
+## 随机样本模型 {#random-sample-model}
+
+::: {.definition}
+若 $X_1,\ldots,X_n$ 相互独立，且每个 $X_i$ 都具有同一个 pmf 或 pdf $f(x)$，则称它们为来自总体 $f$、容量为 $n$ 的**随机样本**，也称独立同分布（iid）。
+:::
+
+独立性给出联合分布
+
+$$f(x_1,\ldots,x_n)=\prod_{i=1}^nf(x_i).$$
+
+若总体属于参数族 $f(x\mid\theta)$，则同一个未知参数出现在每个因子中：
+
+$$f(x_1,\ldots,x_n\mid\theta)=\prod_{i=1}^nf(x_i\mid\theta).$$
+
+## 指数总体的电路板寿命例题 {#exponential-sample-example}
+
+::: {.example}
+设 $X_1,\ldots,X_n$ 来自以 $\beta>0$ 为尺度参数的指数总体。把 $X_i$ 视为第 $i$ 块同型电路板的寿命，则
+
+$$
+f(\mathbf x\mid\beta)=\prod_{i=1}^n\frac1\beta e^{-x_i/\beta}
+=\frac1{\beta^n}\exp\left(-\frac{\sum_i x_i}{\beta}\right),\qquad x_i>0.
+$$
+
+所有电路板寿命都超过 2 年的概率为
+
+$$
+\begin{aligned}
+P(X_1>2,\ldots,X_n>2)
+&=\int_2^\infty\cdots\int_2^\infty\prod_{i=1}^n\frac1\beta e^{-x_i/\beta}\,d\mathbf x\\
+&=(e^{-2/\beta})^n=e^{-2n/\beta}.
+\end{aligned}
+$$
+
+也可直接利用 iid 性质：
+$P(\cap_i\{X_i>2\})=\prod_iP(X_i>2)=e^{-2n/\beta}$。当平均寿命 $\beta$ 相对于 $n$ 较大时，该概率接近 1。
+:::
+
+```{r chap05-exponential-board-simulation, fig.cap='全部电路板寿命超过 2 年的理论概率与模拟概率', fig.width=8, fig.height=4.5}
+set.seed(5201)
+beta <- 10
+n_grid <- 1:12
+theory <- exp(-2 * n_grid / beta)
+simulation <- vapply(n_grid, function(n) {
+  x <- matrix(rexp(30000 * n, rate = 1 / beta), ncol = n)
+  mean(apply(x, 1, min) > 2)
+}, numeric(1))
+plot(n_grid, theory, type = "l", lwd = 2, ylim = c(0, 1),
+     xlab = "样本容量 n", ylab = "全部寿命超过 2 年的概率")
+points(n_grid, simulation, pch = 19, col = "#C43C39")
+legend("topright", c("理论值", "模拟值"), lty = c(1, NA), pch = c(NA, 19),
+       col = c("black", "#C43C39"), bty = "n")
+```
+
+## 统计量、样本均值与样本方差 {#statistics-sampling-distributions}
+
+::: {.definition}
+设 $X_1,\ldots,X_n$ 为随机样本，$T$ 是定义在样本空间上的实值或向量值函数，则 $Y=T(X_1,\ldots,X_n)$ 称为**统计量**，$Y$ 的概率分布称为它的**抽样分布**。
+:::
+
+$$
+\bar X=\frac1n\sum_{i=1}^nX_i,\qquad
+S^2=\frac1{n-1}\sum_{i=1}^n(X_i-\bar X)^2,\qquad S=\sqrt{S^2}.
+$$
+
+::: {.theorem}
+若 $X_i\overset{\mathrm{iid}}\sim N(\mu,\sigma^2)$，则
+
+$$E(\bar X)=\mu,\quad \operatorname{Var}(\bar X)=\sigma^2/n,
+\quad E(S^2)=\sigma^2,$$
+
+且 $\bar X\sim N(\mu,\sigma^2/n)$。
+:::
+
+## 样本均值的矩母函数与正态例题 {#sample-mean-mgf}
+
+::: {.theorem}
+若总体矩母函数为 $M_X(t)$，则
+$M_{\bar X}(t)=[M_X(t/n)]^n$。
+:::
+
+::: {.proof}
+由独立性，
+
+$$
+M_{\bar X}(t)=E\prod_{i=1}^ne^{tX_i/n}
+=\prod_{i=1}^nE(e^{tX_i/n})=[M_X(t/n)]^n.
+$$
+:::
+
+若总体为 $N(\mu,\sigma^2)$，则
+
+$$
+M_{\bar X}(t)=\left[\exp\left(\mu\frac tn+\frac{\sigma^2(t/n)^2}{2}\right)\right]^n
+=\exp\left(\mu t+\frac{(\sigma^2/n)t^2}{2}\right),
+$$
+
+故 $\bar X\sim N(\mu,\sigma^2/n)$。
+
+## 卷积公式 {#convolution-formula}
+
+::: {.theorem}
+若连续随机变量 $X,Y$ 相互独立，则 $Z=X+Y$ 的密度为
+
+$$f_Z(z)=\int_{-\infty}^{\infty}f_X(x)f_Y(z-x)\,dx.$$
+:::
+
+::: {.proof}
+令 $Z=X+Y,W=X$。反变换为 $X=W,Y=Z-W$，Jacobian 绝对值为 1，故
+$f_{Z,W}(z,w)=f_X(w)f_Y(z-w)$；对 $w$ 积分即得结论。
+:::
+
+## Student t 与 Snedecor F 抽样分布 {#t-f-sampling-distributions}
+
+::: {.definition}
+若 $X_i\overset{\mathrm{iid}}\sim N(\mu,\sigma^2)$，则
+
+$$T=\frac{\bar X-\mu}{S/\sqrt n}\sim t_{n-1}.$$
+
+一般的 $t_p$ 密度为
+
+$$f_T(t)=\frac{\Gamma((p+1)/2)}{\Gamma(p/2)\sqrt{p\pi}}
+\left(1+\frac{t^2}{p}\right)^{-(p+1)/2},\quad t\in\mathbb R.$$
+:::
+
+::: {.definition}
+若两个正态随机样本相互独立，则
+
+$$F=\frac{S_X^2/\sigma_X^2}{S_Y^2/\sigma_Y^2}\sim F_{n-1,m-1}.$$
+
+一般的 $F_{p,q}$ 密度为
+
+$$
+f_F(x)=\frac{\Gamma((p+q)/2)}{\Gamma(p/2)\Gamma(q/2)}
+\left(\frac pq\right)^{p/2}\frac{x^{p/2-1}}{[1+(p/q)x]^{(p+q)/2}},\quad x>0.
+$$
+:::
+
+## 离散型顺序统计量 {#discrete-order-statistics}
+
+::: {.definition}
+将样本从小到大排列所得的 $X_{(1)}\le\cdots\le X_{(n)}$ 称为顺序统计量；特别地，$X_{(1)}=\min_iX_i$，$X_{(n)}=\max_iX_i$。
+:::
+
+设离散总体的可能值为 $x_1<x_2<\cdots$，$P(X=x_i)=p_i$，记 $P_i=\sum_{r=1}^ip_r$、$P_0=0$。则
+
+$$P(X_{(j)}\le x_i)=\sum_{k=j}^n\binom nkP_i^k(1-P_i)^{n-k},$$
+
+$$
+P(X_{(j)}=x_i)=\sum_{k=j}^n\binom nk
+\{P_i^k(1-P_i)^{n-k}-P_{i-1}^k(1-P_{i-1})^{n-k}\}.
+$$
+
+令 $Y=\sum_{r=1}^nI(X_r\le x_i)$，则 $Y\sim\operatorname{Bin}(n,P_i)$，且
+$\{X_{(j)}\le x_i\}\iff\{Y\ge j\}$；第二式由相邻 cdf 作差得到。
+
+## 连续型顺序统计量 {#continuous-order-statistics}
+
+::: {.theorem}
+若总体 cdf、pdf 分别为 $F_X,f_X$，则
+
+$$
+f_{X_{(j)}}(x)=\frac{n!}{(j-1)!(n-j)!}f_X(x)[F_X(x)]^{j-1}[1-F_X(x)]^{n-j}.
+$$
+:::
+
+对 $1\le i<j\le n$，
+
+$$
+\begin{aligned}
+f_{X_{(i)},X_{(j)}}(u,v)
+&=\frac{n!f_X(u)f_X(v)}{(i-1)!(j-i-1)!(n-j)!}[F_X(u)]^{i-1}\\
+&\quad\times[F_X(v)-F_X(u)]^{j-i-1}[1-F_X(v)]^{n-j},\quad u<v.
+\end{aligned}
+$$
+
+全部顺序统计量的联合密度为
+
+$$
+f_{X_{(1)},\ldots,X_{(n)}}(\mathbf x)=
+\begin{cases}n!\prod_{i=1}^nf_X(x_i),&x_1<\cdots<x_n,\\0,&\text{其他}.
+\end{cases}
+$$
+
+```{r chap05-uniform-order-statistics, fig.cap='均匀总体中不同顺序统计量的抽样分布', fig.width=8, fig.height=4.5}
+set.seed(5202)
+n <- 10
+ord <- t(apply(matrix(runif(40000 * n), ncol = n), 1, sort))
+cols <- c("#2878B5", "#F39B7F", "#C43C39")
+plot(NA, xlim = c(0, 1), ylim = c(0, 9), xlab = "顺序统计量", ylab = "密度")
+for (k in seq_along(c(1, 5, 10))) lines(density(ord[, c(1, 5, 10)[k]]), lwd = 2, col = cols[k])
+legend("top", c("最小值", "第 5 个", "最大值"), lwd = 2, col = cols, bty = "n", horiz = TRUE)
+```
+
+## 依概率收敛与弱大数定律 {#probability-convergence-wlln}
+
+::: {.definition}
+若对每个 $\varepsilon>0$，$P(|X_n-X|\ge\varepsilon)\to0$，则称 $X_n$ 依概率收敛于 $X$，记为 $X_n\overset p\to X$。
+:::
+
+::: {.theorem}
+若 $X_i$ iid，$E(X_i)=\mu$ 且 $\operatorname{Var}(X_i)=\sigma^2<\infty$，则弱大数定律给出
+
+$$\bar X_n=\frac1n\sum_{i=1}^nX_i\overset p\longrightarrow\mu.$$
+:::
+
+若 $X_n\overset p\to X$ 且 $h$ 连续，则 $h(X_n)\overset p\to h(X)$。又
+
+$$P(|S_n^2-\sigma^2|\ge\varepsilon)\le\operatorname{Var}(S_n^2)/\varepsilon^2.$$
+
+故 $\operatorname{Var}(S_n^2)\to0$ 是 $S_n^2\overset p\to\sigma^2$ 的充分条件；连续映射定理再给出 $S_n\overset p\to\sigma$。
+
+## 几乎处处收敛与强大数定律 {#almost-sure-convergence-slln}
+
+::: {.definition}
+若 $P(\lim_{n\to\infty}X_n=X)=1$，则称 $X_n$ 几乎处处收敛于 $X$，记为 $X_n\overset{a.s.}\to X$。即除一个概率为 0 的样本点集合外，$X_n(s)\to X(s)$。
+:::
+
+::: {.theorem}
+若 $X_i$ iid，$E(X_i)=\mu$ 且 $\operatorname{Var}(X_i)<\infty$，则
+$\bar X_n\overset{a.s.}\to\mu$。
+:::
+
+::: {.example}
+在均匀概率空间 $[0,1]$ 上令 $X_n(s)=s+s^n$、$X(s)=s$。对 $s<1$ 有 $X_n(s)\to X(s)$，而 $X_n(1)=2\not\to1$。因单点集 $\{1\}$ 的概率为 0，仍有 $X_n\overset{a.s.}\to X$。
+:::
+
+## 依分布收敛与均匀最大值 {#distribution-convergence-uniform-max}
+
+::: {.definition}
+若在 $F_X$ 的每个连续点 $x$ 上 $F_{X_n}(x)\to F_X(x)$，则称 $X_n\overset d\to X$。
+:::
+
+$X_n\overset p\to X$ 蕴含 $X_n\overset d\to X$；当极限是常数 $\mu$ 时二者等价，极限 cdf 在 $x<\mu$ 为 0，在 $x>\mu$ 为 1。
+
+若 $X_i\overset{\mathrm{iid}}\sim U(0,1)$，则
+
+$$P(|X_{(n)}-1|\ge\varepsilon)=(1-\varepsilon)^n\to0,$$
+
+所以 $X_{(n)}\overset p\to1$。进一步，对 $t\ge0$，
+
+$$P\{n(1-X_{(n)})\le t\}=1-(1-t/n)^n\to1-e^{-t},$$
+
+即 $n(1-X_{(n)})\overset d\to\operatorname{Exp}(1)$。
+
+```{r chap05-uniform-maximum-limit, fig.cap='缩放后的均匀样本最大值逼近 Exp(1)', fig.width=8, fig.height=4.5}
+set.seed(5203)
+n <- 80
+z <- n * (1 - apply(matrix(runif(50000 * n), ncol = n), 1, max))
+hist(z, probability = TRUE, breaks = 45, col = "#DCEAF4", border = "white",
+     xlim = c(0, 6), main = NULL, xlab = "n(1 - X_(n))", ylab = "密度")
+curve(dexp(x), 0, 6, add = TRUE, lwd = 2, col = "#C43C39")
+legend("topright", c("模拟直方图", "Exp(1) 密度"), lwd = c(8, 2),
+       col = c("#DCEAF4", "#C43C39"), bty = "n")
+```
+
+## 中心极限定理与 Slutsky 定理 {#clt-slutsky}
+
+::: {.theorem}
+若 $X_i$ iid，$E(X_i)=\mu$，$0<\operatorname{Var}(X_i)=\sigma^2<\infty$，则
+
+$$\frac{\sqrt n(\bar X_n-\mu)}{\sigma}\overset d\longrightarrow N(0,1).$$
+:::
+
+原课件先给出矩母函数在 0 的某邻域存在的版本，再给出上述有限方差的更强版本；后者可用特征函数证明，不要求矩母函数存在。
+
+::: {.theorem}
+若 $X_n\overset d\to X$ 且 $Y_n\overset p\to a$（$a$ 为常数），则
+
+$$Y_nX_n\overset d\to aX,\qquad X_n+Y_n\overset d\to X+a.$$
+:::
+
+若 $S_n\overset p\to\sigma$，则
+
+$$
+\frac{\sqrt n(\bar X_n-\mu)}{S_n}
+=\frac\sigma{S_n}\frac{\sqrt n(\bar X_n-\mu)}\sigma
+\overset d\longrightarrow N(0,1).
+$$
+
+## Taylor 近似与多元方差传播 {#taylor-variance-propagation}
+
+令 $\mathbf T=(T_1,\ldots,T_k)$，$E(\mathbf T)=\boldsymbol\theta$，并记
+$g_i'(\boldsymbol\theta)=\left.\partial g(\mathbf t)/\partial t_i\right|_{\mathbf t=\boldsymbol\theta}$。一阶 Taylor 展开为
+
+$$g(\mathbf T)\approx g(\boldsymbol\theta)+\sum_{i=1}^kg_i'(\boldsymbol\theta)(T_i-\theta_i).$$
+
+因此
+
+$$E\{g(\mathbf T)\}\approx g(\boldsymbol\theta),$$
+
+$$
+\operatorname{Var}\{g(\mathbf T)\}\approx
+\sum_i[g_i'(\boldsymbol\theta)]^2\operatorname{Var}(T_i)
++2\sum_{i>j}g_i'(\boldsymbol\theta)g_j'(\boldsymbol\theta)\operatorname{Cov}(T_i,T_j).
+$$
+
+## Delta 方法及两个应用 {#delta-method-applications}
+
+对 Bernoulli 样本，$\hat p=\bar X$。若 $g(p)=p/(1-p)$，则
+
+$$
+\operatorname{Var}\left(\frac{\hat p}{1-\hat p}\right)
+\approx[g'(p)]^2\operatorname{Var}(\hat p)=\frac{p}{n(1-p)^3}.
+$$
+
+若 $E_\mu(X)=\mu\ne0$，取 $g(\mu)=1/\mu$，则
+
+$$E_\mu(1/X)\approx1/\mu,\qquad
+\operatorname{Var}_\mu(1/X)\approx\mu^{-4}\operatorname{Var}_\mu(X).$$
+
+::: {.theorem}
+若 $\sqrt n(Y_n-\theta)\overset d\to N(0,\sigma^2)$ 且 $g'(\theta)$ 存在，则
+
+$$
+\sqrt n\{g(Y_n)-g(\theta)\}
+\overset d\longrightarrow N(0,\sigma^2[g'(\theta)]^2).
+$$
+:::
+
+::: {.proof}
+Taylor 展开给出
+$g(Y_n)-g(\theta)=g'(\theta)(Y_n-\theta)+o_p(n^{-1/2})$；乘以 $\sqrt n$ 后应用 Slutsky 定理。
+:::
+
+对 $Y_n=\bar X$、$g(x)=1/x$，当 $\mu\ne0$ 时，
+
+$$
+\sqrt n\left(\frac1{\bar X}-\frac1\mu\right)
+\overset d\longrightarrow N\left(0,\frac{\operatorname{Var}(X_1)}{\mu^4}\right).
+$$
+
+以 $S^2$ 和 $\bar X$ 代替未知量，
+
+$$
+\widehat{\operatorname{Var}}(1/\bar X)\approx\frac{S^2}{n\bar X^4},\qquad
+\frac{\sqrt n(1/\bar X-1/\mu)}{S/\bar X^2}\overset d\to N(0,1).
+$$
+
+## 本章小结 {#random-samples-summary}
+
+- iid 假设把样本联合分布写成相同边缘分布的乘积。
+- 均值、方差和顺序统计量的抽样分布连接总体与数据。
+- 大数定律解释稳定性，中心极限定理解释正态近似。
+- Slutsky 与 Delta 方法把极限结论传递到可操作的统计量。
