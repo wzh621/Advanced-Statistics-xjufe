@@ -252,16 +252,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="random-samples.html"><a href="random-samples.html#statistics-sampling-distributions"><i class="fa fa-check"></i><b>5.3</b> Statistics, sample mean, and sample variance</a></li>
 <li class="chapter" data-level="5.4" data-path="random-samples.html"><a href="random-samples.html#sample-mean-mgf"><i class="fa fa-check"></i><b>5.4</b> MGF of the sample mean and the normal example</a></li>
 <li class="chapter" data-level="5.5" data-path="random-samples.html"><a href="random-samples.html#convolution-formula"><i class="fa fa-check"></i><b>5.5</b> The convolution formula</a></li>
-<li class="chapter" data-level="5.6" data-path="random-samples.html"><a href="random-samples.html#t-f-sampling-distributions"><i class="fa fa-check"></i><b>5.6</b> Student t and Snedecor F sampling distributions</a></li>
-<li class="chapter" data-level="5.7" data-path="random-samples.html"><a href="random-samples.html#discrete-order-statistics"><i class="fa fa-check"></i><b>5.7</b> Discrete order statistics</a></li>
-<li class="chapter" data-level="5.8" data-path="random-samples.html"><a href="random-samples.html#continuous-order-statistics"><i class="fa fa-check"></i><b>5.8</b> Continuous order statistics</a></li>
-<li class="chapter" data-level="5.9" data-path="random-samples.html"><a href="random-samples.html#probability-convergence-wlln"><i class="fa fa-check"></i><b>5.9</b> Convergence in probability and the WLLN</a></li>
-<li class="chapter" data-level="5.10" data-path="random-samples.html"><a href="random-samples.html#almost-sure-convergence-slln"><i class="fa fa-check"></i><b>5.10</b> Almost-sure convergence and the SLLN</a></li>
-<li class="chapter" data-level="5.11" data-path="random-samples.html"><a href="random-samples.html#distribution-convergence-uniform-max"><i class="fa fa-check"></i><b>5.11</b> Convergence in distribution and uniform maxima</a></li>
-<li class="chapter" data-level="5.12" data-path="random-samples.html"><a href="random-samples.html#clt-slutsky"><i class="fa fa-check"></i><b>5.12</b> The central limit theorem and Slutsky’s theorem</a></li>
-<li class="chapter" data-level="5.13" data-path="random-samples.html"><a href="random-samples.html#taylor-variance-propagation"><i class="fa fa-check"></i><b>5.13</b> Taylor approximation and multivariate variance propagation</a></li>
-<li class="chapter" data-level="5.14" data-path="random-samples.html"><a href="random-samples.html#delta-method-applications"><i class="fa fa-check"></i><b>5.14</b> The delta method and two applications</a></li>
-<li class="chapter" data-level="5.15" data-path="random-samples.html"><a href="random-samples.html#random-samples-summary"><i class="fa fa-check"></i><b>5.15</b> Chapter summary</a></li>
+<li class="chapter" data-level="5.6" data-path="random-samples.html"><a href="random-samples.html#normal-sample-properties"><i class="fa fa-check"></i><b>5.6</b> Sampling properties of the normal distribution</a></li>
+<li class="chapter" data-level="5.7" data-path="random-samples.html"><a href="random-samples.html#t-f-sampling-distributions"><i class="fa fa-check"></i><b>5.7</b> Student t and Snedecor F sampling distributions</a></li>
+<li class="chapter" data-level="5.8" data-path="random-samples.html"><a href="random-samples.html#discrete-order-statistics"><i class="fa fa-check"></i><b>5.8</b> Discrete order statistics</a></li>
+<li class="chapter" data-level="5.9" data-path="random-samples.html"><a href="random-samples.html#continuous-order-statistics"><i class="fa fa-check"></i><b>5.9</b> Continuous order statistics</a></li>
+<li class="chapter" data-level="5.10" data-path="random-samples.html"><a href="random-samples.html#probability-convergence-wlln"><i class="fa fa-check"></i><b>5.10</b> Convergence in probability and the WLLN</a></li>
+<li class="chapter" data-level="5.11" data-path="random-samples.html"><a href="random-samples.html#almost-sure-convergence-slln"><i class="fa fa-check"></i><b>5.11</b> Almost-sure convergence and the SLLN</a></li>
+<li class="chapter" data-level="5.12" data-path="random-samples.html"><a href="random-samples.html#distribution-convergence-uniform-max"><i class="fa fa-check"></i><b>5.12</b> Convergence in distribution and uniform maxima</a></li>
+<li class="chapter" data-level="5.13" data-path="random-samples.html"><a href="random-samples.html#clt-slutsky"><i class="fa fa-check"></i><b>5.13</b> The central limit theorem and Slutsky’s theorem</a></li>
+<li class="chapter" data-level="5.14" data-path="random-samples.html"><a href="random-samples.html#taylor-variance-propagation"><i class="fa fa-check"></i><b>5.14</b> Taylor approximation and multivariate variance propagation</a></li>
+<li class="chapter" data-level="5.15" data-path="random-samples.html"><a href="random-samples.html#delta-method-applications"><i class="fa fa-check"></i><b>5.15</b> The delta method and two applications</a></li>
+<li class="chapter" data-level="5.16" data-path="random-samples.html"><a href="random-samples.html#random-samples-summary"><i class="fa fa-check"></i><b>5.16</b> Chapter summary</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="data-reduction.html"><a href="data-reduction.html"><i class="fa fa-check"></i><b>6</b> Principles of Data Reduction</a>
 <ul>
@@ -655,7 +656,7 @@ f(y;\pi)=\binom ny\pi^y(1-\pi)^{n-y},\qquad y=0,\ldots,n.
 <p><span class="math display">\[
 f(y;\pi)=\exp\left\{y\theta-n\log(1+e^\theta)+\log\binom ny\right\}.
 \]</span></p>
-<p>Thus <span class="math inline">\(a(\phi)=1\)</span>, <span class="math inline">\(b(\theta)=n\log(1+e^\theta)\)</span>, and <span class="math inline">\(c(y,\phi)=\log\binom ny\)</span>. Setting <span class="math inline">\(n=1\)</span> gives Bernoulli, with <span class="math inline">\(b(\theta)=\log(1+e^\theta)\)</span> and <span class="math inline">\(c(y,phi)=0\)</span>.</p>
+<p>Thus <span class="math inline">\(a(\phi)=1\)</span>, <span class="math inline">\(b(\theta)=n\log(1+e^\theta)\)</span>, and <span class="math inline">\(c(y,\phi)=\log\binom ny\)</span>. Setting <span class="math inline">\(n=1\)</span> gives Bernoulli, with <span class="math inline">\(b(\theta)=\log(1+e^\theta)\)</span> and <span class="math inline">\(c(y,\phi)=0\)</span>.</p>
 <p>For <span class="math inline">\(Y\sim\operatorname{Poisson}(\lambda)\)</span>,</p>
 <p><span class="math display">\[
 f(y;\lambda)=\exp\{y\log\lambda-\lambda-\log(y!)\},
@@ -672,8 +673,13 @@ E(Y)=b&#39;(\theta),\qquad
 \tag{3.2}
 \]</span></p>
 </div>
-<div class="proof">
-<p><span id="unlabeled-div-45" class="proof"><em>Proof</em>. </span>Differentiate <span class="math inline">\(\int f(y;\theta,\phi)dy=1\)</span> with respect to <span class="math inline">\(\theta\)</span> and interchange the operations:</p>
+<div class="proof source-numbered">
+<p><span id="unlabeled-div-45" class="proof"><em>Proof</em>. </span></p>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>Differentiate <span class="math inline">\(\int f(y;\theta,\phi)dy=1\)</span> with respect to <span class="math inline">\(\theta\)</span> and interchange the operations:</p>
 <p><span class="math display">\[
 0=\int\frac{\partial f}{\partial\theta}dy,\qquad
 \frac{\partial f}{\partial\theta}=f\frac{y-b&#39;(\theta)}{a(\phi)}.
@@ -690,33 +696,93 @@ E(Y)=b&#39;(\theta),\qquad
 \frac{b&#39;&#39;(\theta)}{a(\phi)},
 \]</span></p>
 <p>which proves Equation <a href="distribution-families.html#eq:exponential-family-moments">(3.2)</a>. For a discrete law, replace the integral by a sum over the support.</p>
+</details>
 </div>
 <div class="example">
 <p><span id="exm:unlabeled-div-46" class="example"><strong>Example 3.1  </strong></span><strong>Normal distribution.</strong> Since <span class="math inline">\(b(\theta)=\theta^2/2\)</span> and <span class="math inline">\(a(\phi)=\sigma^2\)</span>, <span class="math inline">\(E(Y)=\mu\)</span> and <span class="math inline">\(\operatorname{Var}(Y)=\sigma^2\)</span>.</p>
 </div>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
+<p>The natural parameter is <span class="math inline">\(\theta=\mu\)</span>, and hence</p>
+<p><span class="math display">\[
+b&#39;(\theta)=\theta,\qquad b&#39;&#39;(\theta)=1.
+\]</span></p>
+<p>Property 1 therefore gives</p>
+<p><span class="math display">\[
+E(Y)=b&#39;(\mu)=\mu,\qquad
+\operatorname{Var}(Y)=b&#39;&#39;(\mu)a(\phi)=1\cdot\sigma^2=\sigma^2.
+\]</span></p>
+</details>
 <div class="example">
 <p><span id="exm:unlabeled-div-47" class="example"><strong>Example 3.2  </strong></span><strong>Poisson distribution.</strong> Since <span class="math inline">\(b(\theta)=e^\theta=\lambda\)</span> and <span class="math inline">\(a(\phi)=1\)</span>, <span class="math inline">\(E(Y)=\lambda\)</span> and <span class="math inline">\(\operatorname{Var}(Y)=\lambda\)</span>.</p>
 </div>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
+<p>Since <span class="math inline">\(\theta=\log\lambda\)</span>, we have <span class="math inline">\(e^\theta=\lambda\)</span> and</p>
+<p><span class="math display">\[
+b&#39;(\theta)=e^\theta,\qquad b&#39;&#39;(\theta)=e^\theta.
+\]</span></p>
+<p>Thus</p>
+<p><span class="math display">\[
+E(Y)=e^\theta=\lambda,\qquad
+\operatorname{Var}(Y)=e^\theta\cdot1=\lambda.
+\]</span></p>
+</details>
 </div>
 <div id="location-scale-families" class="section level2 hasAnchor" number="3.10">
 <h2><span class="header-section-number">3.10</span> Location, scale, and location–scale families<a href="distribution-families.html#location-scale-families" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="theorem">
+<div class="theorem source-numbered">
 <p><span id="thm:unlabeled-div-48" class="theorem"><strong>Theorem 3.2  </strong></span><strong>Theorem 3.5.1</strong> If <span class="math inline">\(f\)</span> is any density, <span class="math inline">\(\mu\in\mathbb R\)</span>, and <span class="math inline">\(\sigma&gt;0\)</span>, then</p>
 <p><span class="math display">\[
 g(x\mid\mu,\sigma)=\frac1\sigma f\left(\frac{x-\mu}{\sigma}\right)
 \]</span></p>
 <p>is also a density.</p>
 </div>
-<p>With <span class="math inline">\(z=(x-\mu)/\sigma\)</span>, one obtains <span class="math inline">\(\int g(x\mid\mu,\sigma)dx=\int f(z)dz=1\)</span>.</p>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>Nonnegativity follows from <span class="math inline">\(f\ge0\)</span> and <span class="math inline">\(\sigma&gt;0\)</span>. Let
+<span class="math inline">\(z=(x-\mu)/\sigma\)</span>, so <span class="math inline">\(x=\mu+\sigma z\)</span> and <span class="math inline">\(dx=\sigma dz\)</span>. Then</p>
+<p><span class="math display">\[
+\begin{aligned}
+\int_{-\infty}^{\infty}g(x\mid\mu,\sigma)\,dx
+&amp;=\int_{-\infty}^{\infty}
+\frac1\sigma f\left(\frac{x-\mu}{\sigma}\right)\,dx\\
+&amp;=\int_{-\infty}^{\infty}\frac1\sigma f(z)\sigma\,dz
+=\int_{-\infty}^{\infty}f(z)\,dz=1.
+\end{aligned}
+\]</span></p>
+<p>Thus <span class="math inline">\(g\)</span> is nonnegative and integrates to one.</p>
+</details>
 <div class="definition">
 <p><span id="def:unlabeled-div-49" class="definition"><strong>Definition 3.2  </strong></span><strong>Definition 3.5.2 (location family)</strong> Given a standard density <span class="math inline">\(f\)</span>, <span class="math inline">\(\{f(x-\mu):\mu\in\mathbb R\}\)</span> is its location family, indexed by location <span class="math inline">\(\mu\)</span>.</p>
 </div>
-<div class="example">
+<div class="example source-numbered">
 <p><span id="exm:unlabeled-div-50" class="example"><strong>Example 3.3  </strong></span><strong>Example 3.5.3 (exponential location family)</strong> Let <span class="math inline">\(f(x)=e^{-x}\)</span> for <span class="math inline">\(x\ge0\)</span> and zero otherwise. Then</p>
 <p><span class="math display">\[
 f(x\mid\mu)=\begin{cases}e^{-(x-\mu)},&amp;x\ge\mu,\\0,&amp;x&lt;\mu.\end{cases}
 \]</span></p>
 </div>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
+<p>A location transformation replaces <span class="math inline">\(x\)</span> in the standard density by <span class="math inline">\(x-\mu\)</span>.
+The original support condition <span class="math inline">\(x\ge0\)</span> becomes <span class="math inline">\(x-\mu\ge0\)</span>, or <span class="math inline">\(x\ge\mu\)</span>.
+The positive part of the density is therefore shifted by <span class="math inline">\(\mu\)</span> without changing
+its shape. Its normalization is</p>
+<p><span class="math display">\[
+\int_\mu^\infty e^{-(x-\mu)}\,dx
+=\int_0^\infty e^{-z}\,dz=1.
+\]</span></p>
+<p>Here <span class="math inline">\(\mu\)</span> is also the lower endpoint of the support and may be interpreted as a
+threshold parameter in lifetime or reaction-time models.</p>
+</details>
 <div class="definition">
 <p><span id="def:unlabeled-div-51" class="definition"><strong>Definition 3.3  </strong></span><strong>Definition 3.5.4 (scale family)</strong> Given a standard density <span class="math inline">\(f\)</span>, <span class="math inline">\(\{\sigma^{-1}f(x/\sigma):\sigma&gt;0\}\)</span> is its scale family, indexed by scale <span class="math inline">\(\sigma\)</span>.</p>
 </div>
@@ -728,12 +794,60 @@ f(x\mid\mu)=\begin{cases}e^{-(x-\mu)},&amp;x\ge\mu,\\0,&amp;x&lt;\mu.\end{cases}
 \]</span></p>
 <p>is its location–scale family, with location <span class="math inline">\(\mu\)</span> and scale <span class="math inline">\(\sigma\)</span>.</p>
 </div>
-<div class="theorem">
+<div class="theorem source-numbered">
 <p><span id="thm:unlabeled-div-53" class="theorem"><strong>Theorem 3.3  </strong></span><strong>Theorem 3.5.6</strong> A variable <span class="math inline">\(X\)</span> has density <span class="math inline">\(\sigma^{-1}f\{(x-\mu)/\sigma\}\)</span> if and only if there is a variable <span class="math inline">\(Z\)</span> with density <span class="math inline">\(f\)</span> such that</p>
 <p><span class="math display">\[
 X=\sigma Z+\mu.
 \]</span></p>
 </div>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>For the “if” direction, let <span class="math inline">\(Z\)</span> have density <span class="math inline">\(f\)</span> and set
+<span class="math inline">\(X=\sigma Z+\mu\)</span>. Since <span class="math inline">\(\sigma&gt;0\)</span>, the inverse transformation is
+<span class="math inline">\(z=(x-\mu)/\sigma\)</span>, whose derivative has absolute value <span class="math inline">\(1/\sigma\)</span>.
+The one-dimensional change-of-variable formula gives</p>
+<p><span class="math display">\[
+f_X(x)=f\left(\frac{x-\mu}{\sigma}\right)\frac1\sigma.
+\]</span></p>
+<p>Conversely, suppose <span class="math inline">\(X\)</span> has this density and define
+<span class="math inline">\(Z=(X-\mu)/\sigma\)</span>, so <span class="math inline">\(X=\sigma Z+\mu\)</span>. Applying the transformation
+formula in the other direction gives</p>
+<p><span class="math display">\[
+f_Z(z)=f_X(\sigma z+\mu)\sigma
+=\frac1\sigma f(z)\sigma=f(z).
+\]</span></p>
+<p>Thus <span class="math inline">\(Z\)</span> has the standard density <span class="math inline">\(f\)</span>, proving both directions.</p>
+</details>
+<div class="source-theorem">
+<p><strong>Theorem 3.5.7 (moments under a location–scale transformation)</strong> If <span class="math inline">\(Z\)</span>
+has density <span class="math inline">\(f\)</span> and <span class="math inline">\(E(Z)\)</span> and <span class="math inline">\(\operatorname{Var}(Z)\)</span> exist, then for
+<span class="math inline">\(X=\sigma Z+\mu\)</span>,</p>
+<p><span class="math display">\[
+E(X)=\sigma E(Z)+\mu,\qquad
+\operatorname{Var}(X)=\sigma^2\operatorname{Var}(Z).
+\]</span></p>
+<p>In particular, if <span class="math inline">\(E(Z)=0\)</span> and <span class="math inline">\(\operatorname{Var}(Z)=1\)</span>, then
+<span class="math inline">\(E(X)=\mu\)</span> and <span class="math inline">\(\operatorname{Var}(X)=\sigma^2\)</span>.</p>
+</div>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>By Theorem 3.5.6, use the representation <span class="math inline">\(X=\sigma Z+\mu\)</span>. Linearity of
+expectation yields</p>
+<p><span class="math display">\[
+E(X)=E(\sigma Z+\mu)=\sigma E(Z)+\mu.
+\]</span></p>
+<p>A constant shift does not change variance, while multiplication by a constant
+multiplies variance by its square. Hence</p>
+<p><span class="math display">\[
+\operatorname{Var}(X)
+=\operatorname{Var}(\sigma Z+\mu)
+=\sigma^2\operatorname{Var}(Z).
+\]</span></p>
+</details>
 <p>Normal, Cauchy, Logistic, and Laplace laws are standard location–scale families; standardization by <span class="math inline">\((X-\mu)/\sigma\)</span> recovers the standard member.</p>
 </div>
 <div id="distribution-families-summary" class="section level2 hasAnchor" number="3.11">

@@ -93,6 +93,8 @@ h2 {
 .definition,
 .theorem,
 .example,
+.source-theorem,
+.source-lemma,
 .source-example,
 .proof,
 .remark,
@@ -104,8 +106,30 @@ h2 {
   padding: 0.8em 1em 0.3em;
 }
 
-.theorem {
+.theorem,
+.source-theorem,
+.source-lemma {
   border-left-color: var(--course-navy);
+}
+
+/* Keep bookdown's original counter/anchor stream for migrated source items,
+   while showing only the source's own theorem or example number. */
+.source-numbered > p:first-child > span.theorem,
+.source-numbered > p:first-child > span.example,
+.source-numbered > p:first-child > span.lemma,
+.source-numbered > p:first-child > span.proof {
+  display: none;
+}
+
+.proof.source-numbered {
+  background: transparent;
+  border-left: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.proof.source-numbered > p:first-child {
+  display: none;
 }
 
 .exercise {
@@ -125,6 +149,41 @@ h2 {
   cursor: pointer;
   list-style-position: outside;
   padding: 0.15em 0;
+}
+
+.interactive-course-figure {
+  margin: 1.15em 0 1.4em;
+}
+
+.plotly-course-widget {
+  aspect-ratio: 16 / 9;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--course-border);
+  border-radius: 5px;
+  min-height: 440px;
+  overflow: hidden;
+  width: 100%;
+}
+
+.interactive-course-figure figcaption {
+  color: #52616b;
+  font-size: 0.9em;
+  margin-top: 0.55em;
+  text-align: center;
+}
+
+.plotly-fallback {
+  color: #6b5b45;
+  font-size: 0.9em;
+  margin: 0.55em 0;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .plotly-course-widget {
+    aspect-ratio: 4 / 3;
+    min-height: 360px;
+  }
 }
 
 .course-details[open] > summary {

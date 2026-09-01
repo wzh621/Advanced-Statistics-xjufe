@@ -258,6 +258,7 @@ exponential-sample-example
 statistics-sampling-distributions
 sample-mean-mgf
 convolution-formula
+normal-sample-properties
 t-f-sampling-distributions
 discrete-order-statistics
 continuous-order-statistics

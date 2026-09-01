@@ -37,6 +37,25 @@ g(x,y)f_{X,Y}(x,y)\,dx\,dy,&\text{连续情形},\\[2mm]
 $$
 :::
 
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+连续情形由联合密度的定义先对简单函数成立。对一般可积函数，可分别用非负简单函数单调逼近其正部与负部，得到
+
+$$
+E\{g(X,Y)\}=\iint_{\mathbb R^2}g(x,y)f_{X,Y}(x,y)\,dx\,dy.
+$$
+
+离散情形把随机向量所有可能取值上的贡献相加：
+
+$$
+E\{g(X,Y)\}=\sum_{x,y}g(x,y)P(X=x,Y=y).
+$$
+
+条件 $E|g(X,Y)|<\infty$ 保证积分或级数绝对收敛，从而允许改变求和或积分次序。
+
+</details>
+
 联合密度可通过积分得到边缘密度：
 
 $$
@@ -49,6 +68,22 @@ $$
 <p class="caption">(\#fig:chap04-source-marginal-illustration)原课件用于说明联合密度与边缘密度的图形</p>
 </div>
 
+上图保留原课件截图。下面用标准独立二元正态模型
+$f_{X,Y}(x,y)=\phi(x)\phi(y)$ 对其进行 Plotly 交互复现：彩色曲面表示联合密度，两个竖直边界平面上的曲线分别表示 $X$ 和 $Y$ 的标准正态边缘密度。可拖动旋转、滚轮缩放，并将鼠标悬停在曲面或曲线上读取坐标和密度。
+
+<figure class="interactive-course-figure">
+<div id="chap04-joint-marginal-plotly-zh"
+     class="plotly-course-widget"
+     data-course-plot="joint-marginal-normal"
+     data-lang="zh"
+     role="img"
+     aria-label="标准独立二元正态联合密度及两个边缘密度的 Plotly 交互图"></div>
+<p class="plotly-fallback">交互图需要浏览器启用 JavaScript；无法加载时请参照上方保留的原课件图片。</p>
+<figcaption><strong>交互图 4.1A：</strong>联合密度及两个边缘密度的 Plotly 复现。</figcaption>
+</figure>
+<script src="assets/js/plotly-4.0.0.min.js"></script>
+<script src="assets/js/ch04-joint-marginal-plotly.js"></script>
+
 ## 例 4.1.11：单位正方形上的联合密度 {#example-4-1-11}
 
 设
@@ -60,6 +95,12 @@ f(x,y)=
 0,&\text{其他}.
 \end{cases}
 $$
+
+最终有 $f_X(x)=2x$、$f_Y(y)=3y^2$（各自在 $(0,1)$ 上），并且
+$P(X+Y\ge1)=9/10$。
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
 
 边缘密度为
 
@@ -88,6 +129,8 @@ $$
 <p class="caption">(\#fig:chap04-source-region-411)例 4.1.11 的积分区域（原课件图）</p>
 </div>
 
+</details>
+
 ## 例 4.1.12：三角支撑上的概率 {#example-4-1-12}
 
 设联合密度
@@ -95,6 +138,15 @@ $$
 $$
 f(x,y)=e^{-y},\qquad 0<x<y<\infty.
 $$
+
+最终结果为
+
+$$
+P(X+Y\ge1)=2e^{-1/2}-e^{-1}.
+$$
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
 
 它确为密度，因为
 $\int_0^\infty\int_x^\infty e^{-y}\,dy\,dx=1$。事件
@@ -113,6 +165,8 @@ $$
 <img src="images/ch04/example-4-1-12-region.png" alt="例 4.1.12 的三角支撑与补事件区域（原课件图）" width="38%" />
 <p class="caption">(\#fig:chap04-source-region-412)例 4.1.12 的三角支撑与补事件区域（原课件图）</p>
 </div>
+
+</details>
 
 ## 条件分布、条件期望与条件方差 {#conditional-distributions}
 
@@ -137,6 +191,15 @@ $$
 对上一节 $f(x,y)=e^{-y}$、$0<x<y$ 的例子，
 
 $$
+f_{Y\mid X}(y\mid x)=e^{-(y-x)},\quad y>x,
+$$
+
+因而 $E(Y\mid X=x)=x+1$、$\operatorname{Var}(Y\mid X=x)=1$。
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+$$
 f_X(x)=\int_x^\infty e^{-y}\,dy=e^{-x},\qquad x>0,
 $$
 
@@ -157,6 +220,11 @@ $$
 E(Y\mid X=x)=x+1,\qquad
 \operatorname{Var}(Y\mid X=x)=1.
 $$
+
+关键是令 $E=Y-x$。条件密度表明 $E\mid X=x\sim
+\operatorname{Exponential}(1)$，所以平移只改变均值而不改变方差。
+
+</details>
 
 一般地，
 
@@ -192,6 +260,27 @@ $$
 $f_{X,Y}(x,y)=g(x)h(y)$，则 $X,Y$ 独立。函数 $g,h$ 本身不必已经归一化。
 :::
 
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+以连续情形为例。由归一化条件和可分解性，
+
+$$
+1=\iint g(x)h(y)\,dx\,dy
+=\left\{\int g(x)\,dx\right\}
+ \left\{\int h(y)\,dy\right\}.
+$$
+
+记 $G=\int g(x)dx$、$H=\int h(y)dy$，则 $GH=1$。边缘密度为
+
+$$
+f_X(x)=g(x)H,\qquad f_Y(y)=h(y)G.
+$$
+
+因此 $f_X(x)f_Y(y)=g(x)h(y)GH=f_{X,Y}(x,y)$，故 $X,Y$ 独立。离散情形把积分替换为求和即可。
+
+</details>
+
 例如
 
 $$
@@ -214,7 +303,37 @@ M_{X+Y}(t)=M_X(t)M_Y(t).
 $$
 :::
 
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+独立性给出 $f_{X,Y}(x,y)=f_X(x)f_Y(y)$。连续情形中，
+
+$$
+\begin{aligned}
+E\{g(X)h(Y)\}
+&=\iint g(x)h(y)f_X(x)f_Y(y)\,dx\,dy\\
+&=\left\{\int g(x)f_X(x)\,dx\right\}
+  \left\{\int h(y)f_Y(y)\,dy\right\}\\
+&=E\{g(X)\}E\{h(Y)\}.
+\end{aligned}
+$$
+
+离散情形同理。再取 $g(X)=e^{tX}$、$h(Y)=e^{tY}$，便有
+
+$$
+M_{X+Y}(t)=E(e^{tX}e^{tY})=M_X(t)M_Y(t).
+$$
+
+</details>
+
 若独立的 $X\sim N(\mu,\sigma^2)$、$Y\sim N(\gamma,\tau^2)$，则
+
+$$
+X+Y\sim N(\mu+\gamma,\sigma^2+\tau^2).
+$$
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
 
 $$
 M_{X+Y}(t)
@@ -222,6 +341,8 @@ M_{X+Y}(t)
 $$
 
 因此 $X+Y\sim N(\mu+\gamma,\sigma^2+\tau^2)$。
+
+</details>
 
 ## 二维变换与 Jacobian {#bivariate-transformations}
 
@@ -250,7 +371,7 @@ $$
 \end{vmatrix}.
 $$
 
-::: {.example}
+::: {.example .source-numbered}
 **例 4.3.3（两个 Beta 变量的乘积）** 设独立的
 
 $$
@@ -258,7 +379,18 @@ X\sim\operatorname{Beta}(\alpha,\beta),\qquad
 Y\sim\operatorname{Beta}(\alpha+\beta,\gamma),
 $$
 
-并令 $U=XY,V=X$。反变换为 $x=v,y=u/v$，所以
+并令 $U=XY,V=X$。最终
+
+$$
+U\sim\operatorname{Beta}(\alpha,\beta+\gamma).
+$$
+:::
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+反变换为 $x=v,y=u/v$。由于 $0<x<1$、$0<y<1$，新支撑集为
+$0<u<v<1$。Jacobian 为
 
 $$
 J=
@@ -281,12 +413,60 @@ v^{\alpha-1}(1-v)^{\beta-1}\\
 \left(1-\frac uv\right)^{\gamma-1}\frac1v.
 \end{aligned}
 $$
-:::
+
+为得到 $U$ 的边缘密度，对 $v$ 从 $u$ 积分到 1。整理被积函数后，
+
+$$
+\begin{aligned}
+f_U(u)
+={}&\frac{\Gamma(\alpha+\beta+\gamma)}
+{\Gamma(\alpha)\Gamma(\beta)\Gamma(\gamma)}u^{\alpha-1}\\
+&\times\int_u^1
+\left(\frac uv-u\right)^{\beta-1}
+\left(1-\frac uv\right)^{\gamma-1}
+\frac{u}{v^2}\,dv.
+\end{aligned}
+$$
+
+令
+
+$$
+w=\frac{u/v-u}{1-u},qquad
+dw=-\frac{u}{v^2(1-u)}\,dv.
+$$
+
+当 $v$ 从 $u$ 增至 1 时，$w$ 从 1 减至 0。于是
+
+$$
+\begin{aligned}
+f_U(u)
+&=\frac{\Gamma(\alpha+\beta+\gamma)}
+{\Gamma(\alpha)\Gamma(\beta)\Gamma(\gamma)}
+u^{\alpha-1}(1-u)^{\beta+\gamma-1}
+\int_0^1w^{\beta-1}(1-w)^{\gamma-1}\,dw\\
+&=\frac{\Gamma(\alpha+\beta+\gamma)}
+{\Gamma(\alpha)\Gamma(\beta+\gamma)}
+u^{\alpha-1}(1-u)^{\beta+\gamma-1},\qquad 0<u<1,
+\end{aligned}
+$$
+
+其中最后一步使用
+$B(\beta,\gamma)=\Gamma(\beta)\Gamma(\gamma)/\Gamma(\beta+\gamma)$。
+这正是 $\operatorname{Beta}(\alpha,\beta+\gamma)$ 的密度。
+
+</details>
 
 ## 层次模型与全期望公式 {#hierarchical-models}
 
 设母鱼产卵数 $Y\sim\operatorname{Poisson}(\lambda)$，每枚卵独立地以概率 $p$ 存活，故
 $X\mid Y\sim\operatorname{Binomial}(Y,p)$。对 $x=0,1,\ldots$，
+
+$$
+X\sim\operatorname{Poisson}(\lambda p).
+$$
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
 
 $$
 \begin{aligned}
@@ -301,13 +481,38 @@ $$
 
 因此 $X\sim\operatorname{Poisson}(\lambda p)$，这就是 Poisson 稀释性质。
 
-::: {.theorem}
+</details>
+
+::: {.theorem .source-numbered}
 **定理 4.4.3（全期望公式）** 若期望存在，则
 
 $$
 E(X)=E\{E(X\mid Y)\}.
 $$
 :::
+
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+连续情形中，利用
+$f_{X,Y}(x,y)=f_{X\mid Y}(x\mid y)f_Y(y)$，有
+
+$$
+\begin{aligned}
+E(X)
+&=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
+x f_{X,Y}(x,y)\,dx\,dy\\
+&=\int_{-\infty}^{\infty}
+\left\{\int_{-\infty}^{\infty}x f_{X\mid Y}(x\mid y)\,dx\right\}
+f_Y(y)\,dy\\
+&=\int_{-\infty}^{\infty}E(X\mid Y=y)f_Y(y)\,dy
+=E\{E(X\mid Y)\}.
+\end{aligned}
+$$
+
+离散情形将两个积分替换为求和，推导完全相同。
+
+</details>
 
 在平方可积情形，$E(X\mid Y)$ 还是所有 $Y$ 的可测函数中对 $X$ 的最佳均方预测：
 
@@ -331,6 +536,11 @@ $$
 
 全期望公式给出 $E(X)=pE(Y)=pE(\Lambda)=p\beta$。对 $y=0,1,\ldots$，
 
+最终 $Y$ 服从支撑为 $0,1,\ldots$、成功概率为 $1/(1+\beta)$ 的几何分布。
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
 $$
 \begin{aligned}
 P(Y=y)
@@ -343,6 +553,8 @@ P(Y=y)
 $$
 
 所以 $Y$ 服从成功概率 $1/(1+\beta)$、支撑为 $0,1,\ldots$ 的几何分布。若把 $\Lambda$ 推广为 Gamma 混合变量，则得到负二项混合分布。
+
+</details>
 
 另一个层次模型是
 
@@ -371,7 +583,10 @@ $$
 $$
 :::
 
-::: {.proof}
+::: {.proof .source-numbered}
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
 写成
 
 $$
@@ -387,6 +602,21 @@ $$
 其余两项分别是
 $E\{\operatorname{Var}(X\mid Y)\}$ 与
 $\operatorname{Var}\{E(X\mid Y)\}$。
+
+交叉项为零的理由可进一步写为
+
+$$
+\begin{aligned}
+&E\!\left[\{X-E(X\mid Y)\}\{E(X\mid Y)-EX\}\right]\\
+&\quad=E\!\left[
+\{E(X\mid Y)-EX\}
+E\{X-E(X\mid Y)\mid Y\}\right]=0,
+\end{aligned}
+$$
+
+因为 $E\{X-E(X\mid Y)\mid Y\}=0$。
+
+</details>
 :::
 
 ## 多元正态分布 {#multivariate-normal}
@@ -476,7 +706,7 @@ par(old_par)
 
 ## Young、Hölder 与 Cauchy--Schwarz 不等式 {#holder-cauchy}
 
-::: {.lemma}
+::: {.lemma .source-numbered}
 **Young 不等式（原稿 Lemma 4.7.1）** 若 $a,b>0$，
 $p,q>1$ 且 $1/p+1/q=1$，则
 
@@ -487,9 +717,23 @@ $$
 等号当且仅当 $a^p=b^q$。
 :::
 
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
 固定 $b$，考察
 $g(a)=a^p/p+b^q/q-ab$，其唯一极小点满足
-$a^{p-1}=b$，即 $a^p=b^q$，极小值为 0。
+$a^{p-1}=b$。又因 $g''(a)=(p-1)a^{p-2}>0$，该驻点是全局极小点。
+由 $1/p+1/q=1$ 得 $q=p/(p-1)$，故驻点条件等价于
+$a^p=b^q$。在此点，
+
+$$
+g(a)=\frac{a^p}{p}+\frac{a^p}{q}-a^p
+=a^p\left(\frac1p+\frac1q-1\right)=0.
+$$
+
+所以 $g(a)\ge0$，且等号当且仅当 $a^p=b^q$。
+
+</details>
 
 ::: {.theorem}
 **Hölder 不等式** 若相应矩有限，则
@@ -500,6 +744,9 @@ $$
 $$
 :::
 
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
 在 Young 不等式中令
 
 $$
@@ -507,7 +754,22 @@ a=\frac{|X|}{\{E|X|^p\}^{1/p}},\qquad
 b=\frac{|Y|}{\{E|Y|^q\}^{1/q}},
 $$
 
-再取期望即得。取 $p=q=2$ 得 Cauchy--Schwarz 不等式
+若两个分母均非零，逐点应用 Young 不等式并取期望，得到
+
+$$
+E\left[
+\frac{|X|}{\{E|X|^p\}^{1/p}}
+\frac{|Y|}{\{E|Y|^q\}^{1/q}}
+\right]
+\le \frac1p+\frac1q=1.
+$$
+
+两边乘回分母即得 Hölder 不等式；若某个分母为零，则对应随机变量几乎处处为零，结论仍显然成立。再结合
+$|E(XY)|\le E|XY|$ 完成证明。
+
+</details>
+
+取 $p=q=2$ 得 Cauchy--Schwarz 不等式
 
 $$
 |E(XY)|\le E|XY|
@@ -544,6 +806,9 @@ $$
 $$
 :::
 
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
 证明从
 
 $$
@@ -555,6 +820,15 @@ $$
 出发，分别使用 Hölder 不等式。共轭指数
 $q=p/(p-1)$ 满足 $q(p-1)=p$，约去
 $\{E|X+Y|^p\}^{(p-1)/p}$ 即得结论。
+
+若 $E|X+Y|^p=0$，结论显然成立；否则除以该正因子后得到
+
+$$
+\{E|X+Y|^p\}^{1/p}
+\le \{E|X|^p\}^{1/p}+\{E|Y|^p\}^{1/p}.
+$$
+
+</details>
 
 ## 凸函数与 Jensen 不等式 {#jensen-inequality}
 
@@ -587,6 +861,31 @@ $$
 g(z)\ge g(x)+D^+g(x)(z-x).
 $$
 
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+若 $x<y'<y$，令
+$\lambda=(y-y')/(y-x)$，则
+$y'=\lambda x+(1-\lambda)y$。凸性给出
+
+$$
+g(y')\le
+\frac{y-y'}{y-x}g(x)+
+\frac{y'-x}{y-x}g(y).
+$$
+
+移项并除以正数 $y'-x$，得到
+
+$$
+\frac{g(y')-g(x)}{y'-x}
+\le
+\frac{g(y)-g(x)}{y-x}.
+$$
+
+其余点序情形同理，所以割线斜率随第二个端点单调不减。令端点趋近 $x$，便得到由右导数确定的支撑线不高于函数图像。
+
+</details>
+
 ::: {.theorem}
 **Jensen 不等式** 若 $g$ 为凸函数且期望存在，则
 
@@ -594,6 +893,22 @@ $$
 E\{g(X)\}\ge g(EX).
 $$
 :::
+
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+令 $m=E(X)$。在点 $m$ 处取凸函数的一条支撑线
+$\ell(x)=a+bx$，使 $g(x)\ge\ell(x)$ 且
+$g(m)=\ell(m)$。期望保持不等式，因此
+
+$$
+E\{g(X)\}\ge E\{a+bX\}
+=a+bE(X)=\ell(m)=g(m)=g\{E(X)\}.
+$$
+
+若 $g$ 为线性函数，等号由期望的线性性直接成立。一般而言，等号要求 $X$ 几乎处处落在 $g$ 与所选支撑线重合的集合上。
+
+</details>
 
 <div class="figure" style="text-align: center">
 <img src="images/ch04/p190.jpg" alt="Jensen 不等式的切线解释（原课件图）" width="30%" />
@@ -618,6 +933,29 @@ $$
 a_H\le a_G\le a_A.
 $$
 
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+对离散均匀随机指标 $I\in\{1,\ldots,n\}$，令 $X=a_I$。由于
+$\log$ 是凹函数，Jensen 不等式给出
+
+$$
+\frac1n\sum_{i=1}^n\log a_i
+\le \log\left(\frac1n\sum_{i=1}^na_i\right).
+$$
+
+两边取指数得到 $a_G\le a_A$。再对正数 $1/a_i$ 应用已经证明的
+“几何平均不超过算术平均”，
+
+$$
+\left(\prod_{i=1}^n\frac1{a_i}\right)^{1/n}
+\le\frac1n\sum_{i=1}^n\frac1{a_i}.
+$$
+
+取倒数即得 $a_H\le a_G$。
+
+</details>
+
 若 $f,g$ 是密度且 $X\sim f$，则
 
 $$
@@ -630,6 +968,27 @@ $$
 $$
 E_f\{\log g(X)\}\le E_f\{\log f(X)\}.
 $$
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+在 $g(x)>0$ 且 $f(x)>0$ 的区域令
+$R(X)=g(X)/f(X)$。因为 $\log$ 为凹函数，
+
+$$
+E_f\{\log R(X)\}\le\log E_f\{R(X)\}.
+$$
+
+而
+
+$$
+E_f\{R(X)\}=\int \frac{g(x)}{f(x)}f(x)\,dx
+=\int g(x)\,dx=1.
+$$
+
+所以 $E_f\{\log g(X)-\log f(X)\}\le0$，整理便得结论。
+
+</details>
 
 这等价于 Kullback--Leibler 散度非负，也是最大似然方法偏好真实模型的一个理论解释。
 

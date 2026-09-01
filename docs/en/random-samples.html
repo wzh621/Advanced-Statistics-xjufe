@@ -252,16 +252,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="random-samples.html"><a href="random-samples.html#statistics-sampling-distributions"><i class="fa fa-check"></i><b>5.3</b> Statistics, sample mean, and sample variance</a></li>
 <li class="chapter" data-level="5.4" data-path="random-samples.html"><a href="random-samples.html#sample-mean-mgf"><i class="fa fa-check"></i><b>5.4</b> MGF of the sample mean and the normal example</a></li>
 <li class="chapter" data-level="5.5" data-path="random-samples.html"><a href="random-samples.html#convolution-formula"><i class="fa fa-check"></i><b>5.5</b> The convolution formula</a></li>
-<li class="chapter" data-level="5.6" data-path="random-samples.html"><a href="random-samples.html#t-f-sampling-distributions"><i class="fa fa-check"></i><b>5.6</b> Student t and Snedecor F sampling distributions</a></li>
-<li class="chapter" data-level="5.7" data-path="random-samples.html"><a href="random-samples.html#discrete-order-statistics"><i class="fa fa-check"></i><b>5.7</b> Discrete order statistics</a></li>
-<li class="chapter" data-level="5.8" data-path="random-samples.html"><a href="random-samples.html#continuous-order-statistics"><i class="fa fa-check"></i><b>5.8</b> Continuous order statistics</a></li>
-<li class="chapter" data-level="5.9" data-path="random-samples.html"><a href="random-samples.html#probability-convergence-wlln"><i class="fa fa-check"></i><b>5.9</b> Convergence in probability and the WLLN</a></li>
-<li class="chapter" data-level="5.10" data-path="random-samples.html"><a href="random-samples.html#almost-sure-convergence-slln"><i class="fa fa-check"></i><b>5.10</b> Almost-sure convergence and the SLLN</a></li>
-<li class="chapter" data-level="5.11" data-path="random-samples.html"><a href="random-samples.html#distribution-convergence-uniform-max"><i class="fa fa-check"></i><b>5.11</b> Convergence in distribution and uniform maxima</a></li>
-<li class="chapter" data-level="5.12" data-path="random-samples.html"><a href="random-samples.html#clt-slutsky"><i class="fa fa-check"></i><b>5.12</b> The central limit theorem and Slutsky’s theorem</a></li>
-<li class="chapter" data-level="5.13" data-path="random-samples.html"><a href="random-samples.html#taylor-variance-propagation"><i class="fa fa-check"></i><b>5.13</b> Taylor approximation and multivariate variance propagation</a></li>
-<li class="chapter" data-level="5.14" data-path="random-samples.html"><a href="random-samples.html#delta-method-applications"><i class="fa fa-check"></i><b>5.14</b> The delta method and two applications</a></li>
-<li class="chapter" data-level="5.15" data-path="random-samples.html"><a href="random-samples.html#random-samples-summary"><i class="fa fa-check"></i><b>5.15</b> Chapter summary</a></li>
+<li class="chapter" data-level="5.6" data-path="random-samples.html"><a href="random-samples.html#normal-sample-properties"><i class="fa fa-check"></i><b>5.6</b> Sampling properties of the normal distribution</a></li>
+<li class="chapter" data-level="5.7" data-path="random-samples.html"><a href="random-samples.html#t-f-sampling-distributions"><i class="fa fa-check"></i><b>5.7</b> Student t and Snedecor F sampling distributions</a></li>
+<li class="chapter" data-level="5.8" data-path="random-samples.html"><a href="random-samples.html#discrete-order-statistics"><i class="fa fa-check"></i><b>5.8</b> Discrete order statistics</a></li>
+<li class="chapter" data-level="5.9" data-path="random-samples.html"><a href="random-samples.html#continuous-order-statistics"><i class="fa fa-check"></i><b>5.9</b> Continuous order statistics</a></li>
+<li class="chapter" data-level="5.10" data-path="random-samples.html"><a href="random-samples.html#probability-convergence-wlln"><i class="fa fa-check"></i><b>5.10</b> Convergence in probability and the WLLN</a></li>
+<li class="chapter" data-level="5.11" data-path="random-samples.html"><a href="random-samples.html#almost-sure-convergence-slln"><i class="fa fa-check"></i><b>5.11</b> Almost-sure convergence and the SLLN</a></li>
+<li class="chapter" data-level="5.12" data-path="random-samples.html"><a href="random-samples.html#distribution-convergence-uniform-max"><i class="fa fa-check"></i><b>5.12</b> Convergence in distribution and uniform maxima</a></li>
+<li class="chapter" data-level="5.13" data-path="random-samples.html"><a href="random-samples.html#clt-slutsky"><i class="fa fa-check"></i><b>5.13</b> The central limit theorem and Slutsky’s theorem</a></li>
+<li class="chapter" data-level="5.14" data-path="random-samples.html"><a href="random-samples.html#taylor-variance-propagation"><i class="fa fa-check"></i><b>5.14</b> Taylor approximation and multivariate variance propagation</a></li>
+<li class="chapter" data-level="5.15" data-path="random-samples.html"><a href="random-samples.html#delta-method-applications"><i class="fa fa-check"></i><b>5.15</b> The delta method and two applications</a></li>
+<li class="chapter" data-level="5.16" data-path="random-samples.html"><a href="random-samples.html#random-samples-summary"><i class="fa fa-check"></i><b>5.16</b> Chapter summary</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="data-reduction.html"><a href="data-reduction.html"><i class="fa fa-check"></i><b>6</b> Principles of Data Reduction</a>
 <ul>
@@ -367,16 +368,43 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math display">\[f(x_1,\ldots,x_n)=\prod_{i=1}^nf(x_i).\]</span></p>
 <p>For a parametric family <span class="math inline">\(f(x\mid\theta)\)</span>, the same unknown parameter occurs in every factor:</p>
 <p><span class="math display">\[f(x_1,\ldots,x_n\mid\theta)=\prod_{i=1}^nf(x_i\mid\theta).\]</span></p>
+<p>The random-sample model is also called sampling from an infinite population. For a finite population, <strong>sampling with replacement</strong> satisfies the iid conditions. Observations drawn <strong>without replacement</strong> are dependent, although the iid model is often a useful approximation when the population size <span class="math inline">\(N\)</span> is much larger than the sample size <span class="math inline">\(n\)</span>.</p>
+<div class="source-example">
+<p><strong>Example 5.1.3 (Finite-population approximation).</strong> Draw 10 numbers without replacement from the finite population <span class="math inline">\(\{1,\ldots,1000\}\)</span>. Find the probability that all 10 exceed 200, and compare the iid approximation with the exact probability.</p>
+</div>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
+<p>If the ten draws are temporarily treated as independent, the probability of exceeding 200 on one draw is <span class="math inline">\(800/1000\)</span>, so</p>
+<p><span class="math display">\[
+P_{\mathrm{iid}}=\left(\frac{800}{1000}\right)^{10}=0.107374.
+\]</span></p>
+<p>For the exact calculation, let <span class="math inline">\(Y\)</span> count sampled values above 200. Then
+<span class="math inline">\(Y\sim\operatorname{Hypergeometric}(N=1000,M=800,K=10)\)</span>, and</p>
+<p><span class="math display">\[
+P(Y=10)=\frac{\binom{800}{10}\binom{200}{0}}{\binom{1000}{10}}
+=0.106164.
+\]</span></p>
+<p>The difference is about <span class="math inline">\(0.00121\)</span>. Because <span class="math inline">\(n/N=0.01\)</span> is small, the iid approximation is reasonable, but it is not the exact without-replacement model.</p>
+</details>
 </div>
 <div id="exponential-sample-example" class="section level2 hasAnchor" number="5.2">
 <h2><span class="header-section-number">5.2</span> Exponential circuit-board lifetimes<a href="random-samples.html#exponential-sample-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="example">
-<p><span id="exm:unlabeled-div-71" class="example"><strong>Example 5.1  </strong></span>Let <span class="math inline">\(X_1,\ldots,X_n\)</span> come from an exponential population with scale <span class="math inline">\(\beta&gt;0\)</span>. If <span class="math inline">\(X_i\)</span> is the lifetime of the <span class="math inline">\(i\)</span>th identical circuit board, then</p>
+<div class="example source-numbered">
+<p><span id="exm:unlabeled-div-71" class="example"><strong>Example 5.1  </strong></span><strong>Example 5.1.2 (Sample pdf—exponential).</strong></p>
+<p>Let <span class="math inline">\(X_1,\ldots,X_n\)</span> come from an exponential population with scale <span class="math inline">\(\beta&gt;0\)</span>. If <span class="math inline">\(X_i\)</span> is the lifetime of the <span class="math inline">\(i\)</span>th identical circuit board, then</p>
 <p><span class="math display">\[
 f(\mathbf x\mid\beta)=\prod_{i=1}^n\frac1\beta e^{-x_i/\beta}
 =\frac1{\beta^n}\exp\left(-\frac{\sum_i x_i}{\beta}\right),\qquad x_i&gt;0.
 \]</span></p>
-<p>The probability that every board lasts more than two years is</p>
+<p>Find the probability that every board lasts more than two years.</p>
+</div>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
+<p>First integrate the joint density directly:</p>
 <p><span class="math display">\[
 \begin{aligned}
 P(X_1&gt;2,\ldots,X_n&gt;2)
@@ -386,7 +414,7 @@ P(X_1&gt;2,\ldots,X_n&gt;2)
 \]</span></p>
 <p>Equivalently, iid sampling gives
 <span class="math inline">\(P(\cap_i\{X_i&gt;2\})=\prod_iP(X_i&gt;2)=e^{-2n/\beta}\)</span>. This is near one when the average lifetime <span class="math inline">\(\beta\)</span> is large relative to <span class="math inline">\(n\)</span>.</p>
-</div>
+</details>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="random-samples.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5201</span>)</span>
 <span id="cb13-2"><a href="random-samples.html#cb13-2" aria-hidden="true" tabindex="-1"></a>beta <span class="ot">&lt;-</span> <span class="dv">10</span></span>
 <span id="cb13-3"><a href="random-samples.html#cb13-3" aria-hidden="true" tabindex="-1"></a>n_grid <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">12</span></span>
@@ -416,51 +444,223 @@ Figure 5.1: Theoretical and simulated probabilities that every board lasts more 
 \bar X=\frac1n\sum_{i=1}^nX_i,\qquad
 S^2=\frac1{n-1}\sum_{i=1}^n(X_i-\bar X)^2,\qquad S=\sqrt{S^2}.
 \]</span></p>
-<div class="theorem">
-<p><span id="thm:unlabeled-div-73" class="theorem"><strong>Theorem 5.1  </strong></span>If <span class="math inline">\(X_i\overset{\mathrm{iid}}\sim N(\mu,\sigma^2)\)</span>, then</p>
-<p><span class="math display">\[E(\bar X)=\mu,\quad \operatorname{Var}(\bar X)=\sigma^2/n,
-\quad E(S^2)=\sigma^2,\]</span></p>
-<p>and <span class="math inline">\(\bar X\sim N(\mu,\sigma^2/n)\)</span>.</p>
+<div class="source-theorem">
+<p><strong>Theorem 5.2.4 (Sum-of-squares identity).</strong> For any real numbers
+<span class="math inline">\(x_1,\ldots,x_n\)</span>, with <span class="math inline">\(\bar x=n^{-1}\sum_i x_i\)</span>,</p>
+<p><span class="math display">\[
+\sum_{i=1}^n(x_i-a)^2
+=\sum_{i=1}^n(x_i-\bar x)^2+n(\bar x-a)^2.
+\]</span></p>
+<p>Thus the sum of squared deviations is minimized at <span class="math inline">\(a=\bar x\)</span>, and</p>
+<p><span class="math display">\[
+(n-1)s^2=\sum_{i=1}^n(x_i-\bar x)^2
+=\sum_{i=1}^nx_i^2-n\bar x^2.
+\]</span></p>
 </div>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>Add and subtract <span class="math inline">\(\bar x\)</span> in every term:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\sum_{i=1}^n(x_i-a)^2
+&amp;=\sum_{i=1}^n\{(x_i-\bar x)+(\bar x-a)\}^2\\
+&amp;=\sum_{i=1}^n(x_i-\bar x)^2
++2(\bar x-a)\sum_{i=1}^n(x_i-\bar x)
++n(\bar x-a)^2.
+\end{aligned}
+\]</span></p>
+<p>Because <span class="math inline">\(\sum_i(x_i-\bar x)=0\)</span>, the cross term vanishes. Only the last term depends on <span class="math inline">\(a\)</span>, so the minimum occurs at <span class="math inline">\(a=\bar x\)</span>. Setting <span class="math inline">\(a=0\)</span> and rearranging gives
+<span class="math inline">\(\sum_i(x_i-\bar x)^2=\sum_i x_i^2-n\bar x^2\)</span>.</p>
+</details>
+<div class="source-lemma">
+<p><strong>Lemma 5.2.5 (Mean and variance of an iid sum).</strong> If <span class="math inline">\(E\{g(X_1)\}\)</span> and
+<span class="math inline">\(\operatorname{Var}\{g(X_1)\}\)</span> exist, then</p>
+<p><span class="math display">\[
+E\left\{\sum_{i=1}^ng(X_i)\right\}=nE\{g(X_1)\},\qquad
+\operatorname{Var}\left\{\sum_{i=1}^ng(X_i)\right\}
+=n\operatorname{Var}\{g(X_1)\}.
+\]</span></p>
+</div>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>The expectation statement uses only identical distributions and linearity:</p>
+<p><span class="math display">\[
+E\left\{\sum_i g(X_i)\right\}=\sum_iE\{g(X_i)\}
+=nE\{g(X_1)\}.
+\]</span></p>
+<p>The variance statement also uses independence. Expanding the square of the centered sum gives <span class="math inline">\(n\)</span> diagonal terms, each equal to
+<span class="math inline">\(\operatorname{Var}\{g(X_1)\}\)</span>, while for <span class="math inline">\(i\ne j\)</span> every cross term has expectation</p>
+<p><span class="math display">\[
+E([g(X_i)-Eg(X_i)][g(X_j)-Eg(X_j)])=0.
+\]</span></p>
+<p>Hence the variance is <span class="math inline">\(n\operatorname{Var}\{g(X_1)\}\)</span>.</p>
+</details>
+<div class="theorem source-numbered">
+<p><span id="thm:unlabeled-div-73" class="theorem"><strong>Theorem 5.1  </strong></span><strong>Theorem 5.2.6 (Sample mean and sample variance).</strong> If
+<span class="math inline">\(X_1,\ldots,X_n\)</span> are iid, <span class="math inline">\(E(X_i)=\mu\)</span>, and
+<span class="math inline">\(\operatorname{Var}(X_i)=\sigma^2&lt;\infty\)</span>, then</p>
+<p><span class="math display">\[E(\bar X)=\mu,\quad \operatorname{Var}(\bar X)=\sigma^2/n,
+\quad E(S^2)=\sigma^2.\]</span></p>
+</div>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>Lemma 5.2.5 gives</p>
+<p><span class="math display">\[
+E(\bar X)=\frac1n\sum_iE(X_i)=\mu,
+\qquad
+\operatorname{Var}(\bar X)=\frac1{n^2}\sum_i\operatorname{Var}(X_i)
+=\frac{\sigma^2}{n}.
+\]</span></p>
+<p>Theorem 5.2.4 gives</p>
+<p><span class="math display">\[
+(n-1)S^2=\sum_iX_i^2-n\bar X^2.
+\]</span></p>
+<p>Now <span class="math inline">\(E(X_i^2)=\sigma^2+\mu^2\)</span> and
+<span class="math inline">\(E(\bar X^2)=\operatorname{Var}(\bar X)+[E(\bar X)]^2 =\sigma^2/n+\mu^2\)</span>, so</p>
+<p><span class="math display">\[
+\begin{aligned}
+(n-1)E(S^2)
+&amp;=n(\sigma^2+\mu^2)
+-n\left(\frac{\sigma^2}{n}+\mu^2\right)\\
+&amp;=(n-1)\sigma^2.
+\end{aligned}
+\]</span></p>
+<p>Dividing by <span class="math inline">\(n-1\)</span> yields <span class="math inline">\(E(S^2)=\sigma^2\)</span>. This also explains the denominator <span class="math inline">\(n-1\)</span>: it makes <span class="math inline">\(S^2\)</span> unbiased for the population variance.</p>
+</details>
+<p>With the additional assumption of normality,
+<span class="math inline">\(\bar X\sim N(\mu,\sigma^2/n)\)</span>; the next section identifies this distribution directly from its MGF.</p>
 </div>
 <div id="sample-mean-mgf" class="section level2 hasAnchor" number="5.4">
 <h2><span class="header-section-number">5.4</span> MGF of the sample mean and the normal example<a href="random-samples.html#sample-mean-mgf" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="theorem">
-<p><span id="thm:unlabeled-div-74" class="theorem"><strong>Theorem 5.2  </strong></span>If the population MGF is <span class="math inline">\(M_X(t)\)</span>, then <span class="math inline">\(M_{\bar X}(t)=[M_X(t/n)]^n\)</span>.</p>
+<div class="theorem source-numbered">
+<p><span id="thm:unlabeled-div-74" class="theorem"><strong>Theorem 5.2  </strong></span><strong>Theorem 5.2.7 (MGF of the sample mean).</strong></p>
+<p>If the population MGF is <span class="math inline">\(M_X(t)\)</span>, then <span class="math inline">\(M_{\bar X}(t)=[M_X(t/n)]^n\)</span>.</p>
 </div>
-<div class="proof">
-<p><span id="unlabeled-div-75" class="proof"><em>Proof</em>. </span>Independence yields</p>
+<div class="proof source-numbered">
+<p><span id="unlabeled-div-75" class="proof"><em>Proof</em>. </span></p>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>Independence yields</p>
 <p><span class="math display">\[M_{\bar X}(t)=E\prod_{i=1}^ne^{tX_i/n}
 =\prod_{i=1}^nE(e^{tX_i/n})=[M_X(t/n)]^n.\]</span></p>
+</details>
 </div>
+<div class="source-example">
+<p><strong>Example 5.2.8 (Distribution of the normal sample mean).</strong> If the population is <span class="math inline">\(N(\mu,\sigma^2)\)</span>, find the distribution of <span class="math inline">\(\bar X\)</span>.</p>
+</div>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
 <p>For a <span class="math inline">\(N(\mu,\sigma^2)\)</span> population,</p>
 <p><span class="math display">\[
 M_{\bar X}(t)=\left[\exp\left(\mu\frac tn+\frac{\sigma^2(t/n)^2}{2}\right)\right]^n
 =\exp\left(\mu t+\frac{(\sigma^2/n)t^2}{2}\right),
 \]</span></p>
 <p>so <span class="math inline">\(\bar X\sim N(\mu,\sigma^2/n)\)</span>.</p>
+</details>
+<p>The same method shows that if <span class="math inline">\(X_i\overset{\mathrm{iid}}\sim \operatorname{Gamma}(\alpha,\beta)\)</span> under the shape-scale parameterization, then
+<span class="math inline">\(\sum_iX_i\sim\operatorname{Gamma}(n\alpha,\beta)\)</span> and
+<span class="math inline">\(\bar X\sim\operatorname{Gamma}(n\alpha,\beta/n)\)</span>.</p>
 </div>
 <div id="convolution-formula" class="section level2 hasAnchor" number="5.5">
 <h2><span class="header-section-number">5.5</span> The convolution formula<a href="random-samples.html#convolution-formula" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="theorem">
-<p><span id="thm:unlabeled-div-76" class="theorem"><strong>Theorem 5.3  </strong></span>For independent continuous random variables <span class="math inline">\(X,Y\)</span>, the density of <span class="math inline">\(Z=X+Y\)</span> is</p>
+<div class="theorem source-numbered">
+<p><span id="thm:unlabeled-div-76" class="theorem"><strong>Theorem 5.3  </strong></span><strong>Theorem 5.2.9 (Convolution formula).</strong></p>
+<p>For independent continuous random variables <span class="math inline">\(X,Y\)</span>, the density of <span class="math inline">\(Z=X+Y\)</span> is</p>
 <p><span class="math display">\[f_Z(z)=\int_{-\infty}^{\infty}f_X(x)f_Y(z-x)\,dx.\]</span></p>
 </div>
-<div class="proof">
-<p><span id="unlabeled-div-77" class="proof"><em>Proof</em>. </span>Set <span class="math inline">\(Z=X+Y,W=X\)</span>. The inverse is <span class="math inline">\(X=W,Y=Z-W\)</span>, with absolute Jacobian one. Thus <span class="math inline">\(f_{Z,W}(z,w)=f_X(w)f_Y(z-w)\)</span>; integrating out <span class="math inline">\(w\)</span> proves the result.</p>
+<div class="proof source-numbered">
+<p><span id="unlabeled-div-77" class="proof"><em>Proof</em>. </span></p>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>Set <span class="math inline">\(Z=X+Y,W=X\)</span>. The inverse is <span class="math inline">\(X=W,Y=Z-W\)</span>, with absolute Jacobian one. Thus <span class="math inline">\(f_{Z,W}(z,w)=f_X(w)f_Y(z-w)\)</span>; integrating out <span class="math inline">\(w\)</span> proves the result.</p>
+</details>
 </div>
+<div class="source-example">
+<p><strong>Example 5.2.10 (Sum of Cauchy variables).</strong> If
+<span class="math inline">\(U\sim\operatorname{Cauchy}(0,\sigma)\)</span> and
+<span class="math inline">\(V\sim\operatorname{Cauchy}(0,\tau)\)</span> are independent, then
+<span class="math inline">\(U+V\sim\operatorname{Cauchy}(0,\sigma+\tau)\)</span>. Consequently, the mean <span class="math inline">\(\bar X\)</span> of an iid standard Cauchy sample is again standard Cauchy.</p>
 </div>
-<div id="t-f-sampling-distributions" class="section level2 hasAnchor" number="5.6">
-<h2><span class="header-section-number">5.6</span> Student t and Snedecor F sampling distributions<a href="random-samples.html#t-f-sampling-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<details class="course-details derivation-details">
+<summary>
+<strong>View derivation</strong>
+</summary>
+<p>The convolution formula gives</p>
+<p><span class="math display">\[
+f_{U+V}(z)=\int_{-\infty}^{\infty}
+\frac{\sigma}{\pi(\sigma^2+u^2)}
+\frac{\tau}{\pi\{\tau^2+(z-u)^2\}}\,du.
+\]</span></p>
+<p>The textbook assigns the partial-fraction and antiderivative calculation to Exercise 5.7. Its result is</p>
+<p><span class="math display">\[
+f_{U+V}(z)=\frac{\sigma+\tau}
+{\pi\{(\sigma+\tau)^2+z^2\}},
+\]</span></p>
+<p>so scales add. Repeated application gives
+<span class="math inline">\(\sum_{i=1}^nX_i\sim\operatorname{Cauchy}(0,n)\)</span>; dividing by <span class="math inline">\(n\)</span> yields
+<span class="math inline">\(\bar X\sim\operatorname{Cauchy}(0,1)\)</span>. Thus, when the population variance does not exist, dispersion of the sample mean need not shrink with <span class="math inline">\(n\)</span>.</p>
+</details>
+</div>
+<div id="normal-sample-properties" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> Sampling properties of the normal distribution<a href="random-samples.html#normal-sample-properties" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="source-theorem">
+<p><strong>Theorem 5.3.1 (Normal sample mean and variance).</strong> If
+<span class="math inline">\(X_1,\ldots,X_n\overset{\mathrm{iid}}\sim N(\mu,\sigma^2)\)</span>, then</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\bar X\)</span> and <span class="math inline">\(S^2\)</span> are independent;</li>
+<li><span class="math inline">\(\bar X\sim N(\mu,\sigma^2/n)\)</span>;</li>
+<li><span class="math inline">\((n-1)S^2/\sigma^2\sim\chi^2_{n-1}\)</span>.</li>
+</ol>
+</div>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>Standardize with <span class="math inline">\(Z_i=(X_i-\mu)/\sigma\)</span>, so it is enough to prove the result for <span class="math inline">\(\mu=0\)</span> and <span class="math inline">\(\sigma=1\)</span>. Part 2 was already established in Example 5.2.8.</p>
+<p>For independence, set <span class="math inline">\(Y_1=\bar X\)</span> and <span class="math inline">\(Y_i=X_i-\bar X\)</span> for
+<span class="math inline">\(i=2,\ldots,n\)</span>. The statistic <span class="math inline">\(S^2\)</span> depends only on
+<span class="math inline">\((Y_2,\ldots,Y_n)\)</span>, while under this linear transformation the normal joint density factors into one term involving <span class="math inline">\(Y_1\)</span> and another involving the residual vector. Hence <span class="math inline">\(Y_1=\bar X\)</span> is independent of the residual vector, and therefore of <span class="math inline">\(S^2\)</span>.</p>
+<p>For the chi-squared result, follow the textbook recursion. Let <span class="math inline">\(\bar X_k,S_k^2\)</span> denote the mean and variance of the first <span class="math inline">\(k\)</span> observations. The sum-of-squares identity gives</p>
+<p><span class="math display">\[
+kS_{k+1}^2=(k-1)S_k^2+
+\frac{k}{k+1}(X_{k+1}-\bar X_k)^2.
+\]</span></p>
+<p>For <span class="math inline">\(k=1\)</span>, <span class="math inline">\(S_2^2=(X_2-X_1)^2/2\sim\chi_1^2\)</span>. Assume
+<span class="math inline">\((k-1)S_k^2\sim\chi_{k-1}^2\)</span>. Since
+<span class="math inline">\(X_{k+1}-\bar X_k\sim N(0,(k+1)/k)\)</span>,</p>
+<p><span class="math display">\[
+\frac{k}{k+1}(X_{k+1}-\bar X_k)^2\sim\chi_1^2.
+\]</span></p>
+<p>This variable is independent of <span class="math inline">\(S_k^2\)</span>, so independent chi-squared variables add and their degrees of freedom add. Hence
+<span class="math inline">\(kS_{k+1}^2\sim\chi_k^2\)</span>. Induction completes the standard-normal case; restoring scale gives
+<span class="math inline">\((n-1)S^2/\sigma^2\sim\chi_{n-1}^2\)</span>.</p>
+</details>
+</div>
+<div id="t-f-sampling-distributions" class="section level2 hasAnchor" number="5.7">
+<h2><span class="header-section-number">5.7</span> Student t and Snedecor F sampling distributions<a href="random-samples.html#t-f-sampling-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="definition">
-<p><span id="def:unlabeled-div-78" class="definition"><strong>Definition 5.3  </strong></span>If <span class="math inline">\(X_i\overset{\mathrm{iid}}\sim N(\mu,\sigma^2)\)</span>, then</p>
+<p><span id="def:unlabeled-div-78" class="definition"><strong>Definition 5.3  </strong></span><strong>Definition 5.3.4 (Student’s <span class="math inline">\(t\)</span> distribution).</strong></p>
+<p>If <span class="math inline">\(X_i\overset{\mathrm{iid}}\sim N(\mu,\sigma^2)\)</span>, then</p>
 <p><span class="math display">\[T=\frac{\bar X-\mu}{S/\sqrt n}\sim t_{n-1}.\]</span></p>
 <p>The general <span class="math inline">\(t_p\)</span> density is</p>
 <p><span class="math display">\[f_T(t)=\frac{\Gamma((p+1)/2)}{\Gamma(p/2)\sqrt{p\pi}}
 \left(1+\frac{t^2}{p}\right)^{-(p+1)/2},\quad t\in\mathbb R.\]</span></p>
 </div>
 <div class="definition">
-<p><span id="def:unlabeled-div-79" class="definition"><strong>Definition 5.4  </strong></span>For two independent normal random samples,</p>
+<p><span id="def:unlabeled-div-79" class="definition"><strong>Definition 5.4  </strong></span><strong>Definition 5.3.6 (Snedecor’s <span class="math inline">\(F\)</span> distribution).</strong></p>
+<p>For two independent normal random samples,</p>
 <p><span class="math display">\[F=\frac{S_X^2/\sigma_X^2}{S_Y^2/\sigma_Y^2}\sim F_{n-1,m-1}.\]</span></p>
 <p>The <span class="math inline">\(F_{p,q}\)</span> density is</p>
 <p><span class="math display">\[
@@ -469,28 +669,85 @@ f_F(x)=\frac{\Gamma((p+q)/2)}{\Gamma(p/2)\Gamma(q/2)}
 \]</span></p>
 </div>
 </div>
-<div id="discrete-order-statistics" class="section level2 hasAnchor" number="5.7">
-<h2><span class="header-section-number">5.7</span> Discrete order statistics<a href="random-samples.html#discrete-order-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="discrete-order-statistics" class="section level2 hasAnchor" number="5.8">
+<h2><span class="header-section-number">5.8</span> Discrete order statistics<a href="random-samples.html#discrete-order-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="definition">
-<p><span id="def:unlabeled-div-80" class="definition"><strong>Definition 5.5  </strong></span>The ordered sample <span class="math inline">\(X_{(1)}\le\cdots\le X_{(n)}\)</span> consists of the <strong>order statistics</strong>. In particular, <span class="math inline">\(X_{(1)}=\min_iX_i\)</span> and <span class="math inline">\(X_{(n)}=\max_iX_i\)</span>.</p>
+<p><span id="def:unlabeled-div-80" class="definition"><strong>Definition 5.5  </strong></span><strong>Definition 5.4.1 (Order statistics).</strong></p>
+<p>The ordered sample <span class="math inline">\(X_{(1)}\le\cdots\le X_{(n)}\)</span> consists of the <strong>order statistics</strong>. In particular, <span class="math inline">\(X_{(1)}=\min_iX_i\)</span> and <span class="math inline">\(X_{(n)}=\max_iX_i\)</span>.</p>
 </div>
+<div class="source-theorem">
+<p><strong>Theorem 5.4.3 (Discrete order statistics).</strong></p>
 <p>Let a discrete population have values <span class="math inline">\(x_1&lt;x_2&lt;\cdots\)</span>, with <span class="math inline">\(P(X=x_i)=p_i\)</span>, and write <span class="math inline">\(P_i=\sum_{r=1}^ip_r\)</span>, <span class="math inline">\(P_0=0\)</span>. Then</p>
 <p><span class="math display">\[P(X_{(j)}\le x_i)=\sum_{k=j}^n\binom nkP_i^k(1-P_i)^{n-k},\]</span></p>
 <p><span class="math display">\[
 P(X_{(j)}=x_i)=\sum_{k=j}^n\binom nk
 \{P_i^k(1-P_i)^{n-k}-P_{i-1}^k(1-P_{i-1})^{n-k}\}.
 \]</span></p>
-<p>Let <span class="math inline">\(Y=\sum_{r=1}^nI(X_r\le x_i)\)</span>. Then <span class="math inline">\(Y\sim\operatorname{Bin}(n,P_i)\)</span> and
-<span class="math inline">\(\{X_{(j)}\le x_i\}\iff\{Y\ge j\}\)</span>. Differencing adjacent cdf values gives the second formula.</p>
 </div>
-<div id="continuous-order-statistics" class="section level2 hasAnchor" number="5.8">
-<h2><span class="header-section-number">5.8</span> Continuous order statistics<a href="random-samples.html#continuous-order-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="theorem">
-<p><span id="thm:unlabeled-div-81" class="theorem"><strong>Theorem 5.4  </strong></span>For population cdf <span class="math inline">\(F_X\)</span> and pdf <span class="math inline">\(f_X\)</span>,</p>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>Let <span class="math inline">\(Y=\sum_{r=1}^nI(X_r\le x_i)\)</span>. Then <span class="math inline">\(Y\sim\operatorname{Bin}(n,P_i)\)</span> and
+<span class="math inline">\(\{X_{(j)}\le x_i\}\iff\{Y\ge j\}\)</span>. Therefore</p>
+<p><span class="math display">\[
+P(X_{(j)}\le x_i)=P(Y\ge j)
+=\sum_{k=j}^n\binom nkP_i^k(1-P_i)^{n-k}.
+\]</span></p>
+<p>Because the support points are ordered,</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(X_{(j)}=x_i)
+&amp;=P(X_{(j)}\le x_i)-P(X_{(j)}&lt;x_i)\\
+&amp;=P(X_{(j)}\le x_i)-P(X_{(j)}\le x_{i-1}).
+\end{aligned}
+\]</span></p>
+<p>Apply the first formula with <span class="math inline">\(P_i\)</span> and <span class="math inline">\(P_{i-1}\)</span> to obtain the result.</p>
+</details>
+</div>
+<div id="continuous-order-statistics" class="section level2 hasAnchor" number="5.9">
+<h2><span class="header-section-number">5.9</span> Continuous order statistics<a href="random-samples.html#continuous-order-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="theorem source-numbered">
+<p><span id="thm:unlabeled-div-81" class="theorem"><strong>Theorem 5.4  </strong></span><strong>Theorem 5.4.4 (Continuous order statistic).</strong></p>
+<p>For population cdf <span class="math inline">\(F_X\)</span> and pdf <span class="math inline">\(f_X\)</span>,</p>
 <p><span class="math display">\[
 f_{X_{(j)}}(x)=\frac{n!}{(j-1)!(n-j)!}f_X(x)[F_X(x)]^{j-1}[1-F_X(x)]^{n-j}.
 \]</span></p>
 </div>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>For a small <span class="math inline">\(dx&gt;0\)</span>, the event <span class="math inline">\(x&lt;X_{(j)}\le x+dx\)</span> requires exactly <span class="math inline">\(j-1\)</span> observations at or below <span class="math inline">\(x\)</span>, one in <span class="math inline">\((x,x+dx]\)</span>, and the remaining <span class="math inline">\(n-j\)</span> above <span class="math inline">\(x+dx\)</span>. There are
+<span class="math inline">\(n!/\{(j-1)!1!(n-j)!\}\)</span> assignments, so</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(x&lt;X_{(j)}\le x+dx)
+&amp;=\frac{n!}{(j-1)!(n-j)!}[F_X(x)]^{j-1}\\
+&amp;\quad\times\{F_X(x+dx)-F_X(x)\}
+[1-F_X(x+dx)]^{n-j}.
+\end{aligned}
+\]</span></p>
+<p>Divide by <span class="math inline">\(dx\)</span> and let <span class="math inline">\(dx\downarrow0\)</span>. Since
+<span class="math inline">\(\{F_X(x+dx)-F_X(x)\}/dx\to f_X(x)\)</span>, the stated density follows.</p>
+</details>
+<div class="source-example">
+<p><strong>Example 5.4.5 (Uniform order-statistic pdf).</strong> If
+<span class="math inline">\(X_i\overset{\mathrm{iid}}\sim U(0,1)\)</span>, find the density and distribution of <span class="math inline">\(X_{(j)}\)</span>.</p>
+</div>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
+<p>On <span class="math inline">\(0&lt;x&lt;1\)</span>, <span class="math inline">\(F_X(x)=x\)</span> and <span class="math inline">\(f_X(x)=1\)</span>. Theorem 5.4.4 gives</p>
+<p><span class="math display">\[
+f_{X_{(j)}}(x)=\frac{n!}{(j-1)!(n-j)!}
+x^{j-1}(1-x)^{n-j}.
+\]</span></p>
+<p>Since <span class="math inline">\(B(j,n-j+1)=(j-1)!(n-j)!/n!\)</span>,</p>
+<p><span class="math display">\[X_{(j)}\sim\operatorname{Beta}(j,n-j+1).\]</span></p>
+<p>Thus <span class="math inline">\(E(X_{(j)})=j/(n+1)\)</span>. This also explains the locations of the modes for the minimum, fifth order statistic, and maximum in the figure below.</p>
+</details>
 <p>For <span class="math inline">\(1\le i&lt;j\le n\)</span>,</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -505,6 +762,8 @@ f_{X_{(1)},\ldots,X_{(n)}}(\mathbf x)=
 \begin{cases}n!\prod_{i=1}^nf_X(x_i),&amp;x_1&lt;\cdots&lt;x_n,\\0,&amp;\text{otherwise}.
 \end{cases}
 \]</span></p>
+<p>The coefficients in these joint densities come from multinomially allocating observations among
+<span class="math inline">\((-\infty,u)\)</span>, <span class="math inline">\(du\)</span>, <span class="math inline">\((u,v)\)</span>, <span class="math inline">\(dv\)</span>, and <span class="math inline">\((v,\infty)\)</span>. The joint density of all order statistics reflects the <span class="math inline">\(n!\)</span> possible labelings of the original sample.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="random-samples.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5202</span>)</span>
 <span id="cb14-2"><a href="random-samples.html#cb14-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10</span></span>
 <span id="cb14-3"><a href="random-samples.html#cb14-3" aria-hidden="true" tabindex="-1"></a>ord <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">apply</span>(<span class="fu">matrix</span>(<span class="fu">runif</span>(<span class="dv">40000</span> <span class="sc">*</span> n), <span class="at">ncol =</span> n), <span class="dv">1</span>, sort))</span>
@@ -519,42 +778,100 @@ Figure 5.2: Sampling distributions of selected order statistics from a uniform p
 </p>
 </div>
 </div>
-<div id="probability-convergence-wlln" class="section level2 hasAnchor" number="5.9">
-<h2><span class="header-section-number">5.9</span> Convergence in probability and the WLLN<a href="random-samples.html#probability-convergence-wlln" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="probability-convergence-wlln" class="section level2 hasAnchor" number="5.10">
+<h2><span class="header-section-number">5.10</span> Convergence in probability and the WLLN<a href="random-samples.html#probability-convergence-wlln" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="definition">
 <p><span id="def:unlabeled-div-82" class="definition"><strong>Definition 5.6  </strong></span>If <span class="math inline">\(P(|X_n-X|\ge\varepsilon)\to0\)</span> for every <span class="math inline">\(\varepsilon&gt;0\)</span>, then <span class="math inline">\(X_n\)</span> <strong>converges in probability</strong> to <span class="math inline">\(X\)</span>, written <span class="math inline">\(X_n\overset p\to X\)</span>.</p>
 </div>
-<div class="theorem">
-<p><span id="thm:unlabeled-div-83" class="theorem"><strong>Theorem 5.5  </strong></span>If <span class="math inline">\(X_i\)</span> are iid, <span class="math inline">\(E(X_i)=\mu\)</span>, and <span class="math inline">\(\operatorname{Var}(X_i)=\sigma^2&lt;\infty\)</span>, the weak law states</p>
+<div class="theorem source-numbered">
+<p><span id="thm:unlabeled-div-83" class="theorem"><strong>Theorem 5.5  </strong></span><strong>Theorem 5.5.2 (Weak Law of Large Numbers).</strong></p>
+<p>If <span class="math inline">\(X_i\)</span> are iid, <span class="math inline">\(E(X_i)=\mu\)</span>, and <span class="math inline">\(\operatorname{Var}(X_i)=\sigma^2&lt;\infty\)</span>, the weak law states</p>
 <p><span class="math display">\[\bar X_n=\frac1n\sum_{i=1}^nX_i\overset p\longrightarrow\mu.\]</span></p>
 </div>
-<p>If <span class="math inline">\(X_n\overset p\to X\)</span> and <span class="math inline">\(h\)</span> is continuous, then <span class="math inline">\(h(X_n)\overset p\to h(X)\)</span>. Also,</p>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>Theorem 5.2.6 gives <span class="math inline">\(E(\bar X_n)=\mu\)</span> and
+<span class="math inline">\(\operatorname{Var}(\bar X_n)=\sigma^2/n\)</span>. For every <span class="math inline">\(\varepsilon&gt;0\)</span>, Chebyshev’s inequality gives</p>
+<p><span class="math display">\[
+P(|\bar X_n-\mu|\ge\varepsilon)
+\le\frac{\operatorname{Var}(\bar X_n)}{\varepsilon^2}
+=\frac{\sigma^2}{n\varepsilon^2}\longrightarrow0.
+\]</span></p>
+<p>This is exactly the definition of <span class="math inline">\(\bar X_n\overset p\to\mu\)</span>.</p>
+</details>
+<div class="source-theorem">
+<p><strong>Theorem 5.5.4 (Continuous mapping).</strong> If <span class="math inline">\(X_n\overset p\to X\)</span> and <span class="math inline">\(h\)</span> is continuous, then <span class="math inline">\(h(X_n)\overset p\to h(X)\)</span>.</p>
+</div>
+<div class="source-example">
+<p><strong>Examples 5.5.3–5.5.5 (Consistency of sample variance and standard deviation).</strong> Since <span class="math inline">\(E(S_n^2)=\sigma^2\)</span>, Chebyshev’s inequality gives</p>
 <p><span class="math display">\[P(|S_n^2-\sigma^2|\ge\varepsilon)\le\operatorname{Var}(S_n^2)/\varepsilon^2.\]</span></p>
 <p>Thus <span class="math inline">\(\operatorname{Var}(S_n^2)\to0\)</span> is sufficient for <span class="math inline">\(S_n^2\overset p\to\sigma^2\)</span>; continuity then gives <span class="math inline">\(S_n\overset p\to\sigma\)</span>.</p>
 </div>
-<div id="almost-sure-convergence-slln" class="section level2 hasAnchor" number="5.10">
-<h2><span class="header-section-number">5.10</span> Almost-sure convergence and the SLLN<a href="random-samples.html#almost-sure-convergence-slln" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<details class="course-details derivation-details">
+<summary>
+<strong>View derivation</strong>
+</summary>
+<p>If <span class="math inline">\(\operatorname{Var}(S_n^2)\to0\)</span>, the right side tends to zero for every <span class="math inline">\(\varepsilon&gt;0\)</span>, so
+<span class="math inline">\(S_n^2\overset p\to\sigma^2\)</span>. Because the square-root function is continuous on <span class="math inline">\([0,\infty)\)</span>,</p>
+<p><span class="math display">\[
+S_n=\sqrt{S_n^2}\overset p\longrightarrow\sqrt{\sigma^2}=\sigma.
+\]</span></p>
+<p>The textbook states only that <span class="math inline">\(\operatorname{Var}(S_n^2)\to0\)</span> is sufficient; it does not establish that condition under a second-moment assumption alone. The handout therefore does not overstate the conclusion.</p>
+</details>
+</div>
+<div id="almost-sure-convergence-slln" class="section level2 hasAnchor" number="5.11">
+<h2><span class="header-section-number">5.11</span> Almost-sure convergence and the SLLN<a href="random-samples.html#almost-sure-convergence-slln" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="definition">
 <p><span id="def:unlabeled-div-84" class="definition"><strong>Definition 5.7  </strong></span>If <span class="math inline">\(P(\lim_{n\to\infty}X_n=X)=1\)</span>, then <span class="math inline">\(X_n\)</span> <strong>converges almost surely</strong> to <span class="math inline">\(X\)</span>, written <span class="math inline">\(X_n\overset{a.s.}\to X\)</span>. Thus <span class="math inline">\(X_n(s)\to X(s)\)</span> outside a probability-zero set.</p>
 </div>
-<div class="theorem">
-<p><span id="thm:unlabeled-div-85" class="theorem"><strong>Theorem 5.6  </strong></span>If <span class="math inline">\(X_i\)</span> are iid, <span class="math inline">\(E(X_i)=\mu\)</span>, and <span class="math inline">\(\operatorname{Var}(X_i)&lt;\infty\)</span>, the strong law states <span class="math inline">\(\bar X_n\overset{a.s.}\to\mu\)</span>.</p>
+<div class="theorem source-numbered">
+<p><span id="thm:unlabeled-div-85" class="theorem"><strong>Theorem 5.6  </strong></span><strong>Theorem 5.5.9 (Strong Law of Large Numbers).</strong></p>
+<p>If <span class="math inline">\(X_i\)</span> are iid, <span class="math inline">\(E(X_i)=\mu\)</span>, and <span class="math inline">\(\operatorname{Var}(X_i)&lt;\infty\)</span>, the strong law states <span class="math inline">\(\bar X_n\overset{a.s.}\to\mu\)</span>.</p>
 </div>
-<div class="example">
-<p><span id="exm:unlabeled-div-86" class="example"><strong>Example 5.2  </strong></span>On the uniform probability space <span class="math inline">\([0,1]\)</span>, let <span class="math inline">\(X_n(s)=s+s^n\)</span> and <span class="math inline">\(X(s)=s\)</span>. For <span class="math inline">\(s&lt;1\)</span>, <span class="math inline">\(X_n(s)\to X(s)\)</span>, but <span class="math inline">\(X_n(1)=2\not\to1\)</span>. The exceptional singleton has probability zero, so <span class="math inline">\(X_n\overset{a.s.}\to X\)</span>.</p>
+<div class="example source-numbered">
+<p><span id="exm:unlabeled-div-86" class="example"><strong>Example 5.2  </strong></span><strong>Example 5.5.7 (Almost-sure convergence).</strong></p>
+<p>On the uniform probability space <span class="math inline">\([0,1]\)</span>, let <span class="math inline">\(X_n(s)=s+s^n\)</span> and <span class="math inline">\(X(s)=s\)</span>. For <span class="math inline">\(s&lt;1\)</span>, <span class="math inline">\(X_n(s)\to X(s)\)</span>, but <span class="math inline">\(X_n(1)=2\not\to1\)</span>. The exceptional singleton has probability zero, so <span class="math inline">\(X_n\overset{a.s.}\to X\)</span>.</p>
 </div>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
+<p>For each <span class="math inline">\(0\le s&lt;1\)</span>, the geometric sequence satisfies <span class="math inline">\(s^n\to0\)</span>, so
+<span class="math inline">\(X_n(s)=s+s^n\to s=X(s)\)</span>. Convergence fails only at <span class="math inline">\(s=1\)</span>, where
+<span class="math inline">\(X_n(1)=2\)</span> for every <span class="math inline">\(n\)</span>. Under the uniform distribution,
+<span class="math inline">\(P(\{1\})=0\)</span>, so the convergence set <span class="math inline">\([0,1)\)</span> has probability one and convergence is almost sure.</p>
+</details>
+<p>Textbook Example 5.5.8 also shows that convergence in probability need not imply almost-sure convergence of the entire sequence. Its moving-interval indicators take the values zero and one infinitely often at every fixed sample point, while the length of the interval on which the indicator is one tends to zero. Thus they still converge to zero in probability. The contrast clarifies the pathwise requirement of almost-sure convergence.</p>
 </div>
-<div id="distribution-convergence-uniform-max" class="section level2 hasAnchor" number="5.11">
-<h2><span class="header-section-number">5.11</span> Convergence in distribution and uniform maxima<a href="random-samples.html#distribution-convergence-uniform-max" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="distribution-convergence-uniform-max" class="section level2 hasAnchor" number="5.12">
+<h2><span class="header-section-number">5.12</span> Convergence in distribution and uniform maxima<a href="random-samples.html#distribution-convergence-uniform-max" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="definition">
 <p><span id="def:unlabeled-div-87" class="definition"><strong>Definition 5.8  </strong></span>If <span class="math inline">\(F_{X_n}(x)\to F_X(x)\)</span> at every continuity point of <span class="math inline">\(F_X\)</span>, then <span class="math inline">\(X_n\)</span> <strong>converges in distribution</strong> to <span class="math inline">\(X\)</span>, written <span class="math inline">\(X_n\overset d\to X\)</span>.</p>
 </div>
 <p><span class="math inline">\(X_n\overset p\to X\)</span> implies <span class="math inline">\(X_n\overset d\to X\)</span>. For a constant limit <span class="math inline">\(\mu\)</span>, the modes are equivalent; the limiting cdf is zero below <span class="math inline">\(\mu\)</span> and one above <span class="math inline">\(\mu\)</span>.</p>
-<p>If <span class="math inline">\(X_i\overset{\mathrm{iid}}\sim U(0,1)\)</span>, then</p>
-<p><span class="math display">\[P(|X_{(n)}-1|\ge\varepsilon)=(1-\varepsilon)^n\to0,\]</span></p>
+<div class="source-example">
+<p><strong>Example 5.5.11 (Maximum of uniforms).</strong> If
+<span class="math inline">\(X_i\overset{\mathrm{iid}}\sim U(0,1)\)</span>, determine the limit of <span class="math inline">\(X_{(n)}\)</span> and find a nondegenerate scaled limit.</p>
+</div>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
+<p>Because <span class="math inline">\(X_{(n)}\le1\)</span>, for <span class="math inline">\(0&lt;\varepsilon&lt;1\)</span>,</p>
+<p><span class="math display">\[
+\begin{aligned}
+P(|X_{(n)}-1|\ge\varepsilon)
+&amp;=P(X_{(n)}\le1-\varepsilon)\\
+&amp;=P(X_i\le1-\varepsilon, i=1,\ldots,n)\\
+&amp;=(1-\varepsilon)^n\to0,
+\end{aligned}
+\]</span></p>
 <p>so <span class="math inline">\(X_{(n)}\overset p\to1\)</span>. Moreover, for <span class="math inline">\(t\ge0\)</span>,</p>
 <p><span class="math display">\[P\{n(1-X_{(n)})\le t\}=1-(1-t/n)^n\to1-e^{-t},\]</span></p>
 <p>hence <span class="math inline">\(n(1-X_{(n)})\overset d\to\operatorname{Exp}(1)\)</span>.</p>
+</details>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="random-samples.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">5203</span>)</span>
 <span id="cb15-2"><a href="random-samples.html#cb15-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">80</span></span>
 <span id="cb15-3"><a href="random-samples.html#cb15-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> n <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">apply</span>(<span class="fu">matrix</span>(<span class="fu">runif</span>(<span class="dv">50000</span> <span class="sc">*</span> n), <span class="at">ncol =</span> n), <span class="dv">1</span>, max))</span>
@@ -570,26 +887,68 @@ Figure 5.3: The scaled uniform-sample maximum approaches Exp(1)
 </p>
 </div>
 </div>
-<div id="clt-slutsky" class="section level2 hasAnchor" number="5.12">
-<h2><span class="header-section-number">5.12</span> The central limit theorem and Slutsky’s theorem<a href="random-samples.html#clt-slutsky" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="theorem">
-<p><span id="thm:unlabeled-div-88" class="theorem"><strong>Theorem 5.7  </strong></span>If <span class="math inline">\(X_i\)</span> are iid, <span class="math inline">\(E(X_i)=\mu\)</span>, and <span class="math inline">\(0&lt;\operatorname{Var}(X_i)=\sigma^2&lt;\infty\)</span>, then</p>
+<div id="clt-slutsky" class="section level2 hasAnchor" number="5.13">
+<h2><span class="header-section-number">5.13</span> The central limit theorem and Slutsky’s theorem<a href="random-samples.html#clt-slutsky" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="source-theorem">
+<p><strong>Theorem 5.5.14 (MGF version of the Central Limit Theorem).</strong> If the <span class="math inline">\(X_i\)</span> are iid,
+<span class="math inline">\(E(X_i)=\mu\)</span>, <span class="math inline">\(\operatorname{Var}(X_i)=\sigma^2&gt;0\)</span>, and their common MGF exists in a neighborhood of zero, then</p>
 <p><span class="math display">\[\frac{\sqrt n(\bar X_n-\mu)}{\sigma}\overset d\longrightarrow N(0,1).\]</span></p>
 </div>
-<p>The source first gives a version assuming an MGF near zero, followed by this stronger finite-variance form. The latter uses characteristic functions and does not require an MGF.</p>
-<div class="theorem">
-<p><span id="thm:unlabeled-div-89" class="theorem"><strong>Theorem 5.8  </strong></span>If <span class="math inline">\(X_n\overset d\to X\)</span> and <span class="math inline">\(Y_n\overset p\to a\)</span> for a constant <span class="math inline">\(a\)</span>, then</p>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>Let <span class="math inline">\(Y_i=(X_i-\mu)/\sigma\)</span>. Then <span class="math inline">\(E(Y_i)=0\)</span> and <span class="math inline">\(E(Y_i^2)=1\)</span>. Writing <span class="math inline">\(M_Y\)</span> for their common MGF, independence gives</p>
+<p><span class="math display">\[M_n(t)=\left[M_Y\left(\frac{t}{\sqrt n}\right)\right]^n.\]</span></p>
+<p>A second-order Taylor expansion at zero gives</p>
+<p><span class="math display">\[
+M_Y(u)=1+uE(Y_i)+\frac{u^2}{2}E(Y_i^2)+R(u)
+=1+\frac{u^2}{2}+R(u),
+\]</span></p>
+<p>where <span class="math inline">\(R(u)/u^2\to0\)</span>. Set <span class="math inline">\(u=t/\sqrt n\)</span> to obtain</p>
+<p><span class="math display">\[
+M_n(t)=\left[1+\frac1n\left\{\frac{t^2}{2}
++nR(t/\sqrt n)\right\}\right]^n.
+\]</span></p>
+<p>For fixed <span class="math inline">\(t\)</span>, <span class="math inline">\(nR(t/\sqrt n)\to0\)</span>, so
+<span class="math inline">\(M_n(t)\to e^{t^2/2}\)</span>. The limit is the standard-normal MGF; uniqueness of MGFs yields convergence in distribution.</p>
+</details>
+<div class="theorem source-numbered">
+<p><span id="thm:unlabeled-div-88" class="theorem"><strong>Theorem 5.7  </strong></span><strong>Theorem 5.5.15 (Finite-variance Central Limit Theorem).</strong> If the <span class="math inline">\(X_i\)</span> are iid,
+<span class="math inline">\(E(X_i)=\mu\)</span>, and <span class="math inline">\(0&lt;\operatorname{Var}(X_i)=\sigma^2&lt;\infty\)</span>, then</p>
+<p><span class="math display">\[\frac{\sqrt n(\bar X_n-\mu)}{\sigma}\overset d\longrightarrow N(0,1).\]</span></p>
+</div>
+<p>The finite-variance form is stronger than the MGF version. It can be proved with characteristic functions and does not require the MGF to exist. The textbook does not expand that complex-variable proof, so the handout does not invent one; the Cauchy sample-mean example shows why the finite-variance condition cannot simply be discarded.</p>
+<div class="theorem source-numbered">
+<p><span id="thm:unlabeled-div-89" class="theorem"><strong>Theorem 5.8  </strong></span><strong>Theorem 5.5.17 (Slutsky’s theorem).</strong> If <span class="math inline">\(X_n\overset d\to X\)</span> and
+<span class="math inline">\(Y_n\overset p\to a\)</span> for a constant <span class="math inline">\(a\)</span>, then</p>
 <p><span class="math display">\[Y_nX_n\overset d\to aX,\qquad X_n+Y_n\overset d\to X+a.\]</span></p>
 </div>
-<p>If <span class="math inline">\(S_n\overset p\to\sigma\)</span>, then</p>
+<div class="source-example">
+<p><strong>Example 5.5.18 (Studentization with the sample standard deviation).</strong> When <span class="math inline">\(\sigma\)</span> is unknown but
+<span class="math inline">\(S_n\overset p\to\sigma\)</span>, show that replacing <span class="math inline">\(\sigma\)</span> by <span class="math inline">\(S_n\)</span> preserves the standard-normal limit.</p>
+</div>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
+<p>The continuous mapping theorem gives
+<span class="math inline">\(\sigma/S_n\overset p\to1\)</span> from <span class="math inline">\(S_n\overset p\to\sigma&gt;0\)</span>. The CLT and Slutsky’s theorem therefore yield</p>
 <p><span class="math display">\[
 \frac{\sqrt n(\bar X_n-\mu)}{S_n}
 =\frac\sigma{S_n}\frac{\sqrt n(\bar X_n-\mu)}\sigma
 \overset d\longrightarrow N(0,1).
 \]</span></p>
+<p>The first factor removes the unknown scale, while the second supplies the normal limit. After studentization, the limiting law no longer contains the unknown <span class="math inline">\(\sigma\)</span>.</p>
+</details>
 </div>
-<div id="taylor-variance-propagation" class="section level2 hasAnchor" number="5.13">
-<h2><span class="header-section-number">5.13</span> Taylor approximation and multivariate variance propagation<a href="random-samples.html#taylor-variance-propagation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="taylor-variance-propagation" class="section level2 hasAnchor" number="5.14">
+<h2><span class="header-section-number">5.14</span> Taylor approximation and multivariate variance propagation<a href="random-samples.html#taylor-variance-propagation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="source-theorem">
+<p><strong>Theorem 5.5.21 (Taylor remainder).</strong> If <span class="math inline">\(g\)</span> has <span class="math inline">\(r+1\)</span> derivatives near <span class="math inline">\(a\)</span> and
+<span class="math inline">\(T_r(x)=\sum_{j=0}^r g^{(j)}(a)(x-a)^j/j!\)</span>, then</p>
+<p><span class="math display">\[\frac{g(x)-T_r(x)}{(x-a)^r}\longrightarrow0\qquad(x\to a).\]</span></p>
+</div>
 <p>Let <span class="math inline">\(\mathbf T=(T_1,\ldots,T_k)\)</span>, <span class="math inline">\(E(\mathbf T)=\boldsymbol\theta\)</span>, and
 <span class="math inline">\(g_i&#39;(\boldsymbol\theta)=\left.\partial g(\mathbf t)/\partial t_i\right|_{\mathbf t=\boldsymbol\theta}\)</span>. The first-order expansion is</p>
 <p><span class="math display">\[g(\mathbf T)\approx g(\boldsymbol\theta)+\sum_{i=1}^kg_i&#39;(\boldsymbol\theta)(T_i-\theta_i).\]</span></p>
@@ -601,26 +960,82 @@ Figure 5.3: The scaled uniform-sample maximum approaches Exp(1)
 +2\sum_{i&gt;j}g_i&#39;(\boldsymbol\theta)g_j&#39;(\boldsymbol\theta)\operatorname{Cov}(T_i,T_j).
 \]</span></p>
 </div>
-<div id="delta-method-applications" class="section level2 hasAnchor" number="5.14">
-<h2><span class="header-section-number">5.14</span> The delta method and two applications<a href="random-samples.html#delta-method-applications" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="delta-method-applications" class="section level2 hasAnchor" number="5.15">
+<h2><span class="header-section-number">5.15</span> The delta method and two applications<a href="random-samples.html#delta-method-applications" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="source-example">
+<p><strong>Example 5.5.22 (Approximate variance of the odds).</strong> For a Bernoulli sample, let
+<span class="math inline">\(\hat p=\bar X\)</span> and use <span class="math inline">\(\hat p/(1-\hat p)\)</span> to estimate the population odds <span class="math inline">\(p/(1-p)\)</span>.</p>
+</div>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
 <p>For a Bernoulli sample, <span class="math inline">\(\hat p=\bar X\)</span>. If <span class="math inline">\(g(p)=p/(1-p)\)</span>, then</p>
 <p><span class="math display">\[
 \operatorname{Var}\left(\frac{\hat p}{1-\hat p}\right)
 \approx[g&#39;(p)]^2\operatorname{Var}(\hat p)=\frac{p}{n(1-p)^3}.
 \]</span></p>
+<p>Specifically, <span class="math inline">\(g&#39;(p)=1/(1-p)^2\)</span> and
+<span class="math inline">\(\operatorname{Var}(\hat p)=p(1-p)/n\)</span>, so</p>
+<p><span class="math display">\[
+[g&#39;(p)]^2\operatorname{Var}(\hat p)
+=\frac1{(1-p)^4}\frac{p(1-p)}n
+=\frac{p}{n(1-p)^3}.
+\]</span></p>
+</details>
+<div class="source-example">
+<p><strong>Example 5.5.23 (Approximate moments of a reciprocal).</strong> If <span class="math inline">\(E_\mu(X)=\mu\ne0\)</span>, use a first-order Taylor expansion to approximate the mean and variance of <span class="math inline">\(1/X\)</span>.</p>
+</div>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
 <p>If <span class="math inline">\(E_\mu(X)=\mu\ne0\)</span>, take <span class="math inline">\(g(\mu)=1/\mu\)</span>. Then</p>
 <p><span class="math display">\[E_\mu(1/X)\approx1/\mu,\qquad
 \operatorname{Var}_\mu(1/X)\approx\mu^{-4}\operatorname{Var}_\mu(X).\]</span></p>
-<div class="theorem">
-<p><span id="thm:unlabeled-div-90" class="theorem"><strong>Theorem 5.9  </strong></span>If <span class="math inline">\(\sqrt n(Y_n-\theta)\overset d\to N(0,\sigma^2)\)</span> and <span class="math inline">\(g&#39;(\theta)\)</span> exists, then</p>
+<p>Because <span class="math inline">\(g&#39;(\mu)=-\mu^{-2}\)</span>,</p>
+<p><span class="math display">\[
+g(X)\approx g(\mu)+g&#39;(\mu)(X-\mu)
+=\frac1\mu-\frac{X-\mu}{\mu^2}.
+\]</span></p>
+<p>The linear term has expectation zero, while the constant drops out of the variance, giving the two approximations above. These are local first-order approximations; they neither assert that <span class="math inline">\(E(1/X)\)</span> must exist nor turn an approximation into an exact equality.</p>
+</details>
+<div class="theorem source-numbered">
+<p><span id="thm:unlabeled-div-90" class="theorem"><strong>Theorem 5.9  </strong></span><strong>Theorem 5.5.24 (Delta method).</strong></p>
+<p>If <span class="math inline">\(\sqrt n(Y_n-\theta)\overset d\to N(0,\sigma^2)\)</span> and <span class="math inline">\(g&#39;(\theta)\)</span> exists and is nonzero, then</p>
 <p><span class="math display">\[
 \sqrt n\{g(Y_n)-g(\theta)\}
 \overset d\longrightarrow N(0,\sigma^2[g&#39;(\theta)]^2).
 \]</span></p>
 </div>
-<div class="proof">
-<p><span id="unlabeled-div-91" class="proof"><em>Proof</em>. </span>Taylor expansion gives <span class="math inline">\(g(Y_n)-g(\theta)=g&#39;(\theta)(Y_n-\theta)+o_p(n^{-1/2})\)</span>. Multiply by <span class="math inline">\(\sqrt n\)</span> and apply Slutsky’s theorem.</p>
+<div class="proof source-numbered">
+<p><span id="unlabeled-div-91" class="proof"><em>Proof</em>. </span></p>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>Differentiability gives a random remainder <span class="math inline">\(r_n\)</span> such that</p>
+<p><span class="math display">\[
+g(Y_n)-g(\theta)=g&#39;(\theta)(Y_n-\theta)+r_n(Y_n-\theta),
+\]</span></p>
+<p>with <span class="math inline">\(r_n\overset p\to0\)</span> whenever <span class="math inline">\(Y_n\overset p\to\theta\)</span>. Moreover,
+<span class="math inline">\(\sqrt n(Y_n-\theta)\overset d\to N(0,\sigma^2)\)</span> implies that this sequence is
+<span class="math inline">\(O_p(1)\)</span>, hence <span class="math inline">\(Y_n-\theta=O_p(n^{-1/2})\)</span>. Therefore</p>
+<p><span class="math display">\[
+\sqrt n\{g(Y_n)-g(\theta)\}
+=\{g&#39;(\theta)+r_n\}\sqrt n(Y_n-\theta).
+\]</span></p>
+<p>Slutsky’s theorem gives the limit
+<span class="math inline">\(N(0,\sigma^2[g&#39;(\theta)]^2)\)</span>. This also explains why merely saying that the remainder tends to zero is insufficient: its order after multiplication by <span class="math inline">\(\sqrt n\)</span> must be controlled.</p>
+</details>
 </div>
+<div class="source-example">
+<p><strong>Example 5.5.25 (Reciprocal sample mean).</strong> For <span class="math inline">\(Y_n=\bar X\)</span> and <span class="math inline">\(g(x)=1/x\)</span>, find the asymptotic distribution and a computable approximate variance.</p>
+</div>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
 <p>For <span class="math inline">\(Y_n=\bar X\)</span> and <span class="math inline">\(g(x)=1/x\)</span>, when <span class="math inline">\(\mu\ne0\)</span>,</p>
 <p><span class="math display">\[
 \sqrt n\left(\frac1{\bar X}-\frac1\mu\right)
@@ -631,15 +1046,34 @@ Figure 5.3: The scaled uniform-sample maximum approaches Exp(1)
 \widehat{\operatorname{Var}}(1/\bar X)\approx\frac{S^2}{n\bar X^4},\qquad
 \frac{\sqrt n(1/\bar X-1/\mu)}{S/\bar X^2}\overset d\to N(0,1).
 \]</span></p>
+<p>Here <span class="math inline">\(g&#39;(\mu)=-1/\mu^2\)</span>, whose square gives asymptotic variance
+<span class="math inline">\(\operatorname{Var}(X_1)/\mu^4\)</span>. Replacing the unknown
+<span class="math inline">\(\operatorname{Var}(X_1)\)</span> and <span class="math inline">\(\mu\)</span> by the consistent <span class="math inline">\(S^2\)</span> and <span class="math inline">\(\bar X\)</span>, while retaining the <span class="math inline">\(1/n\)</span> in <span class="math inline">\(\operatorname{Var}(\bar X)\)</span>, yields
+<span class="math inline">\(S^2/(n\bar X^4)\)</span>.</p>
+</details>
+<div class="source-theorem">
+<p><strong>Theorem 5.5.26 (Second-order delta method).</strong> If
+<span class="math inline">\(\sqrt n(Y_n-\theta)\overset d\to N(0,\sigma^2)\)</span>,
+<span class="math inline">\(g&#39;(\theta)=0\)</span>, and <span class="math inline">\(g&#39;&#39;(\theta)\ne0\)</span>, then</p>
+<p><span class="math display">\[
+n\{g(Y_n)-g(\theta)\}
+\overset d\longrightarrow \frac{\sigma^2g&#39;&#39;(\theta)}2\chi_1^2.
+\]</span></p>
 </div>
-<div id="random-samples-summary" class="section level2 hasAnchor" number="5.15">
-<h2><span class="header-section-number">5.15</span> Chapter summary<a href="random-samples.html#random-samples-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When the first derivative vanishes, the first-order delta method degenerates. Retaining the second Taylor term and using the fact that a squared standard normal is <span class="math inline">\(\chi_1^2\)</span> gives this result.</p>
+</div>
+<div id="random-samples-summary" class="section level2 hasAnchor" number="5.16">
+<h2><span class="header-section-number">5.16</span> Chapter summary<a href="random-samples.html#random-samples-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>The iid assumption factors the joint sample distribution into identical marginals.</li>
 <li>Sampling distributions of the mean, variance, and order statistics connect population and data.</li>
 <li>Laws of large numbers explain stability; the CLT explains normal approximation.</li>
 <li>Slutsky and delta methods transfer limits to useful statistics.</li>
 </ul>
+<blockquote>
+<p><strong>After-class prompt:</strong> Complete textbook Exercise 5.7 for the Cauchy convolution integral, Exercise 5.26 for the joint density of two order statistics, and Exercise 5.43 for the delta-method remainder details. This handout does not expose standard answers that the source does not provide.</p>
+</blockquote>
+<p><strong>References:</strong> Casella and Berger, <em>Statistical Inference</em>, 2nd ed., Chapter 5; the original <code>chap-5.tex</code> slide deck and its four included fragments.</p>
 
 </div>
 </div>

@@ -298,7 +298,7 @@ $$
 f(y;\pi)=\exp\left\{y\theta-n\log(1+e^\theta)+\log\binom ny\right\}.
 $$
 
-故 $a(\phi)=1$、$b(\theta)=n\log(1+e^\theta)$、$c(y,\phi)=\log\binom ny$。当 $n=1$ 时得到 Bernoulli 分布，此时 $b(\theta)=\log(1+e^\theta)$、$c(y,phi)=0$。
+故 $a(\phi)=1$、$b(\theta)=n\log(1+e^\theta)$、$c(y,\phi)=\log\binom ny$。当 $n=1$ 时得到 Bernoulli 分布，此时 $b(\theta)=\log(1+e^\theta)$、$c(y,\phi)=0$。
 
 若 $Y\sim\operatorname{Poisson}(\lambda)$，则
 
@@ -320,7 +320,10 @@ E(Y)=b'(\theta),\qquad
 $$
 :::
 
-::: {.proof}
+::: {.proof .source-numbered}
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
 由 $\int f(y;\theta,\phi)dy=1$，对 $\theta$ 求导并交换操作，有
 
 $$
@@ -345,19 +348,57 @@ $$
 $$
 
 从而得到式 \@ref(eq:exponential-family-moments)。离散情形将积分替换为对支撑集求和。
+
+</details>
 :::
 
 ::: {.example}
 **正态分布。** $b(\theta)=\theta^2/2$、$a(\phi)=\sigma^2$，所以 $E(Y)=\mu$、$\operatorname{Var}(Y)=\sigma^2$。
 :::
 
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+自然参数是 $\theta=\mu$。因此
+
+$$
+b'(\theta)=\theta,\qquad b''(\theta)=1.
+$$
+
+代入性质 1 得
+
+$$
+E(Y)=b'(\mu)=\mu,\qquad
+\operatorname{Var}(Y)=b''(\mu)a(\phi)=1\cdot\sigma^2=\sigma^2.
+$$
+
+</details>
+
 ::: {.example}
 **Poisson 分布。** $b(\theta)=e^\theta=\lambda$、$a(\phi)=1$，所以 $E(Y)=\lambda$、$\operatorname{Var}(Y)=\lambda$。
 :::
 
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+由 $\theta=\log\lambda$ 可知 $e^\theta=\lambda$，并且
+
+$$
+b'(\theta)=e^\theta,qquad b''(\theta)=e^\theta.
+$$
+
+所以
+
+$$
+E(Y)=e^\theta=\lambda,qquad
+\operatorname{Var}(Y)=e^\theta\cdot1=\lambda.
+$$
+
+</details>
+
 ## 位置族、尺度族与位置—尺度族 {#location-scale-families}
 
-::: {.theorem}
+::: {.theorem .source-numbered}
 **定理 3.5.1** 若 $f$ 是任意概率密度，$\mu\in\mathbb R$、$\sigma>0$，则
 
 $$
@@ -367,19 +408,52 @@ $$
 也是概率密度。
 :::
 
-令 $z=(x-\mu)/\sigma$，即可验证 $\int g(x\mid\mu,\sigma)dx=\int f(z)dz=1$。
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+非负性由 $f\ge0$ 与 $\sigma>0$ 立即得到。再令
+$z=(x-\mu)/\sigma$，则 $x=\mu+\sigma z$、$dx=\sigma dz$，因此
+
+$$
+\begin{aligned}
+\int_{-\infty}^{\infty}g(x\mid\mu,\sigma)\,dx
+&=\int_{-\infty}^{\infty}
+\frac1\sigma f\left(\frac{x-\mu}{\sigma}\right)\,dx\\
+&=\int_{-\infty}^{\infty}\frac1\sigma f(z)\sigma\,dz
+=\int_{-\infty}^{\infty}f(z)\,dz=1.
+\end{aligned}
+$$
+
+故 $g$ 非负且积分为 1，确为概率密度。
+
+</details>
 
 ::: {.definition}
 **定义 3.5.2（位置族）** 给定标准密度 $f$，$\{f(x-\mu):\mu\in\mathbb R\}$ 称为以 $\mu$ 为位置参数的位置族。
 :::
 
-::: {.example}
+::: {.example .source-numbered}
 **例 3.5.3（指数位置族）** 取 $f(x)=e^{-x}$（$x\ge0$；其他处为 0），则
 
 $$
 f(x\mid\mu)=\begin{cases}e^{-(x-\mu)},&x\ge\mu,\\0,&x<\mu.\end{cases}
 $$
 :::
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+位置变换把标准密度中的自变量 $x$ 替换为 $x-\mu$。原支撑条件
+$x\ge0$ 同时变为 $x-\mu\ge0$，也就是 $x\ge\mu$；因此密度的正值部分整体向右平移 $\mu$，但形状不变。归一化可直接验证为
+
+$$
+\int_\mu^\infty e^{-(x-\mu)}\,dx
+=\int_0^\infty e^{-z}\,dz=1.
+$$
+
+这里 $\mu$ 还是分布支撑的下端点，所以在寿命或反应时间模型中也可解释为阈值参数。
+
+</details>
 
 ::: {.definition}
 **定义 3.5.4（尺度族）** 给定标准密度 $f$，$\{\sigma^{-1}f(x/\sigma):\sigma>0\}$ 称为以 $\sigma$ 为尺度参数的尺度族。
@@ -396,13 +470,70 @@ $$
 称为位置—尺度族，$\mu$ 与 $\sigma$ 分别是位置和尺度参数。
 :::
 
-::: {.theorem}
+::: {.theorem .source-numbered}
 **定理 3.5.6** $X$ 的密度为 $\sigma^{-1}f\{(x-\mu)/\sigma\}$，当且仅当存在密度为 $f$ 的随机变量 $Z$，使
 
 $$
 X=\sigma Z+\mu.
 $$
 :::
+
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+先证“若”。设 $Z$ 的密度为 $f$，且 $X=\sigma Z+\mu$。由于
+$\sigma>0$，反变换为 $z=(x-\mu)/\sigma$，其导数绝对值为
+$1/\sigma$。由一维变量变换公式，
+
+$$
+f_X(x)=f\left(\frac{x-\mu}{\sigma}\right)\frac1\sigma.
+$$
+
+再证“仅若”。若 $X$ 具有上述密度，定义
+$Z=(X-\mu)/\sigma$，即 $X=\sigma Z+\mu$。对反向变换
+$x=\sigma z+\mu$ 使用变量变换公式，
+
+$$
+f_Z(z)=f_X(\sigma z+\mu)\sigma
+=\frac1\sigma f(z)\sigma=f(z).
+$$
+
+所以 $Z$ 的密度确为标准密度 $f$，两方向均成立。
+
+</details>
+
+::: {.source-theorem}
+**定理 3.5.7（位置—尺度变换的矩）** 若 $Z$ 的密度为 $f$，且
+$E(Z)$、$\operatorname{Var}(Z)$ 存在，则对
+$X=\sigma Z+\mu$ 有
+
+$$
+E(X)=\sigma E(Z)+\mu,\qquad
+\operatorname{Var}(X)=\sigma^2\operatorname{Var}(Z).
+$$
+
+特别地，若 $E(Z)=0$、$\operatorname{Var}(Z)=1$，则
+$E(X)=\mu$、$\operatorname{Var}(X)=\sigma^2$。
+:::
+
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+由定理 3.5.6，可在同一表示中写成 $X=\sigma Z+\mu$。期望的线性性给出
+
+$$
+E(X)=E(\sigma Z+\mu)=\sigma E(Z)+\mu.
+$$
+
+常数平移不改变方差，而乘以常数会使方差乘以该常数的平方，因此
+
+$$
+\operatorname{Var}(X)
+=\operatorname{Var}(\sigma Z+\mu)
+=\sigma^2\operatorname{Var}(Z).
+$$
+
+</details>
 
 正态、Cauchy、Logistic 和 Laplace 都是典型的位置—尺度族；标准化 $(X-\mu)/\sigma$ 将一般成员还原为标准分布。
 

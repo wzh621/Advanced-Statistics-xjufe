@@ -297,7 +297,7 @@ $$
 f(y;\pi)=\exp\left\{y\theta-n\log(1+e^\theta)+\log\binom ny\right\}.
 $$
 
-Thus $a(\phi)=1$, $b(\theta)=n\log(1+e^\theta)$, and $c(y,\phi)=\log\binom ny$. Setting $n=1$ gives Bernoulli, with $b(\theta)=\log(1+e^\theta)$ and $c(y,phi)=0$.
+Thus $a(\phi)=1$, $b(\theta)=n\log(1+e^\theta)$, and $c(y,\phi)=\log\binom ny$. Setting $n=1$ gives Bernoulli, with $b(\theta)=\log(1+e^\theta)$ and $c(y,\phi)=0$.
 
 For $Y\sim\operatorname{Poisson}(\lambda)$,
 
@@ -319,7 +319,10 @@ E(Y)=b'(\theta),\qquad
 $$
 :::
 
-::: {.proof}
+::: {.proof .source-numbered}
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
 Differentiate $\int f(y;\theta,\phi)dy=1$ with respect to $\theta$ and interchange the operations:
 
 $$
@@ -343,19 +346,57 @@ $$
 $$
 
 which proves Equation \@ref(eq:exponential-family-moments). For a discrete law, replace the integral by a sum over the support.
+
+</details>
 :::
 
 ::: {.example}
 **Normal distribution.** Since $b(\theta)=\theta^2/2$ and $a(\phi)=\sigma^2$, $E(Y)=\mu$ and $\operatorname{Var}(Y)=\sigma^2$.
 :::
 
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+The natural parameter is $\theta=\mu$, and hence
+
+$$
+b'(\theta)=\theta,\qquad b''(\theta)=1.
+$$
+
+Property 1 therefore gives
+
+$$
+E(Y)=b'(\mu)=\mu,\qquad
+\operatorname{Var}(Y)=b''(\mu)a(\phi)=1\cdot\sigma^2=\sigma^2.
+$$
+
+</details>
+
 ::: {.example}
 **Poisson distribution.** Since $b(\theta)=e^\theta=\lambda$ and $a(\phi)=1$, $E(Y)=\lambda$ and $\operatorname{Var}(Y)=\lambda$.
 :::
 
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+Since $\theta=\log\lambda$, we have $e^\theta=\lambda$ and
+
+$$
+b'(\theta)=e^\theta,\qquad b''(\theta)=e^\theta.
+$$
+
+Thus
+
+$$
+E(Y)=e^\theta=\lambda,\qquad
+\operatorname{Var}(Y)=e^\theta\cdot1=\lambda.
+$$
+
+</details>
+
 ## Location, scale, and location--scale families {#location-scale-families}
 
-::: {.theorem}
+::: {.theorem .source-numbered}
 **Theorem 3.5.1** If $f$ is any density, $\mu\in\mathbb R$, and $\sigma>0$, then
 
 $$
@@ -365,19 +406,55 @@ $$
 is also a density.
 :::
 
-With $z=(x-\mu)/\sigma$, one obtains $\int g(x\mid\mu,\sigma)dx=\int f(z)dz=1$.
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+Nonnegativity follows from $f\ge0$ and $\sigma>0$. Let
+$z=(x-\mu)/\sigma$, so $x=\mu+\sigma z$ and $dx=\sigma dz$. Then
+
+$$
+\begin{aligned}
+\int_{-\infty}^{\infty}g(x\mid\mu,\sigma)\,dx
+&=\int_{-\infty}^{\infty}
+\frac1\sigma f\left(\frac{x-\mu}{\sigma}\right)\,dx\\
+&=\int_{-\infty}^{\infty}\frac1\sigma f(z)\sigma\,dz
+=\int_{-\infty}^{\infty}f(z)\,dz=1.
+\end{aligned}
+$$
+
+Thus $g$ is nonnegative and integrates to one.
+
+</details>
 
 ::: {.definition}
 **Definition 3.5.2 (location family)** Given a standard density $f$, $\{f(x-\mu):\mu\in\mathbb R\}$ is its location family, indexed by location $\mu$.
 :::
 
-::: {.example}
+::: {.example .source-numbered}
 **Example 3.5.3 (exponential location family)** Let $f(x)=e^{-x}$ for $x\ge0$ and zero otherwise. Then
 
 $$
 f(x\mid\mu)=\begin{cases}e^{-(x-\mu)},&x\ge\mu,\\0,&x<\mu.\end{cases}
 $$
 :::
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+A location transformation replaces $x$ in the standard density by $x-\mu$.
+The original support condition $x\ge0$ becomes $x-\mu\ge0$, or $x\ge\mu$.
+The positive part of the density is therefore shifted by $\mu$ without changing
+its shape. Its normalization is
+
+$$
+\int_\mu^\infty e^{-(x-\mu)}\,dx
+=\int_0^\infty e^{-z}\,dz=1.
+$$
+
+Here $\mu$ is also the lower endpoint of the support and may be interpreted as a
+threshold parameter in lifetime or reaction-time models.
+
+</details>
 
 ::: {.definition}
 **Definition 3.5.4 (scale family)** Given a standard density $f$, $\{\sigma^{-1}f(x/\sigma):\sigma>0\}$ is its scale family, indexed by scale $\sigma$.
@@ -394,13 +471,73 @@ $$
 is its location--scale family, with location $\mu$ and scale $\sigma$.
 :::
 
-::: {.theorem}
+::: {.theorem .source-numbered}
 **Theorem 3.5.6** A variable $X$ has density $\sigma^{-1}f\{(x-\mu)/\sigma\}$ if and only if there is a variable $Z$ with density $f$ such that
 
 $$
 X=\sigma Z+\mu.
 $$
 :::
+
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+For the “if” direction, let $Z$ have density $f$ and set
+$X=\sigma Z+\mu$. Since $\sigma>0$, the inverse transformation is
+$z=(x-\mu)/\sigma$, whose derivative has absolute value $1/\sigma$.
+The one-dimensional change-of-variable formula gives
+
+$$
+f_X(x)=f\left(\frac{x-\mu}{\sigma}\right)\frac1\sigma.
+$$
+
+Conversely, suppose $X$ has this density and define
+$Z=(X-\mu)/\sigma$, so $X=\sigma Z+\mu$. Applying the transformation
+formula in the other direction gives
+
+$$
+f_Z(z)=f_X(\sigma z+\mu)\sigma
+=\frac1\sigma f(z)\sigma=f(z).
+$$
+
+Thus $Z$ has the standard density $f$, proving both directions.
+
+</details>
+
+::: {.source-theorem}
+**Theorem 3.5.7 (moments under a location--scale transformation)** If $Z$
+has density $f$ and $E(Z)$ and $\operatorname{Var}(Z)$ exist, then for
+$X=\sigma Z+\mu$,
+
+$$
+E(X)=\sigma E(Z)+\mu,\qquad
+\operatorname{Var}(X)=\sigma^2\operatorname{Var}(Z).
+$$
+
+In particular, if $E(Z)=0$ and $\operatorname{Var}(Z)=1$, then
+$E(X)=\mu$ and $\operatorname{Var}(X)=\sigma^2$.
+:::
+
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+By Theorem 3.5.6, use the representation $X=\sigma Z+\mu$. Linearity of
+expectation yields
+
+$$
+E(X)=E(\sigma Z+\mu)=\sigma E(Z)+\mu.
+$$
+
+A constant shift does not change variance, while multiplication by a constant
+multiplies variance by its square. Hence
+
+$$
+\operatorname{Var}(X)
+=\operatorname{Var}(\sigma Z+\mu)
+=\sigma^2\operatorname{Var}(Z).
+$$
+
+</details>
 
 Normal, Cauchy, Logistic, and Laplace laws are standard location--scale families; standardization by $(X-\mu)/\sigma$ recovers the standard member.
 

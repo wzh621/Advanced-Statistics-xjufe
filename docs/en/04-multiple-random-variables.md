@@ -38,6 +38,29 @@ g(x,y)f_{X,Y}(x,y)\,dx\,dy,&\text{continuous case},\\[2mm]
 $$
 :::
 
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+In the continuous case the identity first follows from the definition of a joint
+density for simple functions. Approximate the positive and negative parts of a
+general integrable function by nonnegative simple functions to obtain
+
+$$
+E\{g(X,Y)\}=\iint_{\mathbb R^2}g(x,y)f_{X,Y}(x,y)\,dx\,dy.
+$$
+
+In the discrete case, sum the contribution from every possible value of the
+random vector:
+
+$$
+E\{g(X,Y)\}=\sum_{x,y}g(x,y)P(X=x,Y=y).
+$$
+
+The condition $E|g(X,Y)|<\infty$ guarantees absolute convergence and permits
+the required changes in the order of summation or integration.
+
+</details>
+
 Marginal densities are obtained by integration:
 
 $$
@@ -50,6 +73,22 @@ $$
 <p class="caption">(\#fig:en-chap04-source-marginal-illustration)Source-slide illustration of a joint density and its marginals</p>
 </div>
 
+The source-slide image is retained above. The interactive Plotly figure below recreates it with the independent standard bivariate normal model
+$f_{X,Y}(x,y)=\phi(x)\phi(y)$. The colored surface is the joint density, and the two curves on the vertical boundary planes are the standard-normal marginal densities of $X$ and $Y$. Drag to rotate, use the wheel to zoom, and hover over the surface or curves to inspect coordinates and density values.
+
+<figure class="interactive-course-figure">
+<div id="chap04-joint-marginal-plotly-en"
+     class="plotly-course-widget"
+     data-course-plot="joint-marginal-normal"
+     data-lang="en"
+     role="img"
+     aria-label="Interactive Plotly chart of an independent standard bivariate normal joint density and its two marginal densities"></div>
+<p class="plotly-fallback">This interactive figure requires JavaScript. If it cannot be loaded, use the retained source-slide image above.</p>
+<figcaption><strong>Interactive Figure 4.1A:</strong> Plotly recreation of a joint density and its two marginal densities.</figcaption>
+</figure>
+<script src="assets/js/plotly-4.0.0.min.js"></script>
+<script src="assets/js/ch04-joint-marginal-plotly.js"></script>
+
 ## Example 4.1.11: a density on the unit square {#example-4-1-11}
 
 Let
@@ -61,6 +100,12 @@ f(x,y)=
 0,&\text{otherwise}.
 \end{cases}
 $$
+
+The final results are $f_X(x)=2x$, $f_Y(y)=3y^2$ on $(0,1)$, and
+$P(X+Y\ge1)=9/10$.
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
 
 The marginal densities are
 
@@ -89,6 +134,8 @@ $$
 <p class="caption">(\#fig:en-chap04-source-region-411)Integration region for Example 4.1.11 from the source slides</p>
 </div>
 
+</details>
+
 ## Example 4.1.12: probability on a triangular support {#example-4-1-12}
 
 Let
@@ -96,6 +143,15 @@ Let
 $$
 f(x,y)=e^{-y},\qquad 0<x<y<\infty.
 $$
+
+The final answer is
+
+$$
+P(X+Y\ge1)=2e^{-1/2}-e^{-1}.
+$$
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
 
 This is normalized because
 $\int_0^\infty\int_x^\infty e^{-y}\,dy\,dx=1$. The intersection of
@@ -114,6 +170,8 @@ $$
 <img src="images/ch04/example-4-1-12-region.png" alt="Triangular support and complement region for Example 4.1.12" width="38%" />
 <p class="caption">(\#fig:en-chap04-source-region-412)Triangular support and complement region for Example 4.1.12</p>
 </div>
+
+</details>
 
 ## Conditional distributions, expectations, and variances {#conditional-distributions}
 
@@ -138,6 +196,15 @@ $$
 For $f(x,y)=e^{-y}$ on $0<x<y$,
 
 $$
+f_{Y\mid X}(y\mid x)=e^{-(y-x)},\quad y>x,
+$$
+
+so $E(Y\mid X=x)=x+1$ and $\operatorname{Var}(Y\mid X=x)=1$.
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+$$
 f_X(x)=\int_x^\infty e^{-y}\,dy=e^{-x},\qquad x>0,
 $$
 
@@ -158,6 +225,12 @@ $$
 E(Y\mid X=x)=x+1,\qquad
 \operatorname{Var}(Y\mid X=x)=1.
 $$
+
+The key step is to set $E=Y-x$. The conditional density shows that
+$E\mid X=x\sim\operatorname{Exponential}(1)$, so the shift changes the mean
+but not the variance.
+
+</details>
 
 In general,
 
@@ -192,6 +265,28 @@ $f_{X,Y}(x,y)=g(x)h(y)$, then $X,Y$ are independent. The functions
 $g,h$ need not themselves be normalized probability functions.
 :::
 
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+Consider the continuous case. By normalization and factorization,
+
+$$
+1=\iint g(x)h(y)\,dx\,dy
+=\left\{\int g(x)\,dx\right\}
+ \left\{\int h(y)\,dy\right\}.
+$$
+
+Write $G=\int g(x)dx$ and $H=\int h(y)dy$, so $GH=1$. The marginals are
+
+$$
+f_X(x)=g(x)H,\qquad f_Y(y)=h(y)G.
+$$
+
+Therefore $f_X(x)f_Y(y)=g(x)h(y)GH=f_{X,Y}(x,y)$, proving independence.
+Replace integrals by sums in the discrete case.
+
+</details>
+
 For example,
 
 $$
@@ -214,8 +309,39 @@ M_{X+Y}(t)=M_X(t)M_Y(t).
 $$
 :::
 
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+Independence gives $f_{X,Y}(x,y)=f_X(x)f_Y(y)$. In the continuous case,
+
+$$
+\begin{aligned}
+E\{g(X)h(Y)\}
+&=\iint g(x)h(y)f_X(x)f_Y(y)\,dx\,dy\\
+&=\left\{\int g(x)f_X(x)\,dx\right\}
+  \left\{\int h(y)f_Y(y)\,dy\right\}\\
+&=E\{g(X)\}E\{h(Y)\}.
+\end{aligned}
+$$
+
+The discrete proof is identical with sums. Taking $g(X)=e^{tX}$ and
+$h(Y)=e^{tY}$ gives
+
+$$
+M_{X+Y}(t)=E(e^{tX}e^{tY})=M_X(t)M_Y(t).
+$$
+
+</details>
+
 For independent $X\sim N(\mu,\sigma^2)$ and
 $Y\sim N(\gamma,\tau^2)$,
+
+$$
+X+Y\sim N(\mu+\gamma,\sigma^2+\tau^2).
+$$
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
 
 $$
 M_{X+Y}(t)
@@ -223,6 +349,8 @@ M_{X+Y}(t)
 $$
 
 so $X+Y\sim N(\mu+\gamma,\sigma^2+\tau^2)$.
+
+</details>
 
 ## Bivariate transformations and the Jacobian {#bivariate-transformations}
 
@@ -254,7 +382,7 @@ $$
 \end{vmatrix}.
 $$
 
-::: {.example}
+::: {.example .source-numbered}
 **Example 4.3.3 (product of two Beta variables)** Let
 
 $$
@@ -262,7 +390,18 @@ X\sim\operatorname{Beta}(\alpha,\beta),\qquad
 Y\sim\operatorname{Beta}(\alpha+\beta,\gamma)
 $$
 
-be independent, and set $U=XY,V=X$. The inverse is $x=v,y=u/v$, so
+be independent, and set $U=XY,V=X$. The final result is
+
+$$
+U\sim\operatorname{Beta}(\alpha,\beta+\gamma).
+$$
+:::
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+The inverse is $x=v,y=u/v$. Since $0<x<1$ and $0<y<1$, the transformed
+support is $0<u<v<1$. The Jacobian is
 
 $$
 J=
@@ -285,13 +424,62 @@ v^{\alpha-1}(1-v)^{\beta-1}\\
 \left(1-\frac uv\right)^{\gamma-1}\frac1v.
 \end{aligned}
 $$
-:::
+
+To obtain the marginal density of $U$, integrate $v$ from $u$ to 1. After
+rearranging the integrand,
+
+$$
+\begin{aligned}
+f_U(u)
+={}&\frac{\Gamma(\alpha+\beta+\gamma)}
+{\Gamma(\alpha)\Gamma(\beta)\Gamma(\gamma)}u^{\alpha-1}\\
+&\times\int_u^1
+\left(\frac uv-u\right)^{\beta-1}
+\left(1-\frac uv\right)^{\gamma-1}
+\frac{u}{v^2}\,dv.
+\end{aligned}
+$$
+
+Set
+
+$$
+w=\frac{u/v-u}{1-u},\qquad
+dw=-\frac{u}{v^2(1-u)}\,dv.
+$$
+
+As $v$ increases from $u$ to 1, $w$ decreases from 1 to 0. Therefore
+
+$$
+\begin{aligned}
+f_U(u)
+&=\frac{\Gamma(\alpha+\beta+\gamma)}
+{\Gamma(\alpha)\Gamma(\beta)\Gamma(\gamma)}
+u^{\alpha-1}(1-u)^{\beta+\gamma-1}
+\int_0^1w^{\beta-1}(1-w)^{\gamma-1}\,dw\\
+&=\frac{\Gamma(\alpha+\beta+\gamma)}
+{\Gamma(\alpha)\Gamma(\beta+\gamma)}
+u^{\alpha-1}(1-u)^{\beta+\gamma-1},\qquad 0<u<1.
+\end{aligned}
+$$
+
+The last step uses
+$B(\beta,\gamma)=\Gamma(\beta)\Gamma(\gamma)/\Gamma(\beta+\gamma)$.
+This is the density of $\operatorname{Beta}(\alpha,\beta+\gamma)$.
+
+</details>
 
 ## Hierarchical models and total expectation {#hierarchical-models}
 
 Let a mother fish lay $Y\sim\operatorname{Poisson}(\lambda)$ eggs, each of
 which survives independently with probability $p$. Then
 $X\mid Y\sim\operatorname{Binomial}(Y,p)$. For $x=0,1,\ldots$,
+
+$$
+X\sim\operatorname{Poisson}(\lambda p).
+$$
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
 
 $$
 \begin{aligned}
@@ -306,13 +494,38 @@ $$
 
 Thus $X\sim\operatorname{Poisson}(\lambda p)$, the Poisson-thinning property.
 
-::: {.theorem}
+</details>
+
+::: {.theorem .source-numbered}
 **Theorem 4.4.3 (law of total expectation)** If the expectation exists,
 
 $$
 E(X)=E\{E(X\mid Y)\}.
 $$
 :::
+
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+In the continuous case, use
+$f_{X,Y}(x,y)=f_{X\mid Y}(x\mid y)f_Y(y)$:
+
+$$
+\begin{aligned}
+E(X)
+&=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
+x f_{X,Y}(x,y)\,dx\,dy\\
+&=\int_{-\infty}^{\infty}
+\left\{\int_{-\infty}^{\infty}x f_{X\mid Y}(x\mid y)\,dx\right\}
+f_Y(y)\,dy\\
+&=\int_{-\infty}^{\infty}E(X\mid Y=y)f_Y(y)\,dy
+=E\{E(X\mid Y)\}.
+\end{aligned}
+$$
+
+Replace both integrals by sums for the discrete case.
+
+</details>
 
 For square-integrable $X$, $E(X\mid Y)$ is also the best mean-square
 predictor of $X$ among measurable functions of $Y$:
@@ -339,6 +552,12 @@ $$
 Total expectation gives $E(X)=pE(Y)=pE(\Lambda)=p\beta$. For
 $y=0,1,\ldots$,
 
+The final marginal law of $Y$ is geometric on $0,1,\ldots$ with success
+probability $1/(1+\beta)$.
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
 $$
 \begin{aligned}
 P(Y=y)
@@ -353,6 +572,8 @@ $$
 Thus $Y$ is geometric on $0,1,\ldots$ with success probability
 $1/(1+\beta)$. Replacing the exponential mixing law by a Gamma law gives a
 negative-binomial mixture.
+
+</details>
 
 A second model is
 
@@ -382,7 +603,10 @@ $$
 $$
 :::
 
-::: {.proof}
+::: {.proof .source-numbered}
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
 Write
 
 $$
@@ -397,6 +621,21 @@ $$
 
 The remaining terms are $E\{\operatorname{Var}(X\mid Y)\}$ and
 $\operatorname{Var}\{E(X\mid Y)\}$.
+
+More explicitly, the cross term is zero because
+
+$$
+\begin{aligned}
+&E\!\left[\{X-E(X\mid Y)\}\{E(X\mid Y)-EX\}\right]\\
+&\quad=E\!\left[
+\{E(X\mid Y)-EX\}
+E\{X-E(X\mid Y)\mid Y\}\right]=0,
+\end{aligned}
+$$
+
+since $E\{X-E(X\mid Y)\mid Y\}=0$.
+
+</details>
 :::
 
 ## Multivariate normal distribution {#multivariate-normal}
@@ -488,7 +727,7 @@ par(old_par)
 
 ## Young, Hölder, and Cauchy--Schwarz inequalities {#holder-cauchy}
 
-::: {.lemma}
+::: {.lemma .source-numbered}
 **Young's inequality (source Lemma 4.7.1)** If $a,b>0$, $p,q>1$, and
 $1/p+1/q=1$, then
 
@@ -499,9 +738,22 @@ $$
 with equality if and only if $a^p=b^q$.
 :::
 
-For fixed $b$, the function
-$g(a)=a^p/p+b^q/q-ab$ has its unique minimum where
-$a^{p-1}=b$, equivalently $a^p=b^q$, and the minimum is zero.
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+For fixed $b$, consider $g(a)=a^p/p+b^q/q-ab$. Its stationary point
+satisfies $a^{p-1}=b$. Since $g''(a)=(p-1)a^{p-2}>0$, this is the global
+minimum. From $1/p+1/q=1$, the stationary-point condition is equivalent to
+$a^p=b^q$. At this point,
+
+$$
+g(a)=\frac{a^p}{p}+\frac{a^p}{q}-a^p
+=a^p\left(\frac1p+\frac1q-1\right)=0.
+$$
+
+Hence $g(a)\ge0$, with equality exactly when $a^p=b^q$.
+
+</details>
 
 ::: {.theorem}
 **Hölder's inequality** If the relevant moments are finite,
@@ -512,6 +764,9 @@ $$
 $$
 :::
 
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
 Apply Young's inequality with
 
 $$
@@ -519,7 +774,23 @@ a=\frac{|X|}{\{E|X|^p\}^{1/p}},\qquad
 b=\frac{|Y|}{\{E|Y|^q\}^{1/q}},
 $$
 
-and take expectations. Setting $p=q=2$ gives Cauchy--Schwarz:
+If both denominators are nonzero, apply Young pointwise and take expectations:
+
+$$
+E\left[
+\frac{|X|}{\{E|X|^p\}^{1/p}}
+\frac{|Y|}{\{E|Y|^q\}^{1/q}}
+\right]
+\le \frac1p+\frac1q=1.
+$$
+
+Multiplying back the denominators proves Hölder. If either denominator is zero,
+the corresponding variable is zero almost surely and the result is immediate.
+Together with $|E(XY)|\le E|XY|$, this completes the proof.
+
+</details>
+
+Setting $p=q=2$ gives Cauchy--Schwarz:
 
 $$
 |E(XY)|\le E|XY|
@@ -556,6 +827,9 @@ $$
 $$
 :::
 
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
 The proof starts from
 
 $$
@@ -567,6 +841,16 @@ $$
 and applies Hölder to both terms. Since the conjugate exponent
 $q=p/(p-1)$ satisfies $q(p-1)=p$, cancellation of
 $\{E|X+Y|^p\}^{(p-1)/p}$ gives the result.
+
+If $E|X+Y|^p=0$, the result is immediate. Otherwise division by this positive
+factor gives
+
+$$
+\{E|X+Y|^p\}^{1/p}
+\le \{E|X|^p\}^{1/p}+\{E|Y|^p\}^{1/p}.
+$$
+
+</details>
 
 ## Convex functions and Jensen's inequality {#jensen-inequality}
 
@@ -599,6 +883,32 @@ $$
 g(z)\ge g(x)+D^+g(x)(z-x).
 $$
 
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+If $x<y'<y$, set $\lambda=(y-y')/(y-x)$, so
+$y'=\lambda x+(1-\lambda)y$. Convexity gives
+
+$$
+g(y')\le
+\frac{y-y'}{y-x}g(x)+
+\frac{y'-x}{y-x}g(y).
+$$
+
+Rearranging and dividing by the positive number $y'-x$ yields
+
+$$
+\frac{g(y')-g(x)}{y'-x}
+\le
+\frac{g(y)-g(x)}{y-x}.
+$$
+
+The other orderings are analogous, so the secant slope is nondecreasing in its
+second endpoint. Letting that endpoint tend to $x$ gives the supporting-line
+inequality determined by the right derivative.
+
+</details>
+
 ::: {.theorem}
 **Jensen's inequality** If $g$ is convex and the expectations exist,
 
@@ -606,6 +916,24 @@ $$
 E\{g(X)\}\ge g(EX).
 $$
 :::
+
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+Let $m=E(X)$ and choose a supporting line $\ell(x)=a+bx$ at $m$, so
+$g(x)\ge\ell(x)$ and $g(m)=\ell(m)$. Since expectation preserves
+inequalities,
+
+$$
+E\{g(X)\}\ge E\{a+bX\}
+=a+bE(X)=\ell(m)=g(m)=g\{E(X)\}.
+$$
+
+For linear $g$, equality follows directly from linearity of expectation. In
+general, equality requires $X$ to lie almost surely where $g$ agrees with the
+supporting line.
+
+</details>
 
 <div class="figure" style="text-align: center">
 <img src="images/ch04/p190.jpg" alt="Supporting-line interpretation of Jensen’s inequality (source slide)" width="30%" />
@@ -633,6 +961,29 @@ $$
 a_H\le a_G\le a_A.
 $$
 
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+Let $I$ be uniform on $\{1,\ldots,n\}$ and set $X=a_I$. Since $\log$ is
+concave, Jensen's inequality gives
+
+$$
+\frac1n\sum_{i=1}^n\log a_i
+\le \log\left(\frac1n\sum_{i=1}^na_i\right).
+$$
+
+Exponentiating yields $a_G\le a_A$. Apply the same geometric-mean versus
+arithmetic-mean inequality to $1/a_i$:
+
+$$
+\left(\prod_{i=1}^n\frac1{a_i}\right)^{1/n}
+\le\frac1n\sum_{i=1}^n\frac1{a_i}.
+$$
+
+Taking reciprocals gives $a_H\le a_G$.
+
+</details>
+
 If $f,g$ are densities and $X\sim f$, then
 
 $$
@@ -645,6 +996,28 @@ so
 $$
 E_f\{\log g(X)\}\le E_f\{\log f(X)\}.
 $$
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+Where $g(x)>0$ and $f(x)>0$, define $R(X)=g(X)/f(X)$. Concavity of the
+logarithm gives
+
+$$
+E_f\{\log R(X)\}\le\log E_f\{R(X)\}.
+$$
+
+But
+
+$$
+E_f\{R(X)\}=\int \frac{g(x)}{f(x)}f(x)\,dx
+=\int g(x)\,dx=1.
+$$
+
+Thus $E_f\{\log g(X)-\log f(X)\}\le0$, which rearranges to the stated
+inequality.
+
+</details>
 
 This is equivalent to nonnegativity of Kullback--Leibler divergence and
 helps explain why maximum likelihood favors the true model in expectation.

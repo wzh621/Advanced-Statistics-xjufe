@@ -23,6 +23,20 @@ render_edition <- function(directory, input = "index.Rmd") {
 render_edition(".")
 render_edition("en")
 
+plotly_assets <- c(
+  "assets/js/plotly-4.0.0.min.js",
+  "assets/js/ch04-joint-marginal-plotly.js"
+)
+
+for (edition in c("zh", "en")) {
+  destination <- file.path("docs", edition, "assets", "js")
+  dir.create(destination, recursive = TRUE, showWarnings = FALSE)
+  copied <- file.copy(plotly_assets, destination, overwrite = TRUE)
+  if (!all(copied)) {
+    stop("Failed to copy local Plotly assets into docs/", edition, ".")
+  }
+}
+
 dir.create("docs", recursive = TRUE, showWarnings = FALSE)
 landing_page <- readLines("site/index.html", encoding = "UTF-8", warn = FALSE)
 landing_page <- gsub(

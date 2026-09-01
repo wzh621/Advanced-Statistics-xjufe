@@ -252,16 +252,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3" data-path="random-samples.html"><a href="random-samples.html#statistics-sampling-distributions"><i class="fa fa-check"></i><b>5.3</b> Statistics, sample mean, and sample variance</a></li>
 <li class="chapter" data-level="5.4" data-path="random-samples.html"><a href="random-samples.html#sample-mean-mgf"><i class="fa fa-check"></i><b>5.4</b> MGF of the sample mean and the normal example</a></li>
 <li class="chapter" data-level="5.5" data-path="random-samples.html"><a href="random-samples.html#convolution-formula"><i class="fa fa-check"></i><b>5.5</b> The convolution formula</a></li>
-<li class="chapter" data-level="5.6" data-path="random-samples.html"><a href="random-samples.html#t-f-sampling-distributions"><i class="fa fa-check"></i><b>5.6</b> Student t and Snedecor F sampling distributions</a></li>
-<li class="chapter" data-level="5.7" data-path="random-samples.html"><a href="random-samples.html#discrete-order-statistics"><i class="fa fa-check"></i><b>5.7</b> Discrete order statistics</a></li>
-<li class="chapter" data-level="5.8" data-path="random-samples.html"><a href="random-samples.html#continuous-order-statistics"><i class="fa fa-check"></i><b>5.8</b> Continuous order statistics</a></li>
-<li class="chapter" data-level="5.9" data-path="random-samples.html"><a href="random-samples.html#probability-convergence-wlln"><i class="fa fa-check"></i><b>5.9</b> Convergence in probability and the WLLN</a></li>
-<li class="chapter" data-level="5.10" data-path="random-samples.html"><a href="random-samples.html#almost-sure-convergence-slln"><i class="fa fa-check"></i><b>5.10</b> Almost-sure convergence and the SLLN</a></li>
-<li class="chapter" data-level="5.11" data-path="random-samples.html"><a href="random-samples.html#distribution-convergence-uniform-max"><i class="fa fa-check"></i><b>5.11</b> Convergence in distribution and uniform maxima</a></li>
-<li class="chapter" data-level="5.12" data-path="random-samples.html"><a href="random-samples.html#clt-slutsky"><i class="fa fa-check"></i><b>5.12</b> The central limit theorem and Slutsky’s theorem</a></li>
-<li class="chapter" data-level="5.13" data-path="random-samples.html"><a href="random-samples.html#taylor-variance-propagation"><i class="fa fa-check"></i><b>5.13</b> Taylor approximation and multivariate variance propagation</a></li>
-<li class="chapter" data-level="5.14" data-path="random-samples.html"><a href="random-samples.html#delta-method-applications"><i class="fa fa-check"></i><b>5.14</b> The delta method and two applications</a></li>
-<li class="chapter" data-level="5.15" data-path="random-samples.html"><a href="random-samples.html#random-samples-summary"><i class="fa fa-check"></i><b>5.15</b> Chapter summary</a></li>
+<li class="chapter" data-level="5.6" data-path="random-samples.html"><a href="random-samples.html#normal-sample-properties"><i class="fa fa-check"></i><b>5.6</b> Sampling properties of the normal distribution</a></li>
+<li class="chapter" data-level="5.7" data-path="random-samples.html"><a href="random-samples.html#t-f-sampling-distributions"><i class="fa fa-check"></i><b>5.7</b> Student t and Snedecor F sampling distributions</a></li>
+<li class="chapter" data-level="5.8" data-path="random-samples.html"><a href="random-samples.html#discrete-order-statistics"><i class="fa fa-check"></i><b>5.8</b> Discrete order statistics</a></li>
+<li class="chapter" data-level="5.9" data-path="random-samples.html"><a href="random-samples.html#continuous-order-statistics"><i class="fa fa-check"></i><b>5.9</b> Continuous order statistics</a></li>
+<li class="chapter" data-level="5.10" data-path="random-samples.html"><a href="random-samples.html#probability-convergence-wlln"><i class="fa fa-check"></i><b>5.10</b> Convergence in probability and the WLLN</a></li>
+<li class="chapter" data-level="5.11" data-path="random-samples.html"><a href="random-samples.html#almost-sure-convergence-slln"><i class="fa fa-check"></i><b>5.11</b> Almost-sure convergence and the SLLN</a></li>
+<li class="chapter" data-level="5.12" data-path="random-samples.html"><a href="random-samples.html#distribution-convergence-uniform-max"><i class="fa fa-check"></i><b>5.12</b> Convergence in distribution and uniform maxima</a></li>
+<li class="chapter" data-level="5.13" data-path="random-samples.html"><a href="random-samples.html#clt-slutsky"><i class="fa fa-check"></i><b>5.13</b> The central limit theorem and Slutsky’s theorem</a></li>
+<li class="chapter" data-level="5.14" data-path="random-samples.html"><a href="random-samples.html#taylor-variance-propagation"><i class="fa fa-check"></i><b>5.14</b> Taylor approximation and multivariate variance propagation</a></li>
+<li class="chapter" data-level="5.15" data-path="random-samples.html"><a href="random-samples.html#delta-method-applications"><i class="fa fa-check"></i><b>5.15</b> The delta method and two applications</a></li>
+<li class="chapter" data-level="5.16" data-path="random-samples.html"><a href="random-samples.html#random-samples-summary"><i class="fa fa-check"></i><b>5.16</b> Chapter summary</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="data-reduction.html"><a href="data-reduction.html"><i class="fa fa-check"></i><b>6</b> Principles of Data Reduction</a>
 <ul>
@@ -386,6 +387,24 @@ g(x,y)f_{X,Y}(x,y)\,dx\,dy,&amp;\text{continuous case},\\[2mm]
 \end{cases}
 \]</span></p>
 </div>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>In the continuous case the identity first follows from the definition of a joint
+density for simple functions. Approximate the positive and negative parts of a
+general integrable function by nonnegative simple functions to obtain</p>
+<p><span class="math display">\[
+E\{g(X,Y)\}=\iint_{\mathbb R^2}g(x,y)f_{X,Y}(x,y)\,dx\,dy.
+\]</span></p>
+<p>In the discrete case, sum the contribution from every possible value of the
+random vector:</p>
+<p><span class="math display">\[
+E\{g(X,Y)\}=\sum_{x,y}g(x,y)P(X=x,Y=y).
+\]</span></p>
+<p>The condition <span class="math inline">\(E|g(X,Y)|&lt;\infty\)</span> guarantees absolute convergence and permits
+the required changes in the order of summation or integration.</p>
+</details>
 <p>Marginal densities are obtained by integration:</p>
 <p><span class="math display">\[
 f_X(x)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)\,dy,\qquad
@@ -397,6 +416,21 @@ f_Y(y)=\int_{-\infty}^{\infty}f_{X,Y}(x,y)\,dx.
 Figure 4.1: Source-slide illustration of a joint density and its marginals
 </p>
 </div>
+<p>The source-slide image is retained above. The interactive Plotly figure below recreates it with the independent standard bivariate normal model
+<span class="math inline">\(f_{X,Y}(x,y)=\phi(x)\phi(y)\)</span>. The colored surface is the joint density, and the two curves on the vertical boundary planes are the standard-normal marginal densities of <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. Drag to rotate, use the wheel to zoom, and hover over the surface or curves to inspect coordinates and density values.</p>
+<figure class="interactive-course-figure">
+<div id="chap04-joint-marginal-plotly-en" class="plotly-course-widget" data-course-plot="joint-marginal-normal" data-lang="en" role="img" aria-label="Interactive Plotly chart of an independent standard bivariate normal joint density and its two marginal densities">
+
+</div>
+<p class="plotly-fallback">
+This interactive figure requires JavaScript. If it cannot be loaded, use the retained source-slide image above.
+</p>
+<figcaption>
+<strong>Interactive Figure 4.1A:</strong> Plotly recreation of a joint density and its two marginal densities.
+</figcaption>
+</figure>
+<script src="assets/js/plotly-4.0.0.min.js"></script>
+<script src="assets/js/ch04-joint-marginal-plotly.js"></script>
 </div>
 <div id="example-4-1-11" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Example 4.1.11: a density on the unit square<a href="multiple-random-variables.html#example-4-1-11" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -408,6 +442,12 @@ f(x,y)=
 0,&amp;\text{otherwise}.
 \end{cases}
 \]</span></p>
+<p>The final results are <span class="math inline">\(f_X(x)=2x\)</span>, <span class="math inline">\(f_Y(y)=3y^2\)</span> on <span class="math inline">\((0,1)\)</span>, and
+<span class="math inline">\(P(X+Y\ge1)=9/10\)</span>.</p>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
 <p>The marginal densities are</p>
 <p><span class="math display">\[
 f_X(x)=\int_0^1 6xy^2\,dy=2x,\quad 0&lt;x&lt;1,
@@ -431,6 +471,7 @@ P(X+Y\ge1)
 Figure 4.2: Integration region for Example 4.1.11 from the source slides
 </p>
 </div>
+</details>
 </div>
 <div id="example-4-1-12" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> Example 4.1.12: probability on a triangular support<a href="multiple-random-variables.html#example-4-1-12" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -438,6 +479,14 @@ Figure 4.2: Integration region for Example 4.1.11 from the source slides
 <p><span class="math display">\[
 f(x,y)=e^{-y},\qquad 0&lt;x&lt;y&lt;\infty.
 \]</span></p>
+<p>The final answer is</p>
+<p><span class="math display">\[
+P(X+Y\ge1)=2e^{-1/2}-e^{-1}.
+\]</span></p>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
 <p>This is normalized because
 <span class="math inline">\(\int_0^\infty\int_x^\infty e^{-y}\,dy\,dx=1\)</span>. The intersection of
 <span class="math inline">\(X+Y&lt;1\)</span> with the support is <span class="math inline">\(0&lt;x&lt;1/2,\ x&lt;y&lt;1-x\)</span>. Hence</p>
@@ -455,6 +504,7 @@ P(X+Y\ge1)
 Figure 4.3: Triangular support and complement region for Example 4.1.12
 </p>
 </div>
+</details>
 </div>
 <div id="conditional-distributions" class="section level2 hasAnchor" number="4.4">
 <h2><span class="header-section-number">4.4</span> Conditional distributions, expectations, and variances<a href="multiple-random-variables.html#conditional-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -475,6 +525,14 @@ Figure 4.4: Source-slide illustration of conditional-density slices
 </div>
 <p>For <span class="math inline">\(f(x,y)=e^{-y}\)</span> on <span class="math inline">\(0&lt;x&lt;y\)</span>,</p>
 <p><span class="math display">\[
+f_{Y\mid X}(y\mid x)=e^{-(y-x)},\quad y&gt;x,
+\]</span></p>
+<p>so <span class="math inline">\(E(Y\mid X=x)=x+1\)</span> and <span class="math inline">\(\operatorname{Var}(Y\mid X=x)=1\)</span>.</p>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
+<p><span class="math display">\[
 f_X(x)=\int_x^\infty e^{-y}\,dy=e^{-x},\qquad x&gt;0,
 \]</span></p>
 <p>and therefore</p>
@@ -491,6 +549,10 @@ e^{-(y-x)},&amp;y&gt;x,\\
 E(Y\mid X=x)=x+1,\qquad
 \operatorname{Var}(Y\mid X=x)=1.
 \]</span></p>
+<p>The key step is to set <span class="math inline">\(E=Y-x\)</span>. The conditional density shows that
+<span class="math inline">\(E\mid X=x\sim\operatorname{Exponential}(1)\)</span>, so the shift changes the mean
+but not the variance.</p>
+</details>
 <p>In general,</p>
 <p><span class="math display">\[
 E(Y\mid X=x)=\int y f_{Y\mid X}(y\mid x)\,dy,
@@ -517,6 +579,23 @@ f_{X,Y}(x,y)=f_X(x)f_Y(y).
 <span class="math inline">\(f_{X,Y}(x,y)=g(x)h(y)\)</span>, then <span class="math inline">\(X,Y\)</span> are independent. The functions
 <span class="math inline">\(g,h\)</span> need not themselves be normalized probability functions.</p>
 </div>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>Consider the continuous case. By normalization and factorization,</p>
+<p><span class="math display">\[
+1=\iint g(x)h(y)\,dx\,dy
+=\left\{\int g(x)\,dx\right\}
+\left\{\int h(y)\,dy\right\}.
+\]</span></p>
+<p>Write <span class="math inline">\(G=\int g(x)dx\)</span> and <span class="math inline">\(H=\int h(y)dy\)</span>, so <span class="math inline">\(GH=1\)</span>. The marginals are</p>
+<p><span class="math display">\[
+f_X(x)=g(x)H,\qquad f_Y(y)=h(y)G.
+\]</span></p>
+<p>Therefore <span class="math inline">\(f_X(x)f_Y(y)=g(x)h(y)GH=f_{X,Y}(x,y)\)</span>, proving independence.
+Replace integrals by sums in the discrete case.</p>
+</details>
 <p>For example,</p>
 <p><span class="math display">\[
 f(x,y)=\frac1{384}x^2y^4e^{-x/2-y},\qquad x,y&gt;0,
@@ -532,13 +611,41 @@ E\{g(X)h(Y)\}=E\{g(X)\}E\{h(Y)\}.
 M_{X+Y}(t)=M_X(t)M_Y(t).
 \]</span></p>
 </div>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>Independence gives <span class="math inline">\(f_{X,Y}(x,y)=f_X(x)f_Y(y)\)</span>. In the continuous case,</p>
+<p><span class="math display">\[
+\begin{aligned}
+E\{g(X)h(Y)\}
+&amp;=\iint g(x)h(y)f_X(x)f_Y(y)\,dx\,dy\\
+&amp;=\left\{\int g(x)f_X(x)\,dx\right\}
+  \left\{\int h(y)f_Y(y)\,dy\right\}\\
+&amp;=E\{g(X)\}E\{h(Y)\}.
+\end{aligned}
+\]</span></p>
+<p>The discrete proof is identical with sums. Taking <span class="math inline">\(g(X)=e^{tX}\)</span> and
+<span class="math inline">\(h(Y)=e^{tY}\)</span> gives</p>
+<p><span class="math display">\[
+M_{X+Y}(t)=E(e^{tX}e^{tY})=M_X(t)M_Y(t).
+\]</span></p>
+</details>
 <p>For independent <span class="math inline">\(X\sim N(\mu,\sigma^2)\)</span> and
 <span class="math inline">\(Y\sim N(\gamma,\tau^2)\)</span>,</p>
+<p><span class="math display">\[
+X+Y\sim N(\mu+\gamma,\sigma^2+\tau^2).
+\]</span></p>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
 <p><span class="math display">\[
 M_{X+Y}(t)
 =\exp\left\{(\mu+\gamma)t+\frac{\sigma^2+\tau^2}{2}t^2\right\},
 \]</span></p>
 <p>so <span class="math inline">\(X+Y\sim N(\mu+\gamma,\sigma^2+\tau^2)\)</span>.</p>
+</details>
 </div>
 <div id="bivariate-transformations" class="section level2 hasAnchor" number="4.6">
 <h2><span class="header-section-number">4.6</span> Bivariate transformations and the Jacobian<a href="multiple-random-variables.html#bivariate-transformations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -564,13 +671,23 @@ f_{X,Y}\{h_1(u,v),h_2(u,v)\}
 \partial y/\partial u&amp;\partial y/\partial v
 \end{vmatrix}.
 \]</span></p>
-<div class="example">
+<div class="example source-numbered">
 <p><span id="exm:unlabeled-div-59" class="example"><strong>Example 4.1  </strong></span><strong>Example 4.3.3 (product of two Beta variables)</strong> Let</p>
 <p><span class="math display">\[
 X\sim\operatorname{Beta}(\alpha,\beta),\qquad
 Y\sim\operatorname{Beta}(\alpha+\beta,\gamma)
 \]</span></p>
-<p>be independent, and set <span class="math inline">\(U=XY,V=X\)</span>. The inverse is <span class="math inline">\(x=v,y=u/v\)</span>, so</p>
+<p>be independent, and set <span class="math inline">\(U=XY,V=X\)</span>. The final result is</p>
+<p><span class="math display">\[
+U\sim\operatorname{Beta}(\alpha,\beta+\gamma).
+\]</span></p>
+</div>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
+<p>The inverse is <span class="math inline">\(x=v,y=u/v\)</span>. Since <span class="math inline">\(0&lt;x&lt;1\)</span> and <span class="math inline">\(0&lt;y&lt;1\)</span>, the transformed
+support is <span class="math inline">\(0&lt;u&lt;v&lt;1\)</span>. The Jacobian is</p>
 <p><span class="math display">\[
 J=
 \begin{vmatrix}
@@ -590,13 +707,54 @@ v^{\alpha-1}(1-v)^{\beta-1}\\
 \left(1-\frac uv\right)^{\gamma-1}\frac1v.
 \end{aligned}
 \]</span></p>
-</div>
+<p>To obtain the marginal density of <span class="math inline">\(U\)</span>, integrate <span class="math inline">\(v\)</span> from <span class="math inline">\(u\)</span> to 1. After
+rearranging the integrand,</p>
+<p><span class="math display">\[
+\begin{aligned}
+f_U(u)
+={}&amp;\frac{\Gamma(\alpha+\beta+\gamma)}
+{\Gamma(\alpha)\Gamma(\beta)\Gamma(\gamma)}u^{\alpha-1}\\
+&amp;\times\int_u^1
+\left(\frac uv-u\right)^{\beta-1}
+\left(1-\frac uv\right)^{\gamma-1}
+\frac{u}{v^2}\,dv.
+\end{aligned}
+\]</span></p>
+<p>Set</p>
+<p><span class="math display">\[
+w=\frac{u/v-u}{1-u},\qquad
+dw=-\frac{u}{v^2(1-u)}\,dv.
+\]</span></p>
+<p>As <span class="math inline">\(v\)</span> increases from <span class="math inline">\(u\)</span> to 1, <span class="math inline">\(w\)</span> decreases from 1 to 0. Therefore</p>
+<p><span class="math display">\[
+\begin{aligned}
+f_U(u)
+&amp;=\frac{\Gamma(\alpha+\beta+\gamma)}
+{\Gamma(\alpha)\Gamma(\beta)\Gamma(\gamma)}
+u^{\alpha-1}(1-u)^{\beta+\gamma-1}
+\int_0^1w^{\beta-1}(1-w)^{\gamma-1}\,dw\\
+&amp;=\frac{\Gamma(\alpha+\beta+\gamma)}
+{\Gamma(\alpha)\Gamma(\beta+\gamma)}
+u^{\alpha-1}(1-u)^{\beta+\gamma-1},\qquad 0&lt;u&lt;1.
+\end{aligned}
+\]</span></p>
+<p>The last step uses
+<span class="math inline">\(B(\beta,\gamma)=\Gamma(\beta)\Gamma(\gamma)/\Gamma(\beta+\gamma)\)</span>.
+This is the density of <span class="math inline">\(\operatorname{Beta}(\alpha,\beta+\gamma)\)</span>.</p>
+</details>
 </div>
 <div id="hierarchical-models" class="section level2 hasAnchor" number="4.7">
 <h2><span class="header-section-number">4.7</span> Hierarchical models and total expectation<a href="multiple-random-variables.html#hierarchical-models" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let a mother fish lay <span class="math inline">\(Y\sim\operatorname{Poisson}(\lambda)\)</span> eggs, each of
 which survives independently with probability <span class="math inline">\(p\)</span>. Then
 <span class="math inline">\(X\mid Y\sim\operatorname{Binomial}(Y,p)\)</span>. For <span class="math inline">\(x=0,1,\ldots\)</span>,</p>
+<p><span class="math display">\[
+X\sim\operatorname{Poisson}(\lambda p).
+\]</span></p>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
 <p><span class="math display">\[
 \begin{aligned}
 P(X=x)
@@ -608,12 +766,33 @@ P(X=x)
 \end{aligned}
 \]</span></p>
 <p>Thus <span class="math inline">\(X\sim\operatorname{Poisson}(\lambda p)\)</span>, the Poisson-thinning property.</p>
-<div class="theorem">
+</details>
+<div class="theorem source-numbered">
 <p><span id="thm:unlabeled-div-60" class="theorem"><strong>Theorem 4.3  </strong></span><strong>Theorem 4.4.3 (law of total expectation)</strong> If the expectation exists,</p>
 <p><span class="math display">\[
 E(X)=E\{E(X\mid Y)\}.
 \]</span></p>
 </div>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>In the continuous case, use
+<span class="math inline">\(f_{X,Y}(x,y)=f_{X\mid Y}(x\mid y)f_Y(y)\)</span>:</p>
+<p><span class="math display">\[
+\begin{aligned}
+E(X)
+&amp;=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}
+x f_{X,Y}(x,y)\,dx\,dy\\
+&amp;=\int_{-\infty}^{\infty}
+\left\{\int_{-\infty}^{\infty}x f_{X\mid Y}(x\mid y)\,dx\right\}
+f_Y(y)\,dy\\
+&amp;=\int_{-\infty}^{\infty}E(X\mid Y=y)f_Y(y)\,dy
+=E\{E(X\mid Y)\}.
+\end{aligned}
+\]</span></p>
+<p>Replace both integrals by sums for the discrete case.</p>
+</details>
 <p>For square-integrable <span class="math inline">\(X\)</span>, <span class="math inline">\(E(X\mid Y)\)</span> is also the best mean-square
 predictor of <span class="math inline">\(X\)</span> among measurable functions of <span class="math inline">\(Y\)</span>:</p>
 <p><span class="math display">\[
@@ -634,6 +813,12 @@ Y\mid\Lambda\sim\operatorname{Poisson}(\Lambda),\quad
 \]</span></p>
 <p>Total expectation gives <span class="math inline">\(E(X)=pE(Y)=pE(\Lambda)=p\beta\)</span>. For
 <span class="math inline">\(y=0,1,\ldots\)</span>,</p>
+<p>The final marginal law of <span class="math inline">\(Y\)</span> is geometric on <span class="math inline">\(0,1,\ldots\)</span> with success
+probability <span class="math inline">\(1/(1+\beta)\)</span>.</p>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
 <p><span class="math display">\[
 \begin{aligned}
 P(Y=y)
@@ -647,6 +832,7 @@ P(Y=y)
 <p>Thus <span class="math inline">\(Y\)</span> is geometric on <span class="math inline">\(0,1,\ldots\)</span> with success probability
 <span class="math inline">\(1/(1+\beta)\)</span>. Replacing the exponential mixing law by a Gamma law gives a
 negative-binomial mixture.</p>
+</details>
 <p>A second model is</p>
 <p><span class="math display">\[
 X_i\mid P_i\sim\operatorname{Bernoulli}(P_i),\qquad
@@ -670,8 +856,13 @@ E(Y)=\sum_{i=1}^nE\{E(X_i\mid P_i)\}
 +\operatorname{Var}\{E(X\mid Y)\}.
 \]</span></p>
 </div>
-<div class="proof">
-<p><span id="unlabeled-div-63" class="proof"><em>Proof</em>. </span>Write</p>
+<div class="proof source-numbered">
+<p><span id="unlabeled-div-63" class="proof"><em>Proof</em>. </span></p>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>Write</p>
 <p><span class="math display">\[
 X-EX=\{X-E(X\mid Y)\}+\{E(X\mid Y)-EX\}.
 \]</span></p>
@@ -681,6 +872,17 @@ E\!\left[\{X-E(X\mid Y)\}\{E(X\mid Y)-EX\}\right]=0.
 \]</span></p>
 <p>The remaining terms are <span class="math inline">\(E\{\operatorname{Var}(X\mid Y)\}\)</span> and
 <span class="math inline">\(\operatorname{Var}\{E(X\mid Y)\}\)</span>.</p>
+<p>More explicitly, the cross term is zero because</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp;E\!\left[\{X-E(X\mid Y)\}\{E(X\mid Y)-EX\}\right]\\
+&amp;\quad=E\!\left[
+\{E(X\mid Y)-EX\}
+E\{X-E(X\mid Y)\mid Y\}\right]=0,
+\end{aligned}
+\]</span></p>
+<p>since <span class="math inline">\(E\{X-E(X\mid Y)\mid Y\}=0\)</span>.</p>
+</details>
 </div>
 </div>
 <div id="multivariate-normal" class="section level2 hasAnchor" number="4.10">
@@ -756,7 +958,7 @@ Figure 4.5: Standard bivariate-normal contours for two correlations
 </div>
 <div id="holder-cauchy" class="section level2 hasAnchor" number="4.11">
 <h2><span class="header-section-number">4.11</span> Young, Hölder, and Cauchy–Schwarz inequalities<a href="multiple-random-variables.html#holder-cauchy" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="lemma">
+<div class="lemma source-numbered">
 <p><span id="lem:unlabeled-div-65" class="lemma"><strong>Lemma 4.2  </strong></span><strong>Young’s inequality (source Lemma 4.7.1)</strong> If <span class="math inline">\(a,b&gt;0\)</span>, <span class="math inline">\(p,q&gt;1\)</span>, and
 <span class="math inline">\(1/p+1/q=1\)</span>, then</p>
 <p><span class="math display">\[
@@ -764,9 +966,20 @@ Figure 4.5: Standard bivariate-normal contours for two correlations
 \]</span></p>
 <p>with equality if and only if <span class="math inline">\(a^p=b^q\)</span>.</p>
 </div>
-<p>For fixed <span class="math inline">\(b\)</span>, the function
-<span class="math inline">\(g(a)=a^p/p+b^q/q-ab\)</span> has its unique minimum where
-<span class="math inline">\(a^{p-1}=b\)</span>, equivalently <span class="math inline">\(a^p=b^q\)</span>, and the minimum is zero.</p>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>For fixed <span class="math inline">\(b\)</span>, consider <span class="math inline">\(g(a)=a^p/p+b^q/q-ab\)</span>. Its stationary point
+satisfies <span class="math inline">\(a^{p-1}=b\)</span>. Since <span class="math inline">\(g&#39;&#39;(a)=(p-1)a^{p-2}&gt;0\)</span>, this is the global
+minimum. From <span class="math inline">\(1/p+1/q=1\)</span>, the stationary-point condition is equivalent to
+<span class="math inline">\(a^p=b^q\)</span>. At this point,</p>
+<p><span class="math display">\[
+g(a)=\frac{a^p}{p}+\frac{a^p}{q}-a^p
+=a^p\left(\frac1p+\frac1q-1\right)=0.
+\]</span></p>
+<p>Hence <span class="math inline">\(g(a)\ge0\)</span>, with equality exactly when <span class="math inline">\(a^p=b^q\)</span>.</p>
+</details>
 <div class="theorem">
 <p><span id="thm:unlabeled-div-66" class="theorem"><strong>Theorem 4.5  </strong></span><strong>Hölder’s inequality</strong> If the relevant moments are finite,</p>
 <p><span class="math display">\[
@@ -774,12 +987,28 @@ Figure 4.5: Standard bivariate-normal contours for two correlations
 \le\{E|X|^p\}^{1/p}\{E|Y|^q\}^{1/q}.
 \]</span></p>
 </div>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
 <p>Apply Young’s inequality with</p>
 <p><span class="math display">\[
 a=\frac{|X|}{\{E|X|^p\}^{1/p}},\qquad
 b=\frac{|Y|}{\{E|Y|^q\}^{1/q}},
 \]</span></p>
-<p>and take expectations. Setting <span class="math inline">\(p=q=2\)</span> gives Cauchy–Schwarz:</p>
+<p>If both denominators are nonzero, apply Young pointwise and take expectations:</p>
+<p><span class="math display">\[
+E\left[
+\frac{|X|}{\{E|X|^p\}^{1/p}}
+\frac{|Y|}{\{E|Y|^q\}^{1/q}}
+\right]
+\le \frac1p+\frac1q=1.
+\]</span></p>
+<p>Multiplying back the denominators proves Hölder. If either denominator is zero,
+the corresponding variable is zero almost surely and the result is immediate.
+Together with <span class="math inline">\(|E(XY)|\le E|XY|\)</span>, this completes the proof.</p>
+</details>
+<p>Setting <span class="math inline">\(p=q=2\)</span> gives Cauchy–Schwarz:</p>
 <p><span class="math display">\[
 |E(XY)|\le E|XY|
 \le\{E(X^2)\}^{1/2}\{E(Y^2)\}^{1/2}.
@@ -807,6 +1036,10 @@ E|X|\le\{E|X|^p\}^{1/p}.
 \le\{E|X|^p\}^{1/p}+\{E|Y|^p\}^{1/p}.
 \]</span></p>
 </div>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
 <p>The proof starts from</p>
 <p><span class="math display">\[
 E|X+Y|^p
@@ -816,6 +1049,13 @@ E|X+Y|^p
 <p>and applies Hölder to both terms. Since the conjugate exponent
 <span class="math inline">\(q=p/(p-1)\)</span> satisfies <span class="math inline">\(q(p-1)=p\)</span>, cancellation of
 <span class="math inline">\(\{E|X+Y|^p\}^{(p-1)/p}\)</span> gives the result.</p>
+<p>If <span class="math inline">\(E|X+Y|^p=0\)</span>, the result is immediate. Otherwise division by this positive
+factor gives</p>
+<p><span class="math display">\[
+\{E|X+Y|^p\}^{1/p}
+\le \{E|X|^p\}^{1/p}+\{E|Y|^p\}^{1/p}.
+\]</span></p>
+</details>
 </div>
 <div id="jensen-inequality" class="section level2 hasAnchor" number="4.13">
 <h2><span class="header-section-number">4.13</span> Convex functions and Jensen’s inequality<a href="multiple-random-variables.html#jensen-inequality" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -842,12 +1082,48 @@ g_x^\perp(y)=\frac{g(y)-g(x)}{y-x}
 <p><span class="math display">\[
 g(z)\ge g(x)+D^+g(x)(z-x).
 \]</span></p>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>If <span class="math inline">\(x&lt;y&#39;&lt;y\)</span>, set <span class="math inline">\(\lambda=(y-y&#39;)/(y-x)\)</span>, so
+<span class="math inline">\(y&#39;=\lambda x+(1-\lambda)y\)</span>. Convexity gives</p>
+<p><span class="math display">\[
+g(y&#39;)\le
+\frac{y-y&#39;}{y-x}g(x)+
+\frac{y&#39;-x}{y-x}g(y).
+\]</span></p>
+<p>Rearranging and dividing by the positive number <span class="math inline">\(y&#39;-x\)</span> yields</p>
+<p><span class="math display">\[
+\frac{g(y&#39;)-g(x)}{y&#39;-x}
+\le
+\frac{g(y)-g(x)}{y-x}.
+\]</span></p>
+<p>The other orderings are analogous, so the secant slope is nondecreasing in its
+second endpoint. Letting that endpoint tend to <span class="math inline">\(x\)</span> gives the supporting-line
+inequality determined by the right derivative.</p>
+</details>
 <div class="theorem">
 <p><span id="thm:unlabeled-div-69" class="theorem"><strong>Theorem 4.7  </strong></span><strong>Jensen’s inequality</strong> If <span class="math inline">\(g\)</span> is convex and the expectations exist,</p>
 <p><span class="math display">\[
 E\{g(X)\}\ge g(EX).
 \]</span></p>
 </div>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>Let <span class="math inline">\(m=E(X)\)</span> and choose a supporting line <span class="math inline">\(\ell(x)=a+bx\)</span> at <span class="math inline">\(m\)</span>, so
+<span class="math inline">\(g(x)\ge\ell(x)\)</span> and <span class="math inline">\(g(m)=\ell(m)\)</span>. Since expectation preserves
+inequalities,</p>
+<p><span class="math display">\[
+E\{g(X)\}\ge E\{a+bX\}
+=a+bE(X)=\ell(m)=g(m)=g\{E(X)\}.
+\]</span></p>
+<p>For linear <span class="math inline">\(g\)</span>, equality follows directly from linearity of expectation. In
+general, equality requires <span class="math inline">\(X\)</span> to lie almost surely where <span class="math inline">\(g\)</span> agrees with the
+supporting line.</p>
+</details>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:en-chap04-source-jensen-tangent"></span>
 <img src="images/ch04/p190.jpg" alt="Supporting-line interpretation of Jensen’s inequality (source slide)" width="30%" />
 <p class="caption">
@@ -871,6 +1147,24 @@ a_H=\left(\frac1n\sum_{i=1}^n\frac1{a_i}\right)^{-1}.
 <p><span class="math display">\[
 a_H\le a_G\le a_A.
 \]</span></p>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
+<p>Let <span class="math inline">\(I\)</span> be uniform on <span class="math inline">\(\{1,\ldots,n\}\)</span> and set <span class="math inline">\(X=a_I\)</span>. Since <span class="math inline">\(\log\)</span> is
+concave, Jensen’s inequality gives</p>
+<p><span class="math display">\[
+\frac1n\sum_{i=1}^n\log a_i
+\le \log\left(\frac1n\sum_{i=1}^na_i\right).
+\]</span></p>
+<p>Exponentiating yields <span class="math inline">\(a_G\le a_A\)</span>. Apply the same geometric-mean versus
+arithmetic-mean inequality to <span class="math inline">\(1/a_i\)</span>:</p>
+<p><span class="math display">\[
+\left(\prod_{i=1}^n\frac1{a_i}\right)^{1/n}
+\le\frac1n\sum_{i=1}^n\frac1{a_i}.
+\]</span></p>
+<p>Taking reciprocals gives <span class="math inline">\(a_H\le a_G\)</span>.</p>
+</details>
 <p>If <span class="math inline">\(f,g\)</span> are densities and <span class="math inline">\(X\sim f\)</span>, then</p>
 <p><span class="math display">\[
 E_f\!\left[\log\frac{g(X)}{f(X)}\right]
@@ -880,6 +1174,23 @@ E_f\!\left[\log\frac{g(X)}{f(X)}\right]
 <p><span class="math display">\[
 E_f\{\log g(X)\}\le E_f\{\log f(X)\}.
 \]</span></p>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
+<p>Where <span class="math inline">\(g(x)&gt;0\)</span> and <span class="math inline">\(f(x)&gt;0\)</span>, define <span class="math inline">\(R(X)=g(X)/f(X)\)</span>. Concavity of the
+logarithm gives</p>
+<p><span class="math display">\[
+E_f\{\log R(X)\}\le\log E_f\{R(X)\}.
+\]</span></p>
+<p>But</p>
+<p><span class="math display">\[
+E_f\{R(X)\}=\int \frac{g(x)}{f(x)}f(x)\,dx
+=\int g(x)\,dx=1.
+\]</span></p>
+<p>Thus <span class="math inline">\(E_f\{\log g(X)-\log f(X)\}\le0\)</span>, which rearranges to the stated
+inequality.</p>
+</details>
 <p>This is equivalent to nonnegativity of Kullback–Leibler divergence and
 helps explain why maximum likelihood favors the true model in expectation.</p>
 </div>

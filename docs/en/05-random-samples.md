@@ -16,9 +16,38 @@ For a parametric family $f(x\mid\theta)$, the same unknown parameter occurs in e
 
 $$f(x_1,\ldots,x_n\mid\theta)=\prod_{i=1}^nf(x_i\mid\theta).$$
 
+The random-sample model is also called sampling from an infinite population. For a finite population, **sampling with replacement** satisfies the iid conditions. Observations drawn **without replacement** are dependent, although the iid model is often a useful approximation when the population size $N$ is much larger than the sample size $n$.
+
+::: {.source-example}
+**Example 5.1.3 (Finite-population approximation).** Draw 10 numbers without replacement from the finite population $\{1,\ldots,1000\}$. Find the probability that all 10 exceed 200, and compare the iid approximation with the exact probability.
+:::
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+If the ten draws are temporarily treated as independent, the probability of exceeding 200 on one draw is $800/1000$, so
+
+$$
+P_{\mathrm{iid}}=\left(\frac{800}{1000}\right)^{10}=0.107374.
+$$
+
+For the exact calculation, let $Y$ count sampled values above 200. Then
+$Y\sim\operatorname{Hypergeometric}(N=1000,M=800,K=10)$, and
+
+$$
+P(Y=10)=\frac{\binom{800}{10}\binom{200}{0}}{\binom{1000}{10}}
+=0.106164.
+$$
+
+The difference is about $0.00121$. Because $n/N=0.01$ is small, the iid approximation is reasonable, but it is not the exact without-replacement model.
+
+</details>
+
 ## Exponential circuit-board lifetimes {#exponential-sample-example}
 
-::: {.example}
+::: {.example .source-numbered}
+**Example 5.1.2 (Sample pdf—exponential).**
+
 Let $X_1,\ldots,X_n$ come from an exponential population with scale $\beta>0$. If $X_i$ is the lifetime of the $i$th identical circuit board, then
 
 $$
@@ -26,7 +55,13 @@ f(\mathbf x\mid\beta)=\prod_{i=1}^n\frac1\beta e^{-x_i/\beta}
 =\frac1{\beta^n}\exp\left(-\frac{\sum_i x_i}{\beta}\right),\qquad x_i>0.
 $$
 
-The probability that every board lasts more than two years is
+Find the probability that every board lasts more than two years.
+:::
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+First integrate the joint density directly:
 
 $$
 \begin{aligned}
@@ -38,7 +73,8 @@ $$
 
 Equivalently, iid sampling gives
 $P(\cap_i\{X_i>2\})=\prod_iP(X_i>2)=e^{-2n/\beta}$. This is near one when the average lifetime $\beta$ is large relative to $n$.
-:::
+
+</details>
 
 
 ``` r
@@ -73,27 +109,148 @@ $$
 S^2=\frac1{n-1}\sum_{i=1}^n(X_i-\bar X)^2,\qquad S=\sqrt{S^2}.
 $$
 
-::: {.theorem}
-If $X_i\overset{\mathrm{iid}}\sim N(\mu,\sigma^2)$, then
+::: {.source-theorem}
+**Theorem 5.2.4 (Sum-of-squares identity).** For any real numbers
+$x_1,\ldots,x_n$, with $\bar x=n^{-1}\sum_i x_i$,
+
+$$
+\sum_{i=1}^n(x_i-a)^2
+=\sum_{i=1}^n(x_i-\bar x)^2+n(\bar x-a)^2.
+$$
+
+Thus the sum of squared deviations is minimized at $a=\bar x$, and
+
+$$
+(n-1)s^2=\sum_{i=1}^n(x_i-\bar x)^2
+=\sum_{i=1}^nx_i^2-n\bar x^2.
+$$
+:::
+
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+Add and subtract $\bar x$ in every term:
+
+$$
+\begin{aligned}
+\sum_{i=1}^n(x_i-a)^2
+&=\sum_{i=1}^n\{(x_i-\bar x)+(\bar x-a)\}^2\\
+&=\sum_{i=1}^n(x_i-\bar x)^2
++2(\bar x-a)\sum_{i=1}^n(x_i-\bar x)
++n(\bar x-a)^2.
+\end{aligned}
+$$
+
+Because $\sum_i(x_i-\bar x)=0$, the cross term vanishes. Only the last term depends on $a$, so the minimum occurs at $a=\bar x$. Setting $a=0$ and rearranging gives
+$\sum_i(x_i-\bar x)^2=\sum_i x_i^2-n\bar x^2$.
+
+</details>
+
+::: {.source-lemma}
+**Lemma 5.2.5 (Mean and variance of an iid sum).** If $E\{g(X_1)\}$ and
+$\operatorname{Var}\{g(X_1)\}$ exist, then
+
+$$
+E\left\{\sum_{i=1}^ng(X_i)\right\}=nE\{g(X_1)\},\qquad
+\operatorname{Var}\left\{\sum_{i=1}^ng(X_i)\right\}
+=n\operatorname{Var}\{g(X_1)\}.
+$$
+:::
+
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+The expectation statement uses only identical distributions and linearity:
+
+$$
+E\left\{\sum_i g(X_i)\right\}=\sum_iE\{g(X_i)\}
+=nE\{g(X_1)\}.
+$$
+
+The variance statement also uses independence. Expanding the square of the centered sum gives $n$ diagonal terms, each equal to
+$\operatorname{Var}\{g(X_1)\}$, while for $i\ne j$ every cross term has expectation
+
+$$
+E([g(X_i)-Eg(X_i)][g(X_j)-Eg(X_j)])=0.
+$$
+
+Hence the variance is $n\operatorname{Var}\{g(X_1)\}$.
+
+</details>
+
+::: {.theorem .source-numbered}
+**Theorem 5.2.6 (Sample mean and sample variance).** If
+$X_1,\ldots,X_n$ are iid, $E(X_i)=\mu$, and
+$\operatorname{Var}(X_i)=\sigma^2<\infty$, then
 
 $$E(\bar X)=\mu,\quad \operatorname{Var}(\bar X)=\sigma^2/n,
-\quad E(S^2)=\sigma^2,$$
-
-and $\bar X\sim N(\mu,\sigma^2/n)$.
+\quad E(S^2)=\sigma^2.$$
 :::
+
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+Lemma 5.2.5 gives
+
+$$
+E(\bar X)=\frac1n\sum_iE(X_i)=\mu,
+\qquad
+\operatorname{Var}(\bar X)=\frac1{n^2}\sum_i\operatorname{Var}(X_i)
+=\frac{\sigma^2}{n}.
+$$
+
+Theorem 5.2.4 gives
+
+$$
+(n-1)S^2=\sum_iX_i^2-n\bar X^2.
+$$
+
+Now $E(X_i^2)=\sigma^2+\mu^2$ and
+$E(\bar X^2)=\operatorname{Var}(\bar X)+[E(\bar X)]^2
+=\sigma^2/n+\mu^2$, so
+
+$$
+\begin{aligned}
+(n-1)E(S^2)
+&=n(\sigma^2+\mu^2)
+-n\left(\frac{\sigma^2}{n}+\mu^2\right)\\
+&=(n-1)\sigma^2.
+\end{aligned}
+$$
+
+Dividing by $n-1$ yields $E(S^2)=\sigma^2$. This also explains the denominator $n-1$: it makes $S^2$ unbiased for the population variance.
+
+</details>
+
+With the additional assumption of normality,
+$\bar X\sim N(\mu,\sigma^2/n)$; the next section identifies this distribution directly from its MGF.
 
 ## MGF of the sample mean and the normal example {#sample-mean-mgf}
 
-::: {.theorem}
+::: {.theorem .source-numbered}
+**Theorem 5.2.7 (MGF of the sample mean).**
+
 If the population MGF is $M_X(t)$, then $M_{\bar X}(t)=[M_X(t/n)]^n$.
 :::
 
-::: {.proof}
+::: {.proof .source-numbered}
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
 Independence yields
 
 $$M_{\bar X}(t)=E\prod_{i=1}^ne^{tX_i/n}
 =\prod_{i=1}^nE(e^{tX_i/n})=[M_X(t/n)]^n.$$
+
+</details>
 :::
+
+::: {.source-example}
+**Example 5.2.8 (Distribution of the normal sample mean).** If the population is $N(\mu,\sigma^2)$, find the distribution of $\bar X$.
+:::
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
 
 For a $N(\mu,\sigma^2)$ population,
 
@@ -104,21 +261,109 @@ $$
 
 so $\bar X\sim N(\mu,\sigma^2/n)$.
 
+</details>
+
+The same method shows that if $X_i\overset{\mathrm{iid}}\sim
+\operatorname{Gamma}(\alpha,\beta)$ under the shape-scale parameterization, then
+$\sum_iX_i\sim\operatorname{Gamma}(n\alpha,\beta)$ and
+$\bar X\sim\operatorname{Gamma}(n\alpha,\beta/n)$.
+
 ## The convolution formula {#convolution-formula}
 
-::: {.theorem}
+::: {.theorem .source-numbered}
+**Theorem 5.2.9 (Convolution formula).**
+
 For independent continuous random variables $X,Y$, the density of $Z=X+Y$ is
 
 $$f_Z(z)=\int_{-\infty}^{\infty}f_X(x)f_Y(z-x)\,dx.$$
 :::
 
-::: {.proof}
+::: {.proof .source-numbered}
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
 Set $Z=X+Y,W=X$. The inverse is $X=W,Y=Z-W$, with absolute Jacobian one. Thus $f_{Z,W}(z,w)=f_X(w)f_Y(z-w)$; integrating out $w$ proves the result.
+
+</details>
 :::
+
+::: {.source-example}
+**Example 5.2.10 (Sum of Cauchy variables).** If
+$U\sim\operatorname{Cauchy}(0,\sigma)$ and
+$V\sim\operatorname{Cauchy}(0,\tau)$ are independent, then
+$U+V\sim\operatorname{Cauchy}(0,\sigma+\tau)$. Consequently, the mean $\bar X$ of an iid standard Cauchy sample is again standard Cauchy.
+:::
+
+<details class="course-details derivation-details">
+<summary><strong>View derivation</strong></summary>
+
+The convolution formula gives
+
+$$
+f_{U+V}(z)=\int_{-\infty}^{\infty}
+\frac{\sigma}{\pi(\sigma^2+u^2)}
+\frac{\tau}{\pi\{\tau^2+(z-u)^2\}}\,du.
+$$
+
+The textbook assigns the partial-fraction and antiderivative calculation to Exercise 5.7. Its result is
+
+$$
+f_{U+V}(z)=\frac{\sigma+\tau}
+{\pi\{(\sigma+\tau)^2+z^2\}},
+$$
+
+so scales add. Repeated application gives
+$\sum_{i=1}^nX_i\sim\operatorname{Cauchy}(0,n)$; dividing by $n$ yields
+$\bar X\sim\operatorname{Cauchy}(0,1)$. Thus, when the population variance does not exist, dispersion of the sample mean need not shrink with $n$.
+
+</details>
+
+## Sampling properties of the normal distribution {#normal-sample-properties}
+
+::: {.source-theorem}
+**Theorem 5.3.1 (Normal sample mean and variance).** If
+$X_1,\ldots,X_n\overset{\mathrm{iid}}\sim N(\mu,\sigma^2)$, then
+
+1. $\bar X$ and $S^2$ are independent;
+2. $\bar X\sim N(\mu,\sigma^2/n)$;
+3. $(n-1)S^2/\sigma^2\sim\chi^2_{n-1}$.
+:::
+
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+Standardize with $Z_i=(X_i-\mu)/\sigma$, so it is enough to prove the result for $\mu=0$ and $\sigma=1$. Part 2 was already established in Example 5.2.8.
+
+For independence, set $Y_1=\bar X$ and $Y_i=X_i-\bar X$ for
+$i=2,\ldots,n$. The statistic $S^2$ depends only on
+$(Y_2,\ldots,Y_n)$, while under this linear transformation the normal joint density factors into one term involving $Y_1$ and another involving the residual vector. Hence $Y_1=\bar X$ is independent of the residual vector, and therefore of $S^2$.
+
+For the chi-squared result, follow the textbook recursion. Let $\bar X_k,S_k^2$ denote the mean and variance of the first $k$ observations. The sum-of-squares identity gives
+
+$$
+kS_{k+1}^2=(k-1)S_k^2+
+\frac{k}{k+1}(X_{k+1}-\bar X_k)^2.
+$$
+
+For $k=1$, $S_2^2=(X_2-X_1)^2/2\sim\chi_1^2$. Assume
+$(k-1)S_k^2\sim\chi_{k-1}^2$. Since
+$X_{k+1}-\bar X_k\sim N(0,(k+1)/k)$,
+
+$$
+\frac{k}{k+1}(X_{k+1}-\bar X_k)^2\sim\chi_1^2.
+$$
+
+This variable is independent of $S_k^2$, so independent chi-squared variables add and their degrees of freedom add. Hence
+$kS_{k+1}^2\sim\chi_k^2$. Induction completes the standard-normal case; restoring scale gives
+$(n-1)S^2/\sigma^2\sim\chi_{n-1}^2$.
+
+</details>
 
 ## Student t and Snedecor F sampling distributions {#t-f-sampling-distributions}
 
 ::: {.definition}
+**Definition 5.3.4 (Student's $t$ distribution).**
+
 If $X_i\overset{\mathrm{iid}}\sim N(\mu,\sigma^2)$, then
 
 $$T=\frac{\bar X-\mu}{S/\sqrt n}\sim t_{n-1}.$$
@@ -130,6 +375,8 @@ $$f_T(t)=\frac{\Gamma((p+1)/2)}{\Gamma(p/2)\sqrt{p\pi}}
 :::
 
 ::: {.definition}
+**Definition 5.3.6 (Snedecor's $F$ distribution).**
+
 For two independent normal random samples,
 
 $$F=\frac{S_X^2/\sigma_X^2}{S_Y^2/\sigma_Y^2}\sim F_{n-1,m-1}.$$
@@ -145,8 +392,13 @@ $$
 ## Discrete order statistics {#discrete-order-statistics}
 
 ::: {.definition}
+**Definition 5.4.1 (Order statistics).**
+
 The ordered sample $X_{(1)}\le\cdots\le X_{(n)}$ consists of the **order statistics**. In particular, $X_{(1)}=\min_iX_i$ and $X_{(n)}=\max_iX_i$.
 :::
+
+::: {.source-theorem}
+**Theorem 5.4.3 (Discrete order statistics).**
 
 Let a discrete population have values $x_1<x_2<\cdots$, with $P(X=x_i)=p_i$, and write $P_i=\sum_{r=1}^ip_r$, $P_0=0$. Then
 
@@ -156,19 +408,87 @@ $$
 P(X_{(j)}=x_i)=\sum_{k=j}^n\binom nk
 \{P_i^k(1-P_i)^{n-k}-P_{i-1}^k(1-P_{i-1})^{n-k}\}.
 $$
+:::
+
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
 
 Let $Y=\sum_{r=1}^nI(X_r\le x_i)$. Then $Y\sim\operatorname{Bin}(n,P_i)$ and
-$\{X_{(j)}\le x_i\}\iff\{Y\ge j\}$. Differencing adjacent cdf values gives the second formula.
+$\{X_{(j)}\le x_i\}\iff\{Y\ge j\}$. Therefore
+
+$$
+P(X_{(j)}\le x_i)=P(Y\ge j)
+=\sum_{k=j}^n\binom nkP_i^k(1-P_i)^{n-k}.
+$$
+
+Because the support points are ordered,
+
+$$
+\begin{aligned}
+P(X_{(j)}=x_i)
+&=P(X_{(j)}\le x_i)-P(X_{(j)}<x_i)\\
+&=P(X_{(j)}\le x_i)-P(X_{(j)}\le x_{i-1}).
+\end{aligned}
+$$
+
+Apply the first formula with $P_i$ and $P_{i-1}$ to obtain the result.
+
+</details>
 
 ## Continuous order statistics {#continuous-order-statistics}
 
-::: {.theorem}
+::: {.theorem .source-numbered}
+**Theorem 5.4.4 (Continuous order statistic).**
+
 For population cdf $F_X$ and pdf $f_X$,
 
 $$
 f_{X_{(j)}}(x)=\frac{n!}{(j-1)!(n-j)!}f_X(x)[F_X(x)]^{j-1}[1-F_X(x)]^{n-j}.
 $$
 :::
+
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+For a small $dx>0$, the event $x<X_{(j)}\le x+dx$ requires exactly $j-1$ observations at or below $x$, one in $(x,x+dx]$, and the remaining $n-j$ above $x+dx$. There are
+$n!/\{(j-1)!1!(n-j)!\}$ assignments, so
+
+$$
+\begin{aligned}
+P(x<X_{(j)}\le x+dx)
+&=\frac{n!}{(j-1)!(n-j)!}[F_X(x)]^{j-1}\\
+&\quad\times\{F_X(x+dx)-F_X(x)\}
+[1-F_X(x+dx)]^{n-j}.
+\end{aligned}
+$$
+
+Divide by $dx$ and let $dx\downarrow0$. Since
+$\{F_X(x+dx)-F_X(x)\}/dx\to f_X(x)$, the stated density follows.
+
+</details>
+
+::: {.source-example}
+**Example 5.4.5 (Uniform order-statistic pdf).** If
+$X_i\overset{\mathrm{iid}}\sim U(0,1)$, find the density and distribution of $X_{(j)}$.
+:::
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+On $0<x<1$, $F_X(x)=x$ and $f_X(x)=1$. Theorem 5.4.4 gives
+
+$$
+f_{X_{(j)}}(x)=\frac{n!}{(j-1)!(n-j)!}
+x^{j-1}(1-x)^{n-j}.
+$$
+
+Since $B(j,n-j+1)=(j-1)!(n-j)!/n!$,
+
+$$X_{(j)}\sim\operatorname{Beta}(j,n-j+1).$$
+
+Thus $E(X_{(j)})=j/(n+1)$. This also explains the locations of the modes for the minimum, fifth order statistic, and maximum in the figure below.
+
+</details>
 
 For $1\le i<j\le n$,
 
@@ -187,6 +507,9 @@ f_{X_{(1)},\ldots,X_{(n)}}(\mathbf x)=
 \begin{cases}n!\prod_{i=1}^nf_X(x_i),&x_1<\cdots<x_n,\\0,&\text{otherwise}.
 \end{cases}
 $$
+
+The coefficients in these joint densities come from multinomially allocating observations among
+$(-\infty,u)$, $du$, $(u,v)$, $dv$, and $(v,\infty)$. The joint density of all order statistics reflects the $n!$ possible labelings of the original sample.
 
 
 ``` r
@@ -210,17 +533,55 @@ legend("top", c("Minimum", "Fifth", "Maximum"), lwd = 2, col = cols, bty = "n", 
 If $P(|X_n-X|\ge\varepsilon)\to0$ for every $\varepsilon>0$, then $X_n$ **converges in probability** to $X$, written $X_n\overset p\to X$.
 :::
 
-::: {.theorem}
+::: {.theorem .source-numbered}
+**Theorem 5.5.2 (Weak Law of Large Numbers).**
+
 If $X_i$ are iid, $E(X_i)=\mu$, and $\operatorname{Var}(X_i)=\sigma^2<\infty$, the weak law states
 
 $$\bar X_n=\frac1n\sum_{i=1}^nX_i\overset p\longrightarrow\mu.$$
 :::
 
-If $X_n\overset p\to X$ and $h$ is continuous, then $h(X_n)\overset p\to h(X)$. Also,
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+Theorem 5.2.6 gives $E(\bar X_n)=\mu$ and
+$\operatorname{Var}(\bar X_n)=\sigma^2/n$. For every $\varepsilon>0$, Chebyshev's inequality gives
+
+$$
+P(|\bar X_n-\mu|\ge\varepsilon)
+\le\frac{\operatorname{Var}(\bar X_n)}{\varepsilon^2}
+=\frac{\sigma^2}{n\varepsilon^2}\longrightarrow0.
+$$
+
+This is exactly the definition of $\bar X_n\overset p\to\mu$.
+
+</details>
+
+::: {.source-theorem}
+**Theorem 5.5.4 (Continuous mapping).** If $X_n\overset p\to X$ and $h$ is continuous, then $h(X_n)\overset p\to h(X)$.
+:::
+
+::: {.source-example}
+**Examples 5.5.3--5.5.5 (Consistency of sample variance and standard deviation).** Since $E(S_n^2)=\sigma^2$, Chebyshev's inequality gives
 
 $$P(|S_n^2-\sigma^2|\ge\varepsilon)\le\operatorname{Var}(S_n^2)/\varepsilon^2.$$
 
 Thus $\operatorname{Var}(S_n^2)\to0$ is sufficient for $S_n^2\overset p\to\sigma^2$; continuity then gives $S_n\overset p\to\sigma$.
+:::
+
+<details class="course-details derivation-details">
+<summary><strong>View derivation</strong></summary>
+
+If $\operatorname{Var}(S_n^2)\to0$, the right side tends to zero for every $\varepsilon>0$, so
+$S_n^2\overset p\to\sigma^2$. Because the square-root function is continuous on $[0,\infty)$,
+
+$$
+S_n=\sqrt{S_n^2}\overset p\longrightarrow\sqrt{\sigma^2}=\sigma.
+$$
+
+The textbook states only that $\operatorname{Var}(S_n^2)\to0$ is sufficient; it does not establish that condition under a second-moment assumption alone. The handout therefore does not overstate the conclusion.
+
+</details>
 
 ## Almost-sure convergence and the SLLN {#almost-sure-convergence-slln}
 
@@ -228,13 +589,29 @@ Thus $\operatorname{Var}(S_n^2)\to0$ is sufficient for $S_n^2\overset p\to\sigma
 If $P(\lim_{n\to\infty}X_n=X)=1$, then $X_n$ **converges almost surely** to $X$, written $X_n\overset{a.s.}\to X$. Thus $X_n(s)\to X(s)$ outside a probability-zero set.
 :::
 
-::: {.theorem}
+::: {.theorem .source-numbered}
+**Theorem 5.5.9 (Strong Law of Large Numbers).**
+
 If $X_i$ are iid, $E(X_i)=\mu$, and $\operatorname{Var}(X_i)<\infty$, the strong law states $\bar X_n\overset{a.s.}\to\mu$.
 :::
 
-::: {.example}
+::: {.example .source-numbered}
+**Example 5.5.7 (Almost-sure convergence).**
+
 On the uniform probability space $[0,1]$, let $X_n(s)=s+s^n$ and $X(s)=s$. For $s<1$, $X_n(s)\to X(s)$, but $X_n(1)=2\not\to1$. The exceptional singleton has probability zero, so $X_n\overset{a.s.}\to X$.
 :::
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+For each $0\le s<1$, the geometric sequence satisfies $s^n\to0$, so
+$X_n(s)=s+s^n\to s=X(s)$. Convergence fails only at $s=1$, where
+$X_n(1)=2$ for every $n$. Under the uniform distribution,
+$P(\{1\})=0$, so the convergence set $[0,1)$ has probability one and convergence is almost sure.
+
+</details>
+
+Textbook Example 5.5.8 also shows that convergence in probability need not imply almost-sure convergence of the entire sequence. Its moving-interval indicators take the values zero and one infinitely often at every fixed sample point, while the length of the interval on which the indicator is one tends to zero. Thus they still converge to zero in probability. The contrast clarifies the pathwise requirement of almost-sure convergence.
 
 ## Convergence in distribution and uniform maxima {#distribution-convergence-uniform-max}
 
@@ -244,15 +621,32 @@ If $F_{X_n}(x)\to F_X(x)$ at every continuity point of $F_X$, then $X_n$ **conve
 
 $X_n\overset p\to X$ implies $X_n\overset d\to X$. For a constant limit $\mu$, the modes are equivalent; the limiting cdf is zero below $\mu$ and one above $\mu$.
 
-If $X_i\overset{\mathrm{iid}}\sim U(0,1)$, then
+::: {.source-example}
+**Example 5.5.11 (Maximum of uniforms).** If
+$X_i\overset{\mathrm{iid}}\sim U(0,1)$, determine the limit of $X_{(n)}$ and find a nondegenerate scaled limit.
+:::
 
-$$P(|X_{(n)}-1|\ge\varepsilon)=(1-\varepsilon)^n\to0,$$
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+Because $X_{(n)}\le1$, for $0<\varepsilon<1$,
+
+$$
+\begin{aligned}
+P(|X_{(n)}-1|\ge\varepsilon)
+&=P(X_{(n)}\le1-\varepsilon)\\
+&=P(X_i\le1-\varepsilon, i=1,\ldots,n)\\
+&=(1-\varepsilon)^n\to0,
+\end{aligned}
+$$
 
 so $X_{(n)}\overset p\to1$. Moreover, for $t\ge0$,
 
 $$P\{n(1-X_{(n)})\le t\}=1-(1-t/n)^n\to1-e^{-t},$$
 
 hence $n(1-X_{(n)})\overset d\to\operatorname{Exp}(1)$.
+
+</details>
 
 
 ``` r
@@ -273,21 +667,65 @@ legend("topright", c("Simulation", "Exp(1) density"), lwd = c(8, 2),
 
 ## The central limit theorem and Slutsky's theorem {#clt-slutsky}
 
-::: {.theorem}
-If $X_i$ are iid, $E(X_i)=\mu$, and $0<\operatorname{Var}(X_i)=\sigma^2<\infty$, then
+::: {.source-theorem}
+**Theorem 5.5.14 (MGF version of the Central Limit Theorem).** If the $X_i$ are iid,
+$E(X_i)=\mu$, $\operatorname{Var}(X_i)=\sigma^2>0$, and their common MGF exists in a neighborhood of zero, then
 
 $$\frac{\sqrt n(\bar X_n-\mu)}{\sigma}\overset d\longrightarrow N(0,1).$$
 :::
 
-The source first gives a version assuming an MGF near zero, followed by this stronger finite-variance form. The latter uses characteristic functions and does not require an MGF.
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
 
-::: {.theorem}
-If $X_n\overset d\to X$ and $Y_n\overset p\to a$ for a constant $a$, then
+Let $Y_i=(X_i-\mu)/\sigma$. Then $E(Y_i)=0$ and $E(Y_i^2)=1$. Writing $M_Y$ for their common MGF, independence gives
+
+$$M_n(t)=\left[M_Y\left(\frac{t}{\sqrt n}\right)\right]^n.$$
+
+A second-order Taylor expansion at zero gives
+
+$$
+M_Y(u)=1+uE(Y_i)+\frac{u^2}{2}E(Y_i^2)+R(u)
+=1+\frac{u^2}{2}+R(u),
+$$
+
+where $R(u)/u^2\to0$. Set $u=t/\sqrt n$ to obtain
+
+$$
+M_n(t)=\left[1+\frac1n\left\{\frac{t^2}{2}
++nR(t/\sqrt n)\right\}\right]^n.
+$$
+
+For fixed $t$, $nR(t/\sqrt n)\to0$, so
+$M_n(t)\to e^{t^2/2}$. The limit is the standard-normal MGF; uniqueness of MGFs yields convergence in distribution.
+
+</details>
+
+::: {.theorem .source-numbered}
+**Theorem 5.5.15 (Finite-variance Central Limit Theorem).** If the $X_i$ are iid,
+$E(X_i)=\mu$, and $0<\operatorname{Var}(X_i)=\sigma^2<\infty$, then
+
+$$\frac{\sqrt n(\bar X_n-\mu)}{\sigma}\overset d\longrightarrow N(0,1).$$
+:::
+
+The finite-variance form is stronger than the MGF version. It can be proved with characteristic functions and does not require the MGF to exist. The textbook does not expand that complex-variable proof, so the handout does not invent one; the Cauchy sample-mean example shows why the finite-variance condition cannot simply be discarded.
+
+::: {.theorem .source-numbered}
+**Theorem 5.5.17 (Slutsky's theorem).** If $X_n\overset d\to X$ and
+$Y_n\overset p\to a$ for a constant $a$, then
 
 $$Y_nX_n\overset d\to aX,\qquad X_n+Y_n\overset d\to X+a.$$
 :::
 
-If $S_n\overset p\to\sigma$, then
+::: {.source-example}
+**Example 5.5.18 (Studentization with the sample standard deviation).** When $\sigma$ is unknown but
+$S_n\overset p\to\sigma$, show that replacing $\sigma$ by $S_n$ preserves the standard-normal limit.
+:::
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+The continuous mapping theorem gives
+$\sigma/S_n\overset p\to1$ from $S_n\overset p\to\sigma>0$. The CLT and Slutsky's theorem therefore yield
 
 $$
 \frac{\sqrt n(\bar X_n-\mu)}{S_n}
@@ -295,7 +733,18 @@ $$
 \overset d\longrightarrow N(0,1).
 $$
 
+The first factor removes the unknown scale, while the second supplies the normal limit. After studentization, the limiting law no longer contains the unknown $\sigma$.
+
+</details>
+
 ## Taylor approximation and multivariate variance propagation {#taylor-variance-propagation}
+
+::: {.source-theorem}
+**Theorem 5.5.21 (Taylor remainder).** If $g$ has $r+1$ derivatives near $a$ and
+$T_r(x)=\sum_{j=0}^r g^{(j)}(a)(x-a)^j/j!$, then
+
+$$\frac{g(x)-T_r(x)}{(x-a)^r}\longrightarrow0\qquad(x\to a).$$
+:::
 
 Let $\mathbf T=(T_1,\ldots,T_k)$, $E(\mathbf T)=\boldsymbol\theta$, and
 $g_i'(\boldsymbol\theta)=\left.\partial g(\mathbf t)/\partial t_i\right|_{\mathbf t=\boldsymbol\theta}$. The first-order expansion is
@@ -314,6 +763,14 @@ $$
 
 ## The delta method and two applications {#delta-method-applications}
 
+::: {.source-example}
+**Example 5.5.22 (Approximate variance of the odds).** For a Bernoulli sample, let
+$\hat p=\bar X$ and use $\hat p/(1-\hat p)$ to estimate the population odds $p/(1-p)$.
+:::
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
 For a Bernoulli sample, $\hat p=\bar X$. If $g(p)=p/(1-p)$, then
 
 $$
@@ -321,13 +778,44 @@ $$
 \approx[g'(p)]^2\operatorname{Var}(\hat p)=\frac{p}{n(1-p)^3}.
 $$
 
+Specifically, $g'(p)=1/(1-p)^2$ and
+$\operatorname{Var}(\hat p)=p(1-p)/n$, so
+
+$$
+[g'(p)]^2\operatorname{Var}(\hat p)
+=\frac1{(1-p)^4}\frac{p(1-p)}n
+=\frac{p}{n(1-p)^3}.
+$$
+
+</details>
+
+::: {.source-example}
+**Example 5.5.23 (Approximate moments of a reciprocal).** If $E_\mu(X)=\mu\ne0$, use a first-order Taylor expansion to approximate the mean and variance of $1/X$.
+:::
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
 If $E_\mu(X)=\mu\ne0$, take $g(\mu)=1/\mu$. Then
 
 $$E_\mu(1/X)\approx1/\mu,\qquad
 \operatorname{Var}_\mu(1/X)\approx\mu^{-4}\operatorname{Var}_\mu(X).$$
 
-::: {.theorem}
-If $\sqrt n(Y_n-\theta)\overset d\to N(0,\sigma^2)$ and $g'(\theta)$ exists, then
+Because $g'(\mu)=-\mu^{-2}$,
+
+$$
+g(X)\approx g(\mu)+g'(\mu)(X-\mu)
+=\frac1\mu-\frac{X-\mu}{\mu^2}.
+$$
+
+The linear term has expectation zero, while the constant drops out of the variance, giving the two approximations above. These are local first-order approximations; they neither assert that $E(1/X)$ must exist nor turn an approximation into an exact equality.
+
+</details>
+
+::: {.theorem .source-numbered}
+**Theorem 5.5.24 (Delta method).**
+
+If $\sqrt n(Y_n-\theta)\overset d\to N(0,\sigma^2)$ and $g'(\theta)$ exists and is nonzero, then
 
 $$
 \sqrt n\{g(Y_n)-g(\theta)\}
@@ -335,9 +823,37 @@ $$
 $$
 :::
 
-::: {.proof}
-Taylor expansion gives $g(Y_n)-g(\theta)=g'(\theta)(Y_n-\theta)+o_p(n^{-1/2})$. Multiply by $\sqrt n$ and apply Slutsky's theorem.
+::: {.proof .source-numbered}
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+Differentiability gives a random remainder $r_n$ such that
+
+$$
+g(Y_n)-g(\theta)=g'(\theta)(Y_n-\theta)+r_n(Y_n-\theta),
+$$
+
+with $r_n\overset p\to0$ whenever $Y_n\overset p\to\theta$. Moreover,
+$\sqrt n(Y_n-\theta)\overset d\to N(0,\sigma^2)$ implies that this sequence is
+$O_p(1)$, hence $Y_n-\theta=O_p(n^{-1/2})$. Therefore
+
+$$
+\sqrt n\{g(Y_n)-g(\theta)\}
+=\{g'(\theta)+r_n\}\sqrt n(Y_n-\theta).
+$$
+
+Slutsky's theorem gives the limit
+$N(0,\sigma^2[g'(\theta)]^2)$. This also explains why merely saying that the remainder tends to zero is insufficient: its order after multiplication by $\sqrt n$ must be controlled.
+
+</details>
 :::
+
+::: {.source-example}
+**Example 5.5.25 (Reciprocal sample mean).** For $Y_n=\bar X$ and $g(x)=1/x$, find the asymptotic distribution and a computable approximate variance.
+:::
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
 
 For $Y_n=\bar X$ and $g(x)=1/x$, when $\mu\ne0$,
 
@@ -353,9 +869,33 @@ $$
 \frac{\sqrt n(1/\bar X-1/\mu)}{S/\bar X^2}\overset d\to N(0,1).
 $$
 
+Here $g'(\mu)=-1/\mu^2$, whose square gives asymptotic variance
+$\operatorname{Var}(X_1)/\mu^4$. Replacing the unknown
+$\operatorname{Var}(X_1)$ and $\mu$ by the consistent $S^2$ and $\bar X$, while retaining the $1/n$ in $\operatorname{Var}(\bar X)$, yields
+$S^2/(n\bar X^4)$.
+
+</details>
+
+::: {.source-theorem}
+**Theorem 5.5.26 (Second-order delta method).** If
+$\sqrt n(Y_n-\theta)\overset d\to N(0,\sigma^2)$,
+$g'(\theta)=0$, and $g''(\theta)\ne0$, then
+
+$$
+n\{g(Y_n)-g(\theta)\}
+\overset d\longrightarrow \frac{\sigma^2g''(\theta)}2\chi_1^2.
+$$
+:::
+
+When the first derivative vanishes, the first-order delta method degenerates. Retaining the second Taylor term and using the fact that a squared standard normal is $\chi_1^2$ gives this result.
+
 ## Chapter summary {#random-samples-summary}
 
 - The iid assumption factors the joint sample distribution into identical marginals.
 - Sampling distributions of the mean, variance, and order statistics connect population and data.
 - Laws of large numbers explain stability; the CLT explains normal approximation.
 - Slutsky and delta methods transfer limits to useful statistics.
+
+> **After-class prompt:** Complete textbook Exercise 5.7 for the Cauchy convolution integral, Exercise 5.26 for the joint density of two order statistics, and Exercise 5.43 for the delta-method remainder details. This handout does not expose standard answers that the source does not provide.
+
+**References:** Casella and Berger, *Statistical Inference*, 2nd ed., Chapter 5; the original `chap-5.tex` slide deck and its four included fragments.
