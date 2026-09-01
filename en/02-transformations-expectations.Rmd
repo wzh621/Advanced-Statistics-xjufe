@@ -33,6 +33,19 @@ F_Y(y)=\frac{2}{\pi}\arcsin\sqrt y,\qquad
 f_Y(y)=\frac{1}{\pi\sqrt{y(1-y)}}.
 $$
 
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+For $0<y<1$, put $a=\arcsin\sqrt y$. Over $(0,2\pi)$, the set on which $\sin^2x\le y$ is
+
+$$
+(0,a]\cup[\pi-a,\pi+a]\cup[2\pi-a,2\pi),
+$$
+
+with total length $4a$. Uniformity gives $F_Y(y)=2\arcsin(\sqrt y)/\pi$, and the chain rule gives the displayed density. The CDF is 0 for $y\le0$ and 1 for $y\ge1$.
+
+</details>
+
 ```{r en-chap02-sine-square-source-figure, echo=FALSE, out.width='58%', fig.align='center', fig.cap='Source-slide illustration of the multiple branches of the sine-squared transformation'}
 knitr::include_graphics("../images/ch02/fig_2-1-1.png")
 ```
@@ -78,6 +91,13 @@ $$
 
 The absolute value keeps the transformed density nonnegative for both increasing and decreasing transformations.
 
+<details class="course-details proof-details">
+<summary><strong>Show proof</strong></summary>
+
+If $g$ is increasing, $F_Y(y)=F_X\{g^{-1}(y)\}$; differentiating gives $f_X\{g^{-1}(y)\}(g^{-1})'(y)$. If $g$ is decreasing, continuity gives $F_Y(y)=1-F_X\{g^{-1}(y)\}$, and differentiation gives the negative of that expression. The inverse derivative is positive in the first case and negative in the second, so the two cases combine into the absolute-value formula.
+
+</details>
+
 ## Example 2.1.6: A Reciprocal Gamma Transformation {#inverse-gamma-example}
 
 Suppose
@@ -86,7 +106,7 @@ $$
 f_X(x)=\frac{x^{n-1}e^{-x/\beta}}{(n-1)!\beta^n},\qquad x>0,
 $$
 
-and let $Y=1/X$. Here $g^{-1}(y)=1/y$, $\mathcal Y=(0,\infty)$, and $|(g^{-1})'(y)|=1/y^2$. Thus
+and let $Y=1/X$. The resulting density is
 
 $$
 \begin{aligned}
@@ -98,18 +118,18 @@ f_Y(y)
 \end{aligned}
 $$
 
-This is a special case of an inverse-gamma density.
+This is a special case of an inverse-gamma density; the density is zero for $y\le0$.
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+The map $g(x)=1/x$ decreases from $(0,\infty)$ onto itself. Solving $y=1/x$ gives $g^{-1}(y)=1/y$ and $|(g^{-1})'(y)|=1/y^2$. Substitution into Theorem 2.1.5 gives the displayed density; it is zero for $y\le0$.
+
+</details>
 
 ## Example 2.1.7: The Square of a Standard Normal {#normal-square-example}
 
-Let $X\sim N(0,1)$ and $Y=X^2$. For $y>0$,
-
-$$
-F_Y(y)=P(-\sqrt y\le X\le\sqrt y)
-=2\Phi(\sqrt y)-1.
-$$
-
-Differentiation gives
+Let $X\sim N(0,1)$ and $Y=X^2$. The resulting density is
 
 $$
 f_Y(y)=\frac{\phi(\sqrt y)}{\sqrt y}
@@ -117,6 +137,13 @@ f_Y(y)=\frac{\phi(\sqrt y)}{\sqrt y}
 $$
 
 so $Y\sim\chi_1^2$. The source slides use the normal CDF $\Phi$ where the normal density $\phi$ is required; that error is corrected here.
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+For $y>0$, $X^2\le y$ is equivalent to $-\sqrt y\le X\le\sqrt y$. Differentiating $\Phi(\sqrt y)-\Phi(-\sqrt y)$ gives one contribution from each inverse branch. Since $\phi$ is even, they sum to $\phi(\sqrt y)/\sqrt y$.
+
+</details>
 
 ## Piecewise Monotone Transformations {#piecewise-monotone-transform}
 
@@ -135,11 +162,21 @@ $$
 
 Thus all inverse branches must be added for transformations such as $Y=\sin^2X$ and $Y=X^2$.
 
+<details class="course-details proof-details">
+<summary><strong>View derivation</strong></summary>
+
+On each branch $A_i$, apply Theorem 2.1.5 to the one-to-one map $g_i$. The branches are disjoint, so their density contributions add. The exceptional set $A_0$ has probability zero. The textbook gives this branch-summing explanation but no separate formal proof.
+
+</details>
+
 ## The Probability Integral Transform {#probability-integral-transform}
 
 ::: {.theorem}
 **Theorem 2.1.10.** If $X$ has continuous CDF $F_X$, then $Y=F_X(X)\sim U(0,1)$.
 :::
+
+<details class="course-details proof-details">
+<summary><strong>Show proof</strong></summary>
 
 When $F_X$ is strictly increasing, for $0<y<1$,
 
@@ -152,7 +189,11 @@ P(Y\le y)
 \end{aligned}
 $$
 
-The generalized inverse gives the result for an arbitrary continuous CDF. This transform underlies random-number generation and many goodness-of-fit procedures.
+For a general continuous CDF define $F_X^{-1}(y)=\inf\{x:F_X(x)\ge y\}$. Flat portions carry zero probability, so the event equality remains valid in probability, and continuity gives $F_X\{F_X^{-1}(y)\}=y$. The endpoints complete the uniform CDF.
+
+</details>
+
+This transform underlies random-number generation and many goodness-of-fit procedures.
 
 ## Definition and Computation of Expectation {#expected-value-definition}
 
@@ -177,8 +218,50 @@ This is often called the law of the unconscious statistician (LOTUS). One may in
 ## Examples and Properties of Expectation {#expectation-examples-properties}
 
 - **Example 2.2.2:** If $f_X(x)=\lambda^{-1}e^{-x/\lambda}$ for $x>0$, then $E(X)=\lambda$; here $\lambda$ is the scale.
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+Integration by parts gives
+
+$$
+E(X)=\int_0^\infty x\lambda^{-1}e^{-x/\lambda}\,dx
+=\left[-xe^{-x/\lambda}\right]_0^\infty
++\int_0^\infty e^{-x/\lambda}\,dx=\lambda.
+$$
+
+</details>
+
 - **Example 2.2.3:** If $X\sim\operatorname{Binomial}(n,p)$, then $E(X)=np$.
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+Using $x\binom nx=n\binom{n-1}{x-1}$,
+
+$$
+E(X)=np\sum_{y=0}^{n-1}\binom{n-1}{y}p^y(1-p)^{n-1-y}=np,
+$$
+
+because the sum is the total mass of a $\operatorname{Binomial}(n-1,p)$ distribution.
+
+</details>
+
 - **Example 2.2.4:** For a standard Cauchy random variable, $E|X|=\infty$, so $E(X)$ does not exist. Symmetry cannot cancel two divergent integrals.
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+With $f_X(x)=1/\{\pi(1+x^2)\}$,
+
+$$
+E|X|=\frac2\pi\int_0^\infty\frac{x}{1+x^2}\,dx
+=\frac1\pi\lim_{M\to\infty}\log(1+M^2)=\infty.
+$$
+
+The two one-sided integrals diverge, so formal cancellation by symmetry is invalid.
+
+</details>
 
 ::: {.theorem}
 **Theorem 2.2.5.** Whenever the relevant expectations exist:
@@ -189,12 +272,33 @@ This is often called the law of the unconscious statistician (LOTUS). One may in
 4. if $a\le g_1\le b$, then $a\le E\{g_1(X)\}\le b$.
 :::
 
+<details class="course-details proof-details">
+<summary><strong>Show proof</strong></summary>
+
+For the continuous case, linearity of integration and $\int f_X=1$ prove part 1 directly. If $g_1\ge0$, then $g_1f_X\ge0$, proving part 2. Apply part 2 to $g_1-g_2$ and use linearity to obtain part 3. Applying monotonicity to the constant bounds $a\le g_1\le b$ proves part 4. The discrete proof replaces integrals with sums.
+
+</details>
+
 When the second moment exists, the mean is the best constant center under squared loss:
 
 $$
 \arg\min_cE(X-c)^2=E(X),\qquad
 \min_cE(X-c)^2=\operatorname{Var}(X).
 $$
+
+<details class="course-details solution-details">
+<summary><strong>View derivation</strong></summary>
+
+Expanding around the mean gives
+
+$$
+E(X-c)^2=E\{(X-E X)+(E X-c)\}^2
+=\operatorname{Var}(X)+(E X-c)^2,
+$$
+
+because $E(X-E X)=0$. The second term is minimized at $c=E(X)$.
+
+</details>
 
 ## Moments, Central Moments, and MGFs {#moments-mgf}
 
@@ -227,6 +331,19 @@ is the moment generating function (MGF) of $X$.
 
 When differentiation and integration may be interchanged, $M_X^{(n)}(t)=E(X^ne^{tX})$; setting $t=0$ proves the result.
 
+<details class="course-details proof-details">
+<summary><strong>Show proof</strong></summary>
+
+For a continuous variable, differentiate $M_X(t)=\int e^{tx}f_X(x)\,dx$ under the integral sign. Repeated differentiation gives
+
+$$
+M_X^{(n)}(t)=\int x^ne^{tx}f_X(x)\,dx=E(X^ne^{tX}).
+$$
+
+Setting $t=0$ yields $M_X^{(n)}(0)=E(X^n)$. Section 2.4 supplies sufficient conditions for the interchange.
+
+</details>
+
 ## Equal Moments Need Not Determine a Distribution {#same-moments-example}
 
 **Example 2.3.10.** Consider
@@ -245,6 +362,26 @@ $$
 
 After the substitution $y=\log x-r$, the extra term vanishes by oddness together with $\sin(2\pi r)=0$. Thus two different distributions have the same moments of every nonnegative integer order.
 
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+Put $z=\log x$, so $f_1(x)dx=\phi(z)dz$. The extra term is
+
+$$
+I_r=\int_{-\infty}^{\infty}e^{rz}\phi(z)\sin(2\pi z)\,dz.
+$$
+
+Complete the square and let $y=z-r$:
+
+$$
+I_r=e^{r^2/2}\int_{-\infty}^{\infty}\phi(y)
+\sin\{2\pi(y+r)\}\,dy.
+$$
+
+For integer $r$, the sine factor becomes $\sin(2\pi y)$, an odd function, while $\phi$ is even. Hence $I_r=0$.
+
+</details>
+
 ::: {.theorem}
 **Theorem 2.3.11.** Suppose all moments of $F_X$ and $F_Y$ exist.
 
@@ -252,11 +389,15 @@ After the substitution $y=\log x-r$, the extra term vanishes by oddness together
 2. If their MGFs exist and agree in a neighborhood of zero, then $F_X=F_Y$.
 :::
 
+The textbook explicitly omits the technical proof, which depends on uniqueness of Laplace transforms. No unsupported replacement proof is added here.
+
 ## MGF Convergence and Two Classical MGFs {#mgf-convergence-examples}
 
 ::: {.theorem}
 **Theorem 2.3.12.** If there is a $\delta>0$ such that $M_{X_i}(t)\to M_X(t)$ for $t\in[-\delta,\delta]$, and $M_X$ is an MGF, then $F_{X_i}(x)\to F_X(x)$ at every continuity point of $F_X$.
 :::
+
+The textbook also explicitly omits the technical proof of Theorem 2.3.12; moment convergence is not substituted for MGF convergence.
 
 This result supports distributional convergence arguments such as proofs of the central limit theorem. For the binomial and Poisson distributions,
 
@@ -284,6 +425,9 @@ c(numerical_derivative =
 
 Let $X_n\sim\operatorname{Binomial}(n,p_n)$ and suppose $np_n\to\lambda$. Then
 
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
 $$
 \begin{aligned}
 M_{X_n}(t)
@@ -294,6 +438,8 @@ M_{X_n}(t)
 $$
 
 The limit is the MGF of $\operatorname{Poisson}(\lambda)$, so $X_n$ converges in distribution to that Poisson law. For large $n$, small $p$, and moderate $np$, binomial probabilities may therefore be approximated by Poisson probabilities. The source states equality; it is corrected here to an approximation or limiting statement.
+
+</details>
 
 ## Leibniz's Rule and Dominated Convergence {#leibniz-dominated}
 
@@ -313,6 +459,13 @@ $$
 
 For constant limits, only the integral term remains.
 
+<details class="course-details proof-details">
+<summary><strong>View derivation</strong></summary>
+
+Write the integral as $F\{b(\theta),\theta\}-F\{a(\theta),\theta\}$, where $\partial F/\partial x=f$. The multivariable chain rule produces the two endpoint terms, while the explicit $\theta$-dependence produces the integral of $\partial f/\partial\theta$. The textbook presents this as an application of the fundamental theorem of calculus and the chain rule rather than a separate proof.
+
+</details>
+
 ::: {.theorem}
 **Theorem 2.4.2.** If $h(x,y)\to h(x,y_0)$ and an integrable function $g$ satisfies $|h(x,y)|\le g(x)$ in a neighborhood of $y_0$, then
 
@@ -323,6 +476,8 @@ $$
 :::
 
 The essential condition is an integrable bound independent of $y$.
+
+The textbook treats Theorem 2.4.2 as a corollary of dominated convergence and does not develop the measure-theoretic proof; no unsupported proof is supplied here.
 
 ## Differentiation Under the Integral Sign {#differentiate-under-integral}
 
@@ -345,14 +500,28 @@ $$
 
 A common corollary applies when $|\partial f/\partial\theta|$ is uniformly bounded by an integrable function near $\theta_0$.
 
-**Example 2.4.6.** If $X\sim N(\mu,1)$,
+<details class="course-details proof-details">
+<summary><strong>View derivation</strong></summary>
+
+The derivative is the limit of the difference quotient. The theorem's bound dominates every nearby quotient by one integrable function. Theorem 2.4.2 therefore permits the limit to pass through the integral, leaving the integral of the pointwise derivative.
+
+</details>
+
+**Example 2.4.6.** If $X\sim N(\mu,1)$, then $M_X(t)=\exp(\mu t+t^2/2)$ and $M_X'(0)=\mu$. Interchanging differentiation and integration is not automatic and must be justified.
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+Complete the exponent as
 
 $$
-M_X(t)=\frac1{\sqrt{2\pi}}\int_{-\infty}^{\infty}
-e^{tx}e^{-(x-\mu)^2/2}\,dx,
+tx-\frac{(x-\mu)^2}{2}
+=-\frac{\{x-(\mu+t)\}^2}{2}+\mu t+\frac{t^2}{2}.
 $$
 
-then, under the theorem's conditions, $M_X'(t)=E(Xe^{tX})$. Completing the square gives $M_X(t)=\exp(\mu t+t^2/2)$ and hence $M_X'(0)=\mu$. Interchanging operations is not automatic and must be justified.
+The remaining integral is the total mass of an $N(\mu+t,1)$ density, so $M_X(t)=e^{\mu t+t^2/2}$. Differentiation gives $M_X'(t)=(\mu+t)e^{\mu t+t^2/2}$ and $M_X'(0)=\mu$. The source additionally constructs an integrable bound to justify differentiation under the integral sign.
+
+</details>
 
 ## Interchanging Series with Differentiation and Integration {#series-interchange}
 
@@ -365,6 +534,8 @@ $$
 $$
 :::
 
+The textbook states this general theorem and illustrates its uniform-convergence check with a geometric example, but does not provide a general proof.
+
 ::: {.theorem}
 **Theorem 2.4.10.** If $\sum_{x=0}^{\infty}h(\theta,x)$ converges uniformly on $[a,b]$ and every term is continuous, then
 
@@ -373,6 +544,8 @@ $$
 =\sum_{x=0}^{\infty}\int_a^b h(\theta,x)\,d\theta.
 $$
 :::
+
+The textbook states Theorem 2.4.10 without a general proof; no unsupported proof is added.
 
 ## Chapter Summary {#transformations-expectations-summary}
 

@@ -26,12 +26,42 @@ $$
 
 ## 例 2.1.2：正弦平方变换 {#sin-square-transformation}
 
-设 $X\sim U(0,2\pi)$，即 $f_X(x)=1/(2\pi)$（$0<x<2\pi$），令 $Y=\sin^2X$。其支撑集为 $[0,1]$。对 $0<y<1$，一个周期内满足 $\sin^2x\le y$ 的区间总长度为 $4\arcsin\sqrt y$，所以
+设 $X\sim U(0,2\pi)$，即 $f_X(x)=1/(2\pi)$（$0<x<2\pi$），令 $Y=\sin^2X$。其支撑集为 $[0,1]$。最终有
 
 $$
 F_Y(y)=\frac{2}{\pi}\arcsin\sqrt y,\qquad
 f_Y(y)=\frac{1}{\pi\sqrt{y(1-y)}}.
 $$
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+对 $0<y<1$，令 $a=\arcsin\sqrt y\in(0,\pi/2)$。在一个周期 $(0,2\pi)$ 内，$\sin^2x\le y$ 恰好发生在
+
+$$
+(0,a]\cup[\pi-a,\pi+a]\cup[2\pi-a,2\pi),
+$$
+
+总长度为 $4a$。均匀分布把区间长度除以 $2\pi$，所以
+
+$$
+F_Y(y)=\frac{4a}{2\pi}=\frac2\pi\arcsin\sqrt y.
+$$
+
+利用链式法则，
+
+$$
+\begin{aligned}
+f_Y(y)
+&=\frac2\pi\frac{d}{dy}\arcsin\sqrt y\\
+&=\frac2\pi\frac1{\sqrt{1-y}}\frac1{2\sqrt y}
+=\frac1{\pi\sqrt{y(1-y)}}.
+\end{aligned}
+$$
+
+在 $y\le0$ 时 $F_Y(y)=0$，在 $y\ge1$ 时 $F_Y(y)=1$。
+
+</details>
 
 ```{r chap02-sine-square-source-figure, echo=FALSE, out.width='58%', fig.align='center', fig.cap='原课件用于说明 sin² 变换多值性的示意图'}
 knitr::include_graphics("images/ch02/fig_2-1-1.png")
@@ -78,6 +108,26 @@ $$
 
 绝对值保证无论 $g$ 递增还是递减，所得密度都非负。
 
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+若 $g$ 严格递增，则
+
+$$
+F_Y(y)=P\{g(X)\le y\}=P\{X\le g^{-1}(y)\}
+=F_X\{g^{-1}(y)\}.
+$$
+
+求导并使用链式法则，得到 $f_X\{g^{-1}(y)\}(g^{-1})'(y)$。若 $g$ 严格递减，则
+
+$$
+F_Y(y)=P\{X\ge g^{-1}(y)\}=1-F_X\{g^{-1}(y)\},
+$$
+
+连续性保证端点不产生额外概率质量，求导得到 $-f_X\{g^{-1}(y)\}(g^{-1})'(y)$。递增时反函数导数为正，递减时为负，两式合并即为带绝对值的公式；在 $y\notin\mathcal Y$ 时密度为 0。
+
+</details>
+
 ## 例 2.1.6：倒数 Gamma 变换 {#inverse-gamma-example}
 
 设
@@ -86,7 +136,7 @@ $$
 f_X(x)=\frac{x^{n-1}e^{-x/\beta}}{(n-1)!\beta^n},\qquad x>0,
 $$
 
-令 $Y=1/X$。此时 $g^{-1}(y)=1/y$，$\mathcal Y=(0,\infty)$，且 $|(g^{-1})'(y)|=1/y^2$。因此
+令 $Y=1/X$。最终密度为
 
 $$
 \begin{aligned}
@@ -98,18 +148,26 @@ f_Y(y)
 \end{aligned}
 $$
 
-这是逆 Gamma 分布的一个特殊情形。
+这是逆 Gamma 分布的一个特殊情形；$y\le0$ 时密度为 0。
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+变换 $g(x)=1/x$ 在 $(0,\infty)$ 上严格递减，并把该区间映到自身。解 $y=1/x$ 得
+
+$$
+g^{-1}(y)=\frac1y,
+\qquad
+\left|\frac{d}{dy}g^{-1}(y)\right|=\frac1{y^2}.
+$$
+
+将这两个量代入定理 2.1.5，便得到正文密度；当 $y\le0$ 时变换没有原像，所以 $f_Y(y)=0$。
+
+</details>
 
 ## 例 2.1.7：标准正态的平方 {#normal-square-example}
 
-设 $X\sim N(0,1)$，$Y=X^2$。对 $y>0$，
-
-$$
-F_Y(y)=P(-\sqrt y\le X\le\sqrt y)
-=2\Phi(\sqrt y)-1.
-$$
-
-求导得
+设 $X\sim N(0,1)$，$Y=X^2$。最终密度为
 
 $$
 f_Y(y)=\frac{\phi(\sqrt y)}{\sqrt y}
@@ -117,6 +175,27 @@ f_Y(y)=\frac{\phi(\sqrt y)}{\sqrt y}
 $$
 
 故 $Y\sim\chi_1^2$。原课件误把正态密度 $\phi$ 写成分布函数 $\Phi$，此处已更正。
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+平方变换的支撑为 $[0,\infty)$。对 $y>0$，事件 $X^2\le y$ 等价于 $-\sqrt y\le X\le\sqrt y$，所以正文的 CDF 式成立。对它求导时，
+
+$$
+\frac{d}{dy}\Phi(\sqrt y)=\frac{\phi(\sqrt y)}{2\sqrt y},
+\qquad
+\frac{d}{dy}\{-\Phi(-\sqrt y)\}
+=\frac{\phi(-\sqrt y)}{2\sqrt y}.
+$$
+
+标准正态密度关于 0 对称，$\phi(-\sqrt y)=\phi(\sqrt y)$，两项相加即得
+
+$$
+f_Y(y)=\frac{\phi(\sqrt y)}{\sqrt y}
+=\frac{1}{\sqrt{2\pi y}}e^{-y/2}.
+$$
+
+</details>
 
 ## 分段单调变换 {#piecewise-monotone-transform}
 
@@ -135,11 +214,28 @@ $$
 
 因此，对于 $Y=\sin^2X$ 或 $Y=X^2$，必须把所有原像分支的贡献相加。
 
+<details class="course-details proof-details">
+<summary><strong>查看推导过程</strong></summary>
+
+在每个分支 $A_i$ 上，$g_i$ 是从 $A_i$ 到共同支撑 $\mathcal Y$ 的一一变换。对第 $i$ 个分支应用定理 2.1.5，其密度贡献是
+
+$$
+f_X\{g_i^{-1}(y)\}
+\left|\frac{d}{dy}g_i^{-1}(y)\right|.
+$$
+
+不同分支互不重叠，事件概率可以相加；把 $i=1,\ldots,k$ 的贡献相加即得正文公式。$A_0$ 的概率为 0，故不贡献密度。教材在定理 2.1.8 后只给出这一分支求和解释，没有另给完整形式证明。
+
+</details>
+
 ## 概率积分变换 {#probability-integral-transform}
 
 ::: {.theorem}
 **定理 2.1.10** 若 $X$ 的分布函数 $F_X$ 连续，则 $Y=F_X(X)\sim U(0,1)$。
 :::
+
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
 
 在 $F_X$ 严格递增时，对 $0<y<1$，
 
@@ -152,7 +248,17 @@ P(Y\le y)
 \end{aligned}
 $$
 
-对一般连续分布可用广义逆完成证明。该变换是随机数生成和拟合优度检验的重要基础。
+若 $F_X$ 不严格递增，定义广义逆
+
+$$
+F_X^{-1}(y)=\inf\{x:F_X(x)\ge y\}.
+$$
+
+分布函数的平坦区间具有零概率，因此事件 $\{F_X(X)\le y\}$ 与 $\{X\le F_X^{-1}(y)\}$ 仍有相同概率。连续性给出 $F_X\{F_X^{-1}(y)\}=y$。端点 $y\le0$ 与 $y\ge1$ 分别对应概率 0 与 1，所以 $Y\sim U(0,1)$。
+
+</details>
+
+该变换是随机数生成和拟合优度检验的重要基础。
 
 ## 期望的定义与计算 {#expected-value-definition}
 
@@ -177,8 +283,64 @@ $$
 ## 期望的例子与性质 {#expectation-examples-properties}
 
 - **例 2.2.2：** 若 $f_X(x)=\lambda^{-1}e^{-x/\lambda}$（$x>0$），则 $E(X)=\lambda$；这里 $\lambda$ 是尺度参数。
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+由定义并作分部积分，
+
+$$
+\begin{aligned}
+E(X)
+&=\int_0^\infty x\frac1\lambda e^{-x/\lambda}\,dx\\
+&=\left[-xe^{-x/\lambda}\right]_0^\infty
++\int_0^\infty e^{-x/\lambda}\,dx
+=\lambda.
+\end{aligned}
+$$
+
+边界项为 0。
+
+</details>
+
 - **例 2.2.3：** 若 $X\sim\operatorname{Binomial}(n,p)$，则 $E(X)=np$。
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+$x=0$ 项为 0。利用 $x\binom nx=n\binom{n-1}{x-1}$，
+
+$$
+\begin{aligned}
+E(X)
+&=\sum_{x=1}^n x\binom nxp^x(1-p)^{n-x}\\
+&=np\sum_{x=1}^n\binom{n-1}{x-1}p^{x-1}(1-p)^{(n-1)-(x-1)}\\
+&=np\sum_{y=0}^{n-1}\binom{n-1}{y}p^y(1-p)^{n-1-y}=np.
+\end{aligned}
+$$
+
+最后的求和是 $\operatorname{Binomial}(n-1,p)$ 概率质量函数的总和，等于 1。
+
+</details>
+
 - **例 2.2.4：** 标准 Cauchy 分布满足 $E|X|=\infty$，所以 $E(X)$ 不存在。不能用对称性把两个发散积分相消。
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+标准 Cauchy 密度是 $f_X(x)=1/\{\pi(1+x^2)\}$。由对称性，
+
+$$
+\begin{aligned}
+E|X|
+&=\frac2\pi\int_0^\infty\frac{x}{1+x^2}\,dx\\
+&=\frac1\pi\lim_{M\to\infty}\log(1+M^2)=\infty.
+\end{aligned}
+$$
+
+期望存在要求 $E|X|<\infty$。正、负两侧积分分别发散，因此不能把它们形式上相消。
+
+</details>
 
 ::: {.theorem}
 **定理 2.2.5** 若有关期望存在，则
@@ -189,12 +351,48 @@ $$
 4. 若 $a\le g_1\le b$，则 $a\le E\{g_1(X)\}\le b$。
 :::
 
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+以连续情形为例。由积分的线性性及 $\int f_X(x)\,dx=1$，
+
+$$
+\begin{aligned}
+E\{ag_1(X)+bg_2(X)+c\}
+&=\int\{ag_1(x)+bg_2(x)+c\}f_X(x)\,dx\\
+&=aE\{g_1(X)\}+bE\{g_2(X)\}+c.
+\end{aligned}
+$$
+
+若 $g_1\ge0$，则 $g_1f_X\ge0$，故其积分非负。若 $g_1\ge g_2$，对 $g_1-g_2\ge0$ 使用刚证明的非负性，再用线性性，即得 $E(g_1)\ge E(g_2)$。最后由 $a\le g_1\le b$ 和单调性得到 $a\le E(g_1)\le b$。离散情形把积分换成求和即可。
+
+</details>
+
 若二阶矩存在，均值是平方损失下的最佳常数中心：
 
 $$
 \arg\min_cE(X-c)^2=E(X),\qquad
 \min_cE(X-c)^2=\operatorname{Var}(X).
 $$
+
+<details class="course-details solution-details">
+<summary><strong>查看推导过程</strong></summary>
+
+对任意常数 $c$，
+
+$$
+\begin{aligned}
+E(X-c)^2
+&=E\{(X-E X)+(E X-c)\}^2\\
+&=E(X-E X)^2+(E X-c)^2\\
+&\quad+2(E X-c)E(X-E X)\\
+&=\operatorname{Var}(X)+(E X-c)^2.
+\end{aligned}
+$$
+
+第一项不随 $c$ 改变，第二项在且仅在 $c=E(X)$ 时为 0，故得到正文结论。
+
+</details>
 
 ## 矩、中心矩与矩母函数 {#moments-mgf}
 
@@ -227,6 +425,22 @@ $$
 
 在可交换求导与积分的条件下，$M_X^{(n)}(t)=E(X^ne^{tX})$，令 $t=0$ 即得结论。
 
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+以连续情形为例，$M_X(t)=\int e^{tx}f_X(x)\,dx$。在可以交换求导与积分的条件下，逐次求导给出
+
+$$
+\begin{aligned}
+M_X'(t)&=\int xe^{tx}f_X(x)\,dx=E(Xe^{tX}),\\
+M_X^{(n)}(t)&=\int x^ne^{tx}f_X(x)\,dx=E(X^ne^{tX}).
+\end{aligned}
+$$
+
+令 $t=0$，因 $e^{0X}=1$，得到 $M_X^{(n)}(0)=E(X^n)$。交换操作的充分条件在第 2.4 节给出。
+
+</details>
+
 ## 相同矩不必确定相同分布 {#same-moments-example}
 
 **例 2.3.10** 考虑
@@ -245,6 +459,26 @@ $$
 
 作 $y=\log x-r$ 后，附加项由奇函数积分及 $\sin(2\pi r)=0$ 可知为零。因此两个不同分布具有相同的所有整数阶矩。
 
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+对附加项先令 $z=\log x$，则 $x=e^z$、$dx=e^z\,dz$，且 $f_1(x)dx=\phi(z)dz$。所以
+
+$$
+I_r=\int_{-\infty}^{\infty}e^{rz}\phi(z)\sin(2\pi z)\,dz.
+$$
+
+配方 $rz-z^2/2=-(z-r)^2/2+r^2/2$，再令 $y=z-r$，得到
+
+$$
+I_r=e^{r^2/2}\int_{-\infty}^{\infty}\phi(y)
+\sin\{2\pi(y+r)\}\,dy.
+$$
+
+当 $r$ 为整数时，$\sin\{2\pi(y+r)\}=\sin(2\pi y)$。$\phi(y)$ 为偶函数而 $\sin(2\pi y)$ 为奇函数，故 $I_r=0$。
+
+</details>
+
 ::: {.theorem}
 **定理 2.3.11** 若 $F_X,F_Y$ 的所有矩存在，则：
 
@@ -252,11 +486,15 @@ $$
 2. 若二者 MGF 在 $0$ 的某个邻域存在且相等，则 $F_X=F_Y$。
 :::
 
+教材说明：该定理依赖 Laplace 变换的唯一性，严格证明技术性较强，原书明确省略；因此此处保留条件与结论，不补写无来源的证明。
+
 ## MGF 收敛与两个经典 MGF {#mgf-convergence-examples}
 
 ::: {.theorem}
 **定理 2.3.12** 若存在 $\delta>0$，使 $M_{X_i}(t)\to M_X(t)$ 对 $t\in[-\delta,\delta]$ 成立，且 $M_X$ 是某分布的 MGF，则在 $F_X$ 的每个连续点 $x$，$F_{X_i}(x)\to F_X(x)$。
 :::
+
+教材同样明确省略定理 2.3.12 的技术证明；这里不以矩收敛替代 MGF 收敛，也不补写教材未提供的证明。
 
 这一结论可用于证明中心极限定理等分布收敛结果。对二项与 Poisson 分布，
 
@@ -282,7 +520,12 @@ c(numerical_derivative =
 
 ## 例 2.3.13：Poisson 近似 {#poisson-approximation}
 
-令 $X_n\sim\operatorname{Binomial}(n,p_n)$ 且 $np_n\to\lambda$，则
+令 $X_n\sim\operatorname{Binomial}(n,p_n)$ 且 $np_n\to\lambda$。最终 $X_n$ 依分布收敛到 $\operatorname{Poisson}(\lambda)$。
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+二项分布的 MGF 为
 
 $$
 \begin{aligned}
@@ -294,6 +537,8 @@ M_{X_n}(t)
 $$
 
 极限是 $\operatorname{Poisson}(\lambda)$ 的 MGF，故 $X_n$ 依分布收敛到该 Poisson 分布。当 $n$ 大、$p$ 小且 $np$ 适中时，二项概率可用 Poisson 概率近似；原课件写成概率“相等”，此处更正为“近似/极限”。
+
+</details>
 
 ## Leibniz 法则与支配收敛 {#leibniz-dominated}
 
@@ -313,6 +558,20 @@ $$
 
 若上下限为常数，上式只保留积分项。
 
+<details class="course-details proof-details">
+<summary><strong>查看推导过程</strong></summary>
+
+取一个关于第一变量的原函数 $F$，使 $\partial F(x,\theta)/\partial x=f(x,\theta)$。由微积分基本定理，
+
+$$
+\int_{a(\theta)}^{b(\theta)}f(x,\theta)\,dx
+=F\{b(\theta),\theta\}-F\{a(\theta),\theta\}.
+$$
+
+分别对两项使用多元链式法则。端点变化产生 $f\{b(\theta),\theta\}b'(\theta)$ 与 $-f\{a(\theta),\theta\}a'(\theta)$；被积函数自身随 $\theta$ 的变化产生积分项。合并即得正文公式。教材把该式说明为微积分基本定理与链式法则的应用，没有另列完整证明。
+
+</details>
+
 ::: {.theorem}
 **定理 2.4.2** 若 $h(x,y)\to h(x,y_0)$，且在 $y_0$ 的邻域存在可积函数 $g$ 使 $|h(x,y)|\le g(x)$，则
 
@@ -323,6 +582,8 @@ $$
 :::
 
 关键条件是存在与 $y$ 无关的可积上界。
+
+教材将定理 2.4.2 作为 Lebesgue 支配收敛定理的推论，并说明本书不展开所需的测度论证明；因此这里不补写无来源的证明。
 
 ## 积分号下求导 {#differentiate-under-integral}
 
@@ -345,14 +606,64 @@ $$
 
 一个常用推论是：若在 $\theta_0$ 的邻域内 $|\partial f/\partial\theta|$ 被某个可积函数一致控制，则可交换求导与积分。
 
-**例 2.4.6** 若 $X\sim N(\mu,1)$，
+<details class="course-details proof-details">
+<summary><strong>查看推导过程</strong></summary>
+
+导数是差商的极限：
+
+$$
+\left.\frac{\partial}{\partial\theta}f(x,\theta)\right|_{\theta_0}
+=\lim_{\Delta\to0}
+\frac{f(x,\theta_0+\Delta)-f(x,\theta_0)}{\Delta}.
+$$
+
+定理的控制条件用可积函数 $g$ 一致支配差商。因此可对差商应用定理 2.4.2，把极限移入积分号：
+
+$$
+\begin{aligned}
+\left.\frac{d}{d\theta}\int f(x,\theta)\,dx\right|_{\theta_0}
+&=\lim_{\Delta\to0}\int
+\frac{f(x,\theta_0+\Delta)-f(x,\theta_0)}{\Delta}\,dx\\
+&=\int\lim_{\Delta\to0}
+\frac{f(x,\theta_0+\Delta)-f(x,\theta_0)}{\Delta}\,dx.
+\end{aligned}
+$$
+
+右端正是 $\int\partial f(x,\theta_0)/\partial\theta\,dx$。
+
+</details>
+
+**例 2.4.6** 若 $X\sim N(\mu,1)$，则 $M_X(t)=\exp(\mu t+t^2/2)$，且 $M_X'(0)=\mu$。
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+从定义出发，
 
 $$
 M_X(t)=\frac1{\sqrt{2\pi}}\int_{-\infty}^{\infty}
 e^{tx}e^{-(x-\mu)^2/2}\,dx,
 $$
 
-则在上述条件下 $M_X'(t)=E(Xe^{tX})$。配方可得 $M_X(t)=\exp(\mu t+t^2/2)$，故 $M_X'(0)=\mu$。严格论证时，交换操作不能被视为自动成立。
+把指数配方：
+
+$$
+tx-\frac{(x-\mu)^2}{2}
+=-\frac{\{x-(\mu+t)\}^2}{2}+\mu t+\frac{t^2}{2}.
+$$
+
+因此
+
+$$
+M_X(t)=e^{\mu t+t^2/2}
+\frac1{\sqrt{2\pi}}\int_{-\infty}^{\infty}
+e^{-\{x-(\mu+t)\}^2/2}\,dx
+=e^{\mu t+t^2/2}.
+$$
+
+积分是 $N(\mu+t,1)$ 密度的总积分，等于 1。求导得 $M_X'(t)=(\mu+t)e^{\mu t+t^2/2}$，所以 $M_X'(0)=\mu$。教材还构造了可积控制函数来证明 $M_X'(t)=E(Xe^{tX})$；严格论证时，交换操作不能被视为自动成立。
+
+</details>
 
 ## 级数与微分、积分的交换 {#series-interchange}
 
@@ -365,6 +676,8 @@ $$
 $$
 :::
 
+教材仅陈述定理 2.4.8，并用几何分布例说明如何验证一致收敛，没有提供一般证明；本章不补写无来源的一般证明。
+
 ::: {.theorem}
 **定理 2.4.10** 若 $\sum_{x=0}^{\infty}h(\theta,x)$ 在 $[a,b]$ 一致收敛，且每项连续，则
 
@@ -373,6 +686,8 @@ $$
 =\sum_{x=0}^{\infty}\int_a^b h(\theta,x)\,d\theta.
 $$
 :::
+
+教材仅陈述定理 2.4.10，未给出一般证明；本章保留原结论，不补写无来源的证明。
 
 ## 本章小结 {#transformations-expectations-summary}
 

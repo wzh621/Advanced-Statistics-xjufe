@@ -141,6 +141,24 @@ $$
 Then $P$ is a probability function on $S$. The same conclusion applies to a countable sample space $S=\{s_1,s_2,\ldots\}$.
 :::
 
+<details class="course-details proof-details">
+<summary><strong>Show proof</strong></summary>
+
+Nonnegativity follows from $p_i\ge0$. Taking $A=S$ gives $P(S)=\sum_i p_i=1$. If $A_1,A_2,\ldots$ are pairwise disjoint, every sample point belongs to at most one of them, so every $p_i$ occurs exactly once when the sums are regrouped:
+
+$$
+\begin{aligned}
+P\left(\bigcup_{j=1}^{\infty}A_j\right)
+&=\sum_{\{i:s_i\in\cup_jA_j\}}p_i\\
+&=\sum_{j=1}^{\infty}\sum_{\{i:s_i\in A_j\}}p_i
+=\sum_{j=1}^{\infty}P(A_j).
+\end{aligned}
+$$
+
+Thus all three Kolmogorov axioms hold. The countable case is identical.
+
+</details>
+
 ## Conditional Probability and Bayes' Formula {#conditional-probability}
 
 ::: {.definition}
@@ -158,8 +176,36 @@ P(A\cap B)=P(A\mid B)P(B).
 $$
 
 ::: {.exercise}
-**Problem 1.41 in the source slides.** Prove that $P(\mathord\cdot\mid B):\mathcal B\to\mathbb R$ satisfies the Kolmogorov axioms.
+**Problem 1.41 (source-slide numbering).** Prove that $P(\mathord\cdot\mid B):\mathcal B\to\mathbb R$ satisfies the Kolmogorov axioms.
 :::
+
+<details class="course-details hint-details">
+<summary><strong>View hint</strong></summary>
+
+Fix $B$ with $P(B)>0$. Check nonnegativity, normalization, and countable additivity separately. For the last property, distribute intersection with $B$ over a countable union.
+
+</details>
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+Put $Q(A)=P(A\mid B)=P(A\cap B)/P(B)$. Then $Q(A)\ge0$ and $Q(S)=P(B)/P(B)=1$. If $A_1,A_2,\ldots$ are pairwise disjoint, so are $A_i\cap B$, and
+
+$$
+\left(\bigcup_iA_i\right)\cap B=\bigcup_i(A_i\cap B).
+$$
+
+Hence
+
+$$
+Q\left(\bigcup_iA_i\right)
+=\frac{\sum_iP(A_i\cap B)}{P(B)}
+=\sum_iQ(A_i).
+$$
+
+Therefore $P(\mathord\cdot\mid B)$ satisfies the Kolmogorov axioms.
+
+</details>
 
 ::: {.example}
 **Dealing four aces in succession.** Four cards are dealt from the top of a well-shuffled 52-card deck. Given that the first $i$ cards are aces, find the conditional probability that all four cards are aces for $i=1,2,3$.
@@ -175,7 +221,48 @@ $$
 For $i=1,2,3$, the values are approximately $0.000048$, $0.00082$, and $0.02041$. The first value differs by one order of magnitude from the decimal printed in the source; the discrepancy is recorded in the migration notes.
 :::
 
-The source also lists a conditional-probability problem involving three prisoners, but it does not include the complete problem statement. The missing conditions have therefore not been invented here.
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+Let $E_i$ denote that the first $i$ cards are aces and $E_4$ that all four are aces. Since $E_4\subseteq E_i$,
+
+$$
+P(E_4\mid E_i)=\frac{P(E_4)}{P(E_i)}
+=\frac{1/\binom{52}{4}}{\binom4i/\binom{52}i}.
+$$
+
+Equivalently, after the first $i$ aces have appeared, the remaining $4-i$ aces must be drawn from $52-i$ cards, giving
+
+$$
+P(E_4\mid E_i)=\frac1{\binom{52-i}{4-i}}.
+$$
+
+</details>
+
+::: {.source-example}
+**Textbook Example 1.3.4: The three prisoners.** Exactly one of prisoners A, B, and C will be pardoned, each with prior probability $1/3$. A asks the warden which of B and C will be executed. If A is pardoned, the warden names B or C with equal probability; if B is pardoned, he must name C; if C is pardoned, he must name B. The warden says that B will be executed. The conditional probability that A is pardoned remains $1/3$, not $1/2$.
+:::
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+Let $W$ be the event that the warden names B. Then
+
+$$
+P(W\mid A)=\frac12,
+\quad P(W\mid B)=0,
+\quad P(W\mid C)=1.
+$$
+
+The law of total probability gives $P(W)=(1/2)(1/3)+(0)(1/3)+(1)(1/3)=1/2$, while $P(A\cap W)=(1/2)(1/3)=1/6$. Thus
+
+$$
+P(A\mid W)=\frac{1/6}{1/2}=\frac13.
+$$
+
+The warden does not choose unconditionally and uniformly between B and C, which is why the naive $1/2$ argument fails.
+
+</details>
 
 ::: {.theorem}
 **Bayes' formula.** If $A_1,A_2,\ldots$ form a partition of the sample space, then
@@ -186,6 +273,25 @@ P(A_i\mid B)=
 {\sum_{j=1}^{\infty}P(B\mid A_j)P(A_j)}.
 $$
 :::
+
+<details class="course-details proof-details">
+<summary><strong>Show proof</strong></summary>
+
+By conditional probability and the multiplication rule,
+
+$$
+P(A_i\mid B)=\frac{P(B\mid A_i)P(A_i)}{P(B)}.
+$$
+
+Because the $A_j$ form a partition, $B=\bigcup_j(B\cap A_j)$ is a disjoint union. Therefore
+
+$$
+P(B)=\sum_jP(B\cap A_j)=\sum_jP(B\mid A_j)P(A_j).
+$$
+
+Substitution yields Bayes' formula.
+
+</details>
 
 ::: {.example}
 **Transmitting coded information.** Suppose dots and dashes are transmitted with probabilities
@@ -206,6 +312,13 @@ P(\text{dot sent}\mid\text{dot received})
 \end{aligned}
 $$
 :::
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+Let $D$ mean that a dot was sent and $R$ that a dot was received. Then $P(R\mid D)=7/8$ and $P(R\mid D^{\mathrm c})=1/8$. Bayes' formula gives the displayed $21/25$. Its denominator is the total probability of receiving a dot; the numerator retains only the path on which a dot was both sent and received.
+
+</details>
 
 ## Independence {#independence}
 
@@ -232,11 +345,32 @@ P(\text{at least one six in four rolls})
 $$
 :::
 
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+The complement is that no roll is a six. Each roll misses six with probability $5/6$, so independence gives $(5/6)^4$ for the complement and $1-(5/6)^4\approx0.518$ for the required event.
+
+</details>
+
 The source names the birthday problem as the next example but gives no calculation. The topic is retained without adding unsupported content.
 
 ::: {.theorem}
 **Independence of complements.** If $A$ and $B$ are independent, then each of the following pairs is independent: $A$ and $B^{\mathrm c}$, $A^{\mathrm c}$ and $B$, and $A^{\mathrm c}$ and $B^{\mathrm c}$.
 :::
+
+<details class="course-details proof-details">
+<summary><strong>Show proof</strong></summary>
+
+Since $A=(A\cap B)\cup(A\cap B^{\mathrm c})$ disjointly,
+
+$$
+P(A\cap B^{\mathrm c})=P(A)-P(A)P(B)
+=P(A)P(B^{\mathrm c}).
+$$
+
+Thus $A$ and $B^{\mathrm c}$ are independent. Interchanging $A$ and $B$ proves independence of $A^{\mathrm c}$ and $B$; applying the same result once more proves independence of $A^{\mathrm c}$ and $B^{\mathrm c}$.
+
+</details>
 
 ### Pairwise and mutual independence
 
@@ -255,6 +389,19 @@ $$
 
 However, $P(A\cap B)\ne P(A)P(B)$ and $P(B\cap C)\ne P(B)P(C)$. Thus, checking only the product relationship for the intersection of all three events does not establish pairwise independence.
 :::
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+There are 36 equally likely ordered outcomes. Event $A$ contains 6 doubles. Totals 7, 8, 9, and 10 have $6+5+4+3=18$ outcomes; totals 2, 7, and 8 have $1+6+5=12$. Moreover, $A\cap B=\{(4,4),(5,5)\}$, so
+
+$$
+P(A\cap B)=\frac2{36}\ne\frac1{12}=P(A)P(B).
+$$
+
+Similarly, $B\cap C$ consists of totals 7 and 8, giving $11/36\ne1/6$. The triple intersection contains only $(4,4)$ and happens to equal the product $1/36$; this single equality cannot replace all subset checks required by mutual independence.
+
+</details>
 
 Conversely, pairwise independence does not imply mutual independence. The source constructs events $A_i$ from nine equally likely triples so that
 
@@ -402,6 +549,15 @@ For the preceding coin-toss example,
 3. $F$ is right-continuous: $\lim_{x\downarrow x_0}F(x)=F(x_0)$ for every $x_0$.
 :::
 
+<details class="course-details proof-details">
+<summary><strong>View derivation</strong></summary>
+
+Necessity follows directly from probability continuity. The events $\{X\le x\}$ decrease to the empty set as $x\to-\infty$ and increase to the whole space as $x\to\infty$. If $x_1<x_2$, event inclusion gives $F(x_1)\le F(x_2)$. If $x_n\downarrow x_0$, then $\{X\le x_n\}\downarrow\{X\le x_0\}$, so $F(x_n)\to F(x_0)$.
+
+The converse requires measure-extension theory. The textbook gives only this proof outline for Theorem 1.5.3 and explicitly omits the technical sufficiency proof, so no unsupported full proof is supplied here.
+
+</details>
+
 The logistic cdf
 
 $$
@@ -484,4 +640,3 @@ $$
 ## Chapter Summary {#chapter-one-summary}
 
 This chapter built a probability space from sample spaces and events and used conditional probability, Bayes' formula, and independence to describe relationships among events. It then treated a random variable as a measurable function from the sample space to the real line and used cdfs, pmfs, and pdfs to describe distributions. These ideas support the later study of transformations, expectations, and statistical inference.
-

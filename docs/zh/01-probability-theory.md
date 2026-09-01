@@ -141,6 +141,36 @@ $$
 则 $P$ 是 $S$ 上的概率函数。该结论同样适用于可数样本空间 $S=\{s_1,s_2,\ldots\}$。
 :::
 
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+由 $p_i\ge0$，对任意事件 $A$ 都有
+
+$$
+P(A)=\sum_{\{i:s_i\in A\}}p_i\ge0.
+$$
+
+把 $A$ 取为整个样本空间，便得到
+
+$$
+P(S)=\sum_i p_i=1.
+$$
+
+最后，设 $A_1,A_2,\ldots$ 两两互斥。由于每个样本点 $s_i$ 至多属于其中一个 $A_j$，对并集求和时每个 $p_i$ 恰好在它所属的那一个事件中出现一次。因此
+
+$$
+\begin{aligned}
+P\left(\bigcup_{j=1}^{\infty}A_j\right)
+&=\sum_{\{i:s_i\in\cup_jA_j\}}p_i\\
+&=\sum_{j=1}^{\infty}\sum_{\{i:s_i\in A_j\}}p_i\\
+&=\sum_{j=1}^{\infty}P(A_j).
+\end{aligned}
+$$
+
+三个 Kolmogorov 公理均成立，所以 $P$ 是概率函数。可数样本空间的论证相同。
+
+</details>
+
 ## 条件概率与 Bayes 公式 {#conditional-probability}
 
 ::: {.definition}
@@ -158,13 +188,49 @@ P(A\cap B)=P(A\mid B)P(B).
 $$
 
 ::: {.exercise}
-**原课件 Problem 1.41** 证明 $P(\cdot\mid B):\mathcal B\to\mathbb R$ 满足 Kolmogorov 公理。
+**原课件 Problem 1.41（课件编号）** 证明 $P(\cdot\mid B):\mathcal B\to\mathbb R$ 满足 Kolmogorov 公理。
 :::
+
+<details class="course-details hint-details">
+<summary><strong>查看提示</strong></summary>
+
+固定 $B$ 且 $P(B)>0$。分别检查非负性、$P(S\mid B)=1$，以及对两两互斥的 $A_1,A_2,\ldots$ 检查可数可加性；第三步要用到交运算对并运算的分配律。
+
+</details>
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+记 $Q(A)=P(A\mid B)=P(A\cap B)/P(B)$。因为 $P(B)>0$：
+
+1. 对任意 $A\in\mathcal B$，$P(A\cap B)\ge0$，故 $Q(A)\ge0$；
+2. $Q(S)=P(S\cap B)/P(B)=P(B)/P(B)=1$；
+3. 若 $A_1,A_2,\ldots$ 两两互斥，则 $A_1\cap B,A_2\cap B,\ldots$ 仍两两互斥，而且
+
+$$
+\left(\bigcup_{i=1}^{\infty}A_i\right)\cap B
+=\bigcup_{i=1}^{\infty}(A_i\cap B).
+$$
+
+于是由 $P$ 的可数可加性，
+
+$$
+\begin{aligned}
+Q\left(\bigcup_{i=1}^{\infty}A_i\right)
+&=\frac{P\left(\bigcup_i(A_i\cap B)\right)}{P(B)}\\
+&=\frac{\sum_iP(A_i\cap B)}{P(B)}
+=\sum_iQ(A_i).
+\end{aligned}
+$$
+
+所以 $P(\cdot\mid B)$ 满足 Kolmogorov 公理。
+
+</details>
 
 ::: {.example}
 **连续抽到四张 A** 从一副充分洗匀的 52 张扑克牌顶部依次发出四张牌。已知前 $i$ 张都是 A，求四张牌全为 A 的条件概率，其中 $i=1,2,3$。
 
-原课件给出的计算式为
+最终结果为
 
 $$
 P(\text{四张均为 A}\mid\text{前 }i\text{ 张均为 A})
@@ -175,7 +241,75 @@ $$
 当 $i=1,2,3$ 时，数值约为 $0.000048$、$0.00082$ 和 $0.02041$。第一个数值与原课件中的小数存在一位数量级差异，已记录在迁移说明中。
 :::
 
-原课件还列出了“三名死囚”条件概率问题，但没有给出完整题干，因此本阶段不补写缺失条件。
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+设 $E_i$ 表示“前 $i$ 张都是 A”，$E_4$ 表示“四张都是 A”。因为 $E_4\subseteq E_i$，
+
+$$
+P(E_4\mid E_i)=\frac{P(E_4)}{P(E_i)}.
+$$
+
+在所有等可能的 $i$ 张牌组合中，
+
+$$
+P(E_i)=\frac{\binom4i}{\binom{52}i},
+\qquad
+P(E_4)=\frac1{\binom{52}4}.
+$$
+
+相除即得正文公式。也可以在已知前 $i$ 张为 A 后，从剩余 $52-i$ 张中补齐其余 $4-i$ 张 A：
+
+$$
+P(E_4\mid E_i)
+=\prod_{r=i}^{3}\frac{4-r}{52-r}
+=\frac1{\binom{52-i}{4-i}}.
+$$
+
+两种写法完全等价。
+
+</details>
+
+::: {.source-example}
+**教材例 1.3.4：三名死囚** A、B、C 三名囚犯中有一人将获赦，三人的先验获赦概率均为 $1/3$。A 问狱卒：“B 和 C 中谁将被处决？”狱卒知道最终决定，并遵守规则：若 A 获赦，就在 B、C 中等概率说出一人；若 B 获赦，就必须说 C；若 C 获赦，就必须说 B。狱卒回答“B 将被处决”。求 A 获赦的条件概率。
+
+最终结论仍为 $P(A\text{ 获赦}\mid\text{狱卒说 B})=1/3$，并不是 $1/2$。
+:::
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+记 $A,B,C$ 分别表示相应囚犯获赦，记 $W$ 表示狱卒说“B 将被处决”。由题设，
+
+$$
+P(W\mid A)=\frac12,
+\qquad P(W\mid B)=0,
+\qquad P(W\mid C)=1.
+$$
+
+用全概率公式，
+
+$$
+P(W)=\frac12\cdot\frac13+0\cdot\frac13+1\cdot\frac13
+=\frac12.
+$$
+
+同时
+
+$$
+P(A\cap W)=P(W\mid A)P(A)=\frac12\cdot\frac13=\frac16.
+$$
+
+所以
+
+$$
+P(A\mid W)=\frac{P(A\cap W)}{P(W)}
+=\frac{1/6}{1/2}=\frac13.
+$$
+
+狱卒的回答方式不是在 B、C 之间无条件等概率选择，因此不能把剩下的两人简单看成各有 $1/2$ 的获赦概率。
+
+</details>
 
 ::: {.theorem}
 **Bayes 公式** 若 $A_1,A_2,\ldots$ 构成样本空间的一个划分，则
@@ -187,6 +321,33 @@ P(A_i\mid B)=
 $$
 :::
 
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+由条件概率和乘法公式，
+
+$$
+P(A_i\mid B)=\frac{P(A_i\cap B)}{P(B)}
+=\frac{P(B\mid A_i)P(A_i)}{P(B)}.
+$$
+
+由于 $A_1,A_2,\ldots$ 构成划分，事件 $B$ 可写成两两互斥并
+
+$$
+B=\bigcup_{j=1}^{\infty}(B\cap A_j).
+$$
+
+因此
+
+$$
+P(B)=\sum_{j=1}^{\infty}P(B\cap A_j)
+=\sum_{j=1}^{\infty}P(B\mid A_j)P(A_j).
+$$
+
+代回第一式即得 Bayes 公式。
+
+</details>
+
 ::: {.example}
 **编码信息传输** 已知发送点号和划号的概率分别为
 
@@ -196,7 +357,13 @@ P(\text{发送点号})=\frac37,
 P(\text{发送划号})=\frac47,
 $$
 
-并且两种误传概率均为 $1/8$。收到点号后，实际发送点号的概率为
+并且两种误传概率均为 $1/8$。收到点号后，实际发送点号的概率为 $21/25$。
+:::
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+记 $D$ 为“发送点号”，$R$ 为“收到点号”。正确传输点号的概率为 $P(R\mid D)=7/8$；误把划号收成点号的概率为 $P(R\mid D^{\mathrm c})=1/8$。由 Bayes 公式，
 
 $$
 \begin{aligned}
@@ -205,7 +372,10 @@ P(\text{发送点号}\mid\text{收到点号})
 &=\frac{21}{25}.
 \end{aligned}
 $$
-:::
+
+分母 $(7/8)(3/7)+(1/8)(4/7)$ 是收到点号的总概率；分子只保留“确实发送点号且收到点号”这一条路径。
+
+</details>
 
 ## 独立性 {#independence}
 
@@ -220,7 +390,13 @@ $$
 :::
 
 ::: {.example}
-**四次掷骰至少出现一个 6** 若连续投掷相互独立，则
+**四次掷骰至少出现一个 6** 若连续投掷相互独立，则所求概率约为 $0.518$。
+:::
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+直接枚举“至少一次”较繁琐，改算补事件“四次都没有 6”。每次不出现 6 的概率为 $5/6$，独立性给出
 
 $$
 \begin{aligned}
@@ -230,7 +406,8 @@ P(\text{四次中至少出现一个 6})
 &\approx0.518.
 \end{aligned}
 $$
-:::
+
+</details>
 
 原课件在此处列出“生日问题”作为后续示例，但未给出计算过程，本阶段保留主题而不补写新内容。
 
@@ -238,10 +415,34 @@ $$
 **补事件的独立性** 若 $A$ 与 $B$ 独立，则以下三对事件也分别独立：$A$ 与 $B^{\mathrm c}$、$A^{\mathrm c}$ 与 $B$、$A^{\mathrm c}$ 与 $B^{\mathrm c}$。
 :::
 
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+由 $A=(A\cap B)\cup(A\cap B^{\mathrm c})$ 且两部分互斥，
+
+$$
+\begin{aligned}
+P(A\cap B^{\mathrm c})
+&=P(A)-P(A\cap B)\\
+&=P(A)-P(A)P(B)\\
+&=P(A)\{1-P(B)\}=P(A)P(B^{\mathrm c}),
+\end{aligned}
+$$
+
+所以 $A$ 与 $B^{\mathrm c}$ 独立。交换 $A,B$ 的角色，同理得 $A^{\mathrm c}$ 与 $B$ 独立。再把已经证明独立的一对 $A$、$B^{\mathrm c}$ 中的 $A$ 换成其补事件，便有 $A^{\mathrm c}$ 与 $B^{\mathrm c}$ 独立。
+
+</details>
+
 ### 两两独立与相互独立
 
 ::: {.example}
-**两个骰子** 令 $A$ 表示出现对子，$B$ 表示点数和在 7 到 10 之间，$C$ 表示点数和为 2、7 或 8。原课件给出
+**两个骰子** 令 $A$ 表示出现对子，$B$ 表示点数和在 7 到 10 之间，$C$ 表示点数和为 2、7 或 8。三事件交集恰好满足乘法关系，但它们并非两两独立。
+:::
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+两个骰子的 36 个有序结果等可能。事件 $A$ 有 6 个对子；点数和为 7、8、9、10 的结果数依次是 $6,5,4,3$；点数和为 2、7、8 的结果数是 $1+6+5$。所以
 
 $$
 P(A)=\frac16,\qquad P(B)=\frac12,\qquad P(C)=\frac13,
@@ -254,7 +455,22 @@ P(A\cap B\cap C)=\frac1{36}=P(A)P(B)P(C).
 $$
 
 但 $P(A\cap B)\ne P(A)P(B)$，且 $P(B\cap C)\ne P(B)P(C)$。因此只验证三者交集的乘法关系，不足以推出两两独立。
-:::
+
+具体地，$A\cap B=\{(4,4),(5,5)\}$，所以
+
+$$
+P(A\cap B)=\frac2{36}\ne\frac1{12}=P(A)P(B),
+$$
+
+而 $B\cap C$ 对应点数和为 7 或 8，共 $6+5=11$ 个结果，故
+
+$$
+P(B\cap C)=\frac{11}{36}\ne\frac16=P(B)P(C).
+$$
+
+三重交集只有 $(4,4)$，所以其概率恰为 $1/36$；这一条等式不能替代所有子集都要检查的相互独立定义。
+
+</details>
 
 反过来，两两独立也未必能推出三个事件相互独立。原课件使用九个等概率三元组构造事件 $A_i$，使得
 
@@ -403,6 +619,15 @@ $$
 2. $F$ 单调不减；
 3. $F$ 右连续，即对任意 $x_0$，$\lim_{x\downarrow x_0}F(x)=F(x_0)$。
 :::
+
+<details class="course-details proof-details">
+<summary><strong>查看推导过程</strong></summary>
+
+必要性可直接由概率性质得到。因为 $F(x)=P(X\le x)$：当 $x\to-\infty$ 时事件 $\{X\le x\}$ 递减到空集，当 $x\to\infty$ 时递增到整个样本空间，故两个极限分别为 0 和 1。若 $x_1<x_2$，则 $\{X\le x_1\}\subseteq\{X\le x_2\}$，所以 $F(x_1)\le F(x_2)$。若 $x_n\downarrow x_0$，则事件 $\{X\le x_n\}$ 递减到 $\{X\le x_0\}$，由概率的上连续性得 $F(x_n)\to F(x_0)$。
+
+反方向——由满足三条性质的函数构造一个概率空间及随机变量——需要测度扩张理论。教材在定理 1.5.3 中只给出上述证明提纲，并明确省略充分性的技术证明，因此这里不补写教材未提供的完整证明。
+
+</details>
 
 Logistic 分布的 cdf
 

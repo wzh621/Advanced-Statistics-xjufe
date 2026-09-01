@@ -93,6 +93,7 @@ h2 {
 .definition,
 .theorem,
 .example,
+.source-example,
 .proof,
 .remark,
 .exercise {
@@ -109,6 +110,27 @@ h2 {
 
 .exercise {
   border-left-color: var(--course-gold);
+}
+
+.course-details {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--course-border);
+  border-radius: 5px;
+  margin: 0.8em 0 1.15em;
+  padding: 0.55em 0.85em;
+}
+
+.course-details > summary {
+  color: var(--course-navy);
+  cursor: pointer;
+  list-style-position: outside;
+  padding: 0.15em 0;
+}
+
+.course-details[open] > summary {
+  border-bottom: 1px solid var(--course-border);
+  margin-bottom: 0.75em;
+  padding-bottom: 0.55em;
 }
 
 table {
@@ -143,6 +165,15 @@ img {
 }
 
 @media print {
+  .course-details > * {
+    display: block !important;
+  }
+
+  .course-details > summary {
+    border-bottom: 1px solid var(--course-border);
+    margin-bottom: 0.75em;
+  }
+
   .book .book-body .section.level2 {
     aspect-ratio: auto;
     box-shadow: none;

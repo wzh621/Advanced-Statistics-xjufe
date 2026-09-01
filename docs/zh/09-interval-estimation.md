@@ -1,4 +1,204 @@
 # 区间估计 {#interval-estimation}
 
-> 本章文件骨架已建立，正文将在后续阶段从原课件第 9 章迁移。本阶段未迁移其内容。
+本章对应 *chap-9.tex*、三个 LaTeX 子文件及 `HPD_case.R`，讨论置信区间、检验反演、枢轴量、Bayes 可信集，以及区间长度、覆盖概率和最高后验密度区域。原课件图形均保留，HPD 代码改为不依赖额外 MCMC 包的可重复实现。
 
+## 区间估计、覆盖概率与置信系数 {#interval-estimator-definitions}
+
+::: {.definition}
+实值参数 $\theta$ 的**区间估计量**是一对样本函数 $L(\mathbf X)$ 与 $U(\mathbf X)$，满足 $L(\mathbf x)\le U(\mathbf x)$。观察到 $\mathbf X=\mathbf x$ 后，报告区间 $[L(\mathbf x),U(\mathbf x)]$。
+:::
+
+::: {.definition}
+区间的**覆盖概率**为
+$$P_\theta\{L(\mathbf X)\le\theta\le U(\mathbf X)\}.$$
+它通常是 $\theta$ 的函数。区间的**置信系数**为覆盖概率在参数空间上的下确界
+$$\inf_{\theta\in\Theta}P_\theta\{\theta\in[L(\mathbf X),U(\mathbf X)]\}.$$
+:::
+
+## 反演假设检验 {#inverting-tests}
+
+::: {.theorem}
+对每个 $\theta_0\in\Theta$，令 $A(\theta_0)$ 为检验 $H_0:\theta=\theta_0$ 的水平 $\alpha$ 接受域。定义
+$$\mathcal C(\mathbf x)=\{\theta_0:\mathbf x\in A(\theta_0)\}.$$
+则 $\mathcal C(\mathbf X)$ 是覆盖概率至少为 $1-\alpha$ 的置信集。反之，给定这样的置信集，令
+$A(\theta_0)=\{\mathbf x:\theta_0\in\mathcal C(\mathbf x)\}$，即可得到水平 $\alpha$ 检验。
+:::
+
+::: {.example}
+若 $X_i\overset{\mathrm{iid}}\sim N(\mu,\sigma^2)$ 且 $\sigma$ 已知，双侧水平 $\alpha$ 检验接受 $H_0:\mu=\mu_0$ 当且仅当
+$$|\bar X-\mu_0|\le z_{\alpha/2}\frac{\sigma}{\sqrt n}.$$
+对 $\mu_0$ 反演得到
+$$\left[\bar X-z_{\alpha/2}\frac{\sigma}{\sqrt n},
+\bar X+z_{\alpha/2}\frac{\sigma}{\sqrt n}\right],$$
+其覆盖概率为 $1-\alpha$。
+:::
+
+<div class="figure" style="text-align: center">
+<img src="images/ch09/501011.png" alt="原课件中的检验接受域与置信区间反演关系" width="58%" />
+<p class="caption">(\#fig:chap09-source-test-inversion)原课件中的检验接受域与置信区间反演关系</p>
+</div>
+
+## 反演指数均值的 LRT {#inverting-exponential-lrt}
+
+设 $X_i$ 来自均值（尺度）为 $\lambda$ 的指数分布。检验 $H_0:\lambda=\lambda_0$ 时
+$$
+\lambda_{\mathrm{LR}}(\mathbf x)
+=\frac{\lambda_0^{-n}e^{-\sum x_i/\lambda_0}}
+{(\sum x_i/n)^{-n}e^{-n}}
+=\left(\frac{\sum x_i}{n\lambda_0}\right)^n e^n e^{-\sum x_i/\lambda_0}.
+$$
+
+固定 $\lambda_0$ 的接受域可写为
+$$A(\lambda_0)=\left\{\mathbf x:
+\left(\frac{\sum x_i}{\lambda_0}\right)^ne^{-\sum x_i/\lambda_0}\ge k^*\right\}.$$
+反演后得到只依赖 $T=\sum x_i$ 的区间 $[L(T),U(T)]$，两个端点满足相同的似然水平：
+$$
+\left(\frac{T}{L(T)}\right)^ne^{-T/L(T)}
+=\left(\frac{T}{U(T)}\right)^ne^{-T/U(T)}.
+$$
+
+令 $T/L=a$、$T/U=b$ 且 $a>b$，则 $a^ne^{-a}=b^ne^{-b}$，同时因 $T/\lambda\sim\operatorname{Gamma}(n,1)$，选择 $a,b$ 使
+$$P\{b\le T/\lambda\le a\}=1-\alpha.$$
+
+<div class="figure" style="text-align: center">
+<img src="images/ch09/501012.png" alt="原课件中的指数模型 LRT 反演示意" width="72%" />
+<p class="caption">(\#fig:chap09-source-lrt-inversion)原课件中的指数模型 LRT 反演示意</p>
+</div>
+
+## 枢轴量与位置--尺度例子 {#pivotal-quantities}
+
+::: {.definition}
+若 $Q(\mathbf X,\theta)$ 的抽样分布不依赖任何未知参数，则称其为**枢轴量**。若常数 $a<b$ 满足
+$$P\{a\le Q(\mathbf X,\theta)\le b\}=1-\alpha,$$
+则反演不等式得到 $1-\alpha$ 置信集
+$\mathcal C(\mathbf x)=\{\theta:a\le Q(\mathbf x,\theta)\le b\}$。
+:::
+
+位置族中 $\bar X-\mu$ 是枢轴量；尺度族中 $\bar X/\sigma$ 是枢轴量；位置--尺度族中 $(\bar X-\mu)/\sigma$ 的分布不依赖 $\mu,\sigma$，但同时含两个未知参数时还需说明要推断哪个参数以及如何处理另一个参数。
+
+::: {.example}
+若 $X_i$ 独立服从尺度为 $\lambda$ 的指数分布，$T=\sum_iX_i\sim\operatorname{Gamma}(n,\lambda)$，则
+$$Q(T,\lambda)=\frac{2T}{\lambda}\sim\chi^2_{2n}.$$
+取 $a=\chi^2_{2n,\alpha/2}$、$b=\chi^2_{2n,1-\alpha/2}$，有
+$$P_\lambda\left\{\frac{2T}{b}\le\lambda\le\frac{2T}{a}\right\}=1-\alpha.$$
+原课件给出的特定 95% 例使用端点 $9.59$ 与 $34.17$，相应区间为 $[2T/34.17,2T/9.59]$。
+:::
+
+## Bayes 可信集 {#bayesian-credible-sets}
+
+频率学区间的随机性来自重复抽样，因此说“随机区间覆盖固定参数”。Bayes 分析把 $\theta$ 视为后验随机变量；对 $A\subset\Theta$，
+$$P(\theta\in A\mid\mathbf x)=\int_A\pi(\theta\mid\mathbf x)\,d\theta,$$
+于是可以直接解释为参数落入可信集 $A$ 的后验概率。
+
+::: {.example}
+若 $X_i\sim\operatorname{Poisson}(\lambda)$，先验采用形状--尺度形式 $\lambda\sim\operatorname{Gamma}(a,b)$，则
+$$\lambda\mid\textstyle\sum X_i=\sum x_i
+\sim\operatorname{Gamma}\left(a+\sum x_i,[n+1/b]^{-1}\right).$$
+等尾 $1-\alpha$ 可信区间由后验的 $\alpha/2$ 与 $1-\alpha/2$ 分位数给出。当 $a=b=1,n=10,\sum x_i=6$ 时，原课件的 90% 等尾区间为 $[0.299,1.077]$。
+:::
+
+::: {.example}
+若 $X_i\sim N(\theta,\sigma^2)$，先验 $\theta\sim N(\mu,\tau^2)$，则
+$$
+\delta^B(\bar x)=\frac{\sigma^2}{\sigma^2+n\tau^2}\mu+
+\frac{n\tau^2}{\sigma^2+n\tau^2}\bar x,qquad
+\operatorname{Var}(\theta\mid\bar x)=\frac{\sigma^2\tau^2}{\sigma^2+n\tau^2}.
+$$
+因此 $1-\alpha$ 可信区间为
+$$\delta^B(\bar x)\pm z_{\alpha/2}\sqrt{\operatorname{Var}(\theta\mid\bar x)}.$$
+:::
+
+## 可信概率与频率覆盖概率 {#credible-versus-coverage}
+
+令 $\gamma=\sigma^2/(n\tau^2)$。上述正态 Bayes 区间在固定 $\theta$ 下的频率覆盖概率为
+$$
+P\left{-\sqrt{1+\gamma}z_{\alpha/2}+
+\frac{\gamma(\theta-\mu)}{\sigma/\sqrt n}
+\le Z\le
+\sqrt{1+\gamma}z_{\alpha/2}+
+\frac{\gamma(\theta-\mu)}{\sigma/\sqrt n}\right},
+$$
+其中 $Z\sim N(0,1)$。它通常依赖 $\theta$，所以 $1-\alpha$ 后验可信区间不自动是 $1-\alpha$ 置信区间。
+
+反过来，通常的置信区间 $|\theta-\bar x|\le z_{\alpha/2}\sigma/\sqrt n$ 在给定 $\bar x$ 后的后验可信概率也依赖先验位置：
+$$
+P\left{-\sqrt{1+\gamma}z_{\alpha/2}+
+\frac{\gamma(\bar x-\mu)}{\sqrt{1+\gamma}\sigma/\sqrt n}
+\le Z\le
+\sqrt{1+\gamma}z_{\alpha/2}+
+\frac{\gamma(\bar x-\mu)}{\sqrt{1+\gamma}\sigma/\sqrt n}\right}.
+$$
+
+## 区间长度与覆盖概率的评价 {#interval-size-coverage}
+
+评价区间时希望覆盖概率大而长度小，但二者存在权衡。覆盖可用置信系数或平均覆盖衡量；一维区间的大小通常是长度，高维集合则可用体积。
+
+::: {.theorem}
+若单峰密度 $f$ 的区间 $[a,b]$ 满足
+
+1. $\int_a^bf(x)\,dx=1-\alpha$；
+2. $f(a)=f(b)>0$；
+3. 区间包含一个众数 $x^*$；
+
+则它是概率质量为 $1-\alpha$ 的最短区间。
+:::
+
+对标准正态枢轴量，90% 区间可取 $(-1.34,2.33)$、$(-1.44,1.96)$ 或 $(-1.65,1.65)$，长度分别为 3.67、3.40、3.30；对称等尾区间最短。未知方差正态均值的 $t$ 区间同理，长度为 $(b-a)S/\sqrt n$，且期望长度为 $(b-a)c(n)\sigma/\sqrt n$，仍由对称端点最小化。
+
+## 最短枢轴区间 {#shortest-pivotal-interval}
+
+若 $X\sim\operatorname{Gamma}(k,\beta)$，则 $Y=X/\beta\sim\operatorname{Gamma}(k,1)$。由 $P(a\le Y\le b)=1-\alpha$ 得
+$$\frac{x}{b}\le\beta\le\frac{x}{a},$$
+其长度与 $1/a-1/b$ 成正比，而不是与 $b-a$ 成正比。因此不能直接令 $f_Y(a)=f_Y(b)$。应把约束定义为 $b=b(a)$，求解
+$$\min_a\left\{\frac1a-\frac1{b(a)}\right\},\qquad
+\int_a^{b(a)}f_Y(y)\,dy=1-\alpha.$$
+
+## 最高后验密度区域 {#highest-posterior-density}
+
+::: {.definition}
+对后验密度 $\pi(\theta\mid\mathbf x)$，HPD 区域在后验概率至少为 $1-\alpha$ 的集合中体积最小。若后验单峰，最短可信区间为
+$$\{\theta:\pi(\theta\mid\mathbf x)\ge k\},\qquad
+\int_{\{\theta:\pi(\theta\mid\mathbf x)\ge k\}}
+\pi(\theta\mid\mathbf x)\,d\theta=1-\alpha.$$
+端点满足相同的后验密度。
+:::
+
+Poisson--Gamma 例在 $a=b=1,n=10,\sum x_i=6$ 时，原课件给出 90% HPD 区间 $[0.253,1.005]$。
+
+
+``` r
+observed_data <- c(3, 2, 4, 1, 5)
+prior_shape <- 2
+prior_rate <- 1
+post_shape <- prior_shape + sum(observed_data)
+post_rate <- prior_rate + length(observed_data)
+cred_mass <- 0.95
+set.seed(123)
+posterior_samples <- sort(rgamma(100000, shape = post_shape, rate = post_rate))
+window_size <- floor(cred_mass * length(posterior_samples))
+widths <- posterior_samples[(window_size + 1):length(posterior_samples)] -
+  posterior_samples[1:(length(posterior_samples) - window_size)]
+lower_index <- which.min(widths)
+hpd <- posterior_samples[c(lower_index, lower_index + window_size)]
+x_grid <- seq(0, qgamma(0.999, post_shape, rate = post_rate), length.out = 500)
+plot(x_grid, dgamma(x_grid, post_shape, rate = post_rate), type = "l", lwd = 2,
+     xlab = expression(lambda), ylab = "后验密度")
+abline(v = hpd, col = "#C43C39", lty = 2, lwd = 2)
+abline(v = mean(posterior_samples), col = "#1F77B4", lwd = 2)
+legend("topright", c(sprintf("95%% HPD [%.2f, %.2f]", hpd[1], hpd[2]), "后验均值"),
+       col = c("#C43C39", "#1F77B4"), lty = c(2, 1), lwd = 2, bty = "n")
+```
+
+<div class="figure" style="text-align: center">
+<img src="09-interval-estimation_files/figure-html/chap09-hpd-gamma-1.png" alt="Gamma 后验的 95% HPD 区间（保留原 R 示例的数据、先验与后验抽样）" width="90%" />
+<p class="caption">(\#fig:chap09-hpd-gamma)Gamma 后验的 95% HPD 区间（保留原 R 示例的数据、先验与后验抽样）</p>
+</div>
+
+<div class="figure" style="text-align: center">
+<img src="images/ch09/HPD.png" alt="原课件中的三种区间估计比较" width="50%" />
+<p class="caption">(\#fig:chap09-source-hpd)原课件中的三种区间估计比较</p>
+</div>
+
+## 本章小结 {#interval-estimation-summary}
+
+置信区间可由检验反演或枢轴量构造，其概率陈述针对重复抽样；可信区间针对给定数据后的后验分布。区间评价必须同时考虑覆盖与大小，而最短区间条件需要在参数变换后按最终区间长度重新推导。

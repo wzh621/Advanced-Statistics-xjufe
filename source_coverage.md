@@ -13,9 +13,9 @@
 | 5 | `chap-5.tex`; `5-1_BC.tex`; `5-2_SR.tex`; `5-3_OS.tex`; `5-4_Co.tex`; `chapter-5.md` | `05-random-samples.Rmd` | `en/05-random-samples.Rmd` | 已覆盖；截断补稿及公式修正见迁移记录 |
 | 6 | `chap-6.tex`; `6-1_In.tex`; `6-2_SP.tex`; `6-3_LP.tex`; `6-4_EP.tex`; `Chapter 6.md` | `06-data-reduction.Rmd` | `en/06-data-reduction.Rmd` | 已覆盖；公式、支撑集及定理条件修正见迁移记录 |
 | 7 | `chap-7.tex`; `7-1_In.tex`; `7-2_MF.tex`; `7-3_ME.tex`; `pic/501005.pdf`; `week_3/example on likelihood.R` | `07-point-estimation.Rmd` | `en/07-point-estimation.Rmd` | 已覆盖；原图、旧 R 代码及公式修正见迁移记录 |
-| 8 | `chap-8.tex`; `8-1_In.tex`; `8-2_FT.tex`; `8-3_ET.tex` | `08-hypothesis-testing.Rmd` | `en/08-hypothesis-testing.Rmd` | 待迁移 |
-| 9 | `chap-9.tex`; `9-1_In.tex`; `9-2_FT.tex`; `9-3_ET.tex` | `09-interval-estimation.Rmd` | `en/09-interval-estimation.Rmd` | 待迁移 |
-| 10 | `chap-10.tex`; `10-1_PE.tex`; `10-2_Ro.tex`; `10-3_HT.tex`; `10-4_IE.tex` | `10-asymptotic-evaluations.Rmd` | `en/10-asymptotic-evaluations.Rmd` | 待迁移 |
+| 8 | `chap-8.tex`; `8-1_In.tex`; `8-2_FT.tex`; `8-3_ET.tex`; `pic/501007.pdf`; `pic/501009.pdf`; `pic/umpt.jpg`; `pic/pvalue.jpg` | `08-hypothesis-testing.Rmd` | `en/08-hypothesis-testing.Rmd` | 已覆盖；公式、术语与源图处理见迁移记录 |
+| 9 | `chap-9.tex`; `9-1_In.tex`; `9-2_FT.tex`; `9-3_ET.tex`; `HPD_case.R`; `pic/501011.pdf`; `pic/501012.pdf`; `pic/HPD.png` | `09-interval-estimation.Rmd` | `en/09-interval-estimation.Rmd` | 已覆盖；枢轴量、区间端点与 HPD 代码修正见迁移记录 |
+| 10 | `chap-10.tex`; `10-1_PE.tex`; `10-2_Ro.tex`; `10-3_HT.tex`; `10-4_IE.tex` | `10-asymptotic-evaluations.Rmd` | `en/10-asymptotic-evaluations.Rmd` | 已覆盖；渐近归一化、Wilks 自由度与区间分位数修正见迁移记录 |
 
 ## 每章完成条件
 
