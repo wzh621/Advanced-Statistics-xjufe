@@ -31,8 +31,14 @@ $$
 其中 $\hat\theta_0$ 是受限 MLE，$\hat\theta$ 是无约束 MLE。LRT 的拒绝域形如 $\{\mathbf x:\lambda(\mathbf x)\le c\}$，$0\le c\le1$。
 :::
 
-::: {.example}
-若 $X_i\overset{\mathrm{iid}}\sim N(\theta,1)$，检验 $H_0:\theta=\theta_0$ 对 $H_1:\theta\ne\theta_0$，则
+::: {.example .source-numbered}
+**例 8.2.2（正态总体的 LRT）** 若 $X_i\overset{\mathrm{iid}}\sim N(\theta,1)$，检验 $H_0:\theta=\theta_0$ 对 $H_1:\theta\ne\theta_0$，求似然比统计量及拒绝域。
+:::
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+原假设下的受限 MLE 为 $\theta_0$，无约束 MLE 为 $\bar x$，因此
 
 $$
 \begin{aligned}
@@ -45,12 +51,34 @@ $$
 其中使用了 $\sum_i(x_i-\theta_0)^2=\sum_i(x_i-\bar x)^2+n(\bar x-\theta_0)^2$。拒绝域等价于
 
 $$\left\{\mathbf x:|\bar x-\theta_0|\ge\sqrt{-2\log(c)/n}\right\}.$$
-:::
 
-::: {.theorem}
-若 $T(\mathbf X)$ 是关于 $\theta$ 的充分统计量，分别用 $T$ 与完整样本构造的似然比统计量为 $\lambda^*(t)$ 与 $\lambda(\mathbf x)$，则
+</details>
+
+::: {.theorem .source-numbered}
+**定理 8.2.4（LRT 与充分性）** 若 $T(\mathbf X)$ 是关于 $\theta$ 的充分统计量，分别用 $T$ 与完整样本构造的似然比统计量为 $\lambda^*(t)$ 与 $\lambda(\mathbf x)$，则
 $\lambda^*\{T(\mathbf x)\}=\lambda(\mathbf x)$。
 :::
+
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+由因子分解定理，样本密度可写成
+$f(\mathbf x\mid\theta)=g\{T(\mathbf x)\mid\theta\}h(\mathbf x)$，其中 $h$ 不依赖 $\theta$，而 $g$ 是 $T$ 的 pmf 或 pdf。于是
+
+$$
+\begin{aligned}
+\lambda(\mathbf x)
+&=\frac{\sup_{\theta\in\Theta_0}g\{T(\mathbf x)\mid\theta\}h(\mathbf x)}
+{\sup_{\theta\in\Theta}g\{T(\mathbf x)\mid\theta\}h(\mathbf x)}\\
+&=\frac{\sup_{\theta\in\Theta_0}g\{T(\mathbf x)\mid\theta\}}
+{\sup_{\theta\in\Theta}g\{T(\mathbf x)\mid\theta\}}
+=\lambda^*\{T(\mathbf x)\}.
+\end{aligned}
+$$
+
+第二个等号中，无参数因子 $h(\mathbf x)$ 在分子、分母中约去。因此完整样本和充分统计量产生同一个 LRT。
+
+</details>
 
 ## 指数位置族与含干扰参数的 LRT {#lrt-examples}
 
@@ -156,8 +184,8 @@ $|\bar X-\theta_0|\ge z_{\alpha/2}/\sqrt n$，相应的似然比临界值为 $c=
 knitr::include_graphics("images/ch08/umpt.jpg")
 ```
 
-::: {.theorem}
-**Neyman--Pearson 引理。** 对简单假设 $H_0:\theta=\theta_0$ 与 $H_1:\theta=\theta_1$，若拒绝域 $R$ 满足
+::: {.theorem .source-numbered}
+**定理 8.3.12（Neyman--Pearson 引理）** 对简单假设 $H_0:\theta=\theta_0$ 与 $H_1:\theta=\theta_1$，若拒绝域 $R$ 满足
 
 $$
 \mathbf x\in R\ \text{if }f(\mathbf x\mid\theta_1)>k f(\mathbf x\mid\theta_0),\qquad
@@ -166,6 +194,32 @@ $$
 
 且 $P_{\theta_0}(\mathbf X\in R)=\alpha$，则该检验是水平 $\alpha$ 的最强检验。若存在 $k>0$ 的此类检验，则任何水平 $\alpha$ 最强检验除零概率集合外都必须采用同样的似然比排序，并且实际大小为 $\alpha$。
 :::
+
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+先证连续情形；离散情形把积分换成求和即可。令 $\phi$ 为上述拒绝域的检验函数，$\phi'$ 为任意其他水平 $\alpha$ 检验的检验函数，二者的功效分别为 $\beta$ 与 $\beta'$。由似然比排序，逐点有
+
+$$
+\{\phi(\mathbf x)-\phi'(\mathbf x)\}
+\{f(\mathbf x\mid\theta_1)-k f(\mathbf x\mid\theta_0)\}\ge0.
+$$
+
+积分得到
+
+$$0\le \beta(\theta_1)-\beta'(\theta_1)
+-k\{\beta(\theta_0)-\beta'(\theta_0)\}.$$
+
+因为 $\beta(\theta_0)=\alpha$，而 $\phi'$ 是水平 $\alpha$ 检验，所以
+$\beta(\theta_0)-\beta'(\theta_0)\ge0$。当 $k\ge0$ 时，上式推出
+$\beta(\theta_1)\ge\beta'(\theta_1)$，故 $\phi$ 最强。
+
+再证必要性。若 $k>0$ 且 $\phi'$ 也是最强检验，则
+$\beta'(\theta_1)=\beta(\theta_1)$。代回上式并利用
+$\beta'(\theta_0)\le\alpha=\beta(\theta_0)$，可得
+$\beta'(\theta_0)=\alpha$，所以 $\phi'$ 的实际大小也是 $\alpha$。此时上述非负被积函数的积分为 0，故它除在 $\theta_0$、$\theta_1$ 下概率均为 0 的集合外只能为 0；因此 $\phi'$ 必须采用同样的似然比排序。
+
+</details>
 
 若 $T$ 是充分统计量，以上条件可在 $T$ 的分布 $g(t\mid\theta_i)$ 上检验：当 $g(t\mid\theta_1)>kg(t\mid\theta_0)$ 时拒绝。
 
@@ -183,9 +237,24 @@ $$\bar X<\theta_0-\frac{\sigma z_\alpha}{\sqrt n}$$
 若对每个 $\theta_2>\theta_1$，比值 $g(t\mid\theta_2)/g(t\mid\theta_1)$ 在共同支撑上关于 $t$ 单调，则称族 $\{g(t\mid\theta):\theta\in\Theta\}$ 具有**单调似然比**（MLR）。正态未知均值（方差已知）、Poisson 和 Binomial 族均是典型例子。
 :::
 
-::: {.theorem}
-**Karlin--Rubin 定理。** 检验 $H_0:\theta\le\theta_0$ 对 $H_1:\theta>\theta_0$。若充分统计量 $T$ 的分布族具有递增 MLR，则拒绝规则 $T>t_0$ 是水平 $\alpha$ 的 UMP 检验，其中 $\alpha=P_{\theta_0}(T>t_0)$。递减方向的情形相应反向。
+::: {.theorem .source-numbered}
+**定理 8.3.17（Karlin--Rubin 定理）** 检验 $H_0:\theta\le\theta_0$ 对 $H_1:\theta>\theta_0$。若充分统计量 $T$ 的分布族具有递增 MLR，则拒绝规则 $T>t_0$ 是水平 $\alpha$ 的 UMP 检验，其中 $\alpha=P_{\theta_0}(T>t_0)$。递减方向的情形相应反向。
 :::
+
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+记该检验的功效为 $\beta(\theta)=P_\theta(T>t_0)$。递增 MLR 蕴含 $T$ 关于 $\theta$ 随机递增，故 $\beta(\theta)$ 非递减，从而
+
+$$\sup_{\theta\le\theta_0}\beta(\theta)=\beta(\theta_0)=\alpha.$$
+
+因此该检验是水平 $\alpha$ 检验。任取 $\theta'>\theta_0$，单调似然比保证存在阈值常数 $k$，使 $T>t_0$ 时
+
+$$\frac{g(T\mid\theta')}{g(T\mid\theta_0)}>k.$$
+
+于是针对简单假设 $\theta_0$ 与 $\theta'$，该拒绝域满足 Neyman--Pearson 排序，是水平 $\alpha$ 的最强检验。任何复合原假设下的水平 $\alpha$ 检验在 $\theta_0$ 处也必有功效不超过 $\alpha$，故其在 $\theta'$ 处的功效不超过当前检验。由于 $\theta'>\theta_0$ 任意，结论对整个备择空间成立，即该检验 UMP。
+
+</details>
 
 因此对已知方差正态均值检验 $H_0:\theta\ge\theta_0$ 对 $H_1:\theta<\theta_0$，在 $\bar X<\theta_0-\sigma z_\alpha/\sqrt n$ 时拒绝。其功效随 $\theta$ 递减，最大第一类错误发生在边界 $\theta_0$。
 
@@ -203,17 +272,128 @@ $$
 
 它是该问题的 UMP 无偏水平 $\alpha$ 检验。
 
-::: {.theorem}
-若统计量 $W(\mathbf X)$ 越大越支持 $H_1$，则
+::: {.theorem .source-numbered}
+**定理 8.3.27（有效 p 值）** 若统计量 $W(\mathbf X)$ 越大越支持 $H_1$，则
 
 $$p(\mathbf x)=\sup_{\theta\in\Theta_0}P_\theta\{W(\mathbf X)\ge W(\mathbf x)\}$$
 
 是有效的 p 值；对每个 $0\le u\le1$，原假设下均有 $P_\theta\{p(\mathbf X)\le u\}\le u$。
 :::
 
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+固定任意 $\theta\in\Theta_0$，定义
+
+$$p_\theta(\mathbf x)=P_\theta\{W(\mathbf X)\ge W(\mathbf x)\}.$$
+
+若令 $F_\theta$ 为 $-W(\mathbf X)$ 的 cdf，则
+$p_\theta(\mathbf X)=F_\theta\{-W(\mathbf X)\}$。由概率积分变换的离散/连续统一形式，$p_\theta(\mathbf X)$ 在随机序意义上不小于 $U(0,1)$，所以
+
+$$P_\theta\{p_\theta(\mathbf X)\le u\}\le u,\qquad0\le u\le1.$$
+
+又因为 $p(\mathbf x)=\sup_{\vartheta\in\Theta_0}p_\vartheta(\mathbf x)\ge p_\theta(\mathbf x)$，故
+
+$$P_\theta\{p(\mathbf X)\le u\}
+\le P_\theta\{p_\theta(\mathbf X)\le u\}\le u.$$
+
+该结论对每个 $\theta\in\Theta_0$ 都成立，因此 $p(\mathbf X)$ 是有效 p 值。
+
+</details>
+
 ```{r chap08-source-pvalue, echo=FALSE, out.width='42%', fig.cap='原课件中的 p 值尾概率示意'}
 knitr::include_graphics("images/ch08/pvalue.jpg")
 ```
+
+## 功效、样本量与效应量实验 {#power-sample-size-effect}
+
+考虑方差 $σ^2$ 已知的正态均值双侧 $z$ 检验。令标准化效应量
+
+$$δ=\frac{θ-θ_0}{σ},$$
+
+则备择参数下 $Z=\sqrt n(\bar X-θ_0)/σ\sim N(\sqrt nδ,1)$。显著性水平为 $α$ 时，功效为
+
+$$
+π(δ,n)
+=Φ\{-z_{1-α/2}-\sqrt nδ\}
++1-Φ\{z_{1-α/2}-\sqrt nδ\}.
+$$
+
+这说明功效并非检验方法的单一常数，而是由显著性水平、效应量和样本量共同决定。
+
+```{r chap08-power-surface, fig.cap='双侧 z 检验的功效随标准化效应量与样本量的变化（alpha=0.05）', fig.width=8, fig.height=5.1}
+alpha <- 0.05
+critical <- qnorm(1 - alpha / 2)
+effect_grid <- seq(0, 1, length.out = 101)
+sample_grid <- seq(5, 200, by = 5)
+power_surface <- outer(sample_grid, effect_grid, function(n, effect) {
+  mean_shift <- sqrt(n) * effect
+  pnorm(-critical - mean_shift) + 1 - pnorm(critical - mean_shift)
+})
+
+image(effect_grid, sample_grid, t(power_surface),
+      col = hcl.colors(24, "YlOrRd", rev = TRUE),
+      xlab = expression(delta == (theta - theta[0]) / sigma),
+      ylab = "样本量 n", family = course_plot_family())
+contour(effect_grid, sample_grid, t(power_surface), levels = c(0.5, 0.8, 0.9),
+        add = TRUE, drawlabels = TRUE, lwd = 1.5, col = "#263238")
+```
+
+沿图中的 $0.8$ 等功效线读取，可以回答“给定最小有意义效应量，需要多大样本”的设计问题。样本量很大时，即使很小的效应也可能显著，因此报告结果时还应同时给出效应量和区间估计。
+
+## p 值的抽样分布 {#p-value-sampling-distribution}
+
+p 值是数据的函数，所以在重复抽样中本身也是随机变量。有效 p 值在连续原假设下服从 $U(0,1)$；在备择成立时，好的检验会使 p 值更集中在 0 附近。
+
+```{r chap08-pvalue-simulation, fig.cap='双侧 z 检验在原假设与备择假设下的 p 值分布', fig.width=8, fig.height=4.5}
+set.seed(8308)
+b_pvalue <- 20000
+n_pvalue <- 25
+effect_pvalue <- 0.4
+z_null <- rnorm(b_pvalue)
+z_alt <- rnorm(b_pvalue, mean = sqrt(n_pvalue) * effect_pvalue)
+p_null <- 2 * pnorm(-abs(z_null))
+p_alt <- 2 * pnorm(-abs(z_alt))
+
+old_par <- par(mfrow = c(1, 2), mar = c(4, 4, 2.5, 1),
+               family = course_plot_family())
+hist(p_null, breaks = seq(0, 1, by = 0.05), probability = TRUE,
+     col = "#9ECAE1", border = "white", xlab = "p 值", main = "原假设成立")
+abline(h = 1, col = "#C43C39", lwd = 2, lty = 2)
+hist(p_alt, breaks = seq(0, 1, by = 0.05), probability = TRUE,
+     col = "#FDAE6B", border = "white", xlab = "p 值", main = "备择：delta = 0.4")
+par(old_par)
+```
+
+“原假设下均匀”不是说观测到的 p 值可以解释成原假设为真的概率；它描述的是检验在重复抽样下的校准性质。右图向 0 集中，对应的正是较高功效。
+
+## 贯穿案例：缺陷率是否超过标准 {#defect-rate-testing}
+
+回到第 7 章的抽检数据：$Y\sim\operatorname{Bin}(200,p)$，观测到 $y=16$，检验
+
+$$H_0:p\le0.05\qquad\text{对}\qquad H_1:p>0.05.$$
+
+由于较大的 $Y$ 更支持备择，边界参数 $p_0=0.05$ 给出单侧精确 p 值
+
+$$P_{0.05}(Y\ge16)=0.0444.$$
+
+```{r chap08-defect-rate-test}
+n_defect <- 200
+y_defect <- 16
+p_standard <- 0.05
+knitr::kable(
+  data.frame(
+    `统计量` = c("样本缺陷率", "精确单侧 p 值"),
+    `数值` = c(y_defect / n_defect,
+               pbinom(y_defect - 1, n_defect, p_standard,
+                      lower.tail = FALSE)),
+    check.names = FALSE
+  ),
+  digits = 4
+)
+```
+
+在 $\alpha=0.05$ 下拒绝 $H_0$，数据提供了缺陷率超过标准的证据。结论不等于“$H_0$ 为假的概率是 $95\%$”，也不说明超标幅度是否具有实际重要性；后者应结合第 9 章的区间估计判断。
 
 ## 本章小结 {#hypothesis-testing-summary}
 

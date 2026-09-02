@@ -12,12 +12,19 @@ $$\lim_{n\to\infty}P_\theta(|W_n-\theta|<\epsilon)=1,$$
 that is, $W_n\overset p\to\theta$.
 :::
 
-::: {.example}
-If $X_i\overset{\mathrm{iid}}\sim N(\theta,1)$, then $\bar X_n\sim N(\theta,1/n)$ and
+::: {.example .source-numbered}
+**Example 10.1.2 (Consistency of the sample mean).** If $X_i\overset{\mathrm{iid}}\sim N(\theta,1)$, prove that $\bar X_n$ is consistent for $\theta$.
+:::
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+Since $\bar X_n\sim N(\theta,1/n)$,
 $$P_\theta(|\bar X_n-\theta|<\epsilon)
 =P(-\epsilon\sqrt n<Z<\epsilon\sqrt n)\longrightarrow1.$$
 Thus $\bar X_n$ is consistent.
-:::
+
+</details>
 
 ## MLE regularity conditions and consistency {#mle-regularity-consistency}
 
@@ -32,11 +39,27 @@ The source lists a common sufficient condition set:
 
 The first four support the source's consistency result; the last two are added for asymptotic normality and efficiency. Modern versions can use different weaker assumptions, but the source condition set is preserved.
 
-::: {.theorem}
-Under the consistency regularity conditions, if $\hat\theta$ is the MLE and $\tau$ is continuous, then
+::: {.theorem .source-numbered}
+**Theorem 10.1.6 (Consistency of MLEs).** Under the consistency regularity conditions, if $\hat\theta$ is the MLE and $\tau$ is continuous, then
 $$P_\theta\{|\tau(\hat\theta)-\tau(\theta)|\ge\epsilon\}\longrightarrow0.$$
 Hence $\tau(\hat\theta)$ is consistent.
 :::
+
+<details class="course-details proof-details">
+<summary><strong>View derivation</strong></summary>
+
+The textbook gives only a proof outline. For fixed $\vartheta$, the strong law gives
+
+$$\frac1n\log L(\vartheta\mid\mathbf X)
+=\frac1n\sum_{i=1}^n\log f(X_i\mid\vartheta)
+\longrightarrow E_\theta\{\log f(X\mid\vartheta)\}$$
+
+almost surely. The Kullback--Leibler inequality and identifiability make the limit uniquely maximal at the true parameter $\theta$. Under the additional uniform-convergence and compactness conditions cited by the source, the maximizer $\hat\theta$ converges in probability to $\theta$. Continuity then gives
+$\tau(\hat\theta)\overset p\to\tau(\theta)$.
+
+The source refers the fully rigorous general proof to its regularity discussion and an external text, so this disclosure intentionally remains an outline.
+
+</details>
 
 ## Limiting and asymptotic variance {#limiting-asymptotic-variance}
 
@@ -64,11 +87,36 @@ I_1(\theta)=E_\theta\left[\left\{\frac\partial{\partial\theta}\log f(X\mid\theta
 then $W_n$ is asymptotically efficient.
 :::
 
-::: {.theorem}
-Under the stated regularity conditions, if $\hat\theta$ is the MLE and $\tau$ has the required continuity and differentiability, then
+::: {.theorem .source-numbered}
+**Theorem 10.1.12 (Asymptotic efficiency of MLEs).** Under the stated regularity conditions, if $\hat\theta$ is the MLE and $\tau$ has the required continuity and differentiability, then
 $$\sqrt n\{\tau(\hat\theta)-\tau(\theta)\}\overset d\longrightarrow N\{0,v(\theta)\},$$
 where $v(\theta)$ is the Cramér--Rao bound. Thus $\tau(\hat\theta)$ is consistent and asymptotically efficient.
 :::
+
+<details class="course-details proof-details">
+<summary><strong>View derivation</strong></summary>
+
+The textbook first treats $\hat\theta$. Write
+$\ell_n(\theta)=\sum_{i=1}^n\log f(X_i\mid\theta)$. A Taylor expansion of the score around the true value $\theta_0$ gives
+
+$$0=\ell_n'(\hat\theta)
+=\ell_n'(\theta_0)+(\hat\theta-\theta_0)\ell_n''(\theta_0)
++o_p(\sqrt n\,|\hat\theta-\theta_0|).$$
+
+Thus
+
+$$\sqrt n(\hat\theta-\theta_0)
+=\frac{n^{-1/2}\ell_n'(\theta_0)}{-n^{-1}\ell_n''(\theta_0)}+o_p(1).$$
+
+The central limit theorem and weak law yield
+
+$$n^{-1/2}\ell_n'(\theta_0)\Rightarrow N\{0,I_1(\theta_0)\},
+\qquad -n^{-1}\ell_n''(\theta_0)\overset p\longrightarrow I_1(\theta_0).$$
+
+Slutsky's theorem gives asymptotic variance $1/I_1(\theta_0)$. Applying the delta method to $\tau$ gives
+$[\tau'(\theta_0)]^2/I_1(\theta_0)$, the Cramér--Rao bound. The source leaves this final extension to Exercise 10.7, so it is presented here as the indicated delta-method step.
+
+</details>
 
 ## Asymptotic relative efficiency {#asymptotic-relative-efficiency}
 
@@ -136,10 +184,30 @@ legend("topleft", c("Squared loss", "Huber loss"),
 
 ## Asymptotic distribution of LRTs {#asymptotic-lrt-distribution}
 
-::: {.theorem}
-For $H_0:\theta=\theta_0$ against $H_1:\theta\ne\theta_0$, if the iid model and MLE satisfy the regularity conditions, then under $H_0$,
+::: {.theorem .source-numbered}
+**Theorem 10.3.1 (Asymptotic LRT distribution for a simple null).** For $H_0:\theta=\theta_0$ against $H_1:\theta\ne\theta_0$, if the iid model and MLE satisfy the regularity conditions, then under $H_0$,
 $$-2\log\lambda(\mathbf X)\overset d\longrightarrow\chi_1^2.$$
 :::
+
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+Let $\ell_n(\theta)=\log L(\theta\mid\mathbf X)$. Expanding around $\hat\theta$ gives
+
+$$\ell_n(\theta_0)=\ell_n(\hat\theta)
++\ell_n'(\hat\theta)(\theta_0-\hat\theta)
++\frac12\ell_n''(\tilde\theta)(\theta_0-\hat\theta)^2,$$
+
+where $\tilde\theta$ lies between $\theta_0$ and $\hat\theta$. Since an interior MLE has $\ell_n'(\hat\theta)=0$,
+
+$$-2\log\lambda(\mathbf X)
+=\left\{\frac{-\ell_n''(\tilde\theta)}n\right\}
+\{\sqrt n(\hat\theta-\theta_0)\}^2.$$
+
+Under $H_0$, the first factor converges in probability to $I_1(\theta_0)$, while Theorem 10.1.12 gives
+$\sqrt n(\hat\theta-\theta_0)\Rightarrow N\{0,1/I_1(\theta_0)\}$. Slutsky's theorem therefore makes the product converge to the square of a standard normal variable, namely $\chi_1^2$.
+
+</details>
 
 More generally, if the unrestricted model has dimension $p$ and the null has $q$ free dimensions, then under smooth interior regularity,
 $$-2\log\lambda(\mathbf X)\Rightarrow\chi^2_{p-q}.$$
@@ -161,13 +229,22 @@ Inverting the LRT gives the approximate $1-\alpha$ confidence set
 $$\left\{\theta:-2\log\frac{L(\theta\mid\mathbf x)}{L(\hat\theta\mid\mathbf x)}
 \le\chi^2_{1,1-\alpha}\right\}.$$
 
-::: {.example}
-If $Y=\sum_iX_i$ for independent Bernoulli$(p)$ observations and $\hat p=y/n$, the binomial LRT interval is
+::: {.example .source-numbered}
+**Example 10.4.3 (Binomial LRT interval).** If $Y=\sum_iX_i$ for independent Bernoulli$(p)$ observations, invert the asymptotic LRT to construct a confidence set for $p$.
+:::
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+The unrestricted MLE is $\hat p=y/n$, so the confidence set is
 $$\left\{p:-2\log\left[
 \frac{p^y(1-p)^{n-y}}{\hat p^y(1-\hat p)^{n-y}}
 \right]\le\chi^2_{1,1-\alpha}\right\}.$$
 Its endpoints are normally obtained by one-dimensional root finding.
-:::
+
+For $0<y<n$, strict concavity of the log likelihood usually makes this a single interval containing $\hat p$; solve the equality separately on either side. Boundary samples $y=0$ or $y=n$ require the corresponding one-sided boundary treatment.
+
+</details>
 
 ## Chapter summary {#asymptotic-evaluations-summary}
 

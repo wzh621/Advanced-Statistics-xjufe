@@ -20,8 +20,8 @@ For a population with $k$ unknown parameters
 $\boldsymbol\theta=(\theta_1,\ldots,\theta_k)$, define
 
 $$
-m_j=\frac1n\sum_{i=1}^nX_i^j,qquad
-\mu_j(\boldsymbol\theta)=E_{\boldsymbol\theta}(X^j),qquad j=1,\ldots,k.
+m_j=\frac1n\sum_{i=1}^nX_i^j,\qquad
+\mu_j(\boldsymbol\theta)=E_{\boldsymbol\theta}(X^j),\qquad j=1,\ldots,k.
 $$
 
 The method of moments solves
@@ -30,10 +30,16 @@ $$m_j=\mu_j(\boldsymbol\theta),\qquad j=1,\ldots,k$$
 
 for $\hat\theta_1,\ldots,\hat\theta_k$.
 
-::: {.example}
-If $X_i\overset{\mathrm{iid}}\sim\operatorname{Bin}(k,p)$ and both $k,p$ are unknown, then
+::: {.example .source-numbered}
+**Example 7.2.2 (Method of moments for the binomial family).** If $X_i\overset{\mathrm{iid}}\sim\operatorname{Bin}(k,p)$ and both $k,p$ are unknown, find their moment estimators.
+:::
 
-$$E(X)=kp,qquad E(X^2)=kp(1-p)+k^2p^2.$$
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+The first two population summaries are
+
+$$E(X)=kp,\qquad E(X^2)=kp(1-p)+k^2p^2.$$
 
 Writing $v_n=n^{-1}\sum_i(X_i-\bar X)^2$ gives
 
@@ -43,7 +49,8 @@ $$
 $$
 
 If $\bar X-v_n\le0$, there is no interior solution in the allowed parameter space. Since $k$ is integer-valued, neighboring feasible integers must also be compared. This illustrates that moment estimates can be infeasible.
-:::
+
+</details>
 
 ## Maximum likelihood and invariance {#maximum-likelihood-estimation}
 
@@ -61,9 +68,25 @@ $$\nabla_{\boldsymbol\theta}\ell(\boldsymbol\theta)=\mathbf0,$$
 
 but boundaries, constraints, existence, and global maximality must still be checked.
 
-::: {.theorem}
-**Invariance of MLEs.** If $\hat\theta$ is the MLE of $\theta$, then the MLE of $\tau(\theta)$ is $\tau(\hat\theta)$. For a many-to-one transformation, likelihoods are profiled over all parameter values sharing the same transformed value.
+::: {.theorem .source-numbered}
+**Theorem 7.2.10 (Invariance of MLEs).** If $\hat\theta$ is the MLE of $\theta$, then the MLE of $\tau(\theta)$ is $\tau(\hat\theta)$. For a many-to-one transformation, likelihoods are profiled over all parameter values sharing the same transformed value.
 :::
+
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+Write $\eta=\tau(\theta)$ and define the profile likelihood
+
+$$L^*(\eta\mid\mathbf x)=\sup_{\theta:\,\tau(\theta)=\eta}L(\theta\mid\mathbf x).$$
+
+If $\hat\theta$ maximizes the original likelihood, then for every $\eta$,
+
+$$L^*(\eta\mid\mathbf x)\le L(\hat\theta\mid\mathbf x)
+\le L^*\{\tau(\hat\theta)\mid\mathbf x\}.$$
+
+The last inequality holds because $\hat\theta$ belongs to the fiber with value $\tau(\hat\theta)$. Hence $L^*$ is maximized at $\hat\eta=\tau(\hat\theta)$. The one-to-one case is immediate.
+
+</details>
 
 The legacy R example used an exponential scale model but evaluated a likelihood that underflows numerically. The same model, sample generation, and grid search are retained below, using log likelihood.
 
@@ -117,9 +140,20 @@ $$
 m(\mathbf x)=\int f(\mathbf x\mid\theta)\pi(\theta)\,d\theta.
 $$
 
-::: {.example}
-If $X_i\sim\operatorname{Bernoulli}(p)$, $Y=\sum_iX_i$, and
-$p\sim\operatorname{Beta}(\alpha,\beta)$, then
+::: {.example .source-numbered}
+**Example 7.2.14 (Beta--Binomial Bayes estimation).** If $X_i\sim\operatorname{Bernoulli}(p)$, $Y=\sum_iX_i$, and
+$p\sim\operatorname{Beta}(\alpha,\beta)$, find the posterior and the Bayes estimator under squared-error loss.
+:::
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+Up to factors independent of $p$, likelihood times prior is
+
+$$p^y(1-p)^{n-y}p^{\alpha-1}(1-p)^{\beta-1}
+=p^{y+\alpha-1}(1-p)^{n-y+\beta-1},$$
+
+which is a Beta kernel. Therefore
 
 $$p\mid Y=y\sim\operatorname{Beta}(y+\alpha,n-y+\beta).$$
 
@@ -132,7 +166,8 @@ $$
 $$
 
 It shrinks the sample proportion toward the prior mean.
-:::
+
+</details>
 
 ## The EM algorithm: latent data and basic steps {#em-algorithm}
 
@@ -260,8 +295,8 @@ Within the unbiased class, MSE equals variance. Finding a UMVUE generally requir
 
 ## The Cramér--Rao lower bound {#cramer-rao-bound}
 
-::: {.theorem}
-Under regularity conditions including parameter-independent support, valid differentiation under the integral, and finite variance,
+::: {.theorem .source-numbered}
+**Theorem 7.3.9 (Cramér--Rao lower bound).** Under regularity conditions including parameter-independent support, valid differentiation under the integral, and finite variance,
 
 $$
 \operatorname{Var}_\theta(W)\ge
@@ -272,6 +307,33 @@ I_n(\theta)=E_\theta\left[\left\{\frac\partial{\partial\theta}
 $$
 :::
 
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+Let
+
+$$U(\mathbf X;\theta)=\frac{\partial}{\partial\theta}\log f(\mathbf X\mid\theta)$$
+
+be the score. Regularity and normalization of the density give
+
+$$E_\theta U=\int \frac{\partial f(\mathbf x\mid\theta)}{\partial\theta}\,d\mathbf x
+=\frac{d}{d\theta}\int f(\mathbf x\mid\theta)\,d\mathbf x=0.$$
+
+Interchanging differentiation and integration once more,
+
+$$\operatorname{Cov}_\theta(W,U)=E_\theta(WU)
+=\frac{d}{d\theta}E_\theta(W).$$
+
+Cauchy--Schwarz now yields
+
+$$\left\{\frac{d}{d\theta}E_\theta(W)\right\}^2
+\le \operatorname{Var}_\theta(W)\operatorname{Var}_\theta(U)
+=\operatorname{Var}_\theta(W)I_n(\theta),$$
+
+which rearranges to the stated bound. Equality holds exactly when $W-E_\theta(W)$ and the score are linearly related.
+
+</details>
+
 For iid observations, $I_n=nI_1$. Under regularity,
 
 $$
@@ -279,15 +341,39 @@ I_1(\theta)=-E_\theta\left\{\frac{\partial^2}{\partial\theta^2}
 \log f(X\mid\theta)\right\}.
 $$
 
-::: {.example}
-For $X_i\sim\operatorname{Poisson}(\lambda)$, $I_1(\lambda)=1/\lambda$, so every unbiased estimator obeys
+::: {.example .source-numbered}
+**Example 7.3.12 (Attaining the information bound in the Poisson model).** Let $X_i\sim\operatorname{Poisson}(\lambda)$. Find the Fisher information and determine whether $\bar X$ attains the Cramér--Rao bound.
+:::
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+For one observation,
+
+$$\ell(\lambda)=X\log\lambda-\lambda-\log(X!),\qquad
+U(\lambda)=\frac X\lambda-1,$$
+
+so
+
+$$I_1(\lambda)=E_\lambda\{U(\lambda)^2\}
+=\frac{\operatorname{Var}(X)}{\lambda^2}=\frac1\lambda.$$
+
+Therefore every unbiased estimator obeys
 
 $$\operatorname{Var}_\lambda(W)\ge\lambda/n.$$
 
 The sample mean has variance $\lambda/n$, attains the bound, and is the UMVUE.
-:::
+
+</details>
 
 ## The irregular uniform model {#irregular-uniform-model}
+
+::: {.example .source-numbered}
+**Example 7.3.13 (Parameter-dependent support).** Let $X_i\sim U(0,\theta)$. Explain why the regular Cramér--Rao theorem cannot be applied directly and construct an unbiased estimator based on the sample maximum.
+:::
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
 
 For $X_i\sim U(0,\theta)$, the support depends on $\theta$, so the usual Cramér--Rao theorem does not apply.
 
@@ -308,6 +394,8 @@ $$
 \frac d{d\theta}\int_0^\theta h(x)f(x\mid\theta)\,dx
 \ne\int_0^\theta h(x)\frac\partial{\partial\theta}f(x\mid\theta)\,dx.
 $$
+
+</details>
 
 ## The normal variance bound and attainment {#normal-variance-bound}
 
@@ -334,25 +422,59 @@ so $n^{-1}\sum_i(X_i-\mu)^2$ attains the bound. With unknown $\mu$, this statist
 
 ## Rao--Blackwell and Lehmann--Scheffé {#rao-blackwell-lehmann-scheffe}
 
-::: {.theorem}
-**Rao--Blackwell theorem.** If $W$ is unbiased for $\tau(\theta)$ and $T$ is sufficient, then
+::: {.theorem .source-numbered}
+**Theorem 7.3.17 (Rao--Blackwell theorem).** If $W$ is unbiased for $\tau(\theta)$ and $T$ is sufficient, then
 
 $$\Phi(T)=E(W\mid T)$$
 
 is unbiased and has variance no greater than that of $W$ for every $\theta$.
 :::
 
-This follows from total expectation and total variance. Sufficiency ensures the conditional expectation is a statistic rather than a formula containing the unknown parameter.
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
 
-::: {.theorem}
-**Lehmann--Scheffé theorem.** If $T$ is complete and sufficient, every unbiased function $\phi(T)$ is the unique UMVUE of its expectation.
+Sufficiency makes the conditional law of $W$ given $T$ parameter-free, so $\Phi(T)=E(W\mid T)$ is a statistic. By iterated expectation,
+
+$$E_\theta\{\Phi(T)\}=E_\theta\{E_\theta(W\mid T)\}=E_\theta(W)=\tau(\theta).$$
+
+The total-variance identity gives
+
+$$\operatorname{Var}_\theta(W)
+=E_\theta\{\operatorname{Var}_\theta(W\mid T)\}
++\operatorname{Var}_\theta\{E_\theta(W\mid T)\}
+\ge \operatorname{Var}_\theta\{\Phi(T)\}.$$
+
+Equality holds exactly when the conditional variance is zero almost surely, that is, when $W$ was already a function of $T$.
+
+</details>
+
+::: {.theorem .source-numbered}
+**Theorem 7.3.23 (Lehmann--Scheffé theorem).** If $T$ is complete and sufficient, every unbiased function $\phi(T)$ is the unique UMVUE of its expectation.
 :::
+
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+Let $W$ be any other unbiased estimator of the same target. Rao--Blackwellization gives $W^*=E(W\mid T)$, which is unbiased and has variance no greater than $W$. Both $W^*$ and $\phi(T)$ are functions of $T$, and
+
+$$E_\theta\{W^*-\phi(T)\}=0\qquad\text{for every }\theta.$$
+
+Completeness forces $W^*=\phi(T)$ almost surely. Hence $\phi(T)$ has no larger variance than any unbiased estimator and is a UMVUE. Applying the same argument to any second UMVUE proves almost-sure uniqueness.
+
+</details>
 
 A best unbiased estimator is unique almost surely. Equivalently, an unbiased estimator is UMVUE exactly when it is uncorrelated with every unbiased estimator of zero.
 
 For a $U(0,\theta)$ sample, $Y=X_{(n)}$ is complete sufficient, so $(n+1)Y/n$ is the unique UMVUE of $\theta$.
 
 ## Rao--Blackwellization in the binomial model {#binomial-umvue-example}
+
+::: {.example .source-numbered}
+**Example 7.3.24 (A binomial UMVUE).** Let $X_i\sim\operatorname{Bin}(k,\theta)$ with known $k$. Find the UMVUE of $\tau(\theta)=k\theta(1-\theta)^{k-1}$, the probability of exactly one success in a single observation.
+:::
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
 
 Let $X_i\sim\operatorname{Bin}(k,\theta)$ with known $k$. The target is the probability of exactly one success in a single $\operatorname{Bin}(k,\theta)$ observation:
 
@@ -372,6 +494,8 @@ $$
 $$
 
 The disappearance of $\theta$ after conditioning demonstrates reduction by sufficiency.
+
+</details>
 
 ## Loss functions and risk {#loss-and-risk}
 
@@ -437,6 +561,76 @@ $$
 $$
 
 The posterior is normal, so its mean equals its median. Therefore squared and absolute error produce the same Bayes estimator in this example.
+
+## A simulation comparison of Rao--Blackwellization {#rao-blackwell-simulation}
+
+Let $X_1,\ldots,X_n\overset{\mathrm{iid}}\sim\operatorname{Bernoulli}(p)$ and suppose the target is $p^2$. A direct unbiased estimator is
+
+$$W=X_1X_2,\qquad E_p(W)=p^2.$$
+
+Let $T=\sum_{i=1}^nX_i$. Because $T$ is complete and sufficient for $p$, conditioning on $T=t$ gives
+
+$$
+E(W\mid T=t)
+=P(X_1=X_2=1\mid T=t)
+=\frac{\binom{t}{2}}{\binom{n}{2}}
+=\frac{t(t-1)}{n(n-1)}.
+$$
+
+Hence $W^*=T(T-1)/\{n(n-1)\}$ remains unbiased and is the UMVUE of $p^2$. The experiment below makes the variance reduction in the Rao--Blackwell theorem visible.
+
+```{r en-chap07-rao-blackwell-variance, fig.cap='Simulated variances of the raw and Rao--Blackwellized unbiased estimators (n=20)', fig.width=8, fig.height=4.7}
+set.seed(7307)
+n_rb <- 20
+b_rb <- 20000
+p_grid <- seq(0.05, 0.95, by = 0.05)
+variance_result <- t(vapply(p_grid, function(p) {
+  x <- matrix(rbinom(b_rb * n_rb, size = 1, prob = p), nrow = b_rb)
+  total <- rowSums(x)
+  raw <- x[, 1] * x[, 2]
+  improved <- total * (total - 1) / (n_rb * (n_rb - 1))
+  c(raw = var(raw), Rao_Blackwell = var(improved))
+}, numeric(2)))
+
+matplot(p_grid, variance_result, type = "l", lty = 1, lwd = 2.5,
+        col = c("#C43C39", "#1F77B4"),
+        xlab = expression(p), ylab = "Simulated variance")
+legend("topleft", c(expression(W == X[1] * X[2]),
+                    expression(W^"*" == T * (T - 1) / (n * (n - 1)))),
+       col = c("#C43C39", "#1F77B4"), lty = 1, lwd = 2.5, bty = "n")
+```
+
+The blue curve stays below the red curve across the parameter range. This is not a bias--variance tradeoff: both estimators are unbiased, and the gain comes from retaining the information about $p$ contained in the sufficient statistic.
+
+## Running case: point estimation of a defect rate {#defect-rate-point-estimation}
+
+The same teaching case will connect Chapters 7--9. In an independent inspection of $n=200$ products, $y=16$ are defective. Let $p$ be the true defect rate and let the quality benchmark be $p_0=0.05$.
+
+The maximum likelihood estimate is
+
+$$\hat p_{\mathrm{MLE}}=\frac{16}{200}=0.08.$$
+
+Suppose historical experience is represented by $p\sim\operatorname{Beta}(2,38)$, whose prior mean is $0.05$. Then
+
+$$
+p\mid y\sim\operatorname{Beta}(18,222),\qquad
+\hat p_B=E(p\mid y)=\frac{18}{240}=0.075.
+$$
+
+```{r en-chap07-defect-rate-estimates}
+n_defect <- 200
+y_defect <- 16
+knitr::kable(
+  data.frame(
+    Method = c("MLE", "Bayes posterior mean"),
+    Estimate = c(y_defect / n_defect,
+                 (2 + y_defect) / (2 + 38 + n_defect))
+  ),
+  digits = 3
+)
+```
+
+The Bayes estimate shrinks slightly toward the historical benchmark. Both quantities are point summaries only. Chapter 8 asks whether the data show that the rate exceeds the benchmark, and Chapter 9 quantifies the remaining uncertainty.
 
 ## Chapter summary {#point-estimation-summary}
 

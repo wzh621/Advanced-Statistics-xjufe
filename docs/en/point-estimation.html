@@ -298,7 +298,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.16" data-path="point-estimation.html"><a href="point-estimation.html#loss-and-risk"><i class="fa fa-check"></i><b>7.16</b> Loss functions and risk</a></li>
 <li class="chapter" data-level="7.17" data-path="point-estimation.html"><a href="point-estimation.html#bayes-risk-rules"><i class="fa fa-check"></i><b>7.17</b> Bayes risk and two Bayes rules</a></li>
 <li class="chapter" data-level="7.18" data-path="point-estimation.html"><a href="point-estimation.html#normal-bayes-estimator"><i class="fa fa-check"></i><b>7.18</b> Normal–normal Bayes estimation</a></li>
-<li class="chapter" data-level="7.19" data-path="point-estimation.html"><a href="point-estimation.html#point-estimation-summary"><i class="fa fa-check"></i><b>7.19</b> Chapter summary</a></li>
+<li class="chapter" data-level="7.19" data-path="point-estimation.html"><a href="point-estimation.html#rao-blackwell-simulation"><i class="fa fa-check"></i><b>7.19</b> A simulation comparison of Rao–Blackwellization</a></li>
+<li class="chapter" data-level="7.20" data-path="point-estimation.html"><a href="point-estimation.html#defect-rate-point-estimation"><i class="fa fa-check"></i><b>7.20</b> Running case: point estimation of a defect rate</a></li>
+<li class="chapter" data-level="7.21" data-path="point-estimation.html"><a href="point-estimation.html#point-estimation-summary"><i class="fa fa-check"></i><b>7.21</b> Chapter summary</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>8</b> Hypothesis Testing</a>
 <ul>
@@ -310,7 +312,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#most-powerful-tests"><i class="fa fa-check"></i><b>8.6</b> Most powerful tests and Neyman–Pearson</a></li>
 <li class="chapter" data-level="8.7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#monotone-likelihood-ratio"><i class="fa fa-check"></i><b>8.7</b> Monotone likelihood ratio and Karlin–Rubin</a></li>
 <li class="chapter" data-level="8.8" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#unbiased-tests-p-values"><i class="fa fa-check"></i><b>8.8</b> Nonexistence of UMP, unbiased tests, and p-values</a></li>
-<li class="chapter" data-level="8.9" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-summary"><i class="fa fa-check"></i><b>8.9</b> Chapter summary</a></li>
+<li class="chapter" data-level="8.9" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#power-sample-size-effect"><i class="fa fa-check"></i><b>8.9</b> Power, sample size, and effect size</a></li>
+<li class="chapter" data-level="8.10" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#p-value-sampling-distribution"><i class="fa fa-check"></i><b>8.10</b> The sampling distribution of p-values</a></li>
+<li class="chapter" data-level="8.11" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#defect-rate-testing"><i class="fa fa-check"></i><b>8.11</b> Running case: does the defect rate exceed the benchmark?</a></li>
+<li class="chapter" data-level="8.12" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-summary"><i class="fa fa-check"></i><b>8.12</b> Chapter summary</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="interval-estimation.html"><a href="interval-estimation.html"><i class="fa fa-check"></i><b>9</b> Interval Estimation</a>
 <ul>
@@ -323,7 +328,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.7" data-path="interval-estimation.html"><a href="interval-estimation.html#interval-size-coverage"><i class="fa fa-check"></i><b>9.7</b> Evaluating interval length and coverage</a></li>
 <li class="chapter" data-level="9.8" data-path="interval-estimation.html"><a href="interval-estimation.html#shortest-pivotal-interval"><i class="fa fa-check"></i><b>9.8</b> Shortest pivotal intervals</a></li>
 <li class="chapter" data-level="9.9" data-path="interval-estimation.html"><a href="interval-estimation.html#highest-posterior-density"><i class="fa fa-check"></i><b>9.9</b> Highest-posterior-density regions</a></li>
-<li class="chapter" data-level="9.10" data-path="interval-estimation.html"><a href="interval-estimation.html#interval-estimation-summary"><i class="fa fa-check"></i><b>9.10</b> Chapter summary</a></li>
+<li class="chapter" data-level="9.10" data-path="interval-estimation.html"><a href="interval-estimation.html#confidence-interval-repeated-sampling"><i class="fa fa-check"></i><b>9.10</b> Confidence intervals under repeated sampling</a></li>
+<li class="chapter" data-level="9.11" data-path="interval-estimation.html"><a href="interval-estimation.html#binomial-interval-comparison"><i class="fa fa-check"></i><b>9.11</b> Comparing intervals for a binomial proportion</a></li>
+<li class="chapter" data-level="9.12" data-path="interval-estimation.html"><a href="interval-estimation.html#defect-rate-intervals"><i class="fa fa-check"></i><b>9.12</b> Running case: interval estimation of the defect rate</a></li>
+<li class="chapter" data-level="9.13" data-path="interval-estimation.html"><a href="interval-estimation.html#interval-estimation-summary"><i class="fa fa-check"></i><b>9.13</b> Chapter summary</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="asymptotic-evaluations.html"><a href="asymptotic-evaluations.html"><i class="fa fa-check"></i><b>10</b> Asymptotic Evaluations</a>
 <ul>
@@ -373,22 +381,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For a population with <span class="math inline">\(k\)</span> unknown parameters
 <span class="math inline">\(\boldsymbol\theta=(\theta_1,\ldots,\theta_k)\)</span>, define</p>
 <p><span class="math display">\[
-m_j=\frac1n\sum_{i=1}^nX_i^j,qquad
-\mu_j(\boldsymbol\theta)=E_{\boldsymbol\theta}(X^j),qquad j=1,\ldots,k.
+m_j=\frac1n\sum_{i=1}^nX_i^j,\qquad
+\mu_j(\boldsymbol\theta)=E_{\boldsymbol\theta}(X^j),\qquad j=1,\ldots,k.
 \]</span></p>
 <p>The method of moments solves</p>
 <p><span class="math display">\[m_j=\mu_j(\boldsymbol\theta),\qquad j=1,\ldots,k\]</span></p>
 <p>for <span class="math inline">\(\hat\theta_1,\ldots,\hat\theta_k\)</span>.</p>
-<div class="example">
-<p><span id="exm:unlabeled-div-108" class="example"><strong>Example 7.1  </strong></span>If <span class="math inline">\(X_i\overset{\mathrm{iid}}\sim\operatorname{Bin}(k,p)\)</span> and both <span class="math inline">\(k,p\)</span> are unknown, then</p>
-<p><span class="math display">\[E(X)=kp,qquad E(X^2)=kp(1-p)+k^2p^2.\]</span></p>
+<div class="example source-numbered">
+<p><span id="exm:unlabeled-div-108" class="example"><strong>Example 7.1  </strong></span><strong>Example 7.2.2 (Method of moments for the binomial family).</strong> If <span class="math inline">\(X_i\overset{\mathrm{iid}}\sim\operatorname{Bin}(k,p)\)</span> and both <span class="math inline">\(k,p\)</span> are unknown, find their moment estimators.</p>
+</div>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
+<p>The first two population summaries are</p>
+<p><span class="math display">\[E(X)=kp,\qquad E(X^2)=kp(1-p)+k^2p^2.\]</span></p>
 <p>Writing <span class="math inline">\(v_n=n^{-1}\sum_i(X_i-\bar X)^2\)</span> gives</p>
 <p><span class="math display">\[
 \hat k_{\mathrm{MOM}}=\frac{\bar X^2}{\bar X-v_n},qquad
 \hat p_{\mathrm{MOM}}=\frac{\bar X}{\hat k_{\mathrm{MOM}}}.
 \]</span></p>
 <p>If <span class="math inline">\(\bar X-v_n\le0\)</span>, there is no interior solution in the allowed parameter space. Since <span class="math inline">\(k\)</span> is integer-valued, neighboring feasible integers must also be compared. This illustrates that moment estimates can be infeasible.</p>
-</div>
+</details>
 </div>
 <div id="maximum-likelihood-estimation" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> Maximum likelihood and invariance<a href="point-estimation.html#maximum-likelihood-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -400,9 +414,20 @@ m_j=\frac1n\sum_{i=1}^nX_i^j,qquad
 <p>Maximizing <span class="math inline">\(\ell=\log L\)</span> is usually more stable. An interior candidate satisfies</p>
 <p><span class="math display">\[\nabla_{\boldsymbol\theta}\ell(\boldsymbol\theta)=\mathbf0,\]</span></p>
 <p>but boundaries, constraints, existence, and global maximality must still be checked.</p>
-<div class="theorem">
-<p><span id="thm:unlabeled-div-110" class="theorem"><strong>Theorem 7.1  </strong></span><strong>Invariance of MLEs.</strong> If <span class="math inline">\(\hat\theta\)</span> is the MLE of <span class="math inline">\(\theta\)</span>, then the MLE of <span class="math inline">\(\tau(\theta)\)</span> is <span class="math inline">\(\tau(\hat\theta)\)</span>. For a many-to-one transformation, likelihoods are profiled over all parameter values sharing the same transformed value.</p>
+<div class="theorem source-numbered">
+<p><span id="thm:unlabeled-div-110" class="theorem"><strong>Theorem 7.1  </strong></span><strong>Theorem 7.2.10 (Invariance of MLEs).</strong> If <span class="math inline">\(\hat\theta\)</span> is the MLE of <span class="math inline">\(\theta\)</span>, then the MLE of <span class="math inline">\(\tau(\theta)\)</span> is <span class="math inline">\(\tau(\hat\theta)\)</span>. For a many-to-one transformation, likelihoods are profiled over all parameter values sharing the same transformed value.</p>
 </div>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>Write <span class="math inline">\(\eta=\tau(\theta)\)</span> and define the profile likelihood</p>
+<p><span class="math display">\[L^*(\eta\mid\mathbf x)=\sup_{\theta:\,\tau(\theta)=\eta}L(\theta\mid\mathbf x).\]</span></p>
+<p>If <span class="math inline">\(\hat\theta\)</span> maximizes the original likelihood, then for every <span class="math inline">\(\eta\)</span>,</p>
+<p><span class="math display">\[L^*(\eta\mid\mathbf x)\le L(\hat\theta\mid\mathbf x)
+\le L^*\{\tau(\hat\theta)\mid\mathbf x\}.\]</span></p>
+<p>The last inequality holds because <span class="math inline">\(\hat\theta\)</span> belongs to the fiber with value <span class="math inline">\(\tau(\hat\theta)\)</span>. Hence <span class="math inline">\(L^*\)</span> is maximized at <span class="math inline">\(\hat\eta=\tau(\hat\theta)\)</span>. The one-to-one case is immediate.</p>
+</details>
 <p>The legacy R example used an exponential scale model but evaluated a likelihood that underflows numerically. The same model, sample generation, and grid search are retained below, using log likelihood.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="point-estimation.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7301</span>)</span>
 <span id="cb17-2"><a href="point-estimation.html#cb17-2" aria-hidden="true" tabindex="-1"></a>theta_true <span class="ot">&lt;-</span> <span class="fl">1.1</span></span>
@@ -450,9 +475,18 @@ f(y;\alpha,\beta)=\frac{y^{\alpha-1}e^{-y/\beta}}
 =\frac{f(\mathbf x\mid\theta)\pi(\theta)}{m(\mathbf x)},qquad
 m(\mathbf x)=\int f(\mathbf x\mid\theta)\pi(\theta)\,d\theta.
 \]</span></p>
-<div class="example">
-<p><span id="exm:unlabeled-div-111" class="example"><strong>Example 7.2  </strong></span>If <span class="math inline">\(X_i\sim\operatorname{Bernoulli}(p)\)</span>, <span class="math inline">\(Y=\sum_iX_i\)</span>, and
-<span class="math inline">\(p\sim\operatorname{Beta}(\alpha,\beta)\)</span>, then</p>
+<div class="example source-numbered">
+<p><span id="exm:unlabeled-div-111" class="example"><strong>Example 7.2  </strong></span><strong>Example 7.2.14 (Beta–Binomial Bayes estimation).</strong> If <span class="math inline">\(X_i\sim\operatorname{Bernoulli}(p)\)</span>, <span class="math inline">\(Y=\sum_iX_i\)</span>, and
+<span class="math inline">\(p\sim\operatorname{Beta}(\alpha,\beta)\)</span>, find the posterior and the Bayes estimator under squared-error loss.</p>
+</div>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
+<p>Up to factors independent of <span class="math inline">\(p\)</span>, likelihood times prior is</p>
+<p><span class="math display">\[p^y(1-p)^{n-y}p^{\alpha-1}(1-p)^{\beta-1}
+=p^{y+\alpha-1}(1-p)^{n-y+\beta-1},\]</span></p>
+<p>which is a Beta kernel. Therefore</p>
 <p><span class="math display">\[p\mid Y=y\sim\operatorname{Beta}(y+\alpha,n-y+\beta).\]</span></p>
 <p>Under squared error loss, the Bayes estimator is the posterior mean</p>
 <p><span class="math display">\[
@@ -461,7 +495,7 @@ m(\mathbf x)=\int f(\mathbf x\mid\theta)\pi(\theta)\,d\theta.
 +\frac{\alpha+\beta}{n+\alpha+\beta}\frac\alpha{\alpha+\beta}.
 \]</span></p>
 <p>It shrinks the sample proportion toward the prior mean.</p>
-</div>
+</details>
 </div>
 <div id="em-algorithm" class="section level2 hasAnchor" number="7.6">
 <h2><span class="header-section-number">7.6</span> The EM algorithm: latent data and basic steps<a href="point-estimation.html#em-algorithm" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -569,8 +603,8 @@ Figure 7.2: Source-slide comparison of sample-proportion and Bayes-estimator MSE
 </div>
 <div id="cramer-rao-bound" class="section level2 hasAnchor" number="7.11">
 <h2><span class="header-section-number">7.11</span> The Cramér–Rao lower bound<a href="point-estimation.html#cramer-rao-bound" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="theorem">
-<p><span id="thm:unlabeled-div-114" class="theorem"><strong>Theorem 7.2  </strong></span>Under regularity conditions including parameter-independent support, valid differentiation under the integral, and finite variance,</p>
+<div class="theorem source-numbered">
+<p><span id="thm:unlabeled-div-114" class="theorem"><strong>Theorem 7.2  </strong></span><strong>Theorem 7.3.9 (Cramér–Rao lower bound).</strong> Under regularity conditions including parameter-independent support, valid differentiation under the integral, and finite variance,</p>
 <p><span class="math display">\[
 \operatorname{Var}_\theta(W)\ge
 \frac{\{dE_\theta(W)/d\theta\}^2}{I_n(\theta)},
@@ -579,19 +613,56 @@ I_n(\theta)=E_\theta\left[\left\{\frac\partial{\partial\theta}
 \log f(\mathbf X\mid\theta)\right\}^2\right].
 \]</span></p>
 </div>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>Let</p>
+<p><span class="math display">\[U(\mathbf X;\theta)=\frac{\partial}{\partial\theta}\log f(\mathbf X\mid\theta)\]</span></p>
+<p>be the score. Regularity and normalization of the density give</p>
+<p><span class="math display">\[E_\theta U=\int \frac{\partial f(\mathbf x\mid\theta)}{\partial\theta}\,d\mathbf x
+=\frac{d}{d\theta}\int f(\mathbf x\mid\theta)\,d\mathbf x=0.\]</span></p>
+<p>Interchanging differentiation and integration once more,</p>
+<p><span class="math display">\[\operatorname{Cov}_\theta(W,U)=E_\theta(WU)
+=\frac{d}{d\theta}E_\theta(W).\]</span></p>
+<p>Cauchy–Schwarz now yields</p>
+<p><span class="math display">\[\left\{\frac{d}{d\theta}E_\theta(W)\right\}^2
+\le \operatorname{Var}_\theta(W)\operatorname{Var}_\theta(U)
+=\operatorname{Var}_\theta(W)I_n(\theta),\]</span></p>
+<p>which rearranges to the stated bound. Equality holds exactly when <span class="math inline">\(W-E_\theta(W)\)</span> and the score are linearly related.</p>
+</details>
 <p>For iid observations, <span class="math inline">\(I_n=nI_1\)</span>. Under regularity,</p>
 <p><span class="math display">\[
 I_1(\theta)=-E_\theta\left\{\frac{\partial^2}{\partial\theta^2}
 \log f(X\mid\theta)\right\}.
 \]</span></p>
-<div class="example">
-<p><span id="exm:unlabeled-div-115" class="example"><strong>Example 7.3  </strong></span>For <span class="math inline">\(X_i\sim\operatorname{Poisson}(\lambda)\)</span>, <span class="math inline">\(I_1(\lambda)=1/\lambda\)</span>, so every unbiased estimator obeys</p>
+<div class="example source-numbered">
+<p><span id="exm:unlabeled-div-115" class="example"><strong>Example 7.3  </strong></span><strong>Example 7.3.12 (Attaining the information bound in the Poisson model).</strong> Let <span class="math inline">\(X_i\sim\operatorname{Poisson}(\lambda)\)</span>. Find the Fisher information and determine whether <span class="math inline">\(\bar X\)</span> attains the Cramér–Rao bound.</p>
+</div>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
+<p>For one observation,</p>
+<p><span class="math display">\[\ell(\lambda)=X\log\lambda-\lambda-\log(X!),\qquad
+U(\lambda)=\frac X\lambda-1,\]</span></p>
+<p>so</p>
+<p><span class="math display">\[I_1(\lambda)=E_\lambda\{U(\lambda)^2\}
+=\frac{\operatorname{Var}(X)}{\lambda^2}=\frac1\lambda.\]</span></p>
+<p>Therefore every unbiased estimator obeys</p>
 <p><span class="math display">\[\operatorname{Var}_\lambda(W)\ge\lambda/n.\]</span></p>
 <p>The sample mean has variance <span class="math inline">\(\lambda/n\)</span>, attains the bound, and is the UMVUE.</p>
-</div>
+</details>
 </div>
 <div id="irregular-uniform-model" class="section level2 hasAnchor" number="7.12">
 <h2><span class="header-section-number">7.12</span> The irregular uniform model<a href="point-estimation.html#irregular-uniform-model" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="example source-numbered">
+<p><span id="exm:unlabeled-div-116" class="example"><strong>Example 7.4  </strong></span><strong>Example 7.3.13 (Parameter-dependent support).</strong> Let <span class="math inline">\(X_i\sim U(0,\theta)\)</span>. Explain why the regular Cramér–Rao theorem cannot be applied directly and construct an unbiased estimator based on the sample maximum.</p>
+</div>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
 <p>For <span class="math inline">\(X_i\sim U(0,\theta)\)</span>, the support depends on <span class="math inline">\(\theta\)</span>, so the usual Cramér–Rao theorem does not apply.</p>
 <p>Let <span class="math inline">\(Y=X_{(n)}\)</span>. Then</p>
 <p><span class="math display">\[f_Y(y\mid\theta)=ny^{n-1}\theta^{-n},\qquad0&lt;y&lt;\theta,\]</span></p>
@@ -605,13 +676,14 @@ I_1(\theta)=-E_\theta\left\{\frac{\partial^2}{\partial\theta^2}
 \frac d{d\theta}\int_0^\theta h(x)f(x\mid\theta)\,dx
 \ne\int_0^\theta h(x)\frac\partial{\partial\theta}f(x\mid\theta)\,dx.
 \]</span></p>
+</details>
 </div>
 <div id="normal-variance-bound" class="section level2 hasAnchor" number="7.13">
 <h2><span class="header-section-number">7.13</span> The normal variance bound and attainment<a href="point-estimation.html#normal-variance-bound" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>For <span class="math inline">\(X_i\sim N(\mu,\sigma^2)\)</span>, the information bound for an unbiased estimator of <span class="math inline">\(\sigma^2\)</span> is <span class="math inline">\(2\sigma^4/n\)</span>. Since
 <span class="math inline">\(\operatorname{Var}(S^2)=2\sigma^4/(n-1)\)</span>, <span class="math inline">\(S^2\)</span> does not attain this finite-sample bound.</p>
 <div class="theorem">
-<p><span id="thm:unlabeled-div-116" class="theorem"><strong>Theorem 7.3  </strong></span>Under the regular Cramér–Rao conditions, an unbiased <span class="math inline">\(W\)</span> of <span class="math inline">\(\tau(\theta)\)</span> attains the bound if and only if a function <span class="math inline">\(a(\theta)\)</span> exists such that</p>
+<p><span id="thm:unlabeled-div-117" class="theorem"><strong>Theorem 7.3  </strong></span>Under the regular Cramér–Rao conditions, an unbiased <span class="math inline">\(W\)</span> of <span class="math inline">\(\tau(\theta)\)</span> attains the bound if and only if a function <span class="math inline">\(a(\theta)\)</span> exists such that</p>
 <p><span class="math display">\[
 a(\theta)\{W(\mathbf x)-\tau(\theta)\}
 =\frac\partial{\partial\theta}\log L(\theta\mid\mathbf x).
@@ -626,20 +698,47 @@ a(\theta)\{W(\mathbf x)-\tau(\theta)\}
 </div>
 <div id="rao-blackwell-lehmann-scheffe" class="section level2 hasAnchor" number="7.14">
 <h2><span class="header-section-number">7.14</span> Rao–Blackwell and Lehmann–Scheffé<a href="point-estimation.html#rao-blackwell-lehmann-scheffe" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="theorem">
-<p><span id="thm:unlabeled-div-117" class="theorem"><strong>Theorem 7.4  </strong></span><strong>Rao–Blackwell theorem.</strong> If <span class="math inline">\(W\)</span> is unbiased for <span class="math inline">\(\tau(\theta)\)</span> and <span class="math inline">\(T\)</span> is sufficient, then</p>
+<div class="theorem source-numbered">
+<p><span id="thm:unlabeled-div-118" class="theorem"><strong>Theorem 7.4  </strong></span><strong>Theorem 7.3.17 (Rao–Blackwell theorem).</strong> If <span class="math inline">\(W\)</span> is unbiased for <span class="math inline">\(\tau(\theta)\)</span> and <span class="math inline">\(T\)</span> is sufficient, then</p>
 <p><span class="math display">\[\Phi(T)=E(W\mid T)\]</span></p>
 <p>is unbiased and has variance no greater than that of <span class="math inline">\(W\)</span> for every <span class="math inline">\(\theta\)</span>.</p>
 </div>
-<p>This follows from total expectation and total variance. Sufficiency ensures the conditional expectation is a statistic rather than a formula containing the unknown parameter.</p>
-<div class="theorem">
-<p><span id="thm:unlabeled-div-118" class="theorem"><strong>Theorem 7.5  </strong></span><strong>Lehmann–Scheffé theorem.</strong> If <span class="math inline">\(T\)</span> is complete and sufficient, every unbiased function <span class="math inline">\(\phi(T)\)</span> is the unique UMVUE of its expectation.</p>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>Sufficiency makes the conditional law of <span class="math inline">\(W\)</span> given <span class="math inline">\(T\)</span> parameter-free, so <span class="math inline">\(\Phi(T)=E(W\mid T)\)</span> is a statistic. By iterated expectation,</p>
+<p><span class="math display">\[E_\theta\{\Phi(T)\}=E_\theta\{E_\theta(W\mid T)\}=E_\theta(W)=\tau(\theta).\]</span></p>
+<p>The total-variance identity gives</p>
+<p><span class="math display">\[\operatorname{Var}_\theta(W)
+=E_\theta\{\operatorname{Var}_\theta(W\mid T)\}
++\operatorname{Var}_\theta\{E_\theta(W\mid T)\}
+\ge \operatorname{Var}_\theta\{\Phi(T)\}.\]</span></p>
+<p>Equality holds exactly when the conditional variance is zero almost surely, that is, when <span class="math inline">\(W\)</span> was already a function of <span class="math inline">\(T\)</span>.</p>
+</details>
+<div class="theorem source-numbered">
+<p><span id="thm:unlabeled-div-119" class="theorem"><strong>Theorem 7.5  </strong></span><strong>Theorem 7.3.23 (Lehmann–Scheffé theorem).</strong> If <span class="math inline">\(T\)</span> is complete and sufficient, every unbiased function <span class="math inline">\(\phi(T)\)</span> is the unique UMVUE of its expectation.</p>
 </div>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>Let <span class="math inline">\(W\)</span> be any other unbiased estimator of the same target. Rao–Blackwellization gives <span class="math inline">\(W^*=E(W\mid T)\)</span>, which is unbiased and has variance no greater than <span class="math inline">\(W\)</span>. Both <span class="math inline">\(W^*\)</span> and <span class="math inline">\(\phi(T)\)</span> are functions of <span class="math inline">\(T\)</span>, and</p>
+<p><span class="math display">\[E_\theta\{W^*-\phi(T)\}=0\qquad\text{for every }\theta.\]</span></p>
+<p>Completeness forces <span class="math inline">\(W^*=\phi(T)\)</span> almost surely. Hence <span class="math inline">\(\phi(T)\)</span> has no larger variance than any unbiased estimator and is a UMVUE. Applying the same argument to any second UMVUE proves almost-sure uniqueness.</p>
+</details>
 <p>A best unbiased estimator is unique almost surely. Equivalently, an unbiased estimator is UMVUE exactly when it is uncorrelated with every unbiased estimator of zero.</p>
 <p>For a <span class="math inline">\(U(0,\theta)\)</span> sample, <span class="math inline">\(Y=X_{(n)}\)</span> is complete sufficient, so <span class="math inline">\((n+1)Y/n\)</span> is the unique UMVUE of <span class="math inline">\(\theta\)</span>.</p>
 </div>
 <div id="binomial-umvue-example" class="section level2 hasAnchor" number="7.15">
 <h2><span class="header-section-number">7.15</span> Rao–Blackwellization in the binomial model<a href="point-estimation.html#binomial-umvue-example" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="example source-numbered">
+<p><span id="exm:unlabeled-div-120" class="example"><strong>Example 7.5  </strong></span><strong>Example 7.3.24 (A binomial UMVUE).</strong> Let <span class="math inline">\(X_i\sim\operatorname{Bin}(k,\theta)\)</span> with known <span class="math inline">\(k\)</span>. Find the UMVUE of <span class="math inline">\(\tau(\theta)=k\theta(1-\theta)^{k-1}\)</span>, the probability of exactly one success in a single observation.</p>
+</div>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
 <p>Let <span class="math inline">\(X_i\sim\operatorname{Bin}(k,\theta)\)</span> with known <span class="math inline">\(k\)</span>. The target is the probability of exactly one success in a single <span class="math inline">\(\operatorname{Bin}(k,\theta)\)</span> observation:</p>
 <p><span class="math display">\[\tau(\theta)=k\theta(1-\theta)^{k-1}.\]</span></p>
 <p><span class="math inline">\(h(X_1)=I(X_1=1)\)</span> is unbiased, and
@@ -654,6 +753,7 @@ a(\theta)\{W(\mathbf x)-\tau(\theta)\}
 \end{aligned}
 \]</span></p>
 <p>The disappearance of <span class="math inline">\(\theta\)</span> after conditioning demonstrates reduction by sufficiency.</p>
+</details>
 </div>
 <div id="loss-and-risk" class="section level2 hasAnchor" number="7.16">
 <h2><span class="header-section-number">7.16</span> Loss functions and risk<a href="point-estimation.html#loss-and-risk" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -665,7 +765,7 @@ R(\theta,\delta)=E_\theta L\{\theta,\delta(\mathbf X)\}
 \]</span></p>
 <p>If <span class="math inline">\(R(\theta,\delta_1)&lt;R(\theta,\delta_2)\)</span> for every <span class="math inline">\(\theta\)</span>, then <span class="math inline">\(\delta_1\)</span> uniformly dominates <span class="math inline">\(\delta_2\)</span>.</p>
 <div class="example">
-<p><span id="exm:unlabeled-div-119" class="example"><strong>Example 7.4  </strong></span>For squared-error estimation of normal <span class="math inline">\(\sigma^2\)</span>, consider <span class="math inline">\(\delta_b=bS^2\)</span>. Its risk is</p>
+<p><span id="exm:unlabeled-div-121" class="example"><strong>Example 7.6  </strong></span>For squared-error estimation of normal <span class="math inline">\(\sigma^2\)</span>, consider <span class="math inline">\(\delta_b=bS^2\)</span>. Its risk is</p>
 <p><span class="math display">\[
 R((\mu,\sigma^2),\delta_b)
 =\left\{\frac{2b^2}{n-1}+(b-1)^2\right\}\sigma^4.
@@ -707,8 +807,86 @@ E(\theta\mid\bar x)
 \]</span></p>
 <p>The posterior is normal, so its mean equals its median. Therefore squared and absolute error produce the same Bayes estimator in this example.</p>
 </div>
-<div id="point-estimation-summary" class="section level2 hasAnchor" number="7.19">
-<h2><span class="header-section-number">7.19</span> Chapter summary<a href="point-estimation.html#point-estimation-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="rao-blackwell-simulation" class="section level2 hasAnchor" number="7.19">
+<h2><span class="header-section-number">7.19</span> A simulation comparison of Rao–Blackwellization<a href="point-estimation.html#rao-blackwell-simulation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let <span class="math inline">\(X_1,\ldots,X_n\overset{\mathrm{iid}}\sim\operatorname{Bernoulli}(p)\)</span> and suppose the target is <span class="math inline">\(p^2\)</span>. A direct unbiased estimator is</p>
+<p><span class="math display">\[W=X_1X_2,\qquad E_p(W)=p^2.\]</span></p>
+<p>Let <span class="math inline">\(T=\sum_{i=1}^nX_i\)</span>. Because <span class="math inline">\(T\)</span> is complete and sufficient for <span class="math inline">\(p\)</span>, conditioning on <span class="math inline">\(T=t\)</span> gives</p>
+<p><span class="math display">\[
+E(W\mid T=t)
+=P(X_1=X_2=1\mid T=t)
+=\frac{\binom{t}{2}}{\binom{n}{2}}
+=\frac{t(t-1)}{n(n-1)}.
+\]</span></p>
+<p>Hence <span class="math inline">\(W^*=T(T-1)/\{n(n-1)\}\)</span> remains unbiased and is the UMVUE of <span class="math inline">\(p^2\)</span>. The experiment below makes the variance reduction in the Rao–Blackwell theorem visible.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="point-estimation.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">7307</span>)</span>
+<span id="cb18-2"><a href="point-estimation.html#cb18-2" aria-hidden="true" tabindex="-1"></a>n_rb <span class="ot">&lt;-</span> <span class="dv">20</span></span>
+<span id="cb18-3"><a href="point-estimation.html#cb18-3" aria-hidden="true" tabindex="-1"></a>b_rb <span class="ot">&lt;-</span> <span class="dv">20000</span></span>
+<span id="cb18-4"><a href="point-estimation.html#cb18-4" aria-hidden="true" tabindex="-1"></a>p_grid <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.05</span>, <span class="fl">0.95</span>, <span class="at">by =</span> <span class="fl">0.05</span>)</span>
+<span id="cb18-5"><a href="point-estimation.html#cb18-5" aria-hidden="true" tabindex="-1"></a>variance_result <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">vapply</span>(p_grid, <span class="cf">function</span>(p) {</span>
+<span id="cb18-6"><a href="point-estimation.html#cb18-6" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rbinom</span>(b_rb <span class="sc">*</span> n_rb, <span class="at">size =</span> <span class="dv">1</span>, <span class="at">prob =</span> p), <span class="at">nrow =</span> b_rb)</span>
+<span id="cb18-7"><a href="point-estimation.html#cb18-7" aria-hidden="true" tabindex="-1"></a>  total <span class="ot">&lt;-</span> <span class="fu">rowSums</span>(x)</span>
+<span id="cb18-8"><a href="point-estimation.html#cb18-8" aria-hidden="true" tabindex="-1"></a>  raw <span class="ot">&lt;-</span> x[, <span class="dv">1</span>] <span class="sc">*</span> x[, <span class="dv">2</span>]</span>
+<span id="cb18-9"><a href="point-estimation.html#cb18-9" aria-hidden="true" tabindex="-1"></a>  improved <span class="ot">&lt;-</span> total <span class="sc">*</span> (total <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">/</span> (n_rb <span class="sc">*</span> (n_rb <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb18-10"><a href="point-estimation.html#cb18-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="at">raw =</span> <span class="fu">var</span>(raw), <span class="at">Rao_Blackwell =</span> <span class="fu">var</span>(improved))</span>
+<span id="cb18-11"><a href="point-estimation.html#cb18-11" aria-hidden="true" tabindex="-1"></a>}, <span class="fu">numeric</span>(<span class="dv">2</span>)))</span>
+<span id="cb18-12"><a href="point-estimation.html#cb18-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="point-estimation.html#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="fu">matplot</span>(p_grid, variance_result, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="fl">2.5</span>,</span>
+<span id="cb18-14"><a href="point-estimation.html#cb18-14" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;#C43C39&quot;</span>, <span class="st">&quot;#1F77B4&quot;</span>),</span>
+<span id="cb18-15"><a href="point-estimation.html#cb18-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="fu">expression</span>(p), <span class="at">ylab =</span> <span class="st">&quot;Simulated variance&quot;</span>)</span>
+<span id="cb18-16"><a href="point-estimation.html#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="fu">c</span>(<span class="fu">expression</span>(W <span class="sc">==</span> X[<span class="dv">1</span>] <span class="sc">*</span> X[<span class="dv">2</span>]),</span>
+<span id="cb18-17"><a href="point-estimation.html#cb18-17" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">expression</span>(W<span class="sc">^</span><span class="st">&quot;*&quot;</span> <span class="sc">==</span> T <span class="sc">*</span> (T <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">/</span> (n <span class="sc">*</span> (n <span class="sc">-</span> <span class="dv">1</span>)))),</span>
+<span id="cb18-18"><a href="point-estimation.html#cb18-18" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;#C43C39&quot;</span>, <span class="st">&quot;#1F77B4&quot;</span>), <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="fl">2.5</span>, <span class="at">bty =</span> <span class="st">&quot;n&quot;</span>)</span></code></pre></div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:en-chap07-rao-blackwell-variance"></span>
+<img src="07-point-estimation_files/figure-html/en-chap07-rao-blackwell-variance-1.png" alt="Simulated variances of the raw and Rao--Blackwellized unbiased estimators (n=20)" width="90%" />
+<p class="caption">
+Figure 7.3: Simulated variances of the raw and Rao–Blackwellized unbiased estimators (n=20)
+</p>
+</div>
+<p>The blue curve stays below the red curve across the parameter range. This is not a bias–variance tradeoff: both estimators are unbiased, and the gain comes from retaining the information about <span class="math inline">\(p\)</span> contained in the sufficient statistic.</p>
+</div>
+<div id="defect-rate-point-estimation" class="section level2 hasAnchor" number="7.20">
+<h2><span class="header-section-number">7.20</span> Running case: point estimation of a defect rate<a href="point-estimation.html#defect-rate-point-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The same teaching case will connect Chapters 7–9. In an independent inspection of <span class="math inline">\(n=200\)</span> products, <span class="math inline">\(y=16\)</span> are defective. Let <span class="math inline">\(p\)</span> be the true defect rate and let the quality benchmark be <span class="math inline">\(p_0=0.05\)</span>.</p>
+<p>The maximum likelihood estimate is</p>
+<p><span class="math display">\[\hat p_{\mathrm{MLE}}=\frac{16}{200}=0.08.\]</span></p>
+<p>Suppose historical experience is represented by <span class="math inline">\(p\sim\operatorname{Beta}(2,38)\)</span>, whose prior mean is <span class="math inline">\(0.05\)</span>. Then</p>
+<p><span class="math display">\[
+p\mid y\sim\operatorname{Beta}(18,222),\qquad
+\hat p_B=E(p\mid y)=\frac{18}{240}=0.075.
+\]</span></p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="point-estimation.html#cb19-1" aria-hidden="true" tabindex="-1"></a>n_defect <span class="ot">&lt;-</span> <span class="dv">200</span></span>
+<span id="cb19-2"><a href="point-estimation.html#cb19-2" aria-hidden="true" tabindex="-1"></a>y_defect <span class="ot">&lt;-</span> <span class="dv">16</span></span>
+<span id="cb19-3"><a href="point-estimation.html#cb19-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
+<span id="cb19-4"><a href="point-estimation.html#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">data.frame</span>(</span>
+<span id="cb19-5"><a href="point-estimation.html#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Method =</span> <span class="fu">c</span>(<span class="st">&quot;MLE&quot;</span>, <span class="st">&quot;Bayes posterior mean&quot;</span>),</span>
+<span id="cb19-6"><a href="point-estimation.html#cb19-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Estimate =</span> <span class="fu">c</span>(y_defect <span class="sc">/</span> n_defect,</span>
+<span id="cb19-7"><a href="point-estimation.html#cb19-7" aria-hidden="true" tabindex="-1"></a>                 (<span class="dv">2</span> <span class="sc">+</span> y_defect) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">+</span> <span class="dv">38</span> <span class="sc">+</span> n_defect))</span>
+<span id="cb19-8"><a href="point-estimation.html#cb19-8" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb19-9"><a href="point-estimation.html#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">digits =</span> <span class="dv">3</span></span>
+<span id="cb19-10"><a href="point-estimation.html#cb19-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Method</th>
+<th align="right">Estimate</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">MLE</td>
+<td align="right">0.080</td>
+</tr>
+<tr class="even">
+<td align="left">Bayes posterior mean</td>
+<td align="right">0.075</td>
+</tr>
+</tbody>
+</table>
+<p>The Bayes estimate shrinks slightly toward the historical benchmark. Both quantities are point summaries only. Chapter 8 asks whether the data show that the rate exceeds the benchmark, and Chapter 9 quantifies the remaining uncertainty.</p>
+</div>
+<div id="point-estimation-summary" class="section level2 hasAnchor" number="7.21">
+<h2><span class="header-section-number">7.21</span> Chapter summary<a href="point-estimation.html#point-estimation-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Moments match sample and population moments; maximum likelihood selects the parameter best supporting the observed sample.</li>
 <li>Bayes estimation combines prior and likelihood; EM optimizes through expected complete-data log likelihood.</li>

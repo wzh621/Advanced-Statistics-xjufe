@@ -25,19 +25,44 @@ $$
 Here $\hat\theta_0$ is the restricted MLE and $\hat\theta$ the unrestricted MLE. An LRT rejects on $\{\mathbf x:\lambda(\mathbf x)\le c\}$, $0\le c\le1$.
 :::
 
-::: {.example}
-If $X_i\overset{\mathrm{iid}}\sim N(\theta,1)$ and $H_0:\theta=\theta_0$ is tested against $H_1:\theta\ne\theta_0$, then
+::: {.example .source-numbered}
+**Example 8.2.2 (Normal LRT).** If $X_i\overset{\mathrm{iid}}\sim N(\theta,1)$, test $H_0:\theta=\theta_0$ against $H_1:\theta\ne\theta_0$ and derive the LR statistic and rejection region.
+:::
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+The restricted MLE is $\theta_0$ and the unrestricted MLE is $\bar x$, so
 $$
 \lambda(\mathbf x)=\exp\left\{\frac{-\sum_i(x_i-\theta_0)^2+\sum_i(x_i-\bar x)^2}{2}\right\}
 =\exp\{-n(\bar x-\theta_0)^2/2\},
 $$
 because $\sum_i(x_i-\theta_0)^2=\sum_i(x_i-\bar x)^2+n(\bar x-\theta_0)^2$. Thus rejection is equivalent to
 $$\left\{\mathbf x:|\bar x-\theta_0|\ge\sqrt{-2\log(c)/n}\right\}.$$
+
+</details>
+
+::: {.theorem .source-numbered}
+**Theorem 8.2.4 (LRT and sufficiency).** If $T(\mathbf X)$ is sufficient for $\theta$, the LR statistics based on $T$ and the full sample satisfy $\lambda^*\{T(\mathbf x)\}=\lambda(\mathbf x)$.
 :::
 
-::: {.theorem}
-If $T(\mathbf X)$ is sufficient for $\theta$, the LR statistics based on $T$ and the full sample satisfy $\lambda^*\{T(\mathbf x)\}=\lambda(\mathbf x)$.
-:::
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+By factorization, $f(\mathbf x\mid\theta)=g\{T(\mathbf x)\mid\theta\}h(\mathbf x)$, where $h$ is parameter-free. Therefore
+
+$$
+\lambda(\mathbf x)
+=\frac{\sup_{\theta\in\Theta_0}g\{T(\mathbf x)\mid\theta\}h(\mathbf x)}
+{\sup_{\theta\in\Theta}g\{T(\mathbf x)\mid\theta\}h(\mathbf x)}
+=\frac{\sup_{\theta\in\Theta_0}g\{T(\mathbf x)\mid\theta\}}
+{\sup_{\theta\in\Theta}g\{T(\mathbf x)\mid\theta\}}
+=\lambda^*\{T(\mathbf x)\}.
+$$
+
+The parameter-free factor cancels, so the two LRTs coincide.
+
+</details>
 
 ## Shifted exponential and nuisance-parameter LRTs {#lrt-examples}
 
@@ -125,12 +150,29 @@ A test is **uniformly most powerful** (UMP) in a class $\mathcal C$ if its power
 <p class="caption">(\#fig:en-chap08-source-ump)Source illustration of the UMP concept</p>
 </div>
 
-::: {.theorem}
-**Neyman--Pearson lemma.** For $H_0:\theta=\theta_0$ against $H_1:\theta=\theta_1$, suppose
+::: {.theorem .source-numbered}
+**Theorem 8.3.12 (Neyman--Pearson lemma).** For $H_0:\theta=\theta_0$ against $H_1:\theta=\theta_1$, suppose
 $$\mathbf x\in R\text{ if }f(\mathbf x\mid\theta_1)>kf(\mathbf x\mid\theta_0),\qquad
 \mathbf x\in R^c\text{ if }f(\mathbf x\mid\theta_1)<kf(\mathbf x\mid\theta_0),$$
 and $P_{\theta_0}(\mathbf X\in R)=\alpha$. Then the test is most powerful of level $\alpha$. If such a rule exists with $k>0$, every most powerful level $\alpha$ rule has size $\alpha$ and follows the same ordering except on null sets.
 :::
+
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+Let $\phi$ be the stated test function and $\phi'$ any other level-$\alpha$ test, with power functions $\beta$ and $\beta'$. The LR ordering implies
+
+$$\{\phi(\mathbf x)-\phi'(\mathbf x)\}
+\{f(\mathbf x\mid\theta_1)-k f(\mathbf x\mid\theta_0)\}\ge0.$$
+
+Integrating (or summing) gives
+
+$$0\le \beta(\theta_1)-\beta'(\theta_1)
+-k\{\beta(\theta_0)-\beta'(\theta_0)\}.$$
+
+Since $\beta(\theta_0)=\alpha\ge\beta'(\theta_0)$ and $k\ge0$, it follows that $\beta(\theta_1)\ge\beta'(\theta_1)$, proving sufficiency. If $k>0$ and $\phi'$ is also most powerful, equality at $\theta_1$ forces $\beta'(\theta_0)=\alpha$. The nonnegative integrand must then vanish except on a set null under both simple hypotheses, proving the necessity statement.
+
+</details>
 
 The result may be applied to a sufficient statistic $T$ by comparing $g(t\mid\theta_1)$ and $kg(t\mid\theta_0)$.
 
@@ -145,9 +187,20 @@ $$\bar X<\theta_0-\frac{\sigma z_\alpha}{\sqrt n}.$$
 A family has a **monotone likelihood ratio** (MLR) if, for every $\theta_2>\theta_1$, $g(t\mid\theta_2)/g(t\mid\theta_1)$ is monotone in $t$ on the common support. Normal mean, Poisson, and binomial families are standard examples.
 :::
 
-::: {.theorem}
-**Karlin--Rubin theorem.** For $H_0:\theta\le\theta_0$ against $H_1:\theta>\theta_0$, if sufficient $T$ has an increasing MLR family, rejecting exactly when $T>t_0$ is UMP of level $\alpha=P_{\theta_0}(T>t_0)$. Reverse the direction for decreasing MLR.
+::: {.theorem .source-numbered}
+**Theorem 8.3.17 (Karlin--Rubin theorem).** For $H_0:\theta\le\theta_0$ against $H_1:\theta>\theta_0$, if sufficient $T$ has an increasing MLR family, rejecting exactly when $T>t_0$ is UMP of level $\alpha=P_{\theta_0}(T>t_0)$. Reverse the direction for decreasing MLR.
 :::
+
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+Let $\beta(\theta)=P_\theta(T>t_0)$. Increasing MLR implies stochastic increase, so $\beta$ is nondecreasing and
+$\sup_{\theta\le\theta_0}\beta(\theta)=\beta(\theta_0)=\alpha$.
+
+Fix $\theta'>\theta_0$. MLR supplies a threshold $k$ for which $T>t_0$ implies
+$g(T\mid\theta')/g(T\mid\theta_0)>k$. The Neyman--Pearson lemma makes this region most powerful for $\theta_0$ versus $\theta'$. Any test of level $\alpha$ for the composite null also has power at most $\alpha$ at $\theta_0$, so it cannot have larger power at $\theta'$. Since $\theta'$ is arbitrary, the test is UMP.
+
+</details>
 
 Thus the known-variance normal test $H_0:\theta\ge\theta_0$ against $H_1:\theta<\theta_0$ rejects when $\bar X<\theta_0-\sigma z_\alpha/\sqrt n$. Its maximum Type I error occurs at $\theta_0$.
 
@@ -159,16 +212,145 @@ $$\bar X<\theta_0-\frac{\sigma z_{\alpha/2}}{\sqrt n}
 \bar X>\theta_0+\frac{\sigma z_{\alpha/2}}{\sqrt n},$$
 which is UMP unbiased of level $\alpha$.
 
-::: {.theorem}
-If larger $W(\mathbf X)$ favors $H_1$, then
+::: {.theorem .source-numbered}
+**Theorem 8.3.27 (Valid p-value).** If larger $W(\mathbf X)$ favors $H_1$, then
 $$p(\mathbf x)=\sup_{\theta\in\Theta_0}P_\theta\{W(\mathbf X)\ge W(\mathbf x)\}$$
 is a valid p-value: $P_\theta\{p(\mathbf X)\le u\}\le u$ under the null.
 :::
+
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+Fix $\theta\in\Theta_0$ and let
+$p_\theta(\mathbf x)=P_\theta\{W(\mathbf X)\ge W(\mathbf x)\}$. If $F_\theta$ is the cdf of $-W(\mathbf X)$, then
+$p_\theta(\mathbf X)=F_\theta\{-W(\mathbf X)\}$. The probability integral transform, including its discrete inequality form, yields
+
+$$P_\theta\{p_\theta(\mathbf X)\le u\}\le u.$$
+
+Because $p(\mathbf x)=\sup_{\vartheta\in\Theta_0}p_\vartheta(\mathbf x)\ge p_\theta(\mathbf x)$,
+
+$$P_\theta\{p(\mathbf X)\le u\}
+\le P_\theta\{p_\theta(\mathbf X)\le u\}\le u.$$
+
+This holds for every null parameter, proving validity.
+
+</details>
 
 <div class="figure" style="text-align: center">
 <img src="../images/ch08/pvalue.jpg" alt="Source illustration of a p-value as a tail probability" width="42%" />
 <p class="caption">(\#fig:en-chap08-source-pvalue)Source illustration of a p-value as a tail probability</p>
 </div>
+
+## Power, sample size, and effect size {#power-sample-size-effect}
+
+Consider a two-sided normal-mean $z$ test with known variance. Define the standardized effect
+
+$$δ=\frac{θ-θ_0}{σ}.$$
+
+Under an alternative, $Z=\sqrt n(\bar X-θ_0)/σ\sim N(\sqrt nδ,1)$. At level $α$, the power is
+
+$$
+π(δ,n)
+=Φ\{-z_{1-α/2}-\sqrt nδ\}
++1-Φ\{z_{1-α/2}-\sqrt nδ\}.
+$$
+
+Power is therefore not a single property of a procedure: it varies jointly with the significance level, effect size, and sample size.
+
+
+``` r
+alpha <- 0.05
+critical <- qnorm(1 - alpha / 2)
+effect_grid <- seq(0, 1, length.out = 101)
+sample_grid <- seq(5, 200, by = 5)
+power_surface <- outer(sample_grid, effect_grid, function(n, effect) {
+  mean_shift <- sqrt(n) * effect
+  pnorm(-critical - mean_shift) + 1 - pnorm(critical - mean_shift)
+})
+
+image(effect_grid, sample_grid, t(power_surface),
+      col = hcl.colors(24, "YlOrRd", rev = TRUE),
+      xlab = expression(delta == (theta - theta[0]) / sigma),
+      ylab = "Sample size n")
+contour(effect_grid, sample_grid, t(power_surface), levels = c(0.5, 0.8, 0.9),
+        add = TRUE, drawlabels = TRUE, lwd = 1.5, col = "#263238")
+```
+
+<div class="figure" style="text-align: center">
+<img src="08-hypothesis-testing_files/figure-html/en-chap08-power-surface-1.png" alt="Power of a two-sided z test across standardized effect size and sample size (alpha=0.05)" width="90%" />
+<p class="caption">(\#fig:en-chap08-power-surface)Power of a two-sided z test across standardized effect size and sample size (alpha=0.05)</p>
+</div>
+
+Reading along the $0.8$ power contour answers the design question “how large a sample is needed for the smallest meaningful effect?” With very large samples, even negligible effects can be significant, so effect sizes and interval estimates should accompany the test.
+
+## The sampling distribution of p-values {#p-value-sampling-distribution}
+
+A p-value is a function of the data and is therefore random under repeated sampling. A continuous valid p-value is uniform under the null; under an alternative, a useful test produces p-values concentrated near zero.
+
+
+``` r
+set.seed(8308)
+b_pvalue <- 20000
+n_pvalue <- 25
+effect_pvalue <- 0.4
+z_null <- rnorm(b_pvalue)
+z_alt <- rnorm(b_pvalue, mean = sqrt(n_pvalue) * effect_pvalue)
+p_null <- 2 * pnorm(-abs(z_null))
+p_alt <- 2 * pnorm(-abs(z_alt))
+
+old_par <- par(mfrow = c(1, 2), mar = c(4, 4, 2.5, 1))
+hist(p_null, breaks = seq(0, 1, by = 0.05), probability = TRUE,
+     col = "#9ECAE1", border = "white", xlab = "p-value", main = "Null is true")
+abline(h = 1, col = "#C43C39", lwd = 2, lty = 2)
+hist(p_alt, breaks = seq(0, 1, by = 0.05), probability = TRUE,
+     col = "#FDAE6B", border = "white", xlab = "p-value", main = "Alternative: delta = 0.4")
+```
+
+<div class="figure" style="text-align: center">
+<img src="08-hypothesis-testing_files/figure-html/en-chap08-pvalue-simulation-1.png" alt="Distribution of two-sided z-test p-values under the null and an alternative" width="90%" />
+<p class="caption">(\#fig:en-chap08-pvalue-simulation)Distribution of two-sided z-test p-values under the null and an alternative</p>
+</div>
+
+``` r
+par(old_par)
+```
+
+Uniformity under the null does not make the observed p-value the probability that the null is true. It is a repeated-sampling calibration statement. Concentration near zero in the right panel is the same behavior summarized by high power.
+
+## Running case: does the defect rate exceed the benchmark? {#defect-rate-testing}
+
+Return to the inspection data from Chapter 7: $Y\sim\operatorname{Bin}(200,p)$ and $y=16$. Test
+
+$$H_0:p\le0.05\qquad\text{versus}\qquad H_1:p>0.05.$$
+
+Large values of $Y$ favor the alternative, so the boundary $p_0=0.05$ gives the exact one-sided p-value
+
+$$P_{0.05}(Y\ge16)=0.0444.$$
+
+
+``` r
+n_defect <- 200
+y_defect <- 16
+p_standard <- 0.05
+knitr::kable(
+  data.frame(
+    Quantity = c("Sample defect rate", "Exact one-sided p-value"),
+    Value = c(y_defect / n_defect,
+              pbinom(y_defect - 1, n_defect, p_standard,
+                     lower.tail = FALSE))
+  ),
+  digits = 4
+)
+```
+
+
+
+|Quantity                |  Value|
+|:-----------------------|------:|
+|Sample defect rate      | 0.0800|
+|Exact one-sided p-value | 0.0444|
+
+At $\alpha=0.05$, the null is rejected: the data provide evidence that the rate exceeds the benchmark. This does not mean that the probability of the null is $5\%$, nor does it quantify the practical magnitude of the excess. Chapter 9 addresses the latter with interval estimates.
 
 ## Chapter summary {#hypothesis-testing-summary}
 

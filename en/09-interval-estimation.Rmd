@@ -16,25 +16,59 @@ usually a function of $\theta$. The **confidence coefficient** is its infimum ov
 
 ## Inverting hypothesis tests {#inverting-tests}
 
-::: {.theorem}
-For each $\theta_0$, let $A(\theta_0)$ be the acceptance region of a level $\alpha$ test of $H_0:\theta=\theta_0$. Then
+::: {.theorem .source-numbered}
+**Theorem 9.2.2 (Test--confidence-set duality).** For each $\theta_0$, let $A(\theta_0)$ be the acceptance region of a level $\alpha$ test of $H_0:\theta=\theta_0$. Then
 $$\mathcal C(\mathbf x)=\{\theta_0:\mathbf x\in A(\theta_0)\}$$
 is a confidence set with coverage at least $1-\alpha$. Conversely, a confidence set defines level $\alpha$ acceptance regions by $A(\theta_0)=\{\mathbf x:\theta_0\in\mathcal C(\mathbf x)\}$.
 :::
 
-::: {.example}
-If $X_i\sim N(\mu,\sigma^2)$ with known $\sigma$, the two-sided level $\alpha$ test accepts $H_0:\mu=\mu_0$ when
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+Since $A(\theta_0)$ accepts a level-$\alpha$ test,
+$P_{\theta_0}\{\mathbf X\in A(\theta_0)\}\ge1-\alpha$. Because
+$\mathcal C(\mathbf X)=\{\vartheta:\mathbf X\in A(\vartheta)\}$,
+
+$$P_\theta\{\theta\in\mathcal C(\mathbf X)\}
+=P_\theta\{\mathbf X\in A(\theta)\}\ge1-\alpha.$$
+
+Conversely, if $\mathcal C(\mathbf X)$ has coverage at least $1-\alpha$, define
+$A(\theta_0)=\{\mathbf x:\theta_0\in\mathcal C(\mathbf x)\}$. Its Type I error probability is
+
+$$P_{\theta_0}\{\mathbf X\notin A(\theta_0)\}
+=P_{\theta_0}\{\theta_0\notin\mathcal C(\mathbf X)\}\le\alpha,$$
+
+so it defines a level-$\alpha$ test.
+
+</details>
+
+::: {.example .source-numbered}
+**Example 9.2.1 (Inverting a normal test).** If $X_i\sim N(\mu,\sigma^2)$ with known $\sigma$, invert the two-sided level-$\alpha$ test to obtain a confidence interval for $\mu$.
+:::
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+The test accepts $H_0:\mu=\mu_0$ when
 $$|\bar X-\mu_0|\le z_{\alpha/2}\frac{\sigma}{\sqrt n}.$$
 Inverting in $\mu_0$ gives
 $$\left[\bar X-z_{\alpha/2}\frac{\sigma}{\sqrt n},
 \bar X+z_{\alpha/2}\frac{\sigma}{\sqrt n}\right].$$
-:::
+
+</details>
 
 ```{r en-chap09-source-test-inversion, echo=FALSE, out.width='58%', fig.cap='Source diagram relating acceptance regions and confidence intervals'}
 knitr::include_graphics("../images/ch09/501011.png")
 ```
 
 ## Inverting an exponential-mean LRT {#inverting-exponential-lrt}
+
+::: {.example .source-numbered}
+**Example 9.2.3 (Inverting an exponential LRT).** For exponential observations with mean (scale) $\lambda$, invert the LRT of $H_0:\lambda=\lambda_0$ to obtain a $1-\alpha$ interval.
+:::
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
 
 For exponential observations with mean (scale) $\lambda$, the LR statistic for $H_0:\lambda=\lambda_0$ is
 $$
@@ -46,6 +80,10 @@ Inversion gives an interval $[L(T),U(T)]$, $T=\sum x_i$, whose endpoints satisfy
 $$\left(\frac{T}{L(T)}\right)^ne^{-T/L(T)}=
 \left(\frac{T}{U(T)}\right)^ne^{-T/U(T)}.$$
 Writing $T/L=a$, $T/U=b$, $a>b$, gives $a^ne^{-a}=b^ne^{-b}$. Since $T/\lambda\sim\operatorname{Gamma}(n,1)$, choose $a,b$ so that $P\{b\le T/\lambda\le a\}=1-\alpha$.
+
+The inverted interval is therefore $[T/a,T/b]$; coverage and equal-likelihood conditions jointly determine the endpoints.
+
+</details>
 
 ```{r en-chap09-source-lrt-inversion, echo=FALSE, out.width='72%', fig.cap='Source diagram for inversion of the exponential-model LRT'}
 knitr::include_graphics("../images/ch09/501012.png")
@@ -110,20 +148,51 @@ which depends on the prior location.
 
 Good intervals combine high coverage with small size. Coverage may be summarized by the confidence coefficient or average coverage; size is length in one dimension and often volume in higher dimensions.
 
-::: {.theorem}
-For a unimodal density $f$, if $[a,b]$ contains a mode and satisfies
+::: {.theorem .source-numbered}
+**Theorem 9.3.2 (Shortest probability interval for a unimodal density).** For a unimodal density $f$, if $[a,b]$ contains a mode and satisfies
 $\int_a^bf(x)dx=1-\alpha$ and $f(a)=f(b)>0$, then it is shortest among intervals with probability $1-\alpha$.
 :::
+
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+Let $[a',b']$ satisfy $b'-a'<b-a$. It suffices to show that its probability is below $1-\alpha$. Take $a'\le a$; the opposite placement is symmetric.
+
+If $b'\le a$, unimodality and $a\le x^*\le b$ imply
+
+$$\int_{a'}^{b'}f
+\le f(a)(b'-a')<f(a)(b-a)\le\int_a^bf=1-\alpha.$$
+
+If $b'>a$, then $a'\le a<b'<b$, and
+
+$$\int_{a'}^{b'}f-\int_a^bf
+=\int_{a'}^af-\int_{b'}^bf
+\le f(a)(a-a')-f(b)(b-b')<0,$$
+
+where $f(a)=f(b)>0$ and the last inequality is equivalent to $b'-a'<b-a$. Thus every shorter interval contains less probability, proving minimality.
+
+</details>
 
 For a standard normal pivot, the source compares 90% intervals $(-1.34,2.33)$, $(-1.44,1.96)$, and $(-1.65,1.65)$, with lengths 3.67, 3.40, and 3.30. Equal tails are optimal. For the unknown-variance normal $t$ interval, length is $(b-a)S/\sqrt n$ and expected length is $(b-a)c(n)\sigma/\sqrt n$, so symmetric endpoints remain optimal.
 
 ## Shortest pivotal intervals {#shortest-pivotal-interval}
+
+::: {.example .source-numbered}
+**Example 9.3.4 (Shortest pivotal interval for a gamma scale).** Let $X\sim\operatorname{Gamma}(k,\beta)$. Explain why equal-density endpoints for the pivot do not automatically minimize the interval length for $\beta$.
+:::
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
 
 If $X\sim\operatorname{Gamma}(k,\beta)$, then $Y=X/\beta\sim\operatorname{Gamma}(k,1)$. From $P(a\le Y\le b)=1-\alpha$,
 $$\frac{x}{b}\le\beta\le\frac{x}{a}.$$
 Its length is proportional to $1/a-1/b$, not $b-a$, so $f_Y(a)=f_Y(b)$ is not directly optimal. With $b=b(a)$, solve
 $$\min_a\left\{\frac1a-\frac1{b(a)}\right\},\qquad
 \int_a^{b(a)}f_Y(y)dy=1-\alpha.$$
+
+The target is the interval length after transformation back to parameter space, which is why Theorem 9.3.2 cannot be applied mechanically to the pivot scale.
+
+</details>
 
 ## Highest-posterior-density regions {#highest-posterior-density}
 
@@ -163,6 +232,74 @@ legend("topright", c(sprintf("95%% HPD [%.2f, %.2f]", hpd[1], hpd[2]), "Posterio
 ```{r en-chap09-source-hpd, echo=FALSE, out.width='50%', fig.cap='Source comparison of three interval estimators'}
 knitr::include_graphics("../images/ch09/HPD.png")
 ```
+
+## Confidence intervals under repeated sampling {#confidence-interval-repeated-sampling}
+
+A confidence coefficient belongs to the interval-producing procedure, not to one fixed interval after observation. The experiment below fixes $\mu=0,\sigma=1$, draws 80 normal samples of size 20, and constructs a 95% $z$ interval from each sample.
+
+```{r en-chap09-repeated-confidence-intervals, fig.cap='Eighty 95% confidence intervals; red intervals fail to cover the true mean', fig.width=8, fig.height=5.2}
+set.seed(9409)
+mu_true <- 0
+sigma_true <- 1
+n_ci <- 20
+m_ci <- 80
+sample_means <- replicate(m_ci, mean(rnorm(n_ci, mu_true, sigma_true)))
+margin <- qnorm(0.975) * sigma_true / sqrt(n_ci)
+lower_ci <- sample_means - margin
+upper_ci <- sample_means + margin
+covered <- lower_ci <= mu_true & mu_true <= upper_ci
+interval_color <- ifelse(covered, "#2C7FB8", "#D7301F")
+
+plot(NA, xlim = range(c(lower_ci, upper_ci)), ylim = c(1, m_ci),
+     xlab = expression(mu), ylab = "Repeated-sample index")
+abline(v = mu_true, lwd = 2, lty = 2, col = "#263238")
+arrows(lower_ci, seq_len(m_ci), upper_ci, seq_len(m_ci),
+       angle = 90, code = 3, length = 0.025, col = interval_color)
+points(sample_means, seq_len(m_ci), pch = 16, cex = 0.45, col = interval_color)
+legend("topright", c("Covers the true mean", "Misses the true mean"),
+       col = c("#2C7FB8", "#D7301F"), lwd = 2, bty = "o", bg = "white")
+```
+
+In this run, `r sum(covered)` intervals cover $\mu=0$. A rerun changes which particular intervals miss; only the long-run coverage proportion approaches $0.95$. After one interval is observed, frequentist inference does not make the fixed parameter random.
+
+## Comparing intervals for a binomial proportion {#binomial-interval-comparison}
+
+For $Y\sim\operatorname{Bin}(n,p)$, familiar intervals can behave differently with small samples or when $p$ is near 0 or 1. We compare Wald, Wilson, likelihood-ratio inversion, and the exact Clopper--Pearson interval. At each true $p$, coverage is summed over the exact probabilities of $Y=0,\ldots,n$, so the curves contain no Monte Carlo error.
+
+```{r en-chap09-binomial-interval-coverage, fig.cap='Exact coverage and mean length of four binomial-proportion intervals for n=20', fig.width=8, fig.height=4.7}
+source("../R/inference_labs.R")
+p_grid <- seq(0.01, 0.99, by = 0.01)
+interval_performance <- binomial_interval_coverage(20, p_grid, conf.level = 0.95)
+method_colors <- c("#D7301F", "#1F78B4", "#33A02C", "#6A3D9A")
+
+old_par <- par(mfrow = c(1, 2), mar = c(4, 4, 2.5, 1))
+matplot(p_grid, interval_performance$coverage, type = "l", lty = 1,
+        lwd = 2, col = method_colors, ylim = c(0.55, 1),
+        xlab = expression(p), ylab = "Actual coverage")
+abline(h = 0.95, lty = 2, lwd = 1.5)
+legend("bottom", colnames(interval_performance$coverage),
+       col = method_colors, lty = 1, lwd = 2, cex = 0.72, bty = "n")
+matplot(p_grid, interval_performance$mean_length, type = "l", lty = 1,
+        lwd = 2, col = method_colors,
+        xlab = expression(p), ylab = "Mean interval length")
+par(old_par)
+```
+
+The Wald interval severely undercovers near the boundaries, whereas Wilson coverage is usually closer to the nominal level. Clopper--Pearson controls tail probabilities but is often conservative and longer. The likelihood-ratio interval directly inverts the likelihood-ratio test from Chapter 8. A method should therefore be judged by both coverage and length, not by algebraic simplicity alone.
+
+## Running case: interval estimation of the defect rate {#defect-rate-intervals}
+
+Continue with the product-inspection data $n=200,y=16$. The table reports four two-sided 95% intervals. The calculation is stored in `R/inference_labs.R` for reuse in later cases.
+
+```{r en-chap09-defect-rate-intervals}
+source("../R/inference_labs.R")
+defect_intervals <- binomial_intervals(y = 16, n = 200, conf.level = 0.95)
+knitr::kable(round(defect_intervals, 4),
+             col.names = c("Lower", "Upper"),
+             caption = "Four two-sided 95% intervals for the product defect rate")
+```
+
+All four intervals express uncertainty around the point estimate $0.08$, but the narrower lower end of the Wald interval should not be mistaken for greater reliability. There is also an important test--interval detail: Chapter 8 used a **one-sided** test at $5\%$, whereas this table reports **two-sided** 95% intervals, so they are not direct inversions of one another. The one-sided 5% test corresponds to a 95% one-sided lower bound (or the matching two-sided 90% equal-tail interval). The exact two-sided 90% lower endpoint is `r sprintf("%.4f", binomial_intervals(16, 200, 0.90)["Clopper-Pearson", "lower"])`, which exceeds the benchmark $0.05$ and agrees with the one-sided test.
 
 ## Chapter summary {#interval-estimation-summary}
 

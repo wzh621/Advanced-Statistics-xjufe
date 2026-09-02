@@ -21,28 +21,39 @@ $$
 ## 充分性原则与条件分布定义 {#sufficiency-principle}
 
 ::: {.definition}
+**定义 6.2.1（充分统计量）**
+
 若给定 $T(\mathbf X)$ 后，样本 $\mathbf X$ 的条件分布不再依赖参数 $\theta$，则称 $T(\mathbf X)$ 是 $\theta$ 的**充分统计量**。
 :::
 
 充分性原则要求：若 $T$ 充分，则关于 $\theta$ 的推断只应通过 $T(\mathbf X)$ 依赖样本。特别地，若 $T(\mathbf x)=T(\mathbf y)$，观察到 $\mathbf x$ 或 $\mathbf y$ 应得到相同的参数推断。
 
-若 $p(\mathbf x\mid\theta)$ 是样本联合 pmf 或 pdf，$q(t\mid\theta)$ 是 $T$ 的 pmf 或 pdf，则在定义良好的点上，
+::: {.source-theorem}
+**定理 6.2.2（密度比判别）** 若 $p(\mathbf x\mid\theta)$ 是样本联合 pmf 或 pdf，$q(t\mid\theta)$ 是 $T$ 的 pmf 或 pdf，并且对每个样本点 $\mathbf x$，
 
 $$
 \frac{p(\mathbf x\mid\theta)}{q(T(\mathbf x)\mid\theta)}
 $$
 
-作为 $\theta$ 的函数为常数，正是条件分布不依赖 $\theta$ 的表达。
+作为 $\theta$ 的函数为常数，则 $T(\mathbf X)$ 对 $\theta$ 充分。
+:::
 
-::: {.example}
-若 $X_i\overset{\mathrm{iid}}\sim\operatorname{Bernoulli}(p)$，令 $T=\sum_iX_i$，则
+::: {.example .source-numbered}
+**例 6.2.3（二项充分统计量）** 若
+$X_i\overset{\mathrm{iid}}\sim\operatorname{Bernoulli}(p)$，令 $T=\sum_iX_i$。证明 $T$ 对 $p$ 充分。
+:::
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+样本联合 pmf 与 $T$ 的 pmf 分别为
 
 $$
-p(\mathbf x\mid p)=p^{\sum x_i}(1-p)^{n-\sum x_i},qquad
+p(\mathbf x\mid p)=p^{\sum x_i}(1-p)^{n-\sum x_i},\qquad
 q(t\mid p)=\binom ntp^t(1-p)^{n-t}.
 $$
 
-因此
+取 $t=T(\mathbf x)=\sum_i x_i$，则
 
 $$
 \frac{p(\mathbf x\mid p)}{q(T(\mathbf x)\mid p)}
@@ -50,12 +61,13 @@ $$
 $$
 
 不依赖 $p$，故成功总数 $T$ 对 $p$ 充分。
-:::
+
+</details>
 
 ## 因子分解定理与正态样本 {#factorization-normal}
 
-::: {.theorem}
-**Neyman--Fisher 因子分解定理。** 统计量 $T(\mathbf X)$ 对 $\theta$ 充分，当且仅当存在函数 $g$ 和 $h$，使所有样本点和参数点满足
+::: {.theorem .source-numbered}
+**定理 6.2.6（Neyman--Fisher 因子分解定理）** 统计量 $T(\mathbf X)$ 对 $\theta$ 充分，当且仅当存在函数 $g$ 和 $h$，使所有样本点和参数点满足
 
 $$
 f(\mathbf x\mid\theta)=g(T(\mathbf x)\mid\theta)h(\mathbf x),
@@ -64,7 +76,17 @@ $$
 其中 $h$ 不依赖 $\theta$。
 :::
 
-离散情形可由
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+先证离散情形。若 $T$ 充分，取
+
+$$
+g(t\mid\theta)=P_\theta\{T(\mathbf X)=t\},\qquad
+h(\mathbf x)=P\{\mathbf X=\mathbf x\mid T(\mathbf X)=T(\mathbf x)\}.
+$$
+
+充分性保证 $h$ 不依赖 $\theta$，且乘法公式给出
 
 $$
 P_\theta(\mathbf X=\mathbf x)
@@ -72,10 +94,28 @@ P_\theta(\mathbf X=\mathbf x)
 P\{\mathbf X=\mathbf x\mid T(\mathbf X)=T(\mathbf x)\}
 $$
 
-直接看出；连续情形使用相应的条件密度论证。
+即所需分解。反之，若 $f(\mathbf x\mid\theta)=g(T(\mathbf x)\mid\theta)h(\mathbf x)$，记
+$A_t=\{\mathbf y:T(\mathbf y)=t\}$，则对 $\mathbf x\in A_t$，
 
-::: {.example}
-设 $X_i\overset{\mathrm{iid}}\sim N(\mu,\sigma^2)$，$\sigma^2$ 已知。恒等式
+$$
+P_\theta(\mathbf X=\mathbf x\mid T=t)
+=\frac{g(t\mid\theta)h(\mathbf x)}
+{\sum_{\mathbf y\in A_t}g(t\mid\theta)h(\mathbf y)}
+=\frac{h(\mathbf x)}{\sum_{\mathbf y\in A_t}h(\mathbf y)},
+$$
+
+右端不含 $\theta$，故 $T$ 充分。连续情形将概率质量与求和替换为相应密度与积分，论证相同。
+
+</details>
+
+::: {.example .source-numbered}
+**例 6.2.7（已知方差的正态样本）** 设 $X_i\overset{\mathrm{iid}}\sim N(\mu,\sigma^2)$，$\sigma^2$ 已知。证明 $\bar X$ 对 $\mu$ 充分。
+:::
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+利用恒等式
 
 $$
 \sum_{i=1}^n(x_i-\mu)^2
@@ -94,7 +134,8 @@ f(\mathbf x\mid\mu)
 $$
 
 故 $\bar X$ 对 $\mu$ 充分。也可利用 $\bar X\sim N(\mu,\sigma^2/n)$ 检查条件密度与 $\mu$ 无关。
-:::
+
+</details>
 
 ## 支撑集依赖参数的充分统计量 {#support-dependent-sufficiency}
 
@@ -129,8 +170,8 @@ $(\sum_iX_i,\sum_iX_i^2)$。
 充分统计量 $T$ 称为**最小充分统计量**，若对任意其他充分统计量 $T'$，都存在函数 $g$ 使 $T=g(T')$。它实现了充分统计量之间最大程度的数据约简。
 :::
 
-::: {.theorem}
-**Lehmann--Scheffé 判别准则。** 若对任意样本点 $\mathbf x,\mathbf y$，比值
+::: {.theorem .source-numbered}
+**定理 6.2.13（最小充分判别准则）** 若对任意样本点 $\mathbf x,\mathbf y$，比值
 
 $$
 \frac{f(\mathbf x\mid\theta)}{f(\mathbf y\mid\theta)}
@@ -138,6 +179,26 @@ $$
 
 与 $\theta$ 无关，当且仅当 $T(\mathbf x)=T(\mathbf y)$，则 $T$ 是最小充分统计量。
 :::
+
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+由“比值与 $\theta$ 无关”的充要条件，可把样本空间划分为等价类：$\mathbf x\sim\mathbf y$ 当且仅当该密度比不依赖 $\theta$。统计量 $T$ 恰好给这些等价类编号。
+
+先取任意充分统计量 $U$。由因子分解定理，若 $U(\mathbf x)=U(\mathbf y)$，则
+
+$$
+\frac{f(\mathbf x\mid\theta)}{f(\mathbf y\mid\theta)}
+=\frac{h(\mathbf x)}{h(\mathbf y)},
+$$
+
+与 $\theta$ 无关，因而 $T(\mathbf x)=T(\mathbf y)$。所以 $T$ 在 $U$ 的每一个水平集上恒定，存在函数 $g$ 使 $T=g(U)$；这正是最小充分性。
+
+另一方面，按假设，$T(\mathbf x)=T(\mathbf y)$ 时密度比不依赖 $\theta$。在每个水平集选择代表点 $\mathbf x_t$，令
+$g(t\mid\theta)=f(\mathbf x_t\mid\theta)$，并令
+$h(\mathbf x)=f(\mathbf x\mid\theta)/f(\mathbf x_{T(\mathbf x)}\mid\theta)$；该比值不依赖 $\theta$。于是得到因子分解，故 $T$ 本身充分。两部分合起来，$T$ 最小充分。
+
+</details>
 
 正态双参数样本的密度比可写为
 
@@ -238,9 +299,28 @@ $ng(\theta)\theta^{n-1}=0$，故 $T$ 完备。结合因子分解定理，$X_{(n)
 
 ## Basu 定理及独立性应用 {#basu-theorem}
 
-::: {.theorem}
-**Basu 定理。** 完备充分统计量与每一个辅助统计量相互独立。
+::: {.theorem .source-numbered}
+**定理 6.2.24（Basu 定理）** 完备充分统计量与每一个辅助统计量相互独立。
 :::
+
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+设 $T$ 完备充分，$V$ 辅助。对任意可测集合 $B$，令
+
+$$g_B(T)=P_\theta(V\in B\mid T)-P_\theta(V\in B).$$
+
+因为 $T$ 充分，第一项作为 $T$ 的函数不依赖 $\theta$；因为 $V$ 辅助，第二项也不依赖 $\theta$。由全期望公式，
+
+$$E_\theta\{g_B(T)\}=P_\theta(V\in B)-P_\theta(V\in B)=0$$
+
+对所有 $\theta$ 成立。完备性于是推出 $g_B(T)=0$ 几乎处处，即
+
+$$P_\theta(V\in B\mid T)=P_\theta(V\in B).$$
+
+对所有可测 $B$ 均成立，故 $T$ 与 $V$ 独立。
+
+</details>
 
 若 $X_i$ iid 服从均值为 $\theta$ 的指数分布，则
 $T=\sum_iX_i$ 是完备充分统计量，而

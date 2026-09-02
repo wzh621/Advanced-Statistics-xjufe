@@ -17,21 +17,53 @@ $$\inf_{\theta\in\Theta}P_\theta\{\theta\in[L(\mathbf X),U(\mathbf X)]\}.$$
 
 ## 反演假设检验 {#inverting-tests}
 
-::: {.theorem}
-对每个 $\theta_0\in\Theta$，令 $A(\theta_0)$ 为检验 $H_0:\theta=\theta_0$ 的水平 $\alpha$ 接受域。定义
+::: {.theorem .source-numbered}
+**定理 9.2.2（检验与置信集的对偶）** 对每个 $\theta_0\in\Theta$，令 $A(\theta_0)$ 为检验 $H_0:\theta=\theta_0$ 的水平 $\alpha$ 接受域。定义
 $$\mathcal C(\mathbf x)=\{\theta_0:\mathbf x\in A(\theta_0)\}.$$
 则 $\mathcal C(\mathbf X)$ 是覆盖概率至少为 $1-\alpha$ 的置信集。反之，给定这样的置信集，令
 $A(\theta_0)=\{\mathbf x:\theta_0\in\mathcal C(\mathbf x)\}$，即可得到水平 $\alpha$ 检验。
 :::
 
-::: {.example}
-若 $X_i\overset{\mathrm{iid}}\sim N(\mu,\sigma^2)$ 且 $\sigma$ 已知，双侧水平 $\alpha$ 检验接受 $H_0:\mu=\mu_0$ 当且仅当
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+先由检验构造置信集。因为 $A(\theta_0)$ 是水平 $\alpha$ 检验的接受域，
+
+$$P_{\theta_0}\{\mathbf X\in A(\theta_0)\}\ge1-\alpha.$$
+
+$\theta_0$ 任意，把它记作一般的 $\theta$。根据
+$\mathcal C(\mathbf X)=\{\vartheta:\mathbf X\in A(\vartheta)\}$，事件
+$\{\theta\in\mathcal C(\mathbf X)\}$ 与
+$\{\mathbf X\in A(\theta)\}$ 相同，故
+
+$$P_\theta\{\theta\in\mathcal C(\mathbf X)\}
+=P_\theta\{\mathbf X\in A(\theta)\}\ge1-\alpha.$$
+
+反之，若 $\mathcal C(\mathbf X)$ 的覆盖概率至少为 $1-\alpha$，则以
+$A(\theta_0)=\{\mathbf x:\theta_0\in\mathcal C(\mathbf x)\}$ 为接受域时，第一类错误概率为
+
+$$P_{\theta_0}\{\mathbf X\notin A(\theta_0)\}
+=P_{\theta_0}\{\theta_0\notin\mathcal C(\mathbf X)\}\le\alpha.$$
+
+所以得到水平 $\alpha$ 检验。
+
+</details>
+
+::: {.example .source-numbered}
+**例 9.2.1（反演正态检验）** 若 $X_i\overset{\mathrm{iid}}\sim N(\mu,\sigma^2)$ 且 $\sigma$ 已知，反演双侧水平 $\alpha$ 检验，构造 $\mu$ 的置信区间。
+:::
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+检验接受 $H_0:\mu=\mu_0$ 当且仅当
 $$|\bar X-\mu_0|\le z_{\alpha/2}\frac{\sigma}{\sqrt n}.$$
 对 $\mu_0$ 反演得到
 $$\left[\bar X-z_{\alpha/2}\frac{\sigma}{\sqrt n},
 \bar X+z_{\alpha/2}\frac{\sigma}{\sqrt n}\right],$$
 其覆盖概率为 $1-\alpha$。
-:::
+
+</details>
 
 <div class="figure" style="text-align: center">
 <img src="images/ch09/501011.png" alt="原课件中的检验接受域与置信区间反演关系" width="58%" />
@@ -39,6 +71,13 @@ $$\left[\bar X-z_{\alpha/2}\frac{\sigma}{\sqrt n},
 </div>
 
 ## 反演指数均值的 LRT {#inverting-exponential-lrt}
+
+::: {.example .source-numbered}
+**例 9.2.3（反演指数总体 LRT）** 设 $X_i$ 来自均值（尺度）为 $\lambda$ 的指数分布。通过反演 $H_0:\lambda=\lambda_0$ 的 LRT 构造 $1-\alpha$ 置信区间。
+:::
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
 
 设 $X_i$ 来自均值（尺度）为 $\lambda$ 的指数分布。检验 $H_0:\lambda=\lambda_0$ 时
 $$
@@ -59,6 +98,10 @@ $$
 
 令 $T/L=a$、$T/U=b$ 且 $a>b$，则 $a^ne^{-a}=b^ne^{-b}$，同时因 $T/\lambda\sim\operatorname{Gamma}(n,1)$，选择 $a,b$ 使
 $$P\{b\le T/\lambda\le a\}=1-\alpha.$$
+
+因此反演区间为 $[T/a,T/b]$；端点由覆盖概率约束与等似然条件共同确定。
+
+</details>
 
 <div class="figure" style="text-align: center">
 <img src="images/ch09/501012.png" alt="原课件中的指数模型 LRT 反演示意" width="72%" />
@@ -133,8 +176,8 @@ $$
 
 评价区间时希望覆盖概率大而长度小，但二者存在权衡。覆盖可用置信系数或平均覆盖衡量；一维区间的大小通常是长度，高维集合则可用体积。
 
-::: {.theorem}
-若单峰密度 $f$ 的区间 $[a,b]$ 满足
+::: {.theorem .source-numbered}
+**定理 9.3.2（单峰密度的最短概率区间）** 若单峰密度 $f$ 的区间 $[a,b]$ 满足
 
 1. $\int_a^bf(x)\,dx=1-\alpha$；
 2. $f(a)=f(b)>0$；
@@ -143,15 +186,53 @@ $$
 则它是概率质量为 $1-\alpha$ 的最短区间。
 :::
 
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+设另一区间 $[a',b']$ 比 $[a,b]$ 短，即 $b'-a'<b-a$。只需证明它所含概率小于 $1-\alpha$。教材把位置关系分成两类；以下取 $a'\le a$，另一侧对称。
+
+若 $b'\le a$，由 $a'\le b'\le a\le x^*$ 及单峰性，左侧区间上的密度不超过靠近众数处的水平，而 $[a,b]$ 在端点处满足 $f(a)=f(b)>0$。结合较短的长度可得
+
+$$\int_{a'}^{b'}f(x)\,dx<\int_a^bf(x)\,dx=1-\alpha.$$
+
+若 $b'>a$，则必有 $a'\le a<b'<b$。写成
+
+$$
+\int_{a'}^{b'}f-int_a^bf
+=\int_{a'}^af(x)\,dx-\int_{b'}^bf(x)\,dx.
+$$
+
+由单峰性及 $f(a)=f(b)$，左边新增部分的密度不超过 $f(a)$，右边删去部分的密度不低于 $f(b)$，所以
+
+$$
+\int_{a'}^af(x)\,dx-\int_{b'}^bf(x)\,dx
+\le f(a)\{(a-a')-(b-b')\}<0,
+$$
+
+最后一个不等号正是 $b'-a'<b-a$。因此任何更短区间的概率质量都不足 $1-\alpha$，$[a,b]$ 最短。
+
+</details>
+
 对标准正态枢轴量，90% 区间可取 $(-1.34,2.33)$、$(-1.44,1.96)$ 或 $(-1.65,1.65)$，长度分别为 3.67、3.40、3.30；对称等尾区间最短。未知方差正态均值的 $t$ 区间同理，长度为 $(b-a)S/\sqrt n$，且期望长度为 $(b-a)c(n)\sigma/\sqrt n$，仍由对称端点最小化。
 
 ## 最短枢轴区间 {#shortest-pivotal-interval}
+
+::: {.example .source-numbered}
+**例 9.3.4（Gamma 尺度参数的最短枢轴区间）** 设 $X\sim\operatorname{Gamma}(k,\beta)$。说明为什么直接令枢轴量区间端点等密度不一定得到 $\beta$ 的最短区间。
+:::
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
 
 若 $X\sim\operatorname{Gamma}(k,\beta)$，则 $Y=X/\beta\sim\operatorname{Gamma}(k,1)$。由 $P(a\le Y\le b)=1-\alpha$ 得
 $$\frac{x}{b}\le\beta\le\frac{x}{a},$$
 其长度与 $1/a-1/b$ 成正比，而不是与 $b-a$ 成正比。因此不能直接令 $f_Y(a)=f_Y(b)$。应把约束定义为 $b=b(a)$，求解
 $$\min_a\left\{\frac1a-\frac1{b(a)}\right\},\qquad
 \int_a^{b(a)}f_Y(y)\,dy=1-\alpha.$$
+
+这里优化的是变换回参数空间后的实际区间长度；这正是不能机械套用定理 9.3.2 的原因。
+
+</details>
 
 ## 最高后验密度区域 {#highest-posterior-density}
 
@@ -198,6 +279,103 @@ legend("topright", c(sprintf("95%% HPD [%.2f, %.2f]", hpd[1], hpd[2]), "后验�
 <img src="images/ch09/HPD.png" alt="原课件中的三种区间估计比较" width="50%" />
 <p class="caption">(\#fig:chap09-source-hpd)原课件中的三种区间估计比较</p>
 </div>
+
+## 重复抽样中的置信区间 {#confidence-interval-repeated-sampling}
+
+置信系数属于构造区间的程序，而不是观测后某一个固定区间。下面固定 $\mu=0,\sigma=1$，重复抽取 80 组容量为 20 的正态样本，并为每组构造 95% $z$ 区间。
+
+
+``` r
+set.seed(9409)
+mu_true <- 0
+sigma_true <- 1
+n_ci <- 20
+m_ci <- 80
+sample_means <- replicate(m_ci, mean(rnorm(n_ci, mu_true, sigma_true)))
+margin <- qnorm(0.975) * sigma_true / sqrt(n_ci)
+lower_ci <- sample_means - margin
+upper_ci <- sample_means + margin
+covered <- lower_ci <= mu_true & mu_true <= upper_ci
+interval_color <- ifelse(covered, "#2C7FB8", "#D7301F")
+
+plot(NA, xlim = range(c(lower_ci, upper_ci)), ylim = c(1, m_ci),
+     xlab = expression(mu), ylab = "重复样本编号",
+     family = course_plot_family())
+abline(v = mu_true, lwd = 2, lty = 2, col = "#263238")
+arrows(lower_ci, seq_len(m_ci), upper_ci, seq_len(m_ci),
+       angle = 90, code = 3, length = 0.025, col = interval_color)
+points(sample_means, seq_len(m_ci), pch = 16, cex = 0.45, col = interval_color)
+legend("topright", c("覆盖真实均值", "未覆盖真实均值"),
+       col = c("#2C7FB8", "#D7301F"), lwd = 2, bty = "o", bg = "white")
+```
+
+<div class="figure" style="text-align: center">
+<img src="09-interval-estimation_files/figure-html/chap09-repeated-confidence-intervals-1.png" alt="80 次重复抽样得到的 95% 置信区间；红色区间未覆盖真实均值" width="90%" />
+<p class="caption">(\#fig:chap09-repeated-confidence-intervals)80 次重复抽样得到的 95% 置信区间；红色区间未覆盖真实均值</p>
+</div>
+
+本次随机实验中有 75 个区间覆盖 $\mu=0$。若重新运行，具体失败的区间会改变；当重复次数趋于无穷时，覆盖比例才趋近于设计值 $0.95$。观测到其中任一区间后，频率学派不再把固定的 $\mu$ 视作随机量。
+
+## 二项比例区间的覆盖率比较 {#binomial-interval-comparison}
+
+对 $Y\sim\operatorname{Bin}(n,p)$，常见区间在小样本或 $p$ 接近 0、1 时表现不同。本节比较四种构造：Wald、Wilson、似然比反演和 Clopper--Pearson 精确区间。对每个真实 $p$，直接对 $Y=0,\ldots,n$ 的精确二项概率求和，因而图中的覆盖率没有 Monte Carlo 误差。
+
+
+``` r
+source("R/inference_labs.R")
+p_grid <- seq(0.01, 0.99, by = 0.01)
+interval_performance <- binomial_interval_coverage(20, p_grid, conf.level = 0.95)
+method_colors <- c("#D7301F", "#1F78B4", "#33A02C", "#6A3D9A")
+
+old_par <- par(mfrow = c(1, 2), mar = c(4, 4, 2.5, 1),
+               family = course_plot_family())
+matplot(p_grid, interval_performance$coverage, type = "l", lty = 1,
+        lwd = 2, col = method_colors, ylim = c(0.55, 1),
+        xlab = expression(p), ylab = "实际覆盖率")
+abline(h = 0.95, lty = 2, lwd = 1.5)
+legend("bottom", colnames(interval_performance$coverage),
+       col = method_colors, lty = 1, lwd = 2, cex = 0.72, bty = "n")
+matplot(p_grid, interval_performance$mean_length, type = "l", lty = 1,
+        lwd = 2, col = method_colors,
+        xlab = expression(p), ylab = "平均区间长度")
+```
+
+<div class="figure" style="text-align: center">
+<img src="09-interval-estimation_files/figure-html/chap09-binomial-interval-coverage-1.png" alt="n=20 时四种二项比例区间的精确覆盖率与平均长度" width="90%" />
+<p class="caption">(\#fig:chap09-binomial-interval-coverage)n=20 时四种二项比例区间的精确覆盖率与平均长度</p>
+</div>
+
+``` r
+par(old_par)
+```
+
+Wald 区间在边界附近明显欠覆盖；Wilson 区间通常更接近名义水平。Clopper--Pearson 区间通过控制尾概率保证覆盖，但往往更保守、更长。似然比区间则直接对应第 8 章的似然比检验反演。区间方法的选择因此应同时比较覆盖率与长度，而不能只看公式是否简短。
+
+## 贯穿案例：缺陷率的区间估计 {#defect-rate-intervals}
+
+继续使用 $n=200,y=16$ 的产品抽检数据。下表给出四种 95% 双侧区间；计算函数单独保存在 `R/inference_labs.R`，便于后续案例复用。
+
+
+``` r
+source("R/inference_labs.R")
+defect_intervals <- binomial_intervals(y = 16, n = 200, conf.level = 0.95)
+knitr::kable(round(defect_intervals, 4),
+             col.names = c("下限", "上限"),
+             caption = "产品缺陷率的四种 95% 双侧区间")
+```
+
+
+
+Table: (\#tab:chap09-defect-rate-intervals)产品缺陷率的四种 95% 双侧区间
+
+|                 |   下限|   上限|
+|:----------------|------:|------:|
+|Wald             | 0.0424| 0.1176|
+|Wilson           | 0.0498| 0.1260|
+|Likelihood ratio | 0.0477| 0.1229|
+|Clopper-Pearson  | 0.0464| 0.1267|
+
+四种区间都表达了点估计 $0.08$ 周围的不确定性，但 Wald 区间的较窄下端不应被误认为更可靠。这里还出现一个重要的“检验--区间”细节：第 8 章在 $5\%$ 水平进行了**单侧**检验，而本表是 95% **双侧**区间，两者并非直接对偶。单侧 $5\%$ 检验对应 95% 单侧下限（或相应的 90% 双侧等尾区间）；确切的 90% 双侧区间下限为 0.0508，已高于质量标准 $0.05$，与单侧检验的结论一致。
 
 ## 本章小结 {#interval-estimation-summary}
 

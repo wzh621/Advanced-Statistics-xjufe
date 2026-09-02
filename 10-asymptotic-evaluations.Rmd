@@ -12,8 +12,14 @@ $$\lim_{n\to\infty}P_\theta(|W_n-\theta|<\epsilon)=1,$$
 则称 $W_n$ 是 $\theta$ 的相合估计量序列，即 $W_n\overset p\to\theta$。
 :::
 
-::: {.example}
-若 $X_i\overset{\mathrm{iid}}\sim N(\theta,1)$，则 $\bar X_n\sim N(\theta,1/n)$，并且
+::: {.example .source-numbered}
+**例 10.1.2（样本均值的相合性）** 若 $X_i\overset{\mathrm{iid}}\sim N(\theta,1)$，证明 $\bar X_n$ 是 $\theta$ 的相合估计量。
+:::
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+因为 $\bar X_n\sim N(\theta,1/n)$，所以
 $$
 \begin{aligned}
 P_\theta(|\bar X_n-\theta|<\epsilon)
@@ -22,7 +28,8 @@ P_\theta(|\bar X_n-\theta|<\epsilon)
 \end{aligned}
 $$
 故 $\bar X_n$ 相合。
-:::
+
+</details>
 
 ## MLE 的正则条件与相合性 {#mle-regularity-consistency}
 
@@ -37,11 +44,29 @@ $$
 
 前四项用于相合性的课件版本，后两项再用于渐近正态与效率。现代定理可采用不同的更弱条件；这里保留原课程条件集。
 
-::: {.theorem}
-在上述相合性正则条件下，若 $\hat\theta$ 是 MLE，$\tau(\theta)$ 连续，则
+::: {.theorem .source-numbered}
+**定理 10.1.6（MLE 的相合性）** 在上述相合性正则条件下，若 $\hat\theta$ 是 MLE，$\tau(\theta)$ 连续，则
 $$\lim_{n\to\infty}P_\theta\{|\tau(\hat\theta)-\tau(\theta)|\ge\epsilon\}=0.$$
 因此 $\tau(\hat\theta)$ 相合。
 :::
+
+<details class="course-details proof-details">
+<summary><strong>查看推导过程</strong></summary>
+
+教材在此仅给证明纲要。对每个固定 $\vartheta$，强大数定律给出
+
+$$
+\frac1n\log L(\vartheta\mid\mathbf X)
+=\frac1n\sum_{i=1}^n\log f(X_i\mid\vartheta)
+\longrightarrow E_\theta\{\log f(X\mid\vartheta)\}
+$$
+
+几乎处处成立。由 Kullback--Leibler 不等式与模型可识别性，右端作为 $\vartheta$ 的函数在真参数 $\theta$ 处唯一最大。在教材所引用的附加一致收敛和紧性条件下，样本平均对数似然的最大点 $\hat\theta$ 因而依概率趋于 $\theta$。最后由连续映射定理，
+$\tau(\hat\theta)\overset p\to\tau(\theta)$。
+
+一般情形需要教材 Miscellanea 10.6.2 所述技术条件；当前资料没有给出这些条件下的完整严格证明，因此这里保留教材的证明纲要。
+
+</details>
 
 ## 极限方差与渐近方差 {#limiting-asymptotic-variance}
 
@@ -69,11 +94,42 @@ I_1(\theta)=E_\theta\left[\left\{\frac\partial{\partial\theta}\log f(X\mid\theta
 则称 $W_n$ 渐近有效。
 :::
 
-::: {.theorem}
-在前述正则条件下，若 $\hat\theta$ 是 MLE，$\tau$ 连续且在所需点可微，则
+::: {.theorem .source-numbered}
+**定理 10.1.12（MLE 的渐近有效性）** 在前述正则条件下，若 $\hat\theta$ 是 MLE，$\tau$ 连续且在所需点可微，则
 $$\sqrt n\{\tau(\hat\theta)-\tau(\theta)\}\overset d\longrightarrow N\{0,v(\theta)\},$$
 其中 $v(\theta)$ 为 Cramér--Rao 下界。因此 $\tau(\hat\theta)$ 相合且渐近有效。
 :::
+
+<details class="course-details proof-details">
+<summary><strong>查看推导过程</strong></summary>
+
+教材先证明 $\hat\theta$ 本身的结论。记
+$\ell_n(\theta)=\sum_{i=1}^n\log f(X_i\mid\theta)$。在真参数 $\theta_0$ 附近对得分作 Taylor 展开，并忽略由正则条件控制的高阶余项：
+
+$$0=\ell_n'(\hat\theta)
+=\ell_n'(\theta_0)+(\hat\theta-\theta_0)\ell_n''(\theta_0)+o_p(\sqrt n\,|\hat\theta-\theta_0|).$$
+
+整理得到
+
+$$
+\sqrt n(\hat\theta-\theta_0)
+=\frac{n^{-1/2}\ell_n'(\theta_0)}{-n^{-1}\ell_n''(\theta_0)}+o_p(1).
+$$
+
+由中心极限定理和弱大数定律，
+
+$$n^{-1/2}\ell_n'(\theta_0)\Rightarrow N\{0,I_1(\theta_0)\},
+\qquad -n^{-1}\ell_n''(\theta_0)\overset p\longrightarrow I_1(\theta_0).$$
+
+Slutsky 定理于是给出
+
+$$\sqrt n(\hat\theta-\theta_0)
+\Rightarrow N\left\{0,\frac1{I_1(\theta_0)}\right\}.$$
+
+再对 $\tau$ 使用 Delta 方法，渐近方差成为
+$[\tau'(\theta_0)]^2/I_1(\theta_0)$，即 Cramér--Rao 下界。教材把从 $\hat\theta$ 推广到 $\tau(\hat\theta)$ 的步骤留作练习 10.7；这里仅按 Delta 方法说明该连接。
+
+</details>
 
 ## 渐近相对效率 {#asymptotic-relative-efficiency}
 
@@ -135,10 +191,35 @@ legend("topleft", c("平方损失", "Huber 损失"),
 
 ## LRT 的渐近分布 {#asymptotic-lrt-distribution}
 
-::: {.theorem}
-检验 $H_0:\theta=\theta_0$ 对 $H_1:\theta\ne\theta_0$。若 $X_i$ iid、$\hat\theta$ 是 MLE 且模型满足正则条件，则在 $H_0$ 下
+::: {.theorem .source-numbered}
+**定理 10.3.1（简单原假设下 LRT 的渐近分布）** 检验 $H_0:\theta=\theta_0$ 对 $H_1:\theta\ne\theta_0$。若 $X_i$ iid、$\hat\theta$ 是 MLE 且模型满足正则条件，则在 $H_0$ 下
 $$-2\log\lambda(\mathbf X)\overset d\longrightarrow\chi_1^2.$$
 :::
+
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+令 $\ell_n(\theta)=\log L(\theta\mid\mathbf X)$。在 $\hat\theta$ 附近对 $\ell_n(\theta_0)$ 作二阶 Taylor 展开：
+
+$$
+\ell_n(\theta_0)
+=\ell_n(\hat\theta)+\ell_n'(\hat\theta)(\theta_0-\hat\theta)
++\frac12\ell_n''(\tilde\theta)(\theta_0-\hat\theta)^2,
+$$
+
+其中 $\tilde\theta$ 位于 $\theta_0$ 与 $\hat\theta$ 之间。由于内部 MLE 满足 $\ell_n'(\hat\theta)=0$，
+
+$$
+-2\log\lambda(\mathbf X)
+=-\ell_n''(\tilde\theta)(\hat\theta-\theta_0)^2
+=\left\{\frac{-\ell_n''(\tilde\theta)}n\right\}
+\{\sqrt n(\hat\theta-\theta_0)\}^2.
+$$
+
+在 $H_0$ 和正则条件下，第一因子依概率趋于 $I_1(\theta_0)$，而定理 10.1.12 给出
+$\sqrt n(\hat\theta-\theta_0)\Rightarrow N\{0,1/I_1(\theta_0)\}$。由 Slutsky 定理，乘积趋于标准正态变量的平方，即 $\chi_1^2$。
+
+</details>
 
 更一般地，若无约束维数为 $p$，原假设下自由维数为 $q$，则在光滑、内部点等正则条件下
 $$-2\log\lambda(\mathbf X)\Rightarrow\chi^2_{p-q}.$$
@@ -162,13 +243,22 @@ $$h(\hat\theta)\pm z_{\alpha/2}
 $$\left\{\theta:-2\log\frac{L(\theta\mid\mathbf x)}{L(\hat\theta\mid\mathbf x)}
 \le\chi^2_{1,1-\alpha}\right\}.$$
 
-::: {.example}
-若 $Y=\sum_iX_i$ 且 $X_i\sim\operatorname{Bernoulli}(p)$，$\hat p=y/n$，则
+::: {.example .source-numbered}
+**例 10.4.3（二项 LRT 区间）** 若 $Y=\sum_iX_i$ 且 $X_i\sim\operatorname{Bernoulli}(p)$，通过反演渐近 LRT 构造 $p$ 的置信集。
+:::
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+无约束 MLE 为 $\hat p=y/n$，因此似然比为
 $$\left\{p:-2\log\left[
 \frac{p^y(1-p)^{n-y}}{\hat p^y(1-\hat p)^{n-y}}
 \right]\le\chi^2_{1,1-\alpha}\right\}$$
 是二项 LRT 区间，通常以一维求根取得端点。
-:::
+
+在 $0<y<n$ 时，对数似然是严格凹函数，置信集通常是包含 $\hat p$ 的单一区间；分别在 $\hat p$ 左右求解等号即可得到两个端点。边界样本 $y=0$ 或 $y=n$ 需要采用相应的单侧边界处理。
+
+</details>
 
 ## 本章小结 {#asymptotic-evaluations-summary}
 

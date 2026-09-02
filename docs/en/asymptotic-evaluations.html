@@ -298,7 +298,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.16" data-path="point-estimation.html"><a href="point-estimation.html#loss-and-risk"><i class="fa fa-check"></i><b>7.16</b> Loss functions and risk</a></li>
 <li class="chapter" data-level="7.17" data-path="point-estimation.html"><a href="point-estimation.html#bayes-risk-rules"><i class="fa fa-check"></i><b>7.17</b> Bayes risk and two Bayes rules</a></li>
 <li class="chapter" data-level="7.18" data-path="point-estimation.html"><a href="point-estimation.html#normal-bayes-estimator"><i class="fa fa-check"></i><b>7.18</b> Normal–normal Bayes estimation</a></li>
-<li class="chapter" data-level="7.19" data-path="point-estimation.html"><a href="point-estimation.html#point-estimation-summary"><i class="fa fa-check"></i><b>7.19</b> Chapter summary</a></li>
+<li class="chapter" data-level="7.19" data-path="point-estimation.html"><a href="point-estimation.html#rao-blackwell-simulation"><i class="fa fa-check"></i><b>7.19</b> A simulation comparison of Rao–Blackwellization</a></li>
+<li class="chapter" data-level="7.20" data-path="point-estimation.html"><a href="point-estimation.html#defect-rate-point-estimation"><i class="fa fa-check"></i><b>7.20</b> Running case: point estimation of a defect rate</a></li>
+<li class="chapter" data-level="7.21" data-path="point-estimation.html"><a href="point-estimation.html#point-estimation-summary"><i class="fa fa-check"></i><b>7.21</b> Chapter summary</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>8</b> Hypothesis Testing</a>
 <ul>
@@ -310,7 +312,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#most-powerful-tests"><i class="fa fa-check"></i><b>8.6</b> Most powerful tests and Neyman–Pearson</a></li>
 <li class="chapter" data-level="8.7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#monotone-likelihood-ratio"><i class="fa fa-check"></i><b>8.7</b> Monotone likelihood ratio and Karlin–Rubin</a></li>
 <li class="chapter" data-level="8.8" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#unbiased-tests-p-values"><i class="fa fa-check"></i><b>8.8</b> Nonexistence of UMP, unbiased tests, and p-values</a></li>
-<li class="chapter" data-level="8.9" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-summary"><i class="fa fa-check"></i><b>8.9</b> Chapter summary</a></li>
+<li class="chapter" data-level="8.9" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#power-sample-size-effect"><i class="fa fa-check"></i><b>8.9</b> Power, sample size, and effect size</a></li>
+<li class="chapter" data-level="8.10" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#p-value-sampling-distribution"><i class="fa fa-check"></i><b>8.10</b> The sampling distribution of p-values</a></li>
+<li class="chapter" data-level="8.11" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#defect-rate-testing"><i class="fa fa-check"></i><b>8.11</b> Running case: does the defect rate exceed the benchmark?</a></li>
+<li class="chapter" data-level="8.12" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-summary"><i class="fa fa-check"></i><b>8.12</b> Chapter summary</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="interval-estimation.html"><a href="interval-estimation.html"><i class="fa fa-check"></i><b>9</b> Interval Estimation</a>
 <ul>
@@ -323,7 +328,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.7" data-path="interval-estimation.html"><a href="interval-estimation.html#interval-size-coverage"><i class="fa fa-check"></i><b>9.7</b> Evaluating interval length and coverage</a></li>
 <li class="chapter" data-level="9.8" data-path="interval-estimation.html"><a href="interval-estimation.html#shortest-pivotal-interval"><i class="fa fa-check"></i><b>9.8</b> Shortest pivotal intervals</a></li>
 <li class="chapter" data-level="9.9" data-path="interval-estimation.html"><a href="interval-estimation.html#highest-posterior-density"><i class="fa fa-check"></i><b>9.9</b> Highest-posterior-density regions</a></li>
-<li class="chapter" data-level="9.10" data-path="interval-estimation.html"><a href="interval-estimation.html#interval-estimation-summary"><i class="fa fa-check"></i><b>9.10</b> Chapter summary</a></li>
+<li class="chapter" data-level="9.10" data-path="interval-estimation.html"><a href="interval-estimation.html#confidence-interval-repeated-sampling"><i class="fa fa-check"></i><b>9.10</b> Confidence intervals under repeated sampling</a></li>
+<li class="chapter" data-level="9.11" data-path="interval-estimation.html"><a href="interval-estimation.html#binomial-interval-comparison"><i class="fa fa-check"></i><b>9.11</b> Comparing intervals for a binomial proportion</a></li>
+<li class="chapter" data-level="9.12" data-path="interval-estimation.html"><a href="interval-estimation.html#defect-rate-intervals"><i class="fa fa-check"></i><b>9.12</b> Running case: interval estimation of the defect rate</a></li>
+<li class="chapter" data-level="9.13" data-path="interval-estimation.html"><a href="interval-estimation.html#interval-estimation-summary"><i class="fa fa-check"></i><b>9.13</b> Chapter summary</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="asymptotic-evaluations.html"><a href="asymptotic-evaluations.html"><i class="fa fa-check"></i><b>10</b> Asymptotic Evaluations</a>
 <ul>
@@ -363,16 +371,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">10.1</span> Consistent estimators<a href="asymptotic-evaluations.html#consistent-estimators" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Asymptotic properties concern a sequence <span class="math inline">\(W_n=W_n(X_1,\ldots,X_n)\)</span> rather than one fixed-sample statistic.</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-145" class="definition"><strong>Definition 10.1  </strong></span>The sequence <span class="math inline">\(W_n\)</span> is <strong>consistent</strong> for <span class="math inline">\(\theta\)</span> if, for every <span class="math inline">\(\epsilon&gt;0\)</span> and <span class="math inline">\(\theta\in\Theta\)</span>,
+<p><span id="def:unlabeled-div-149" class="definition"><strong>Definition 10.1  </strong></span>The sequence <span class="math inline">\(W_n\)</span> is <strong>consistent</strong> for <span class="math inline">\(\theta\)</span> if, for every <span class="math inline">\(\epsilon&gt;0\)</span> and <span class="math inline">\(\theta\in\Theta\)</span>,
 <span class="math display">\[\lim_{n\to\infty}P_\theta(|W_n-\theta|&lt;\epsilon)=1,\]</span>
 that is, <span class="math inline">\(W_n\overset p\to\theta\)</span>.</p>
 </div>
-<div class="example">
-<p><span id="exm:unlabeled-div-146" class="example"><strong>Example 10.1  </strong></span>If <span class="math inline">\(X_i\overset{\mathrm{iid}}\sim N(\theta,1)\)</span>, then <span class="math inline">\(\bar X_n\sim N(\theta,1/n)\)</span> and
+<div class="example source-numbered">
+<p><span id="exm:unlabeled-div-150" class="example"><strong>Example 10.1  </strong></span><strong>Example 10.1.2 (Consistency of the sample mean).</strong> If <span class="math inline">\(X_i\overset{\mathrm{iid}}\sim N(\theta,1)\)</span>, prove that <span class="math inline">\(\bar X_n\)</span> is consistent for <span class="math inline">\(\theta\)</span>.</p>
+</div>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
+<p>Since <span class="math inline">\(\bar X_n\sim N(\theta,1/n)\)</span>,
 <span class="math display">\[P_\theta(|\bar X_n-\theta|&lt;\epsilon)
 =P(-\epsilon\sqrt n&lt;Z&lt;\epsilon\sqrt n)\longrightarrow1.\]</span>
 Thus <span class="math inline">\(\bar X_n\)</span> is consistent.</p>
-</div>
+</details>
 </div>
 <div id="mle-regularity-consistency" class="section level2 hasAnchor" number="10.2">
 <h2><span class="header-section-number">10.2</span> MLE regularity conditions and consistency<a href="asymptotic-evaluations.html#mle-regularity-consistency" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -386,17 +400,29 @@ Thus <span class="math inline">\(\bar X_n\)</span> is consistent.</p>
 <li>locally, <span class="math inline">\(|\partial^3\log f(x\mid\theta)/\partial\theta^3|\le M(x)\)</span> and <span class="math inline">\(E_{\theta_0}M(X)&lt;\infty\)</span>.</li>
 </ol>
 <p>The first four support the source’s consistency result; the last two are added for asymptotic normality and efficiency. Modern versions can use different weaker assumptions, but the source condition set is preserved.</p>
-<div class="theorem">
-<p><span id="thm:unlabeled-div-147" class="theorem"><strong>Theorem 10.1  </strong></span>Under the consistency regularity conditions, if <span class="math inline">\(\hat\theta\)</span> is the MLE and <span class="math inline">\(\tau\)</span> is continuous, then
+<div class="theorem source-numbered">
+<p><span id="thm:unlabeled-div-151" class="theorem"><strong>Theorem 10.1  </strong></span><strong>Theorem 10.1.6 (Consistency of MLEs).</strong> Under the consistency regularity conditions, if <span class="math inline">\(\hat\theta\)</span> is the MLE and <span class="math inline">\(\tau\)</span> is continuous, then
 <span class="math display">\[P_\theta\{|\tau(\hat\theta)-\tau(\theta)|\ge\epsilon\}\longrightarrow0.\]</span>
 Hence <span class="math inline">\(\tau(\hat\theta)\)</span> is consistent.</p>
 </div>
+<details class="course-details proof-details">
+<summary>
+<strong>View derivation</strong>
+</summary>
+<p>The textbook gives only a proof outline. For fixed <span class="math inline">\(\vartheta\)</span>, the strong law gives</p>
+<p><span class="math display">\[\frac1n\log L(\vartheta\mid\mathbf X)
+=\frac1n\sum_{i=1}^n\log f(X_i\mid\vartheta)
+\longrightarrow E_\theta\{\log f(X\mid\vartheta)\}\]</span></p>
+<p>almost surely. The Kullback–Leibler inequality and identifiability make the limit uniquely maximal at the true parameter <span class="math inline">\(\theta\)</span>. Under the additional uniform-convergence and compactness conditions cited by the source, the maximizer <span class="math inline">\(\hat\theta\)</span> converges in probability to <span class="math inline">\(\theta\)</span>. Continuity then gives
+<span class="math inline">\(\tau(\hat\theta)\overset p\to\tau(\theta)\)</span>.</p>
+<p>The source refers the fully rigorous general proof to its regularity discussion and an external text, so this disclosure intentionally remains an outline.</p>
+</details>
 </div>
 <div id="limiting-asymptotic-variance" class="section level2 hasAnchor" number="10.3">
 <h2><span class="header-section-number">10.3</span> Limiting and asymptotic variance<a href="asymptotic-evaluations.html#limiting-asymptotic-variance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Consistency asks whether an estimator reaches its target; efficiency concerns its rate and normalized variation.</p>
 <div class="definition">
-<p><span id="def:unlabeled-div-148" class="definition"><strong>Definition 10.2  </strong></span>If <span class="math inline">\(k_n\operatorname{Var}(T_n)\to\tau^2&lt;\infty\)</span>, then <span class="math inline">\(\tau^2\)</span> is a <strong>limit of variances</strong>. If
+<p><span id="def:unlabeled-div-152" class="definition"><strong>Definition 10.2  </strong></span>If <span class="math inline">\(k_n\operatorname{Var}(T_n)\to\tau^2&lt;\infty\)</span>, then <span class="math inline">\(\tau^2\)</span> is a <strong>limit of variances</strong>. If
 <span class="math display">\[a_n\{T_n-\tau(\theta)\}\overset d\longrightarrow N(0,\sigma^2),\]</span>
 then <span class="math inline">\(\sigma^2\)</span> is the <strong>asymptotic variance</strong> for that normalization.</p>
 </div>
@@ -408,23 +434,41 @@ Thus a limit of finite-sample variances and the variance of a limiting distribut
 <div id="asymptotic-efficiency" class="section level2 hasAnchor" number="10.4">
 <h2><span class="header-section-number">10.4</span> Asymptotic efficiency and MLEs<a href="asymptotic-evaluations.html#asymptotic-efficiency" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="definition">
-<p><span id="def:unlabeled-div-149" class="definition"><strong>Definition 10.3  </strong></span>If
+<p><span id="def:unlabeled-div-153" class="definition"><strong>Definition 10.3  </strong></span>If
 <span class="math display">\[\sqrt n\{W_n-\tau(\theta)\}\overset d\longrightarrow N\{0,v(\theta)\},\]</span>
 and
 <span class="math display">\[v(\theta)=\frac{[\tau&#39;(\theta)]^2}{I_1(\theta)},\qquad
 I_1(\theta)=E_\theta\left[\left\{\frac\partial{\partial\theta}\log f(X\mid\theta)\right\}^2\right],\]</span>
 then <span class="math inline">\(W_n\)</span> is asymptotically efficient.</p>
 </div>
-<div class="theorem">
-<p><span id="thm:unlabeled-div-150" class="theorem"><strong>Theorem 10.2  </strong></span>Under the stated regularity conditions, if <span class="math inline">\(\hat\theta\)</span> is the MLE and <span class="math inline">\(\tau\)</span> has the required continuity and differentiability, then
+<div class="theorem source-numbered">
+<p><span id="thm:unlabeled-div-154" class="theorem"><strong>Theorem 10.2  </strong></span><strong>Theorem 10.1.12 (Asymptotic efficiency of MLEs).</strong> Under the stated regularity conditions, if <span class="math inline">\(\hat\theta\)</span> is the MLE and <span class="math inline">\(\tau\)</span> has the required continuity and differentiability, then
 <span class="math display">\[\sqrt n\{\tau(\hat\theta)-\tau(\theta)\}\overset d\longrightarrow N\{0,v(\theta)\},\]</span>
 where <span class="math inline">\(v(\theta)\)</span> is the Cramér–Rao bound. Thus <span class="math inline">\(\tau(\hat\theta)\)</span> is consistent and asymptotically efficient.</p>
 </div>
+<details class="course-details proof-details">
+<summary>
+<strong>View derivation</strong>
+</summary>
+<p>The textbook first treats <span class="math inline">\(\hat\theta\)</span>. Write
+<span class="math inline">\(\ell_n(\theta)=\sum_{i=1}^n\log f(X_i\mid\theta)\)</span>. A Taylor expansion of the score around the true value <span class="math inline">\(\theta_0\)</span> gives</p>
+<p><span class="math display">\[0=\ell_n&#39;(\hat\theta)
+=\ell_n&#39;(\theta_0)+(\hat\theta-\theta_0)\ell_n&#39;&#39;(\theta_0)
++o_p(\sqrt n\,|\hat\theta-\theta_0|).\]</span></p>
+<p>Thus</p>
+<p><span class="math display">\[\sqrt n(\hat\theta-\theta_0)
+=\frac{n^{-1/2}\ell_n&#39;(\theta_0)}{-n^{-1}\ell_n&#39;&#39;(\theta_0)}+o_p(1).\]</span></p>
+<p>The central limit theorem and weak law yield</p>
+<p><span class="math display">\[n^{-1/2}\ell_n&#39;(\theta_0)\Rightarrow N\{0,I_1(\theta_0)\},
+\qquad -n^{-1}\ell_n&#39;&#39;(\theta_0)\overset p\longrightarrow I_1(\theta_0).\]</span></p>
+<p>Slutsky’s theorem gives asymptotic variance <span class="math inline">\(1/I_1(\theta_0)\)</span>. Applying the delta method to <span class="math inline">\(\tau\)</span> gives
+<span class="math inline">\([\tau&#39;(\theta_0)]^2/I_1(\theta_0)\)</span>, the Cramér–Rao bound. The source leaves this final extension to Exercise 10.7, so it is presented here as the indicated delta-method step.</p>
+</details>
 </div>
 <div id="asymptotic-relative-efficiency" class="section level2 hasAnchor" number="10.5">
 <h2><span class="header-section-number">10.5</span> Asymptotic relative efficiency<a href="asymptotic-evaluations.html#asymptotic-relative-efficiency" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="definition">
-<p><span id="def:unlabeled-div-151" class="definition"><strong>Definition 10.4  </strong></span>If
+<p><span id="def:unlabeled-div-155" class="definition"><strong>Definition 10.4  </strong></span>If
 <span class="math display">\[\sqrt n\{W_n-\tau(\theta)\}\Rightarrow N(0,\sigma_W^2),\qquad
 \sqrt n\{V_n-\tau(\theta)\}\Rightarrow N(0,\sigma_V^2),\]</span>
 then
@@ -439,15 +483,15 @@ Under this convention, ARE above one means that <span class="math inline">\(V_n\
 With <span class="math inline">\(B\)</span> Monte Carlo resamples, use
 <span class="math display">\[\operatorname{Var}_B^*(\hat\theta)=\frac1{B-1}\sum_{i=1}^B(\hat\theta_i^*-\bar{\hat\theta}^*)^2.\]</span>
 One must distinguish Monte Carlo convergence as <span class="math inline">\(B\to\infty\)</span> for fixed data from bootstrap consistency as <span class="math inline">\(n\to\infty\)</span>.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="asymptotic-evaluations.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1001</span>)</span>
-<span id="cb20-2"><a href="asymptotic-evaluations.html#cb20-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">4.1</span>, <span class="fl">5.3</span>, <span class="fl">4.8</span>, <span class="fl">6.2</span>, <span class="fl">5.7</span>, <span class="fl">4.9</span>, <span class="fl">5.5</span>, <span class="fl">6.0</span>)</span>
-<span id="cb20-3"><a href="asymptotic-evaluations.html#cb20-3" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">4000</span></span>
-<span id="cb20-4"><a href="asymptotic-evaluations.html#cb20-4" aria-hidden="true" tabindex="-1"></a>boot_mean <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, <span class="fu">mean</span>(<span class="fu">sample</span>(x, <span class="at">replace =</span> <span class="cn">TRUE</span>)))</span>
-<span id="cb20-5"><a href="asymptotic-evaluations.html#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(boot_mean, <span class="at">breaks =</span> <span class="dv">32</span>, <span class="at">probability =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb20-6"><a href="asymptotic-evaluations.html#cb20-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;#DCEAF4&quot;</span>, <span class="at">border =</span> <span class="st">&quot;white&quot;</span>,</span>
-<span id="cb20-7"><a href="asymptotic-evaluations.html#cb20-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Bootstrap sample mean&quot;</span>, <span class="at">main =</span> <span class="st">&quot;&quot;</span>)</span>
-<span id="cb20-8"><a href="asymptotic-evaluations.html#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(x), <span class="at">col =</span> <span class="st">&quot;#C43C39&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
-<span id="cb20-9"><a href="asymptotic-evaluations.html#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="fu">sprintf</span>(<span class="st">&quot;Bootstrap SE = %.3f&quot;</span>, <span class="fu">sd</span>(boot_mean)), <span class="at">bty =</span> <span class="st">&quot;n&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="asymptotic-evaluations.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1001</span>)</span>
+<span id="cb30-2"><a href="asymptotic-evaluations.html#cb30-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">4.1</span>, <span class="fl">5.3</span>, <span class="fl">4.8</span>, <span class="fl">6.2</span>, <span class="fl">5.7</span>, <span class="fl">4.9</span>, <span class="fl">5.5</span>, <span class="fl">6.0</span>)</span>
+<span id="cb30-3"><a href="asymptotic-evaluations.html#cb30-3" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">4000</span></span>
+<span id="cb30-4"><a href="asymptotic-evaluations.html#cb30-4" aria-hidden="true" tabindex="-1"></a>boot_mean <span class="ot">&lt;-</span> <span class="fu">replicate</span>(B, <span class="fu">mean</span>(<span class="fu">sample</span>(x, <span class="at">replace =</span> <span class="cn">TRUE</span>)))</span>
+<span id="cb30-5"><a href="asymptotic-evaluations.html#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(boot_mean, <span class="at">breaks =</span> <span class="dv">32</span>, <span class="at">probability =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb30-6"><a href="asymptotic-evaluations.html#cb30-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;#DCEAF4&quot;</span>, <span class="at">border =</span> <span class="st">&quot;white&quot;</span>,</span>
+<span id="cb30-7"><a href="asymptotic-evaluations.html#cb30-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Bootstrap sample mean&quot;</span>, <span class="at">main =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb30-8"><a href="asymptotic-evaluations.html#cb30-8" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v =</span> <span class="fu">mean</span>(x), <span class="at">col =</span> <span class="st">&quot;#C43C39&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb30-9"><a href="asymptotic-evaluations.html#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="fu">sprintf</span>(<span class="st">&quot;Bootstrap SE = %.3f&quot;</span>, <span class="fu">sd</span>(boot_mean)), <span class="at">bty =</span> <span class="st">&quot;n&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:en-chap10-bootstrap-se"></span>
 <img src="10-asymptotic-evaluations_files/figure-html/en-chap10-bootstrap-se-1.png" alt="Bootstrap distribution and standard error of a sample mean" width="90%" />
 <p class="caption">
@@ -464,14 +508,14 @@ An M-estimator minimizes <span class="math inline">\(\sum_i\rho_k(x_i-a)\)</span
 <span class="math display">\[-\frac1{\sqrt n}\sum_{i=1}^n\psi(X_i-\theta_0)
 \Rightarrow N\left(0,E_{\theta_0}[\psi(X-\theta_0)^2]\right),\]</span>
 and local linearization of the estimating equation yields asymptotic normality of <span class="math inline">\(\hat\theta\)</span>.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="asymptotic-evaluations.html#cb21-1" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">length.out =</span> <span class="dv">401</span>)</span>
-<span id="cb21-2"><a href="asymptotic-evaluations.html#cb21-2" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
-<span id="cb21-3"><a href="asymptotic-evaluations.html#cb21-3" aria-hidden="true" tabindex="-1"></a>huber <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">abs</span>(u) <span class="sc">&lt;=</span> k, u<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> <span class="dv">2</span>, k <span class="sc">*</span> <span class="fu">abs</span>(u) <span class="sc">-</span> k<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> <span class="dv">2</span>)</span>
-<span id="cb21-4"><a href="asymptotic-evaluations.html#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(u, u<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> <span class="dv">2</span>, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;#1F77B4&quot;</span>,</span>
-<span id="cb21-5"><a href="asymptotic-evaluations.html#cb21-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Residual u&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Loss&quot;</span>)</span>
-<span id="cb21-6"><a href="asymptotic-evaluations.html#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(u, huber, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;#C43C39&quot;</span>)</span>
-<span id="cb21-7"><a href="asymptotic-evaluations.html#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;Squared loss&quot;</span>, <span class="st">&quot;Huber loss&quot;</span>),</span>
-<span id="cb21-8"><a href="asymptotic-evaluations.html#cb21-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;#1F77B4&quot;</span>, <span class="st">&quot;#C43C39&quot;</span>), <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">bty =</span> <span class="st">&quot;n&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="asymptotic-evaluations.html#cb31-1" aria-hidden="true" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="sc">-</span><span class="dv">4</span>, <span class="dv">4</span>, <span class="at">length.out =</span> <span class="dv">401</span>)</span>
+<span id="cb31-2"><a href="asymptotic-evaluations.html#cb31-2" aria-hidden="true" tabindex="-1"></a>k <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
+<span id="cb31-3"><a href="asymptotic-evaluations.html#cb31-3" aria-hidden="true" tabindex="-1"></a>huber <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(<span class="fu">abs</span>(u) <span class="sc">&lt;=</span> k, u<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> <span class="dv">2</span>, k <span class="sc">*</span> <span class="fu">abs</span>(u) <span class="sc">-</span> k<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb31-4"><a href="asymptotic-evaluations.html#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(u, u<span class="sc">^</span><span class="dv">2</span> <span class="sc">/</span> <span class="dv">2</span>, <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;#1F77B4&quot;</span>,</span>
+<span id="cb31-5"><a href="asymptotic-evaluations.html#cb31-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Residual u&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Loss&quot;</span>)</span>
+<span id="cb31-6"><a href="asymptotic-evaluations.html#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(u, huber, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">col =</span> <span class="st">&quot;#C43C39&quot;</span>)</span>
+<span id="cb31-7"><a href="asymptotic-evaluations.html#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topleft&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;Squared loss&quot;</span>, <span class="st">&quot;Huber loss&quot;</span>),</span>
+<span id="cb31-8"><a href="asymptotic-evaluations.html#cb31-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;#1F77B4&quot;</span>, <span class="st">&quot;#C43C39&quot;</span>), <span class="at">lty =</span> <span class="dv">1</span>, <span class="at">lwd =</span> <span class="dv">2</span>, <span class="at">bty =</span> <span class="st">&quot;n&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:en-chap10-huber-loss"></span>
 <img src="10-asymptotic-evaluations_files/figure-html/en-chap10-huber-loss-1.png" alt="Squared loss and Huber loss" width="90%" />
 <p class="caption">
@@ -481,10 +525,25 @@ Figure 10.2: Squared loss and Huber loss
 </div>
 <div id="asymptotic-lrt-distribution" class="section level2 hasAnchor" number="10.8">
 <h2><span class="header-section-number">10.8</span> Asymptotic distribution of LRTs<a href="asymptotic-evaluations.html#asymptotic-lrt-distribution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="theorem">
-<p><span id="thm:unlabeled-div-152" class="theorem"><strong>Theorem 10.3  </strong></span>For <span class="math inline">\(H_0:\theta=\theta_0\)</span> against <span class="math inline">\(H_1:\theta\ne\theta_0\)</span>, if the iid model and MLE satisfy the regularity conditions, then under <span class="math inline">\(H_0\)</span>,
+<div class="theorem source-numbered">
+<p><span id="thm:unlabeled-div-156" class="theorem"><strong>Theorem 10.3  </strong></span><strong>Theorem 10.3.1 (Asymptotic LRT distribution for a simple null).</strong> For <span class="math inline">\(H_0:\theta=\theta_0\)</span> against <span class="math inline">\(H_1:\theta\ne\theta_0\)</span>, if the iid model and MLE satisfy the regularity conditions, then under <span class="math inline">\(H_0\)</span>,
 <span class="math display">\[-2\log\lambda(\mathbf X)\overset d\longrightarrow\chi_1^2.\]</span></p>
 </div>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>Let <span class="math inline">\(\ell_n(\theta)=\log L(\theta\mid\mathbf X)\)</span>. Expanding around <span class="math inline">\(\hat\theta\)</span> gives</p>
+<p><span class="math display">\[\ell_n(\theta_0)=\ell_n(\hat\theta)
++\ell_n&#39;(\hat\theta)(\theta_0-\hat\theta)
++\frac12\ell_n&#39;&#39;(\tilde\theta)(\theta_0-\hat\theta)^2,\]</span></p>
+<p>where <span class="math inline">\(\tilde\theta\)</span> lies between <span class="math inline">\(\theta_0\)</span> and <span class="math inline">\(\hat\theta\)</span>. Since an interior MLE has <span class="math inline">\(\ell_n&#39;(\hat\theta)=0\)</span>,</p>
+<p><span class="math display">\[-2\log\lambda(\mathbf X)
+=\left\{\frac{-\ell_n&#39;&#39;(\tilde\theta)}n\right\}
+\{\sqrt n(\hat\theta-\theta_0)\}^2.\]</span></p>
+<p>Under <span class="math inline">\(H_0\)</span>, the first factor converges in probability to <span class="math inline">\(I_1(\theta_0)\)</span>, while Theorem 10.1.12 gives
+<span class="math inline">\(\sqrt n(\hat\theta-\theta_0)\Rightarrow N\{0,1/I_1(\theta_0)\}\)</span>. Slutsky’s theorem therefore makes the product converge to the square of a standard normal variable, namely <span class="math inline">\(\chi_1^2\)</span>.</p>
+</details>
 <p>More generally, if the unrestricted model has dimension <span class="math inline">\(p\)</span> and the null has <span class="math inline">\(q\)</span> free dimensions, then under smooth interior regularity,
 <span class="math display">\[-2\log\lambda(\mathbf X)\Rightarrow\chi^2_{p-q}.\]</span>
 An approximate level <span class="math inline">\(\alpha\)</span> test rejects for <span class="math inline">\(-2\log\lambda\ge\chi^2_{p-q,1-\alpha}\)</span>. Boundary parameters, nonidentifiability, and parameter-dependent support can invalidate this limit.</p>
@@ -504,13 +563,20 @@ MLE asymptotic normality and Slutsky’s theorem yield the Wald interval
 <p>Inverting the LRT gives the approximate <span class="math inline">\(1-\alpha\)</span> confidence set
 <span class="math display">\[\left\{\theta:-2\log\frac{L(\theta\mid\mathbf x)}{L(\hat\theta\mid\mathbf x)}
 \le\chi^2_{1,1-\alpha}\right\}.\]</span></p>
-<div class="example">
-<p><span id="exm:unlabeled-div-153" class="example"><strong>Example 10.2  </strong></span>If <span class="math inline">\(Y=\sum_iX_i\)</span> for independent Bernoulli<span class="math inline">\((p)\)</span> observations and <span class="math inline">\(\hat p=y/n\)</span>, the binomial LRT interval is
+<div class="example source-numbered">
+<p><span id="exm:unlabeled-div-157" class="example"><strong>Example 10.2  </strong></span><strong>Example 10.4.3 (Binomial LRT interval).</strong> If <span class="math inline">\(Y=\sum_iX_i\)</span> for independent Bernoulli<span class="math inline">\((p)\)</span> observations, invert the asymptotic LRT to construct a confidence set for <span class="math inline">\(p\)</span>.</p>
+</div>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
+<p>The unrestricted MLE is <span class="math inline">\(\hat p=y/n\)</span>, so the confidence set is
 <span class="math display">\[\left\{p:-2\log\left[
 \frac{p^y(1-p)^{n-y}}{\hat p^y(1-\hat p)^{n-y}}
 \right]\le\chi^2_{1,1-\alpha}\right\}.\]</span>
 Its endpoints are normally obtained by one-dimensional root finding.</p>
-</div>
+<p>For <span class="math inline">\(0&lt;y&lt;n\)</span>, strict concavity of the log likelihood usually makes this a single interval containing <span class="math inline">\(\hat p\)</span>; solve the equality separately on either side. Boundary samples <span class="math inline">\(y=0\)</span> or <span class="math inline">\(y=n\)</span> require the corresponding one-sided boundary treatment.</p>
+</details>
 </div>
 <div id="asymptotic-evaluations-summary" class="section level2 hasAnchor" number="10.11">
 <h2><span class="header-section-number">10.11</span> Chapter summary<a href="asymptotic-evaluations.html#asymptotic-evaluations-summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>

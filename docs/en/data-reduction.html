@@ -298,7 +298,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.16" data-path="point-estimation.html"><a href="point-estimation.html#loss-and-risk"><i class="fa fa-check"></i><b>7.16</b> Loss functions and risk</a></li>
 <li class="chapter" data-level="7.17" data-path="point-estimation.html"><a href="point-estimation.html#bayes-risk-rules"><i class="fa fa-check"></i><b>7.17</b> Bayes risk and two Bayes rules</a></li>
 <li class="chapter" data-level="7.18" data-path="point-estimation.html"><a href="point-estimation.html#normal-bayes-estimator"><i class="fa fa-check"></i><b>7.18</b> Normal–normal Bayes estimation</a></li>
-<li class="chapter" data-level="7.19" data-path="point-estimation.html"><a href="point-estimation.html#point-estimation-summary"><i class="fa fa-check"></i><b>7.19</b> Chapter summary</a></li>
+<li class="chapter" data-level="7.19" data-path="point-estimation.html"><a href="point-estimation.html#rao-blackwell-simulation"><i class="fa fa-check"></i><b>7.19</b> A simulation comparison of Rao–Blackwellization</a></li>
+<li class="chapter" data-level="7.20" data-path="point-estimation.html"><a href="point-estimation.html#defect-rate-point-estimation"><i class="fa fa-check"></i><b>7.20</b> Running case: point estimation of a defect rate</a></li>
+<li class="chapter" data-level="7.21" data-path="point-estimation.html"><a href="point-estimation.html#point-estimation-summary"><i class="fa fa-check"></i><b>7.21</b> Chapter summary</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>8</b> Hypothesis Testing</a>
 <ul>
@@ -310,7 +312,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.6" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#most-powerful-tests"><i class="fa fa-check"></i><b>8.6</b> Most powerful tests and Neyman–Pearson</a></li>
 <li class="chapter" data-level="8.7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#monotone-likelihood-ratio"><i class="fa fa-check"></i><b>8.7</b> Monotone likelihood ratio and Karlin–Rubin</a></li>
 <li class="chapter" data-level="8.8" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#unbiased-tests-p-values"><i class="fa fa-check"></i><b>8.8</b> Nonexistence of UMP, unbiased tests, and p-values</a></li>
-<li class="chapter" data-level="8.9" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-summary"><i class="fa fa-check"></i><b>8.9</b> Chapter summary</a></li>
+<li class="chapter" data-level="8.9" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#power-sample-size-effect"><i class="fa fa-check"></i><b>8.9</b> Power, sample size, and effect size</a></li>
+<li class="chapter" data-level="8.10" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#p-value-sampling-distribution"><i class="fa fa-check"></i><b>8.10</b> The sampling distribution of p-values</a></li>
+<li class="chapter" data-level="8.11" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#defect-rate-testing"><i class="fa fa-check"></i><b>8.11</b> Running case: does the defect rate exceed the benchmark?</a></li>
+<li class="chapter" data-level="8.12" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html#hypothesis-testing-summary"><i class="fa fa-check"></i><b>8.12</b> Chapter summary</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="interval-estimation.html"><a href="interval-estimation.html"><i class="fa fa-check"></i><b>9</b> Interval Estimation</a>
 <ul>
@@ -323,7 +328,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.7" data-path="interval-estimation.html"><a href="interval-estimation.html#interval-size-coverage"><i class="fa fa-check"></i><b>9.7</b> Evaluating interval length and coverage</a></li>
 <li class="chapter" data-level="9.8" data-path="interval-estimation.html"><a href="interval-estimation.html#shortest-pivotal-interval"><i class="fa fa-check"></i><b>9.8</b> Shortest pivotal intervals</a></li>
 <li class="chapter" data-level="9.9" data-path="interval-estimation.html"><a href="interval-estimation.html#highest-posterior-density"><i class="fa fa-check"></i><b>9.9</b> Highest-posterior-density regions</a></li>
-<li class="chapter" data-level="9.10" data-path="interval-estimation.html"><a href="interval-estimation.html#interval-estimation-summary"><i class="fa fa-check"></i><b>9.10</b> Chapter summary</a></li>
+<li class="chapter" data-level="9.10" data-path="interval-estimation.html"><a href="interval-estimation.html#confidence-interval-repeated-sampling"><i class="fa fa-check"></i><b>9.10</b> Confidence intervals under repeated sampling</a></li>
+<li class="chapter" data-level="9.11" data-path="interval-estimation.html"><a href="interval-estimation.html#binomial-interval-comparison"><i class="fa fa-check"></i><b>9.11</b> Comparing intervals for a binomial proportion</a></li>
+<li class="chapter" data-level="9.12" data-path="interval-estimation.html"><a href="interval-estimation.html#defect-rate-intervals"><i class="fa fa-check"></i><b>9.12</b> Running case: interval estimation of the defect rate</a></li>
+<li class="chapter" data-level="9.13" data-path="interval-estimation.html"><a href="interval-estimation.html#interval-estimation-summary"><i class="fa fa-check"></i><b>9.13</b> Chapter summary</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="asymptotic-evaluations.html"><a href="asymptotic-evaluations.html"><i class="fa fa-check"></i><b>10</b> Asymptotic Evaluations</a>
 <ul>
@@ -373,42 +381,70 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="sufficiency-principle" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> The sufficiency principle and conditional definition<a href="data-reduction.html#sufficiency-principle" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="definition">
-<p><span id="def:unlabeled-div-92" class="definition"><strong>Definition 6.1  </strong></span>A statistic <span class="math inline">\(T(\mathbf X)\)</span> is <strong>sufficient</strong> for <span class="math inline">\(\theta\)</span> if the conditional distribution of <span class="math inline">\(\mathbf X\)</span> given <span class="math inline">\(T(\mathbf X)\)</span> does not depend on <span class="math inline">\(\theta\)</span>.</p>
+<p><span id="def:unlabeled-div-92" class="definition"><strong>Definition 6.1  </strong></span><strong>Definition 6.2.1 (Sufficient statistic).</strong></p>
+<p>A statistic <span class="math inline">\(T(\mathbf X)\)</span> is <strong>sufficient</strong> for <span class="math inline">\(\theta\)</span> if the conditional distribution of <span class="math inline">\(\mathbf X\)</span> given <span class="math inline">\(T(\mathbf X)\)</span> does not depend on <span class="math inline">\(\theta\)</span>.</p>
 </div>
 <p>The sufficiency principle says that inference about <span class="math inline">\(\theta\)</span> should depend on the sample only through a sufficient statistic. In particular, <span class="math inline">\(T(\mathbf x)=T(\mathbf y)\)</span> should lead to the same inference for the two sample points.</p>
-<p>If <span class="math inline">\(p(\mathbf x\mid\theta)\)</span> is the joint pmf or pdf and <span class="math inline">\(q(t\mid\theta)\)</span> is that of <span class="math inline">\(T\)</span>, then, wherever defined,</p>
+<div class="source-theorem">
+<p><strong>Theorem 6.2.2 (Density-ratio criterion).</strong> If <span class="math inline">\(p(\mathbf x\mid\theta)\)</span> is the joint pmf or pdf and <span class="math inline">\(q(t\mid\theta)\)</span> is that of <span class="math inline">\(T\)</span>, and for every sample point <span class="math inline">\(\mathbf x\)</span>,</p>
 <p><span class="math display">\[
 \frac{p(\mathbf x\mid\theta)}{q(T(\mathbf x)\mid\theta)}
 \]</span></p>
-<p>being constant in <span class="math inline">\(\theta\)</span> expresses that the conditional law contains no parameter.</p>
-<div class="example">
-<p><span id="exm:unlabeled-div-93" class="example"><strong>Example 6.1  </strong></span>If <span class="math inline">\(X_i\overset{\mathrm{iid}}\sim\operatorname{Bernoulli}(p)\)</span> and <span class="math inline">\(T=\sum_iX_i\)</span>, then</p>
+<p>is constant as a function of <span class="math inline">\(\theta\)</span>, then <span class="math inline">\(T(\mathbf X)\)</span> is sufficient for <span class="math inline">\(\theta\)</span>.</p>
+</div>
+<div class="example source-numbered">
+<p><span id="exm:unlabeled-div-93" class="example"><strong>Example 6.1  </strong></span><strong>Example 6.2.3 (Binomial sufficient statistic).</strong> If
+<span class="math inline">\(X_i\overset{\mathrm{iid}}\sim\operatorname{Bernoulli}(p)\)</span> and <span class="math inline">\(T=\sum_iX_i\)</span>, prove that <span class="math inline">\(T\)</span> is sufficient for <span class="math inline">\(p\)</span>.</p>
+</div>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
+<p>The sample joint pmf and the pmf of <span class="math inline">\(T\)</span> are</p>
 <p><span class="math display">\[p(\mathbf x\mid p)=p^{\sum x_i}(1-p)^{n-\sum x_i},\qquad
 q(t\mid p)=\binom ntp^t(1-p)^{n-t}.\]</span></p>
-<p>Thus</p>
+<p>With <span class="math inline">\(t=T(\mathbf x)=\sum_i x_i\)</span>,</p>
 <p><span class="math display">\[
 \frac{p(\mathbf x\mid p)}{q(T(\mathbf x)\mid p)}
 =\frac1{\binom n{T(\mathbf x)}},
 \]</span></p>
 <p>which is free of <span class="math inline">\(p\)</span>. Hence the total number of successes is sufficient.</p>
-</div>
+</details>
 </div>
 <div id="factorization-normal" class="section level2 hasAnchor" number="6.3">
 <h2><span class="header-section-number">6.3</span> The factorization theorem and normal samples<a href="data-reduction.html#factorization-normal" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="theorem">
-<p><span id="thm:unlabeled-div-94" class="theorem"><strong>Theorem 6.1  </strong></span><strong>Neyman–Fisher factorization theorem.</strong> A statistic <span class="math inline">\(T(\mathbf X)\)</span> is sufficient for <span class="math inline">\(\theta\)</span> if and only if functions <span class="math inline">\(g\)</span> and <span class="math inline">\(h\)</span> exist such that</p>
+<div class="theorem source-numbered">
+<p><span id="thm:unlabeled-div-94" class="theorem"><strong>Theorem 6.1  </strong></span><strong>Theorem 6.2.6 (Neyman–Fisher factorization theorem).</strong> A statistic <span class="math inline">\(T(\mathbf X)\)</span> is sufficient for <span class="math inline">\(\theta\)</span> if and only if functions <span class="math inline">\(g\)</span> and <span class="math inline">\(h\)</span> exist such that</p>
 <p><span class="math display">\[f(\mathbf x\mid\theta)=g(T(\mathbf x)\mid\theta)h(\mathbf x),\]</span></p>
 <p>where <span class="math inline">\(h\)</span> does not depend on <span class="math inline">\(\theta\)</span>.</p>
 </div>
-<p>In the discrete case this follows from</p>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>First consider the discrete case. If <span class="math inline">\(T\)</span> is sufficient, set</p>
+<p><span class="math display">\[g(t\mid\theta)=P_\theta\{T(\mathbf X)=t\},\qquad
+h(\mathbf x)=P\{\mathbf X=\mathbf x\mid T(\mathbf X)=T(\mathbf x)\}.\]</span></p>
+<p>Sufficiency makes <span class="math inline">\(h\)</span> parameter-free, and the multiplication rule gives</p>
 <p><span class="math display">\[
 P_\theta(\mathbf X=\mathbf x)
 =P_\theta\{T(\mathbf X)=T(\mathbf x)\}
-P\{\mathbf X=\mathbf x\mid T(\mathbf X)=T(\mathbf x)\};
+P\{\mathbf X=\mathbf x\mid T(\mathbf X)=T(\mathbf x)\}.
 \]</span></p>
-<p>the continuous case uses conditional densities.</p>
-<div class="example">
-<p><span id="exm:unlabeled-div-95" class="example"><strong>Example 6.2  </strong></span>Let <span class="math inline">\(X_i\overset{\mathrm{iid}}\sim N(\mu,\sigma^2)\)</span> with known <span class="math inline">\(\sigma^2\)</span>. Since</p>
+<p>Conversely, suppose <span class="math inline">\(f(\mathbf x\mid\theta)=g(T(\mathbf x)\mid\theta)h(\mathbf x)\)</span>. With
+<span class="math inline">\(A_t=\{\mathbf y:T(\mathbf y)=t\}\)</span> and <span class="math inline">\(\mathbf x\in A_t\)</span>,</p>
+<p><span class="math display">\[P_\theta(\mathbf X=\mathbf x\mid T=t)
+=\frac{h(\mathbf x)}{\sum_{\mathbf y\in A_t}h(\mathbf y)},\]</span></p>
+<p>which is free of <span class="math inline">\(\theta\)</span>. Thus <span class="math inline">\(T\)</span> is sufficient. Replacing masses and sums by densities and integrals gives the continuous case.</p>
+</details>
+<div class="example source-numbered">
+<p><span id="exm:unlabeled-div-95" class="example"><strong>Example 6.2  </strong></span><strong>Example 6.2.7 (Normal sample with known variance).</strong> Let <span class="math inline">\(X_i\overset{\mathrm{iid}}\sim N(\mu,\sigma^2)\)</span> with known <span class="math inline">\(\sigma^2\)</span>. Prove that <span class="math inline">\(\bar X\)</span> is sufficient for <span class="math inline">\(\mu\)</span>.</p>
+</div>
+<details class="course-details solution-details">
+<summary>
+<strong>View detailed solution</strong>
+</summary>
+<p>Since</p>
 <p><span class="math display">\[
 \sum_{i=1}^n(x_i-\mu)^2
 =\sum_{i=1}^n(x_i-\bar x)^2+n(\bar x-\mu)^2,
@@ -423,7 +459,7 @@ f(\mathbf x\mid\mu)
 \end{aligned}
 \]</span></p>
 <p>Therefore <span class="math inline">\(\bar X\)</span> is sufficient for <span class="math inline">\(\mu\)</span>. The same result follows by checking that the conditional density based on <span class="math inline">\(\bar X\sim N(\mu,\sigma^2/n)\)</span> is free of <span class="math inline">\(\mu\)</span>.</p>
-</div>
+</details>
 </div>
 <div id="support-dependent-sufficiency" class="section level2 hasAnchor" number="6.4">
 <h2><span class="header-section-number">6.4</span> Sufficient statistics with parameter-dependent support<a href="data-reduction.html#support-dependent-sufficiency" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -450,13 +486,26 @@ f(\mathbf x\mid\mu,\sigma^2)
 <div class="definition">
 <p><span id="def:unlabeled-div-98" class="definition"><strong>Definition 6.2  </strong></span>A sufficient statistic <span class="math inline">\(T\)</span> is <strong>minimal sufficient</strong> if, for every other sufficient statistic <span class="math inline">\(T&#39;\)</span>, there is a function <span class="math inline">\(g\)</span> such that <span class="math inline">\(T=g(T&#39;)\)</span>. It achieves the greatest reduction among sufficient statistics.</p>
 </div>
-<div class="theorem">
-<p><span id="thm:unlabeled-div-99" class="theorem"><strong>Theorem 6.2  </strong></span><strong>Lehmann–Scheffé criterion.</strong> If, for every pair <span class="math inline">\(\mathbf x,\mathbf y\)</span>,</p>
+<div class="theorem source-numbered">
+<p><span id="thm:unlabeled-div-99" class="theorem"><strong>Theorem 6.2  </strong></span><strong>Theorem 6.2.13 (Minimal-sufficiency criterion).</strong> If, for every pair <span class="math inline">\(\mathbf x,\mathbf y\)</span>,</p>
 <p><span class="math display">\[
 \frac{f(\mathbf x\mid\theta)}{f(\mathbf y\mid\theta)}
 \]</span></p>
 <p>is constant in <span class="math inline">\(\theta\)</span> if and only if <span class="math inline">\(T(\mathbf x)=T(\mathbf y)\)</span>, then <span class="math inline">\(T\)</span> is minimal sufficient.</p>
 </div>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>Define <span class="math inline">\(\mathbf x\sim\mathbf y\)</span> when the density ratio is parameter-free. The hypothesis says that the level sets of <span class="math inline">\(T\)</span> are exactly these equivalence classes.</p>
+<p>Let <span class="math inline">\(U\)</span> be any sufficient statistic. By factorization, <span class="math inline">\(U(\mathbf x)=U(\mathbf y)\)</span> implies</p>
+<p><span class="math display">\[\frac{f(\mathbf x\mid\theta)}{f(\mathbf y\mid\theta)}
+=\frac{h(\mathbf x)}{h(\mathbf y)},\]</span></p>
+<p>so <span class="math inline">\(T(\mathbf x)=T(\mathbf y)\)</span>. Hence <span class="math inline">\(T\)</span> is constant on each level set of <span class="math inline">\(U\)</span>, and <span class="math inline">\(T=g(U)\)</span> for some <span class="math inline">\(g\)</span>.</p>
+<p>It remains to see that <span class="math inline">\(T\)</span> is sufficient. Choose one representative <span class="math inline">\(\mathbf x_t\)</span> in each level set and write
+<span class="math inline">\(g(t\mid\theta)=f(\mathbf x_t\mid\theta)\)</span> and
+<span class="math inline">\(h(\mathbf x)=f(\mathbf x\mid\theta)/f(\mathbf x_{T(\mathbf x)}\mid\theta)\)</span>. By hypothesis this ratio is parameter-free, so factorization proves sufficiency. Therefore <span class="math inline">\(T\)</span> is minimal sufficient.</p>
+</details>
 <p>For the two-parameter normal model, the density ratio is</p>
 <p><span class="math display">\[
 \exp\left\{\frac{-n(\bar x^2-\bar y^2)+2n\mu(\bar x-\bar y)
@@ -526,9 +575,18 @@ Figure 6.1: Uniform-sample ranges have the same distribution under different loc
 </div>
 <div id="basu-theorem" class="section level2 hasAnchor" number="6.8">
 <h2><span class="header-section-number">6.8</span> Basu’s theorem and independence<a href="data-reduction.html#basu-theorem" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="theorem">
-<p><span id="thm:unlabeled-div-104" class="theorem"><strong>Theorem 6.3  </strong></span><strong>Basu’s theorem.</strong> A complete sufficient statistic is independent of every ancillary statistic.</p>
+<div class="theorem source-numbered">
+<p><span id="thm:unlabeled-div-104" class="theorem"><strong>Theorem 6.3  </strong></span><strong>Theorem 6.2.24 (Basu’s theorem).</strong> A complete sufficient statistic is independent of every ancillary statistic.</p>
 </div>
+<details class="course-details proof-details">
+<summary>
+<strong>Expand proof</strong>
+</summary>
+<p>Let <span class="math inline">\(T\)</span> be complete sufficient and <span class="math inline">\(V\)</span> ancillary. For any measurable set <span class="math inline">\(B\)</span>, define</p>
+<p><span class="math display">\[g_B(T)=P_\theta(V\in B\mid T)-P_\theta(V\in B).\]</span></p>
+<p>The first term is parameter-free by sufficiency and the second by ancillarity. The tower property gives <span class="math inline">\(E_\theta\{g_B(T)\}=0\)</span> for every <span class="math inline">\(\theta\)</span>. Completeness therefore implies <span class="math inline">\(g_B(T)=0\)</span> almost surely. Thus
+<span class="math inline">\(P_\theta(V\in B\mid T)=P_\theta(V\in B)\)</span> for every measurable <span class="math inline">\(B\)</span>, proving independence.</p>
+</details>
 <p>If <span class="math inline">\(X_i\)</span> are iid exponential with mean <span class="math inline">\(\theta\)</span>, then
 <span class="math inline">\(T=\sum_iX_i\)</span> is complete sufficient and
 <span class="math inline">\(G=X_n/\sum_iX_i\)</span> is scale-free and ancillary. Hence <span class="math inline">\(G\)</span> and <span class="math inline">\(T\)</span> are independent.</p>

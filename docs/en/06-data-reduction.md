@@ -20,26 +20,37 @@ The sufficiency principle seeks to retain parameter information; the likelihood 
 ## The sufficiency principle and conditional definition {#sufficiency-principle}
 
 ::: {.definition}
+**Definition 6.2.1 (Sufficient statistic).**
+
 A statistic $T(\mathbf X)$ is **sufficient** for $\theta$ if the conditional distribution of $\mathbf X$ given $T(\mathbf X)$ does not depend on $\theta$.
 :::
 
 The sufficiency principle says that inference about $\theta$ should depend on the sample only through a sufficient statistic. In particular, $T(\mathbf x)=T(\mathbf y)$ should lead to the same inference for the two sample points.
 
-If $p(\mathbf x\mid\theta)$ is the joint pmf or pdf and $q(t\mid\theta)$ is that of $T$, then, wherever defined,
+::: {.source-theorem}
+**Theorem 6.2.2 (Density-ratio criterion).** If $p(\mathbf x\mid\theta)$ is the joint pmf or pdf and $q(t\mid\theta)$ is that of $T$, and for every sample point $\mathbf x$,
 
 $$
 \frac{p(\mathbf x\mid\theta)}{q(T(\mathbf x)\mid\theta)}
 $$
 
-being constant in $\theta$ expresses that the conditional law contains no parameter.
+is constant as a function of $\theta$, then $T(\mathbf X)$ is sufficient for $\theta$.
+:::
 
-::: {.example}
-If $X_i\overset{\mathrm{iid}}\sim\operatorname{Bernoulli}(p)$ and $T=\sum_iX_i$, then
+::: {.example .source-numbered}
+**Example 6.2.3 (Binomial sufficient statistic).** If
+$X_i\overset{\mathrm{iid}}\sim\operatorname{Bernoulli}(p)$ and $T=\sum_iX_i$, prove that $T$ is sufficient for $p$.
+:::
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+The sample joint pmf and the pmf of $T$ are
 
 $$p(\mathbf x\mid p)=p^{\sum x_i}(1-p)^{n-\sum x_i},\qquad
 q(t\mid p)=\binom ntp^t(1-p)^{n-t}.$$
 
-Thus
+With $t=T(\mathbf x)=\sum_i x_i$,
 
 $$
 \frac{p(\mathbf x\mid p)}{q(T(\mathbf x)\mid p)}
@@ -47,30 +58,53 @@ $$
 $$
 
 which is free of $p$. Hence the total number of successes is sufficient.
-:::
+
+</details>
 
 ## The factorization theorem and normal samples {#factorization-normal}
 
-::: {.theorem}
-**Neyman--Fisher factorization theorem.** A statistic $T(\mathbf X)$ is sufficient for $\theta$ if and only if functions $g$ and $h$ exist such that
+::: {.theorem .source-numbered}
+**Theorem 6.2.6 (Neyman--Fisher factorization theorem).** A statistic $T(\mathbf X)$ is sufficient for $\theta$ if and only if functions $g$ and $h$ exist such that
 
 $$f(\mathbf x\mid\theta)=g(T(\mathbf x)\mid\theta)h(\mathbf x),$$
 
 where $h$ does not depend on $\theta$.
 :::
 
-In the discrete case this follows from
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+First consider the discrete case. If $T$ is sufficient, set
+
+$$g(t\mid\theta)=P_\theta\{T(\mathbf X)=t\},\qquad
+h(\mathbf x)=P\{\mathbf X=\mathbf x\mid T(\mathbf X)=T(\mathbf x)\}.$$
+
+Sufficiency makes $h$ parameter-free, and the multiplication rule gives
 
 $$
 P_\theta(\mathbf X=\mathbf x)
 =P_\theta\{T(\mathbf X)=T(\mathbf x)\}
-P\{\mathbf X=\mathbf x\mid T(\mathbf X)=T(\mathbf x)\};
+P\{\mathbf X=\mathbf x\mid T(\mathbf X)=T(\mathbf x)\}.
 $$
 
-the continuous case uses conditional densities.
+Conversely, suppose $f(\mathbf x\mid\theta)=g(T(\mathbf x)\mid\theta)h(\mathbf x)$. With
+$A_t=\{\mathbf y:T(\mathbf y)=t\}$ and $\mathbf x\in A_t$,
 
-::: {.example}
-Let $X_i\overset{\mathrm{iid}}\sim N(\mu,\sigma^2)$ with known $\sigma^2$. Since
+$$P_\theta(\mathbf X=\mathbf x\mid T=t)
+=\frac{h(\mathbf x)}{\sum_{\mathbf y\in A_t}h(\mathbf y)},$$
+
+which is free of $\theta$. Thus $T$ is sufficient. Replacing masses and sums by densities and integrals gives the continuous case.
+
+</details>
+
+::: {.example .source-numbered}
+**Example 6.2.7 (Normal sample with known variance).** Let $X_i\overset{\mathrm{iid}}\sim N(\mu,\sigma^2)$ with known $\sigma^2$. Prove that $\bar X$ is sufficient for $\mu$.
+:::
+
+<details class="course-details solution-details">
+<summary><strong>View detailed solution</strong></summary>
+
+Since
 
 $$
 \sum_{i=1}^n(x_i-\mu)^2
@@ -89,7 +123,8 @@ f(\mathbf x\mid\mu)
 $$
 
 Therefore $\bar X$ is sufficient for $\mu$. The same result follows by checking that the conditional density based on $\bar X\sim N(\mu,\sigma^2/n)$ is free of $\mu$.
-:::
+
+</details>
 
 ## Sufficient statistics with parameter-dependent support {#support-dependent-sufficiency}
 
@@ -122,8 +157,8 @@ Hence $(\bar X,S^2)$ is jointly sufficient for $(\mu,\sigma^2)$. Equivalently, o
 A sufficient statistic $T$ is **minimal sufficient** if, for every other sufficient statistic $T'$, there is a function $g$ such that $T=g(T')$. It achieves the greatest reduction among sufficient statistics.
 :::
 
-::: {.theorem}
-**Lehmann--Scheffé criterion.** If, for every pair $\mathbf x,\mathbf y$,
+::: {.theorem .source-numbered}
+**Theorem 6.2.13 (Minimal-sufficiency criterion).** If, for every pair $\mathbf x,\mathbf y$,
 
 $$
 \frac{f(\mathbf x\mid\theta)}{f(\mathbf y\mid\theta)}
@@ -131,6 +166,24 @@ $$
 
 is constant in $\theta$ if and only if $T(\mathbf x)=T(\mathbf y)$, then $T$ is minimal sufficient.
 :::
+
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+Define $\mathbf x\sim\mathbf y$ when the density ratio is parameter-free. The hypothesis says that the level sets of $T$ are exactly these equivalence classes.
+
+Let $U$ be any sufficient statistic. By factorization, $U(\mathbf x)=U(\mathbf y)$ implies
+
+$$\frac{f(\mathbf x\mid\theta)}{f(\mathbf y\mid\theta)}
+=\frac{h(\mathbf x)}{h(\mathbf y)},$$
+
+so $T(\mathbf x)=T(\mathbf y)$. Hence $T$ is constant on each level set of $U$, and $T=g(U)$ for some $g$.
+
+It remains to see that $T$ is sufficient. Choose one representative $\mathbf x_t$ in each level set and write
+$g(t\mid\theta)=f(\mathbf x_t\mid\theta)$ and
+$h(\mathbf x)=f(\mathbf x\mid\theta)/f(\mathbf x_{T(\mathbf x)}\mid\theta)$. By hypothesis this ratio is parameter-free, so factorization proves sufficiency. Therefore $T$ is minimal sufficient.
+
+</details>
 
 For the two-parameter normal model, the density ratio is
 
@@ -224,9 +277,21 @@ $ng(\theta)\theta^{n-1}=0$, proving completeness. Together with factorization, $
 
 ## Basu's theorem and independence {#basu-theorem}
 
-::: {.theorem}
-**Basu's theorem.** A complete sufficient statistic is independent of every ancillary statistic.
+::: {.theorem .source-numbered}
+**Theorem 6.2.24 (Basu's theorem).** A complete sufficient statistic is independent of every ancillary statistic.
 :::
+
+<details class="course-details proof-details">
+<summary><strong>Expand proof</strong></summary>
+
+Let $T$ be complete sufficient and $V$ ancillary. For any measurable set $B$, define
+
+$$g_B(T)=P_\theta(V\in B\mid T)-P_\theta(V\in B).$$
+
+The first term is parameter-free by sufficiency and the second by ancillarity. The tower property gives $E_\theta\{g_B(T)\}=0$ for every $\theta$. Completeness therefore implies $g_B(T)=0$ almost surely. Thus
+$P_\theta(V\in B\mid T)=P_\theta(V\in B)$ for every measurable $B$, proving independence.
+
+</details>
 
 If $X_i$ are iid exponential with mean $\theta$, then
 $T=\sum_iX_i$ is complete sufficient and

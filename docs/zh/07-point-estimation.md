@@ -19,8 +19,8 @@ $$W=W(X_1,\ldots,X_n)$$
 设总体含 $k$ 个未知参数 $\boldsymbol\theta=(\theta_1,\ldots,\theta_k)$，定义样本原点矩与总体原点矩
 
 $$
-m_j=\frac1n\sum_{i=1}^nX_i^j,qquad
-\mu_j(\boldsymbol\theta)=E_{\boldsymbol\theta}(X^j),qquad j=1,\ldots,k.
+m_j=\frac1n\sum_{i=1}^nX_i^j,\qquad
+\mu_j(\boldsymbol\theta)=E_{\boldsymbol\theta}(X^j),\qquad j=1,\ldots,k.
 $$
 
 矩估计通过求解
@@ -29,8 +29,14 @@ $$m_j=\mu_j(\boldsymbol\theta),\qquad j=1,\ldots,k$$
 
 得到 $\hat\theta_1,\ldots,\hat\theta_k$。
 
-::: {.example}
-若 $X_i\overset{\mathrm{iid}}\sim\operatorname{Bin}(k,p)$，且 $k,p$ 都未知，则
+::: {.example .source-numbered}
+**例 7.2.2（二项分布的矩估计）** 若 $X_i\overset{\mathrm{iid}}\sim\operatorname{Bin}(k,p)$，且 $k,p$ 都未知，求 $k,p$ 的矩估计。
+:::
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+总体前两阶信息为
 
 $$E(X)=kp,\qquad E(X^2)=kp(1-p)+k^2p^2.$$
 
@@ -42,7 +48,8 @@ $$
 $$
 
 若 $\bar X-v_n\le0$，方程在允许的参数空间中没有内部解；而 $k$ 是整数时还需结合参数约束选择相邻整数。这是矩估计可能产生不可行结果的例子。
-:::
+
+</details>
 
 ## 最大似然估计及不变性 {#maximum-likelihood-estimation}
 
@@ -62,9 +69,27 @@ $$\nabla_{\boldsymbol\theta}\ell(\boldsymbol\theta)=\mathbf0,$$
 
 但还必须检查边界、参数约束以及极值是否存在。
 
-::: {.theorem}
-**MLE 不变性。** 若 $\hat\theta$ 是 $\theta$ 的 MLE，则 $\tau(\hat\theta)$ 是 $\tau(\theta)$ 的 MLE；当 $\tau$ 非一一对应时，应把具有同一函数值的参数点一起取上确界。
+::: {.theorem .source-numbered}
+**定理 7.2.10（MLE 不变性）** 若 $\hat\theta$ 是 $\theta$ 的 MLE，则 $\tau(\hat\theta)$ 是 $\tau(\theta)$ 的 MLE；当 $\tau$ 非一一对应时，应把具有同一函数值的参数点一起取上确界。
 :::
+
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+令 $\eta=\tau(\theta)$，并定义剖面似然
+
+$$L^*(\eta\mid\mathbf x)=\sup_{\theta:\,\tau(\theta)=\eta}L(\theta\mid\mathbf x).$$
+
+若 $\hat\theta$ 最大化原似然，则对任意 $\eta$，
+
+$$L^*(\eta\mid\mathbf x)\le L(\hat\theta\mid\mathbf x)
+\le L^*\{\tau(\hat\theta)\mid\mathbf x\}.$$
+
+最后一个不等号成立是因为 $\hat\theta$ 属于集合
+$\{\theta:\tau(\theta)=\tau(\hat\theta)\}$。因此 $L^*$ 在
+$\hat\eta=\tau(\hat\theta)$ 处达到最大。一一映射情形是直接特例。
+
+</details>
 
 原始 R 示例用指数尺度模型展示似然峰值，但直接计算似然会数值下溢。下面保留同一模型、样本生成方式和参数搜索，只改用对数似然。
 
@@ -124,9 +149,20 @@ $$
 m(\mathbf x)=\int f(\mathbf x\mid\theta)\pi(\theta)\,d\theta.
 $$
 
-::: {.example}
-若 $X_i\sim\operatorname{Bernoulli}(p)$，$Y=\sum_iX_i$，并取
-$p\sim\operatorname{Beta}(\alpha,\beta)$，则
+::: {.example .source-numbered}
+**例 7.2.14（Beta--Binomial Bayes 估计）** 若 $X_i\sim\operatorname{Bernoulli}(p)$，$Y=\sum_iX_i$，并取
+$p\sim\operatorname{Beta}(\alpha,\beta)$，求后验分布以及平方误差损失下的 Bayes 估计量。
+:::
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+忽略与 $p$ 无关的因子，似然与先验的乘积为
+
+$$p^y(1-p)^{n-y}p^{\alpha-1}(1-p)^{\beta-1}
+=p^{y+\alpha-1}(1-p)^{n-y+\beta-1},$$
+
+这正是 Beta 核，因此
 
 $$
 p\mid Y=y\sim\operatorname{Beta}(y+\alpha,n-y+\beta).
@@ -141,7 +177,8 @@ $$
 $$
 
 它把样本比例向先验均值作加权收缩。
-:::
+
+</details>
 
 ## EM 算法：潜变量与基本步骤 {#em-algorithm}
 
@@ -277,8 +314,8 @@ $$\operatorname{Var}_\theta(W^*)\le\operatorname{Var}_\theta(W)
 
 ## Cramér--Rao 下界 {#cramer-rao-bound}
 
-::: {.theorem}
-在支撑集不随 $\theta$ 改变、可交换微分与积分且方差有限等正则条件下，任意估计量 $W$ 满足
+::: {.theorem .source-numbered}
+**定理 7.3.9（Cramér--Rao 下界）** 在支撑集不随 $\theta$ 改变、可交换微分与积分且方差有限等正则条件下，任意估计量 $W$ 满足
 
 $$
 \operatorname{Var}_\theta(W)\ge
@@ -289,6 +326,43 @@ I_n(\theta)=E_\theta\left[\left\{\frac\partial{\partial\theta}
 $$
 :::
 
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+记得分为
+
+$$U(\mathbf X;\theta)=\frac{\partial}{\partial\theta}\log f(\mathbf X\mid\theta).$$
+
+由正则条件与密度积分为 1，
+
+$$
+E_\theta U=\int \frac{\partial f(\mathbf x\mid\theta)}{\partial\theta}\,d\mathbf x
+=\frac{d}{d\theta}\int f(\mathbf x\mid\theta)\,d\mathbf x=0.
+$$
+
+同样交换微分与积分可得
+
+$$
+\begin{aligned}
+\operatorname{Cov}_\theta(W,U)
+&=E_\theta(WU)\\
+&=\int W(\mathbf x)\frac{\partial f(\mathbf x\mid\theta)}{\partial\theta}\,d\mathbf x\\
+&=\frac{d}{d\theta}E_\theta(W).
+\end{aligned}
+$$
+
+Cauchy--Schwarz 不等式给出
+
+$$
+\left\{\frac{d}{d\theta}E_\theta(W)\right\}^2
+\le \operatorname{Var}_\theta(W)\operatorname{Var}_\theta(U)
+=\operatorname{Var}_\theta(W)I_n(\theta).
+$$
+
+移项即得结论。等号成立当且仅当 $W-E_\theta(W)$ 与得分 $U$ 线性相关，这也解释了后面的达到条件。
+
+</details>
+
 对 iid 样本，$I_n(\theta)=nI_1(\theta)$。在正则条件下，得分均值为 0，并有
 
 $$
@@ -296,16 +370,39 @@ I_1(\theta)=-E_\theta\left\{\frac{\partial^2}{\partial\theta^2}
 \log f(X\mid\theta)\right\}.
 $$
 
-::: {.example}
-若 $X_i\sim\operatorname{Poisson}(\lambda)$，则
-$I_1(\lambda)=1/\lambda$。任何 $\lambda$ 的无偏估计量都满足
+::: {.example .source-numbered}
+**例 7.3.12（Poisson 模型达到信息下界）** 若 $X_i\sim\operatorname{Poisson}(\lambda)$，求 Fisher 信息，并判断 $\bar X$ 是否达到 Cramér--Rao 下界。
+:::
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
+
+单个观测的对数密度与得分为
+
+$$\ell(\lambda)=X\log\lambda-\lambda-\log(X!),\qquad
+U(\lambda)=\frac X\lambda-1.$$
+
+因此
+
+$$I_1(\lambda)=E_\lambda\{U(\lambda)^2\}
+=\frac{\operatorname{Var}(X)}{\lambda^2}=\frac1\lambda.$$
+
+于是任何 $\lambda$ 的无偏估计量都满足
 
 $$\operatorname{Var}_\lambda(W)\ge\lambda/n.$$
 
 样本均值的方差恰为 $\lambda/n$，因而达到下界并是 UMVUE。
-:::
+
+</details>
 
 ## 非正则均匀模型 {#irregular-uniform-model}
+
+::: {.example .source-numbered}
+**例 7.3.13（参数相关支撑）** 设 $X_i\sim U(0,\theta)$。说明常规 Cramér--Rao 下界为何不能直接使用，并构造一个基于样本最大值的无偏估计量。
+:::
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
 
 若 $X_i\sim U(0,\theta)$，支撑集随 $\theta$ 改变，不能忽略积分上限的导数，因此常规 Cramér--Rao 结论不适用。
 
@@ -326,6 +423,8 @@ $$
 \frac d{d\theta}\int_0^\theta h(x)f(x\mid\theta)\,dx
 \ne\int_0^\theta h(x)\frac\partial{\partial\theta}f(x\mid\theta)\,dx.
 $$
+
+</details>
 
 ## 正态方差下界与达到条件 {#normal-variance-bound}
 
@@ -354,8 +453,8 @@ $$
 
 ## Rao--Blackwell 与 Lehmann--Scheffé {#rao-blackwell-lehmann-scheffe}
 
-::: {.theorem}
-**Rao--Blackwell 定理。** 若 $W$ 是 $\tau(\theta)$ 的无偏估计量，$T$ 对 $\theta$ 充分，则
+::: {.theorem .source-numbered}
+**定理 7.3.17（Rao--Blackwell 定理）** 若 $W$ 是 $\tau(\theta)$ 的无偏估计量，$T$ 对 $\theta$ 充分，则
 
 $$\Phi(T)=E(W\mid T)$$
 
@@ -363,11 +462,41 @@ $$\Phi(T)=E(W\mid T)$$
 $\operatorname{Var}_\theta\{\Phi(T)\}\le\operatorname{Var}_\theta(W)$。
 :::
 
-该结论来自全期望与全方差公式。充分性保证条件期望的形式不含未知参数，从而确实是统计量。
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
 
-::: {.theorem}
-**Lehmann--Scheffé 定理。** 若 $T$ 完备且充分，任何只依赖 $T$ 的无偏估计量 $\phi(T)$ 都是其期望的唯一 UMVUE。
+充分性保证 $W\mid T$ 的条件分布不含未知参数，因此 $\Phi(T)=E(W\mid T)$ 是可由样本计算的统计量。由全期望公式，
+
+$$E_\theta\{\Phi(T)\}=E_\theta\{E_\theta(W\mid T)\}=E_\theta(W)=\tau(\theta),$$
+
+所以 $\Phi(T)$ 仍然无偏。再由全方差公式，
+
+$$
+\operatorname{Var}_\theta(W)
+=E_\theta\{\operatorname{Var}_\theta(W\mid T)\}
++\operatorname{Var}_\theta\{E_\theta(W\mid T)\}
+\ge \operatorname{Var}_\theta\{\Phi(T)\}.
+$$
+
+等号成立当且仅当条件方差几乎处处为 0，即 $W$ 本来就是 $T$ 的函数。
+
+</details>
+
+::: {.theorem .source-numbered}
+**定理 7.3.23（Lehmann--Scheffé 定理）** 若 $T$ 完备且充分，任何只依赖 $T$ 的无偏估计量 $\phi(T)$ 都是其期望的唯一 UMVUE。
 :::
+
+<details class="course-details proof-details">
+<summary><strong>展开证明</strong></summary>
+
+设 $W$ 是同一参数函数的任意无偏估计量。Rao--Blackwell 定理表明
+$W^*=E(W\mid T)$ 仍无偏且方差不大于 $W$。另一方面，$W^*$ 与 $\phi(T)$ 都是 $T$ 的函数，并且
+
+$$E_\theta\{W^*-\phi(T)\}=0\qquad\text{对所有 }\theta.$$
+
+由 $T$ 的完备性，$W^*=\phi(T)$ 几乎处处。因此 $\phi(T)$ 的方差不大于任意无偏估计量的方差，是 UMVUE。若另有 UMVUE $V$，对其 Rao--Blackwell 化并重复上述论证，也得到 $V=\phi(T)$ 几乎处处，故唯一性成立。
+
+</details>
 
 最佳无偏估计量在几乎处处意义下唯一。等价刻画是：一个无偏估计量为 UMVUE，当且仅当它与每一个期望恒为 0 的无偏估计量不相关。
 
@@ -375,6 +504,13 @@ $\operatorname{Var}_\theta\{\Phi(T)\}\le\operatorname{Var}_\theta(W)$。
 $(n+1)Y/n$ 是 $\theta$ 的唯一 UMVUE。
 
 ## 二项模型中的 Rao--Blackwell 化 {#binomial-umvue-example}
+
+::: {.example .source-numbered}
+**例 7.3.24（二项模型的 UMVUE）** 设 $X_i\sim\operatorname{Bin}(k,\theta)$，$k$ 已知。求单次观测恰有一次成功的概率 $\tau(\theta)=k\theta(1-\theta)^{k-1}$ 的 UMVUE。
+:::
+
+<details class="course-details solution-details">
+<summary><strong>查看详细解答</strong></summary>
 
 设 $X_i\sim\operatorname{Bin}(k,\theta)$，$k$ 已知，目标为估计单次
 $\operatorname{Bin}(k,\theta)$ 恰有一次成功的概率
@@ -396,6 +532,8 @@ $$
 $$
 
 参数 $\theta$ 在条件化后消失，体现了充分统计量的数据约简作用。
+
+</details>
 
 ## 损失函数与风险 {#loss-and-risk}
 
@@ -464,6 +602,96 @@ $$
 $$
 
 后验为正态分布，其均值与中位数相同，因此平方误差和绝对误差下的 Bayes 估计量在本例中一致，都是上述后验均值。
+
+## Rao--Blackwell 化的模拟比较 {#rao-blackwell-simulation}
+
+设 $X_1,\ldots,X_n\overset{\mathrm{iid}}\sim\operatorname{Bernoulli}(p)$，目标是估计 $p^2$。最直接的无偏估计量是
+
+$$W=X_1X_2,\qquad E_p(W)=p^2.$$
+
+令 $T=\sum_{i=1}^nX_i$。因为 $T$ 是 $p$ 的完备充分统计量，在给定 $T=t$ 时，$n$ 个位置中恰有 $t$ 个 1，于是
+
+$$
+E(W\mid T=t)
+=P(X_1=X_2=1\mid T=t)
+=\frac{\binom{t}{2}}{\binom{n}{2}}
+=\frac{t(t-1)}{n(n-1)}.
+$$
+
+因此
+
+$$W^*=\frac{T(T-1)}{n(n-1)}$$
+
+不仅仍然无偏，而且是 $p^2$ 的 UMVUE。下面的重复抽样实验把 Rao--Blackwell 定理中的“方差不增”变成可直接观察的曲线。
+
+
+``` r
+set.seed(7307)
+n_rb <- 20
+b_rb <- 20000
+p_grid <- seq(0.05, 0.95, by = 0.05)
+variance_result <- t(vapply(p_grid, function(p) {
+  x <- matrix(rbinom(b_rb * n_rb, size = 1, prob = p), nrow = b_rb)
+  total <- rowSums(x)
+  raw <- x[, 1] * x[, 2]
+  improved <- total * (total - 1) / (n_rb * (n_rb - 1))
+  c(raw = var(raw), Rao_Blackwell = var(improved))
+}, numeric(2)))
+
+matplot(p_grid, variance_result, type = "l", lty = 1, lwd = 2.5,
+        col = c("#C43C39", "#1F77B4"),
+        xlab = expression(p), ylab = "模拟方差",
+        family = course_plot_family())
+legend("topleft", c(expression(W == X[1] * X[2]),
+                    expression(W^"*" == T * (T - 1) / (n * (n - 1)))),
+       col = c("#C43C39", "#1F77B4"), lty = 1, lwd = 2.5, bty = "n")
+```
+
+<div class="figure" style="text-align: center">
+<img src="07-point-estimation_files/figure-html/chap07-rao-blackwell-variance-1.png" alt="原始无偏估计量与 Rao--Blackwell 化估计量的模拟方差（n=20）" width="90%" />
+<p class="caption">(\#fig:chap07-rao-blackwell-variance)原始无偏估计量与 Rao--Blackwell 化估计量的模拟方差（n=20）</p>
+</div>
+
+蓝线在整个参数范围内都不高于红线。这里的改进不是来自偏差--方差交换：两个估计量都无偏，差异完全来自利用充分统计量汇总了样本中与 $p$ 有关的信息。
+
+## 贯穿案例：产品缺陷率的点估计 {#defect-rate-point-estimation}
+
+考虑一个贯穿第 7--9 章的教学案例：从生产线上独立抽检 $n=200$ 件产品，发现 $y=16$ 件缺陷品。记真实缺陷率为 $p$，企业的质量标准为 $p_0=0.05$。
+
+频率学派的最大似然估计为
+
+$$\hat p_{\mathrm{MLE}}=\frac{16}{200}=0.08.$$
+
+若历史经验用 $p\sim\operatorname{Beta}(2,38)$ 表示，其先验均值为 $0.05$，则后验分布与平方误差损失下的 Bayes 估计为
+
+$$
+p\mid y\sim\operatorname{Beta}(18,222),\qquad
+\hat p_B=E(p\mid y)=\frac{18}{240}=0.075.
+$$
+
+
+``` r
+n_defect <- 200
+y_defect <- 16
+knitr::kable(
+  data.frame(
+    `估计方法` = c("MLE", "Bayes 后验均值"),
+    `估计值` = c(y_defect / n_defect,
+                 (2 + y_defect) / (2 + 38 + n_defect)),
+    check.names = FALSE
+  ),
+  digits = 3
+)
+```
+
+
+
+|估计方法       | 估计值|
+|:--------------|------:|
+|MLE            |  0.080|
+|Bayes 后验均值 |  0.075|
+
+Bayes 估计略向历史标准 $0.05$ 收缩，但两种估计都只是对未知参数的点概括。下一章将问“数据是否足以说明缺陷率超过标准”，第 9 章再讨论估计的不确定范围。
 
 ## 本章小结 {#point-estimation-summary}
 
